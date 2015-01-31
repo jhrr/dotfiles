@@ -1,0 +1,146 @@
+#!/usr/bin/env python
+"""
+Usage: veprompt [options]
+
+Virtual environment information in your prompt.
+
+You can `export VIRTUAL_ENV_DISABLE_PROMPT=1` in your .bashrc
+(or equivalent) in order to override virtualenv's native prompt-string
+support.
+
+Options:
+    -f, --format FORMAT        The format string to use.
+    -h, --help                 Show this help message and exit.
+    -n, --no-newline           Suppress the newline appended to the prompt.
+    -t, --truncate             Round off a major.minor.micro version number.
+
+Format tokens:
+    %n                         The name of the environment itself.
+    %s                         The name of the environment system.
+    %v                         The version number of the language.
+
+"""
+import optparse
+import os
+import subprocess
+import sys
+
+
+FORMAT = os.environ.get('VEPROMPT_FORMAT', '%s:%v:%n')
+SYSTEMS = []
+
+
+def helper(*args, **kwargs):
+    """
+    Prints the help message to stderr.
+    """
+    sys.stderr.write(__doc__.lstrip())
+    sys.exit(0)
+
+
+def truncate_version(version):
+    """Round a 'major.minor.micro' version number to the form:
+    major.minor
+    """
+    truncated = '.'.join(version.split('.')[:2])
+    if truncated:
+        return truncated
+    else:
+        return '???'
+
+
+def ves(path):
+    """Wraps a virtual environment function, appending it to `SYSTEMS` and
+    sets the `files` attribute.
+    """
+    def wrapper(function):
+        SYSTEMS.append(function)
+        function.path = path
+    return wrapper
+
+
+def veprompt(options):
+    """Returns a formatted virtual environment string for use in a shell
+    prompt or elsewhere.
+    """
+    prompt = None
+
+    for ves in SYSTEMS:
+        for vpath in ves.path:
+            if not os.path.exists(vpath):
+                continue
+
+            ves_format = getattr(options, 'format', None)
+            if ves_format:
+                options.format = ves_format
+
+            conf = ves(options)
+            prompt = options.format
+
+            prompt = prompt.replace("%n", conf.get('name', ''))
+            prompt = prompt.replace("%s", conf.get('system', ''))
+            prompt = prompt.replace("%v", conf.get('interpreter', ''))
+
+            return prompt
+    return ''
+
+
+@ves([os.path.expandvars("$VIRTUAL_ENV")])
+def venv(options):
+
+    venv_name = version = ''
+
+    venv_path = os.path.expandvars('$VIRTUAL_ENV')
+    if os.path.exists(venv_path):
+        venv_name = os.path.split(venv_path)[1]
+    else:
+        venv_name = '???'
+
+    process = subprocess.Popen(
+        ['python',
+         '-c',
+         'import sys; print(".".join(map(str, sys.version_info)))'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
+    out, err = process.communicate()
+    if out:
+        if isinstance(out, bytes):
+            decoded = out.decode('utf-8')
+            version = '.'.join(decoded.split('.')[:3])
+        else:
+            version = '.'.join(out.split('.')[:3])
+
+    if options.truncate:
+        version = truncate_version(version)
+
+    return {
+        "system": "venv",
+        "name": venv_name,
+        "interpreter": version,
+    }
+
+
+def main():
+    parser = optparse.OptionParser()
+    parser.remove_option('--help')
+    parser.add_option('-h', '--help', action='callback', callback=helper)
+    parser.add_option('-f', '--format', dest='format', default=FORMAT)
+    parser.add_option('-n', '--no-newline', action='store_false',
+                      dest='newline', default=True)
+    parser.add_option('-t', '--truncate', action='store_true', dest='truncate')
+
+    options, args = parser.parse_args()
+
+    output = veprompt(options)
+    if options.newline:
+        output += '\n'
+    return output
+
+
+if __name__ == "__main__":
+    prompt = main()
+    if prompt:
+        sys.stdout.write(prompt)
+    else:
+        sys.exit(1)
