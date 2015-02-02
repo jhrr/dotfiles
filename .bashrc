@@ -108,7 +108,8 @@ export PAGER MANPAGER
   export WORKON_HOME=~/.virtualenvs
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 }
-#export VIRTUAL_ENV_DISABLE_PROMPT=1
+[[ -f ~/bin/veprompt ]] &&
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"

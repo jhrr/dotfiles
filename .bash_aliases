@@ -10,7 +10,7 @@ sreboot() {
   sudo shutdown -r now
 }
 
-ff() { find . -type f -iname "*""$*""*" -ls ; }
+ff() { find . -type f -iname "*""$*""*" ; }
 
 fx() { find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \;  ; }
 

@@ -11,7 +11,7 @@ support.
 Options:
     -f, --format FORMAT        The format string to use.
     -h, --help                 Show this help message and exit.
-    -n, --no-newline           Suppress the newline appended to the prompt.
+    -n, --no-newline           Suppress the newline appended to the output.
     -t, --truncate             Round off a major.minor.micro version number.
 
 Format tokens:
