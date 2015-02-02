@@ -31,8 +31,7 @@ SYSTEMS = []
 
 
 def helper(*args, **kwargs):
-    """
-    Prints the help message to stderr.
+    """Prints the help message to stderr.
     """
     sys.stderr.write(__doc__.lstrip())
     sys.exit(0)
@@ -40,7 +39,7 @@ def helper(*args, **kwargs):
 
 def truncate_version(version):
     """Round a 'major.minor.micro' version number to the form:
-    major.minor
+    'major.minor'.
     """
     truncated = '.'.join(version.split('.')[:2])
     if truncated:
@@ -50,12 +49,13 @@ def truncate_version(version):
 
 
 def ves(path):
-    """Wraps a virtual environment function, appending it to `SYSTEMS` and
-    sets the `files` attribute.
+    """Wraps a virtual environment function, appending it to `SYSTEMS`
+    and setting the `path` attribute.
     """
     def wrapper(function):
         SYSTEMS.append(function)
         function.path = path
+        return wrapper
     return wrapper
 
 
@@ -64,33 +64,35 @@ def veprompt(options):
     prompt or elsewhere.
     """
     prompt = None
+    prompts = []
 
     for ves in SYSTEMS:
         for vpath in ves.path:
             if not os.path.exists(vpath):
                 continue
 
-            ves_format = getattr(options, 'format', None)
-            if ves_format:
-                options.format = ves_format
-
+            prompt = getattr(options, 'format', None)
             conf = ves(options)
-            prompt = options.format
 
             prompt = prompt.replace("%n", conf.get('name', ''))
             prompt = prompt.replace("%s", conf.get('system', ''))
             prompt = prompt.replace("%v", conf.get('interpreter', ''))
 
-            return prompt
-    return ''
+            prompts.append(prompt)
+    if prompts:
+        return prompts
+    else:
+        return ''
 
 
 @ves([os.path.expandvars("$VIRTUAL_ENV")])
 def venv(options):
-
+    """Collect data about the currently active Python virtualenv.
+    """
+    system = 'venv'
     venv_name = version = ''
+    venv_path = path
 
-    venv_path = os.path.expandvars('$VIRTUAL_ENV')
     if os.path.exists(venv_path):
         venv_name = os.path.split(venv_path)[1]
     else:
@@ -115,7 +117,7 @@ def venv(options):
         version = truncate_version(version)
 
     return {
-        "system": "venv",
+        "system": system,
         "name": venv_name,
         "interpreter": version,
     }
@@ -139,8 +141,9 @@ def main():
 
 
 if __name__ == "__main__":
-    prompt = main()
-    if prompt:
-        sys.stdout.write(prompt)
+    prompts = main()
+    if prompts:
+        for prompt in prompts:
+            sys.stdout.write(prompt)
     else:
         sys.exit(1)
