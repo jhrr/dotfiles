@@ -1,0 +1,69 @@
+background yes
+out_to_x no
+out_to_console yes
+update_interval 1
+total_run_times 0
+mpd_port 6600
+override_utf8_locale yes
+use_xft yes
+xftfont inconsolata:size=10
+
+
+TEXT
+
+## System
+#
+^fg(\#7cac7c) Cpu: ^fg(\#ffffe0)${cpu cpu1}%\
+^fg(\#7cac7c) Mem: ^fg(\#ffffe0)${mem}\
+^fg(\#7cac7c) Load: ^fg(\#ffffe0)${loadavg 1 2 3}\
+#
+## Battery
+#
+^fg(\#7cac7c) Bat:\
+${if_match ${execi 60 acpi -b | awk '{print $4}' | sed -e s/%//} >= 75} ^fg(\#00ff00)\
+${else}\
+${if_match ${execi 60 acpi -b | awk '{print $4}' | sed -e s/%//} <= 75} ^fg(\#ffff00)\
+${else}\
+${if_match ${execi 60 acpi -b | awk '{print $4}' | sed -e s/%//} <= 50} ^fg(\#ffa500)\
+${else}\
+${if_match ${execi 60 acpi -b | awk '{print $4}' | sed -e s/%//} <= 25} ^fg(\#ff0000)\
+${endif}\
+${endif}\
+${endif}\
+${endif}\
+${execi 2 acpi -b | awk '{print $4}' | sed -e s/,//}\
+#
+## Charging status
+#
+${if_match "${execi 2 acpi -b | awk '{print $3}'}" == "Full,"}\
+^fg(\#00ff00) F \
+${else}\
+${if_match "${execi 2 acpi -b | awk '{print $3}'}" == "Charging,"}\
+^fg(\#ffa500) C \
+${else}\
+${if_match "${execi 2 acpi -b | awk '{print $3}'}" == "Unknown,"}\
+^fg(\#ffa500) C \
+${else}\
+^fg(\#ff0000) D \
+${endif}\
+${endif}\
+${endif}\
+#
+## MPD
+#
+# ^fg(\#7cac7c)++ ^fg(\#dc8c6c)${mpd_artist}\
+# ^fg(\#7cac7c) : \
+# ^fg(\#ff6347)\
+# ${if_match ${execi 5 expr length "`mpc --format %title% | head -n 1`"} >= 25}\
+# ${scroll 15 ${mpd_title}}${else}${mpd_title}${endif} \
+# ^fg()(${mpd_elapsed}/${mpd_length}) ^fg(\#7cac7c)\
+#
+### Clickables
+#
+^ca(1,~/bin/sysinfo)^fg(\#7cac7c)++ ^fg(\#6c6c9c)[SysInfo]^ca()\
+^fg(\#6c6c9c) [Org]\
+#
+### Time
+#
+^fg(\#7cac7c) ++ ^fg(\#ffffe0)${time %Y/%m/%d %H:%M} \
+#

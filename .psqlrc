@@ -1,0 +1,11 @@
+\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%# '
+\set PROMPT2 '[more] %R > '
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+\set ON_ERROR_ROLLBACK interactive
+\set VERBOSITY verbose
+\unset quiet
+\pset null '(null)'  -- Default NULL is an emptyspace. Make it explicit.
+\pset pager off  -- values: off, on, always
+\x auto

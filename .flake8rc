@@ -1,0 +1,8 @@
+[flake8]
+ignore = E128,E321,W391
+max-line-length = 79
+max-complexity = 10
+
+# E128: Continuation line under-indented for visual indent
+# E321: Missing whitespace after ','
+# W391: Blank like at end of file
