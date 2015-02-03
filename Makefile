@@ -1,3 +1,8 @@
+## -*- mode: makefile-gmake -*-
+
+dot = $(CURDIR)
+script = $(CURDIR)/bin
+
+# rm ~/.vimrc
 # mkdir ~/.vim-tmp
-# curl -sL https://github.com/jhrr/veprompt/raw/master/bin/veprompt > ~/bin/veprompt
-# chmod +x ~/bin/veprompt
+# ln -s `pwd`/.vimrc ~/.vimrc
