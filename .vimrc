@@ -36,6 +36,7 @@ set softtabstop=2
 set t_ti= t_te=
 set tabstop=2
 set title
+set ttyfast
 set visualbell
 set wildmenu
 set wildmode=list:longest

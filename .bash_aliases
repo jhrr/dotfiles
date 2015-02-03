@@ -1,5 +1,34 @@
 # -*- mode: sh; -*-
 
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+alias ag='ack -i'
+alias du='du -h -c'
+alias du1='du -h --max-depth=1'
+alias grd='ls -aliF | ack -i'
+alias h='history | grep -i'
+alias kcC='keychain --clear'  # safely decache keychain keys
+alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
+alias open='xdg-open &>/dev/null'
+alias p='ping -c 5 8.8.8.8'
+alias ping='ping -c 5'
+alias rms='reset; python manage.py runserver_plus localhost:8001'
+alias shclr='msgcat --color=test'
+alias shred='shred -zuv'
+alias sue='sudo emacs -nw'
+alias tv1='xset s off && xset -dpms && echo "screen powersaving off..."'
+alias tv0='xset s default && xset +dpms && echo "screen powersaving on..."'
+alias txa='tmux attach'
+alias txd='tmux detach'
+alias txl='tmux ls'
+alias txn='tmux attach -t'
+alias txs='tmux switch -t'
+alias x='startx'
+alias v="\$VISUAL"
+
 sreboot() {
   if [[ "t" == "$(server_ok)" ]]; then
     echo "Shutting down the emacs server..."
