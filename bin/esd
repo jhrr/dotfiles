@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# If not running, start the GNU Emacs daemon and open a new client.
+if [ ! "$(pgrep --full emacs.*daemon)" ]; then
+    emacs -u "$USER" --daemon --eval '(server-start)'
+    emacsclient --no-wait --create-frame
+fi
