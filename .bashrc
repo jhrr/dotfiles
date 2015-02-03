@@ -99,32 +99,25 @@ else
 fi
 export PAGER MANPAGER
 
-[[ -f /etc/bash_completion.d/password-store ]] &&
-  . /etc/bash_completion.d/password-store
-[[ -f ~/.git-completion.bash ]] &&
-  . ~/.git-completion.bash
+[[ -f ~/bin/vcprompt ]] &&
+  export VCPROMPT_FORMAT="[%b:%n:%r]"
+[[ -f ~/bin/veprompt ]] &&
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
   . /usr/bin/virtualenvwrapper.sh
   export WORKON_HOME=~/.virtualenvs
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 }
-[[ -f ~/bin/veprompt ]] &&
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+[[ -f ~/.git-completion.sh ]]
+. ~/.git-completion.sh
+
+[[ -f /etc/bash_completion.d/password-store ]] &&
+  . /etc/bash_completion.d/password-store
 
 [[ -f ~/.bash_aliases ]] &&
   . ~/.bash_aliases
-
-[[ -f ~/.git-completion ]] && {
-  . ~/.git-completion
-  export GIT_PS1_SHOWDIRTYSTATE=1
-  export GIT_PS1_SHOWSTASHSTATE=1
-  export GIT_PS1_SHOWUNTRACKEDFILES=1
-  export GIT_PS1_SHOWUPSTREAM="auto"
-}
-
-[[ -f ~/bin/vcprompt ]] &&
-  export VCPROMPT_FORMAT="[%b:%n:%r]"
 
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
@@ -141,12 +134,8 @@ puniq() {
 }
 PATH="$(puniq "$PATH")"
 
-PS1="${YELLOW}\u${BBlue}@${YELLOW}\h${BBlue}(${BYellow}\w${BBlue})\
+PS1="${YELLOW}\u${BLUE}@${YELLOW}\h${BLUE}(${YELLOW}\w${BLUE})\
 ${Cyan}\$(veprompt -f '[%v:%n]' -t)\
-${GREEN}\$(__git_ps1 '[git:%s]')\
-\n${IRed}\$${LIGHT_GREY} "
-
-# PS1="${YELLOW}\u${BBlue}@${YELLOW}\h${BBlue}(${BYellow}\w${BBlue})\
-# ${Cyan}\$(veprompt -f '[%v:%n]' -t)\
-# ${GREEN}\$(vcprompt)\
-# \n${IRed}\$${LIGHT_GREY} "
+${GREEN}\$(vcprompt -f '[%n:%b]')${WHITE}\$(vcprompt -f '%u %m')\
+${RED}\n\
+${BIPurple}\$${LIGHT_GREY} "
