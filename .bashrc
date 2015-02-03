@@ -112,14 +112,25 @@ export PAGER MANPAGER
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+[[ -f ~/.bash_aliases ]] &&
+  . ~/.bash_aliases
+
+[[ -f ~/.git-completion ]] && {
+  . ~/.git-completion
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWUPSTREAM="auto"
+}
+
+[[ -f ~/bin/vcprompt ]] &&
+  export VCPROMPT_FORMAT="[%b:%n:%r]"
+
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
-
-[[ -f ~/.bash_aliases ]] &&
-  . ~/.bash_aliases
 
 # Usage: puniq [<path>]
 # Remove duplicate entries from a PATH style value and retaining
@@ -129,3 +140,13 @@ puniq() {
     cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
 }
 PATH="$(puniq "$PATH")"
+
+PS1="${YELLOW}\u${BBlue}@${YELLOW}\h${BBlue}(${BYellow}\w${BBlue})\
+${Cyan}\$(veprompt -f '[%v:%n]' -t)\
+${GREEN}\$(__git_ps1 '[git:%s]')\
+\n${IRed}\$${LIGHT_GREY} "
+
+# PS1="${YELLOW}\u${BBlue}@${YELLOW}\h${BBlue}(${BYellow}\w${BBlue})\
+# ${Cyan}\$(veprompt -f '[%v:%n]' -t)\
+# ${GREEN}\$(vcprompt)\
+# \n${IRed}\$${LIGHT_GREY} "

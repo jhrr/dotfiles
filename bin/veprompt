@@ -55,7 +55,7 @@ def ves(path):
     def wrapper(function):
         SYSTEMS.append(function)
         function.path = path
-        return wrapper
+        return function
     return wrapper
 
 
@@ -89,9 +89,9 @@ def veprompt(options):
 def venv(options):
     """Collect data about the currently active Python virtualenv.
     """
-    system = 'venv'
     venv_name = version = ''
-    venv_path = path
+    venv_path = os.path.expandvars("$VIRTUAL_ENV")
+    system = 'venv'
 
     if os.path.exists(venv_path):
         venv_name = os.path.split(venv_path)[1]
