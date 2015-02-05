@@ -99,11 +99,6 @@ else
 fi
 export PAGER MANPAGER
 
-[[ -f ~/bin/vcprompt ]] &&
-  export VCPROMPT_FORMAT="[%b:%n:%r]"
-[[ -f ~/bin/veprompt ]] &&
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
-
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
   . /usr/bin/virtualenvwrapper.sh
   export WORKON_HOME=~/.virtualenvs
@@ -125,6 +120,18 @@ fi
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
 
+[[ -f ~/bin/vcprompt ]] &&
+  export VCPROMPT_FORMAT="[%b:%n:%r]"
+[[ -f ~/bin/veprompt ]] &&
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+PS1="${YELLOW}\u${BLUE}@${YELLOW}\h\
+${BLUE}(${YELLOW}\w${BLUE})\
+${Cyan}\$(veprompt -f '[%v:%n]' -t)\
+${GREEN}\$(vcprompt)\
+${WHITE}\$(vcprompt -f '%u %m')\n\
+${BIPurple}\$${LIGHT_GREY} "
+
 # Usage: puniq [<path>]
 # Remove duplicate entries from a PATH style value and retaining
 # the original order. Non-destructive; use assignment capture.
@@ -133,9 +140,3 @@ puniq() {
     cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
 }
 PATH="$(puniq "$PATH")"
-
-PS1="${YELLOW}\u${BLUE}@${YELLOW}\h${BLUE}(${YELLOW}\w${BLUE})\
-${Cyan}\$(veprompt -f '[%v:%n]' -t)\
-${GREEN}\$(vcprompt -f '[%n:%b]')${WHITE}\$(vcprompt -f '%u %m')\
-${RED}\n\
-${BIPurple}\$${LIGHT_GREY} "

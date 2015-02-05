@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+A_FORMAT="%artist%"
+T_FORMAT="%title%[ (%album%)]"
+NOTIFY_TITLE="Now Playing: "
+
+file="$(mpc current -f %file%)"
+
+[[ -z "$file" ]] &&
+  exit 1
+
+title="$(mpc current -f "$A_FORMAT")"
+song="$(mpc current -f "$T_FORMAT")"
+
+notify-send -t 5000 --hint=int:transient:1 "$NOTIFY_TITLE" "$title\n$song"
