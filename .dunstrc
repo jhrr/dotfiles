@@ -92,7 +92,7 @@
 [irssi]
     appname = irssi
     timeout = 0
-    background = "#008000 "
+    background = "#008000"
     foreground = "#000000"
 
 [dropbox]

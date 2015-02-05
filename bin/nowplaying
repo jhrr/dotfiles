@@ -12,4 +12,4 @@ file="$(mpc current -f %file%)"
 title="$(mpc current -f "$A_FORMAT")"
 song="$(mpc current -f "$T_FORMAT")"
 
-notify-send -t 5000 --hint=int:transient:1 "$NOTIFY_TITLE" "$title\n$song"
+dunstify -t 5000 -h string:bgcolor:#78AB46 "$NOTIFY_TITLE" "$title\n$song"
