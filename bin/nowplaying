@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+# Usage: bind this script to the `execute_on_song_change` event in
+# your ncmpcpp config file.
+
 A_FORMAT="%artist%"
 T_FORMAT="%title%[ (%album%)]"
 NOTIFY_TITLE="Now Playing: "
