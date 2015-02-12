@@ -5,10 +5,12 @@ bin = $(dot)/bin
 tmp = /tmp
 
 mkdir $(bin)
+# mkdir ~/.vim-tmp
 
 # rm ~/.vimrc
-# mkdir ~/.vim-tmp
 # ln -s $(dot)/.vimrc ~/.vimrc
+
+# ignore .cvimrc, chrome can't read use config files.
 
 # Prompt scripts
 vcp_ver = 1.2.1

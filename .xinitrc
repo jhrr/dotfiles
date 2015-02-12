@@ -23,16 +23,23 @@ xset m 30/10 4  # Pointer control, acceleration and threshold
 unclutter -grab &  # Hide cursor when not in use
 setxkbmap -option ctrl:swapcaps  # Remap capslock and ctrl keys
 
+# TODO: config monitors function...
 # EXT="$(xrandr | grep ' connected' | grep -v LVDS1 | cut -f1 -d' ')"
 # RES="$(xrandr | grep -A1 """$EXT connected""" | tail -1 | cut -f4 -d' ')"
 # [ $EXT ] &&
 #   xrandr --output LVDS1 \
 #          --mode 1366x768 \
-#          --primary --output $EXT \
+#          --primary \
+#          --output $EXT \
 #          --mode $RES \
 #          --left-of LVDS1;
 #
-# xrandr --output VGA1 --auto --output LVDS1 --auto --right-of VGA   # map monitors
+[ $EXT ] &&
+  xrandr --output VGA1 \
+         --auto \
+         --output LVDS1 \
+         --auto \
+         --right-of VGA;
 
 pkill dunst; dunst -config ~/.dunstrc &
 trayer --edge top --align right --SetDockType true \
