@@ -91,11 +91,11 @@ export VISUAL
 
 HAVE_LESS=$(command -v less)
 if [[ -x "$HAVE_LESS" ]]; then
-    PAGER="less -FirSwX"
-    MANPAGER="less -FiRswX"
+  PAGER="less -FirSwX"
+  MANPAGER="less -FiRswX"
 else
-    PAGER=more
-    MANPAGER="$PAGER"
+  PAGER=more
+  MANPAGER="$PAGER"
 fi
 export PAGER MANPAGER
 
@@ -136,7 +136,7 @@ ${BIPurple}\$${LIGHT_GREY} "
 # Remove duplicate entries from a PATH style value and retaining
 # the original order. Non-destructive; use assignment capture.
 puniq() {
-    echo "$1" | tr : '\n' | nl |sort -u -k 2,2 | sort -n |
+  echo "$1" | tr : '\n' | nl |sort -u -k 2,2 | sort -n |
     cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
 }
 PATH="$(puniq "$PATH")"
