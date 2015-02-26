@@ -105,8 +105,8 @@ export PAGER MANPAGER
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 }
 
-[[ -f ~/.git-completion.sh ]]
-. ~/.git-completion.sh
+[[ -f ~/.git-completion.sh ]] &&
+  . ~/.git-completion.sh
 
 [[ -f /etc/bash_completion.d/password-store ]] &&
   . /etc/bash_completion.d/password-store
