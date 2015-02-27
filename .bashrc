@@ -133,10 +133,10 @@ ${WHITE}\$(vcprompt -f '%u %m')\n\
 ${BIPurple}\$${LIGHT_GREY} "
 
 # Usage: puniq [<path>]
-# Remove duplicate entries from a PATH style value and retaining
-# the original order. Non-destructive; use assignment capture.
+# Remove duplicate entries from a PATH style value, retaining the
+# original order. Non-destructive; use assignment capture.
 puniq() {
-  echo "$1" | tr : '\n' | nl |sort -u -k 2,2 | sort -n |
+  echo "$1" | tr : '\n' | nl | sort -u -k 2,2 | sort -n |
     cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
 }
 PATH="$(puniq "$PATH")"
