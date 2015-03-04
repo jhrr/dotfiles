@@ -6,6 +6,7 @@ alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 alias ag='ack -i'
+alias delpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias du='du -h -c'
 alias du1='du -h --max-depth=1'
 alias grd='ls -aliF | ack -i'
@@ -41,7 +42,7 @@ sreboot() {
 
 ff() { find . -type f -iname "*""$*""*" ; }
 
-fx() { find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \;  ; }
+fx() { find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \; ; }
 
 extract() {
   if [[ -f "$1" ]]; then
