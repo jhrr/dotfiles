@@ -44,6 +44,8 @@ ff() { find . -type f -iname "*""$*""*" ; }
 
 fx() { find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \; ; }
 
+fwc() { find . -name "*.$1" -print0 | xargs -0 wc -l ; }
+
 extract() {
   if [[ -f "$1" ]]; then
     case "$1" in
