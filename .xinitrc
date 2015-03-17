@@ -17,6 +17,7 @@ if (cp /dev/null "${errorlog}"); then
   exec >"${errorlog}" 2>&1
 fi
 
+# Configure I/O
 xinput set-prop 11 'Device Enabled' 0  # Disable crap touchpad on x230
 xsetroot -cursor_name left_ptr  # Pointer apperance
 xset m 30/10 4  # Pointer control, acceleration and threshold
@@ -41,6 +42,7 @@ setxkbmap -option ctrl:swapcaps  # Remap capslock and ctrl keys
          --auto \
          --right-of VGA;
 
+# Start daemons and services
 trayer --edge top \
        --align right \
        --SetDockType true \
@@ -51,7 +53,6 @@ trayer --edge top \
        --transparent true \
        --alpha 0 \
        --tint 0x000000 &
-
 pkill dunst; dunst -config ~/.dunstrc &
 urxvtd --quiet --opendisplay --fork
 $HOME/.dropbox-dist/dropboxd &
@@ -61,6 +62,6 @@ pidof mpdscribble >& /dev/null
 [ "$?" -ne 0 ] &&
   mpdscribble --conf ~/.mpdscribble/mpdscribble.conf &
 
-cd $HOME  # make X always open new terms in ~/
+cd $HOME
 xmonad
 urxvtc
