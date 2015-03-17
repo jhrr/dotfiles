@@ -41,13 +41,20 @@ setxkbmap -option ctrl:swapcaps  # Remap capslock and ctrl keys
          --auto \
          --right-of VGA;
 
-pkill dunst; dunst -config ~/.dunstrc &
-trayer --edge top --align right --SetDockType true \
-       --SetPartialStrut true --expand true --width 5 \
-       --height 12 --transparent true --alpha 0 \
+trayer --edge top \
+       --align right \
+       --SetDockType true \
+       --SetPartialStrut true \
+       --expand true \
+       --width 5 \
+       --height 12 \
+       --transparent true \
+       --alpha 0 \
        --tint 0x000000 &
+
+pkill dunst; dunst -config ~/.dunstrc &
 urxvtd --quiet --opendisplay --fork
-dropboxd &
+$HOME/.dropbox-dist/dropboxd &
 $HOME/bin/esd &
 /usr/bin/mpd $HOME/.mpd/mpd.conf
 pidof mpdscribble >& /dev/null
