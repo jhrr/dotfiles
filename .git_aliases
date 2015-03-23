@@ -1,0 +1,6 @@
+# -*- mode: sh; -*-
+
+git_hash_min() {
+  git rev-parse HEAD \
+  | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
+}
