@@ -6,7 +6,12 @@
 # git rev-parse --short=0 HEAD
 # git symbolic-ref --short HEAD || git rev-parse --abbrev-ref HEAD
 
-git_hash_min() {
+git_minimum_hash() {
   git rev-parse HEAD \
-  | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
+    | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
+}
+
+git_grep_replace() {
+  git grep --full-name --files-with-matches "$1" \
+    | xargs sed --in-place -e "s/$1/$2/"
 }
