@@ -6,11 +6,32 @@
 # git rev-parse --short=0 HEAD
 # git symbolic-ref --short HEAD || git rev-parse --abbrev-ref HEAD
 
+git-in-repo() {
+  if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    err "Error: '$(basename ${PWD})' is not a git repository."
+    return 1
+  fi
+  return 0
+}
+
+# Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
+# Apply a single commit to the HEAD of $PARENT_BRANCH.
+git-conflict-cherry-pick() {
+  git-in-repo
+  git reset --hard "$1"
+  git cherry-pick "$2"
+}
+
+# Usage: git-minimum-hash
+# Print the entire SHA1 commit hash of the current HEAD with the
+# minimum hash highlighted.
 git_minimum_hash() {
   git rev-parse HEAD \
     | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
 }
 
+# Usage: git-grep-replace $TARGET $NEW
+# Replace a $TARGET string with a $NEW string repo-wide.
 git_grep_replace() {
   git grep --full-name --files-with-matches "$1" \
     | xargs sed --in-place -e "s/$1/$2/"

@@ -33,14 +33,10 @@ alias txs='tmux switch -t'
 alias x='startx'
 alias v="\$VISUAL"
 
-sreboot() {
-  if [[ "t" == "$(server_ok)" ]]; then
-    echo "Shutting down the emacs server..."
-    emacsclient -e '(client-save-kill-emacs)'
-  fi
-  echo "Shutting down MPD..."
-  mpd --kill
-  sudo shutdown -r now
+# Usage: err "Unable to do_something"
+# STDERR helper function.
+err() {
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
 }
 
 ff() { find . -type f -iname "*""$*""*" ; }
@@ -127,3 +123,13 @@ ers() {
     echo "Emacs server not running, cannot restart. Invoke: 'esd'"
   fi
 } # Safely shutdown and restart the emacs daemon.
+
+sreboot() {
+  if [[ "t" == "$(server_ok)" ]]; then
+    echo "Shutting down the emacs server..."
+    emacsclient -e '(client-save-kill-emacs)'
+  fi
+  echo "Shutting down MPD..."
+  mpd --kill
+  sudo shutdown -r now
+}
