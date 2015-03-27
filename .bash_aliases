@@ -18,6 +18,7 @@ alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias open='xdg-open &>/dev/null'
 alias p='ping -c 5 8.8.8.8'
 alias ping='ping -c 5'
+alias psql='sudo -i -u postgres psql'
 alias rms='reset; python manage.py runserver_plus localhost:8001'
 alias shclr='msgcat --color=test'
 alias shred='shred -zuv'
@@ -34,16 +35,22 @@ alias x='startx'
 alias v="\$VISUAL"
 
 # Usage: err "Unable to do_something"
-# STDERR helper function.
+# Stderr helper function.
 err() {
   echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
 }
 
-ff() { find . -type f -iname "*""$*""*" ; }
+ff() {
+  find . -type f -iname "*""$*""*"
+}
 
-fx() { find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \; ; }
+fx() {
+  find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \;
+}
 
-fwc() { find . -name "*.$1" -print0 | xargs -0 wc -l ; }
+fwc() {
+  find . -name "*.$1" -print0 | xargs -0 wc -l
+}
 
 extract() {
   if [[ -f "$1" ]]; then

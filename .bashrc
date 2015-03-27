@@ -113,6 +113,8 @@ export PAGER MANPAGER
 
 [[ -f ~/.bash_aliases ]] &&
   . ~/.bash_aliases
+[[ -f ~/.git_aliases ]] &&
+  . ~/.git_aliases
 
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
