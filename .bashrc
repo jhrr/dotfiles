@@ -99,9 +99,6 @@ else
 fi
 export PAGER MANPAGER
 
-# Allow pidgin to connect to lync (urgh).
-export NSS_SSL_CBC_RANDOM_IV=0
-
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
   . /usr/bin/virtualenvwrapper.sh
   export WORKON_HOME=~/.virtualenvs
