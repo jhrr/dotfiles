@@ -14,6 +14,7 @@ alias exm='ec $HOME/.xmonad/xmonad.hs'
 alias grd='ls -aliF | ack -i'
 alias h='history | grep -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
+alias lift='sudo $(history -p \!\!)'
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias open='xdg-open &>/dev/null'
 alias p='ping -c 5 8.8.8.8'
