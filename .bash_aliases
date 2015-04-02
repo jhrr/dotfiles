@@ -24,7 +24,6 @@ alias py='ipython'
 alias rms='reset; python manage.py runserver_plus localhost:8001'
 alias shclr='msgcat --color=test'
 alias shred='shred -zuv'
-alias sue='sudo emacs -nw'
 alias reload='. $HOME/.bash_profile'
 alias tv1='xset s off && xset -dpms && echo "screen powersaving off..."'
 alias tv0='xset s default && xset +dpms && echo "screen powersaving on..."'
@@ -34,8 +33,11 @@ alias txl='tmux ls'
 alias txn='tmux attach -t'
 alias txs='tmux switch -t'
 alias x='startx'
-alias v='\$VISUAL'
 alias vssh='vagrant ssh'
+
+alias sue='sudo emacs -nw'
+alias v='\$VISUAL'
+alias suv='sudo \$VISUAL'
 
 # Usage: err "Unable to do_something"
 # Stderr helper function.
