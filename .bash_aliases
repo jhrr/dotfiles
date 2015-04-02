@@ -20,6 +20,7 @@ alias open='xdg-open &>/dev/null'
 alias p='ping -c 5 8.8.8.8'
 alias ping='ping -c 5'
 alias psql='sudo -i -u postgres psql'
+alias py='ipython'
 alias rms='reset; python manage.py runserver_plus localhost:8001'
 alias shclr='msgcat --color=test'
 alias shred='shred -zuv'
@@ -33,7 +34,8 @@ alias txl='tmux ls'
 alias txn='tmux attach -t'
 alias txs='tmux switch -t'
 alias x='startx'
-alias v="\$VISUAL"
+alias v='\$VISUAL'
+alias vssh='vagrant ssh'
 
 # Usage: err "Unable to do_something"
 # Stderr helper function.
