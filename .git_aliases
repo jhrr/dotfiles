@@ -20,10 +20,14 @@ git-in-repo() {
 # Apply a $HASH to the HEAD of the current branch after updating it to
 # be a clone of the supplied $PARENT_BRANCH.
 git-conflict-cherry-pick() {
-  git-in-repo
-  if [[ $? -eq 0 ]]; then
-    git reset --hard "$1"
-    git cherry-pick "$2"
+  if [ "$#" -ne 2 ]; then
+    err "Usage: git-conflict-cherry-pick \$PARENT_BRANCH \$HASH"
+  else
+    git-in-repo
+    if [[ $? -eq 0 ]]; then
+      git reset --hard "$1"
+      git cherry-pick "$2"
+    fi
   fi
 }
 
