@@ -21,8 +21,10 @@ git-in-repo() {
 # be a clone of the supplied $PARENT_BRANCH.
 git-conflict-cherry-pick() {
   git-in-repo
-  git reset --hard "$1"
-  git cherry-pick "$2"
+  if [[ $? -eq 0 ]]; then
+    git reset --hard "$1"
+    git cherry-pick "$2"
+  fi
 }
 
 # Usage: git-minimum-hash
