@@ -25,8 +25,7 @@ git-conflict-cherry-pick() {
   else
     git-in-repo
     if [[ $? -eq 0 ]]; then
-      git reset --hard "$1"
-      git cherry-pick "$2"
+      git reset --hard "$1" && git cherry-pick "$2"
     fi
   fi
 }
