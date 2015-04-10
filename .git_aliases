@@ -9,7 +9,7 @@
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
 git-in-repo() {
-  if ! git branch > /dev/null 2>&1; then
+  if ! git branch >/dev/null 2>&1; then
     err "Error: '$(basename ${PWD})' is not a git repository."
     return 1
   fi

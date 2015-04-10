@@ -69,7 +69,8 @@ xbrowsers="chromium:firefox:uzbl"
 _set_preferred() {
   local IFS=":" var=$1 list=$2 item
   for item in $list; do
-    program="$(which "$item" 2>/dev/null)"
+    program="$(command -v "$item" 2>/dev/null)"
+    #program="$(hash "$item" 2>/dev/null)"
     if [[ -x "$program" ]]; then
       printf -v "$var" %s "$program"
       break
@@ -140,7 +141,7 @@ ${BIPurple}\$${LIGHT_GREY} "
 # Remove duplicate entries from a PATH style value, retaining the
 # original order. Non-destructive; use assignment capture.
 puniq() {
-  echo "$1" | tr : '\n' | nl | sort -u -k 2,2 | sort -n |
-    cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
+    echo "$1" | tr : '\n' | nl | sort -u -k 2,2 | sort -n \
+      | cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
 }
 PATH="$(puniq "$PATH")"
