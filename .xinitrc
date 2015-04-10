@@ -53,14 +53,14 @@ trayer --edge top \
        --transparent true \
        --alpha 0 \
        --tint 0x000000 &
-pkill dunst; dunst -config ~/.dunstrc &
+pkill dunst; dunst -config "${HOME}/.dunstrc" &
 urxvtd --quiet --opendisplay --fork
 "${HOME}/.dropbox-dist/dropboxd" &
 "${HOME}/bin/esd" &
 /usr/bin/mpd "${HOME}/.mpd/mpd.conf"
 pidof mpdscribble >& /dev/null
 [ "$?" -ne 0 ] &&
-  mpdscribble --conf ~/.mpdscribble/mpdscribble.conf &
+  mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
 
 cd "${HOME}"
 xmonad
