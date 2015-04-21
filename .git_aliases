@@ -5,15 +5,17 @@
 # git rev-parse --is-inside-work-tree
 # git rev-parse --short=0 HEAD
 # git symbolic-ref --short HEAD || git rev-parse --abbrev-ref HEAD
+# git log --left-right --graph --cherry-pick --oneline @{u}..
 
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
 git-in-repo() {
   if ! git branch >/dev/null 2>&1; then
     err "Error: '$(basename ${PWD})' is not a git repository."
-    return 1
+      return 1
+  else
+      return 0
   fi
-  return 0
 }
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
@@ -23,7 +25,7 @@ git-conflict-cherry-pick() {
   if [[ "$#" -ne 2 ]]; then
     err "Usage: git-conflict-cherry-pick \$PARENT_BRANCH \$HASH"
   else
-    git-in-repo
+    git-in-repo;
     if [[ $? -eq 0 ]]; then
       git reset --hard "$1" && git cherry-pick "$2"
     fi
