@@ -65,5 +65,5 @@ ${endif}\
 #
 ### Time
 #
-^fg(\#7cac7c) ++ ^fg(\#ffffe0)${time %Y/%m/%d %H:%M} \
+^fg(\#7cac7c) ++ ^fg(\#ffffe0)${time %Y/%m/%d %H:%M %Z} \
 #
