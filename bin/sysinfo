@@ -32,7 +32,7 @@ UPDATED=$(awk '/upgraded/ {line=$0;} END { $0=line; gsub(/[\[\]]/,"",$0); printf
  # The following lines go to slave window.
  echo "   User: $(id -un)@${HOST} "
  echo "   Kernel: ${KERNEL}"
- echo "   Uptime:${UPTIME}"
+ echo "   Uptime: ${UPTIME}"
  echo "   Pacman: ${PACKAGES} packages"
  echo "   Last Updated: ${UPDATED}"
 ) | dzen2 -p \
