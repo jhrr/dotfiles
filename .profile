@@ -2,11 +2,13 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
 [ -d ~/bin ] &&
-  PATH=~/bin:$PATH
+  PATH=$PATH:~/bin
 [ -d ~/.cabal/bin ] &&
-  PATH=~/.cabal/bin:$PATH
+  PATH=$PATH:~/.cabal/bin
+[ -d /usr/lib/elixir/bin/ ] &&
+  PATH=$PATH:/usr/lib/elixir/bin/
 [ -d /usr/lib/smlnj ] && {
-  PATH=/usr/lib/smlnj/bin:$PATH
+  PATH=$PATH:/usr/lib/smlnj/bin
   export SMLNJ_HOME=/usr/lib/smlnj
 }
 
