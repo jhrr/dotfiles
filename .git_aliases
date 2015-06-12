@@ -7,6 +7,18 @@
 # git symbolic-ref --short HEAD || git rev-parse --abbrev-ref HEAD
 # git log --left-right --graph --cherry-pick --oneline @{u}..
 
+alias gcoA='git checkout -- .'
+alias gcoB='git checkout -b'
+alias gconf='cat ./.git/config'
+alias gPo='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gPoF='git push origin -f $(git rev-parse --abbrev-ref HEAD)'
+alias gpLU='git pull --ff-only upstream master'
+alias gRom='git rebase origin/master'
+alias t='tig'
+
+# delete all local tracking branches except master ->
+#    'git branch | grep -v "master" | xargs git branch -D'
+
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
 git-in-repo() {
