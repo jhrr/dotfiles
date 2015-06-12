@@ -8,6 +8,8 @@
 # git log --left-right --graph --cherry-pick --oneline @{u}..
 
 alias gA='git add --all'
+alias gb='git branch'
+alias gbv='git branch --color -v | cut -c1-150'
 alias gc='git commit -v -m'
 alias gd='git diff'
 alias gco='git checkout'
@@ -93,5 +95,6 @@ git_grep_replace() {
 # }
 
 # __git_shortcut  ga     add
+# __git_shortcut  gbv    branch '--color -v | cut -c1-100'
 # __git_shortcut  gc     commit '-v -m'
 # __git_shortcut  grm    commit '-F .git/MERGE_MSG'
