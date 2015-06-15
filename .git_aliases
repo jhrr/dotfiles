@@ -7,29 +7,55 @@
 # git symbolic-ref --short HEAD || git rev-parse --abbrev-ref HEAD
 # git log --left-right --graph --cherry-pick --oneline @{u}..
 
-alias gA='git add --all'
-alias gb='git branch'
-alias gbv='git branch --color -v | cut -c1-150'
-alias gc='git commit -v -m'
-alias gd='git diff'
-alias gco='git checkout'
-alias gcoA='git checkout -- .'
-alias gcoB='git checkout -b'
-alias gconf='cat ./.git/config'
-alias gFA='git fetch --all'
-alias gPo='git push origin $(git rev-parse --abbrev-ref HEAD)'
-alias gPoF='git push origin -f $(git rev-parse --abbrev-ref HEAD)'
-alias gpLU='git pull --ff-only upstream master'
-alias gpLR='git pull --rebase'
-alias gRi='git rebase -i'
-alias gRom='git rebase origin/master'
-alisa grm='git commit -F .git/MERGE_MSG'
-alias gsh='git show'
-alias gst='git status'
 alias t='tig'
+
+# Git alias shell-completion.
+__define_git_completion() {
+eval "
+  _git_$2_shortcut() {
+    COMP_LINE=\"git $2\${COMP_LINE#$1}\"
+    let COMP_POINT+=$((4+${#2}-${#1}))
+    COMP_WORDS=(git $2 \"\${COMP_WORDS[@]:1}\")
+    let COMP_CWORD+=1
+
+    local cur words cword prev
+    _get_comp_words_by_ref -n =: cur words cword prev
+    _git_$2
+  }
+"
+}
+
+__git_shortcut() {
+  type "_git_$2_shortcut" &>/dev/null || __define_git_completion "$1" "$2"
+  alias $1='git $2 $3'
+  complete -o default -o nospace -F "_git_$2_shortcut" "$1"
+}
+
+# Quote argument $3 if it contains spaces.
+__git_shortcut  ga  add
+__git_shortcut  gA  add --all
+__git_shortcut  gb  branch
+__git_shortcut  gbv  branch '--color -v | cut -c1-100'
+__git_shortcut  gc  commit '-v -m'
+__git_shortcut  gd  diff
+__git_shortcut  gco  checkout
+__git_shortcut  gcoA  checkout '-- .'
+__git_shortcut  gcoB  checkout -b
+__git_shortcut  gconf  cat './.git/config'
+__git_shortcut  gFA  fetch --all
+__git_shortcut  gPo  push "origin $(git rev-parse --abbrev-ref HEAD)"
+__git_shortcut  gPoF  push "origin -f $(git rev-parse --abbrev-ref HEAD)"
+__git_shortcut  gpLUM  pull '--ff-only upstream master'
+__git_shortcut  gpLR  pull --rebase
+__git_shortcut  gRi  rebase -i
+__git_shortcut  gRom  rebase 'origin/master'
+__git_shortcut  grm  commit '-F .git/MERGE_MSG'
+__git_shortcut  gsh  show
+__git_shortcut  gst  status
 
 # delete all local tracking branches except master ->
 #    'git branch | grep -v "master" | xargs git branch -D'
+
 
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
@@ -70,31 +96,3 @@ git_grep_replace() {
   git grep --full-name --files-with-matches "$1" \
     | xargs sed --in-place -e "s/$1/$2/"
 }
-
-
-# Git alias shell-completion.
-# __define_git_completion() {
-# eval "
-#   _git_$2_shortcut() {
-#     COMP_LINE=\"git $2\${COMP_LINE#$1}\"
-#     let COMP_POINT+=$((4+${#2}-${#1}))
-#     COMP_WORDS=(git $2 \"\${COMP_WORDS[@]:1}\")
-#     let COMP_CWORD+=1
-
-#     local cur words cword prev
-#     _get_comp_words_by_ref -n =: cur words cword prev
-#     _git_$2
-#   }
-# "
-# }
-
-# __git_shortcut() {
-#   type "_git_$2_shortcut" &>/dev/null || __define_git_completion "$1" "$2"
-#   alias $1='git $2 $3'
-#   complete -o default -o nospace -F "_git_$2_shortcut" "$1"
-# }
-
-# __git_shortcut  ga     add
-# __git_shortcut  gbv    branch '--color -v | cut -c1-100'
-# __git_shortcut  gc     commit '-v -m'
-# __git_shortcut  grm    commit '-F .git/MERGE_MSG'
