@@ -47,7 +47,7 @@ _isfreebsd=false
   _isfreebsd=true
 
 _withx=false
-[[ "$DISPLAY" ]] &&
+[[ "${DISPLAY}" ]] &&
   _withx=true
 
 editors="emacs:vim:vi"
@@ -57,23 +57,23 @@ xbrowsers="chromium:firefox:uzbl"
 _set_preferred() {
   local IFS=":" var=$1 list=$2 item
   for item in $list; do
-    program="$(command -v "$item" 2>/dev/null)"
-    #program="$(hash "$item" 2>/dev/null)"
-    if [[ -x "$program" ]]; then
-      printf -v "$var" %s "$program"
+    program="$(command -v "${item}" 2>/dev/null)"
+    #program="$(hash "${item}" 2>/dev/null)"
+    if [[ -x "${program}" ]]; then
+      printf -v "${var}" %s "${program}"
       break
     fi
   done
 }
 _set_preferred "EDITOR" $editors
-if [[ "$_withx" =~ true ]]; then
+if [[ "${_withx}" =~ true ]]; then
   _set_preferred "BROWSER" $xbrowsers
 else
   _set_preferred "BROWSER" $browsers
 fi
 
 HAVE_VIM=$(command -v vim)
-if [[ -x "$HAVE_VIM" ]]; then
+if [[ -x "${HAVE_VIM}" ]]; then
   VISUAL=vim
 else
   VISUAL=vi
@@ -81,12 +81,12 @@ fi
 export VISUAL
 
 HAVE_LESS=$(command -v less)
-if [[ -x "$HAVE_LESS" ]]; then
+if [[ -x "${HAVE_LESS}" ]]; then
   PAGER="less -FirSwX"
   MANPAGER="less -FiRswX"
 else
   PAGER=more
-  MANPAGER="$PAGER"
+  MANPAGER="${PAGER}"
 fi
 export PAGER MANPAGER
 
