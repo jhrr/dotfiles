@@ -55,27 +55,27 @@ fx() {
 }
 
 fwc() {
-  find . -name "*.$1" -print0 | xargs -0 wc -l
+  find . -name "*.${1}" -print0 | xargs -0 wc -l
 }
 
 extract() {
-  if [[ -f "$1" ]]; then
-    case "$1" in
-      *.tar.bz2)   tar xvjf "$1"     ;;
-      *.tar.gz)    tar xvzf "$1"     ;;
-      *.bz2)       bunzip2 "$1"      ;;
-      *.rar)       unrar x "$1"      ;;
-      *.gz)        gunzip "$1"       ;;
-      *.tar)       tar xvf "$1"      ;;
-      *.tbz2)      tar xvjf "$1"     ;;
-      *.tgz)       tar xvzf "$1"     ;;
-      *.zip)       unzip "$1"        ;;
-      *.Z)         uncompress "$1"   ;;
-      *.7z)        7z x "$1"         ;;
-      *)           echo "$1 cannot be extracted via >extract<" ;;
+  if [[ -f "${1}" ]]; then
+    case "${1}" in
+      *.tar.bz2)   tar xvjf "${1}"     ;;
+      *.tar.gz)    tar xvzf "${1}"     ;;
+      *.bz2)       bunzip2 "${1}"      ;;
+      *.rar)       unrar x "${1}"      ;;
+      *.gz)        gunzip "${1}"       ;;
+      *.tar)       tar xvf "${1}"      ;;
+      *.tbz2)      tar xvjf "${1}"     ;;
+      *.tgz)       tar xvzf "${1}"     ;;
+      *.zip)       unzip "${1}"        ;;
+      *.Z)         uncompress "${1}"   ;;
+      *.7z)        7z x "${1}"         ;;
+      *)           echo "${1} cannot be extracted via >extract<" ;;
     esac
   else
-    echo "$1 is not a valid file!"
+    echo "${1} is not a valid file!"
   fi
 }
 
@@ -130,7 +130,7 @@ ers() {
     echo "Shutting down the emacs server..."
     emacsclient -e '(kill-emacs)'
     echo "Restarting the emacs server..."
-    emacs -u "$USER" --daemon --eval '(server-start)'
+    emacs -u "${USER}" --daemon --eval '(server-start)'
     emacsclient --no-wait --create-frame
   else
     echo "Emacs server not running, cannot restart. Invoke: 'esd'"
