@@ -72,7 +72,7 @@ git-in-repo() {
 # Usage: git-commit-for-squash
 # Make a commit for a projected squashing.
 git-commit-for-squash() {
-  git add . && git commit -v -m "squash me"
+  git add . && git commit -v -m "SQUASH ME"
 }
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
