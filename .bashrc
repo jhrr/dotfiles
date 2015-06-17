@@ -55,7 +55,7 @@ browsers="elinks:lynx:links"
 xbrowsers="chromium:firefox:uzbl"
 
 _set_preferred() {
-  local IFS=":" var=$1 list=$2 item
+  local IFS=":" var="$1" list="$2" item
   for item in $list; do
     program="$(command -v "${item}" 2>/dev/null)"
     #program="$(hash "${item}" 2>/dev/null)"
