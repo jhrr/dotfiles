@@ -51,11 +51,18 @@ ff() {
 }
 
 fx() {
-  find . -type f -iname "*""${1:-}""*" -exec "${2:-file}" {} \;
+  find . -type f -iname "*""${1:-}""*" \
+    -exec "${2:-file}" {} \;  ;
+}
+
+frep() {
+  find . -name "${1}" -print0 \
+    | xargs -0 ack -i "${2}"
 }
 
 fwc() {
-  find . -name "*.${1}" -print0 | xargs -0 wc -l
+  find . -name "*.${1}" -print0 \
+    | xargs -0 wc -l
 }
 
 extract() {
