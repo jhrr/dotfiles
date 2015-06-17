@@ -58,7 +58,6 @@ __git_shortcut  gst  status
 # delete all local tracking branches except master ->
 #    'git branch | grep -v "master" | xargs git branch -D'
 
-
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
 git-in-repo() {
@@ -68,6 +67,12 @@ git-in-repo() {
   else
       return 0
   fi
+}
+
+# Usage: git-commit-for-squash
+# Make a commit for a projected squashing.
+git-commit-for-squash() {
+  git add . && git commit -v -m "squash me"
 }
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
