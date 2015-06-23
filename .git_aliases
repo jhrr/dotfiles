@@ -93,14 +93,14 @@ git-conflict-cherry-pick() {
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
-git_minimum_hash() {
+git-minimum-hash() {
   git rev-parse HEAD \
     | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
 }
 
 # Usage: git-grep-replace $TARGET $NEW
 # Replace a $TARGET string with a $NEW string repo-wide.
-git_grep_replace() {
+git-grep-replace() {
   git grep --full-name --files-with-matches "$1" \
     | xargs sed --in-place -e "s/$1/$2/"
 }

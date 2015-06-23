@@ -11,10 +11,9 @@ PATH="/usr/local/bin:$PATH"
   PATH="$PATH:/usr/lib/smlnj/bin"
   export SMLNJ_HOME="/usr/lib/smlnj"
 }
-[ -d "$HOME/code/repos/git-scripts" ] &&
-  PATH="$HOME/code/repos/git-scripts:$PATH"
-[ -d "$HOME/code/repos/vcprompt/bin" ] &&
-  PATH="$HOME/code/repos/vcprompt/bin:$PATH"
+
+[ -L "$HOME/bin/git-scripts" ] &&
+  PATH="$PATH:$HOME/bin/git-scripts/"
 
 # Usage: puniq [<path>]
 # Remove duplicate entries from a PATH style value, retaining the
