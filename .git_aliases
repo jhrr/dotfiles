@@ -36,8 +36,9 @@ __git_shortcut() {
 # Quote argument $3 if it contains spaces.
 __git_shortcut  ga  add
 __git_shortcut  gA  add --all
-__git_shortcut  gb  branch
+__git_shortcut  gb  branch '--color -v'
 __git_shortcut  gbv  branch '--color -v | cut -c1-100'
+__git_shortcut  gbr  branch
 __git_shortcut  gc  commit '-v -m'
 __git_shortcut  gd  diff
 __git_shortcut  gco  checkout
