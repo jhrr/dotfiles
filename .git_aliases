@@ -45,8 +45,8 @@ __git_shortcut  gcoA  checkout '-- .'
 __git_shortcut  gcoB  checkout -b
 __git_shortcut  gconf  cat './.git/config'
 __git_shortcut  gd  diff
-__git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd `gh`
 __git_shortcut  gFA  fetch --all
+__git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd `gh`
 __git_shortcut  gPo  push "origin $(git rev-parse --abbrev-ref HEAD)"
 __git_shortcut  gPoF  push "origin -f $(git rev-parse --abbrev-ref HEAD)"
 __git_shortcut  gpLUM  pull '--ff-only upstream master'
