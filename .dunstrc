@@ -89,8 +89,8 @@
     # context menu
     context = mod4+shift+period
 
-[irssi]
-    appname = irssi
+[weechat]
+    appname = weechat
     timeout = 0
     background = "#008000"
     foreground = "#000000"
