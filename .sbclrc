@@ -1,0 +1,2 @@
+;; Tell the compiler to optimize for debugging.
+(declaim (optimize (debug 3)))
