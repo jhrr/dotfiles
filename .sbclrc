@@ -1,2 +1,16 @@
-;; Tell the compiler to optimize for debugging.
+;;; -*- mode:common-lisp; -*-
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+;;; Tell the compiler to optimize for debugging.
 (declaim (optimize (debug 3)))
+
+;;; Ensure some libraries are available.
+(dolist (p '("caveman2"
+             "quickproject"
+             "hunchentoot"))
+  (ql:quickload p))
