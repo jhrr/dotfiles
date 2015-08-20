@@ -59,9 +59,6 @@ __git_shortcut  grm  commit '-F .git/MERGE_MSG'
 __git_shortcut  gsh  show
 __git_shortcut  gst  status
 
-# delete all local tracking branches except master ->
-#    'git branch | grep -v "master" | xargs git branch -D'
-
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
 git-in-repo() {
@@ -74,7 +71,8 @@ git-in-repo() {
 }
 
 # Usage: git-commit-for-squash
-# Make a commit for a projected squashing.
+# Make a commit for a projected squashing. Requires --autosquash or:
+# `$ git config --global rebase.autosquash true'
 git-commit-all-for-squash() {
   git add . && git commit -v -m "squash!"
 }
@@ -100,6 +98,12 @@ git-conflict-cherry-pick() {
 git-minimum-hash() {
   git rev-parse HEAD \
     | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
+}
+
+# Usage: git-purge-local-branches
+# Delete all local tracking branches except master
+git-purge-local-branches() {
+  git branch | grep -v "master" | xargs git branch -D
 }
 
 # Usage: git-grep-replace $TARGET $NEW
