@@ -14,3 +14,11 @@
              "quickproject"
              "hunchentoot"))
   (ql:quickload p))
+
+;;; Better printing for hash tables
+;; (set-pprint-dispatch 'hash-table
+;;  (lambda (str ht)
+;;   (format str "{~{~{~S => ~S~}~^, ~}}"
+;;    (loop for key being the hash-keys of ht
+;;          for value being the hash-values of ht
+;;          collect (list key value)))))

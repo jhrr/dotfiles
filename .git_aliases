@@ -27,10 +27,10 @@ eval "
 
 # TEST THIS...
 __git_shortcut() {
-  local shortcut="$1"
-  type "_git_${2}_shortcut" &>/dev/null || __define_git_completion "$1" "$2"
-  "${shortcut}"() { git "$2" "$3" }
-  complete -o default -o nospace -F "_git_${2}_shortcut" "$1"
+  local shortcut=$1
+  type "_git_$2_shortcut" &>/dev/null || __define_git_completion $1 $2
+  "${shortcut}"() { "git $2 $3" }
+  complete -o default -o nospace -F _git_$2_shortcut $1
 }
 
 # Quote block of arguments > $3 if it contains any spaces.
@@ -101,7 +101,7 @@ git-minimum-hash() {
 }
 
 # Usage: git-purge-local-branches
-# Delete all local tracking branches except master
+# Delete all local tracking branches except master.
 git-purge-local-branches() {
   git branch | grep -v 'master' | xargs git branch -D
 }
