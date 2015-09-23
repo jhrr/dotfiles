@@ -22,7 +22,7 @@ fi
 # Configure I/O
 xinput set-prop 11 'Device Enabled' 0  # Disable crap touchpad on x230
 xsetroot -cursor_name left_ptr  # Pointer apperance
-xset m 30/10 4  # Pointer control, acceleration and threshold
+xset m 1/2 1  # Pointer control, acceleration and threshold
 unclutter -grab &  # Hide cursor when not in use
 setxkbmap -option ctrl:swapcaps  # Remap capslock and ctrl keys
 
@@ -66,6 +66,6 @@ pidof mpdscribble >& /dev/null
 [ "$?" -ne 0 ] &&
   /usr/bin/mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
 
-cd "${HOME}"
+cd "${HOME}" || exit
 xmonad
 urxvtc
