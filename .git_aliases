@@ -73,12 +73,18 @@ git-in-repo() {
 }
 
 # Usage: git-commit-for-squash
+git-commit-for-squash() {
+  git commit -v -m 'squash!'
+}
+alias gcS='git-commit-for-squash'
+
+# Usage: git-commit-all-for-squash
 # Make a commit for a projected squashing. Requires --autosquash or:
 # `$ git config --global rebase.autosquash true'
 git-commit-all-for-squash() {
   git add . && git commit -v -m 'squash!'
 }
-alias gcFS='git-commit-all-for-squash'
+alias gcAS='git-commit-all-for-squash'
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
 # Apply a $HASH to the HEAD of the current branch after updating it to
