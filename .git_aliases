@@ -73,6 +73,7 @@ git-in-repo() {
 }
 
 # Usage: git-commit-for-squash
+# TODO: kwatz!
 git-commit-for-squash() {
   git commit -v -m 'squash!'
 }
