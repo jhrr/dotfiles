@@ -118,17 +118,5 @@ eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# Highlight the hostname when connected via SSH.
-if [[ "${SSH_TTY}" ]]; then
-  hostStyle="${RED}"; # TODO: BIRed, X colours, colorscheme etc.
-else
-  hostStyle="${YELLOW}";
-fi;
-
-PS1="${YELLOW}\u${BLUE}@${hostStyle}\h";
-PS1+="${BLUE}(${YELLOW}\w${BLUE})";
-PS1+="${Cyan}\$(veprompt -f '[%v:%n]' -t)";
-PS1+="${GREEN}\$(vcprompt)";
-PS1+="${WHITE}\$(vcprompt -f '%u %m')\n"; # These really suck.
-PS1+="${BIPurple}\$${LIGHT_GREY} ";
-export PS1;
+[[ -f ~/.prompt ]] &&
+  . ~/.prompt
