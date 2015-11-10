@@ -87,6 +87,11 @@ else
   hostStyle="${BYellow}";
 fi;
 
+[[ -f ~/bin/vcprompt ]] &&
+  export VCPROMPT_FORMAT="[%b:%n:%r]"
+[[ -f ~/bin/veprompt ]] &&
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 PS1="\[${userStyle}\]\u\[${Blue}\]@\[${hostStyle}\]\h";
 PS1+="\[${Blue}\](\[${Yellow}\]\w\[${Blue}\])";
 PS1+="\[${Cyan}\]\$(veprompt -f '[%v:%n]' -t)";

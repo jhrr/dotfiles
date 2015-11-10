@@ -107,16 +107,11 @@ export PAGER MANPAGER
 [[ -f ~/.git_aliases ]] &&
   . ~/.git_aliases
 
+[[ -f ~/.prompt ]] &&
+  . ~/.prompt
+
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
-
-[[ -f ~/bin/vcprompt ]] &&
-  export VCPROMPT_FORMAT="[%b:%n:%r]"
-[[ -f ~/bin/veprompt ]] &&
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-[[ -f ~/.prompt ]] &&
-  . ~/.prompt
