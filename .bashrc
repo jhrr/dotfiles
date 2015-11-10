@@ -118,9 +118,10 @@ eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-PS1="${YELLOW}\u${BLUE}@${YELLOW}\h\
-${BLUE}(${YELLOW}\w${BLUE})\
-${Cyan}\$(veprompt -f '[%v:%n]' -t)\
-${GREEN}\$(vcprompt)\
-${WHITE}\$(vcprompt -f '%u %m')\n\
-${BIPurple}\$${LIGHT_GREY} "
+PS1="${YELLOW}\u${BLUE}@${YELLOW}\h";
+PS1+="${BLUE}(${YELLOW}\w${BLUE})";
+PS1+="${Cyan}\$(veprompt -f '[%v:%n]' -t)";
+PS1+="${GREEN}\$(vcprompt)";
+PS1+="${WHITE}\$(vcprompt -f '%u %m')\n"; # These really suck.
+PS1+="${BIPurple}\$${LIGHT_GREY} ";
+export PS1;
