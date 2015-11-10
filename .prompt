@@ -96,6 +96,6 @@ PS1="\[${userStyle}\]\u\[${Blue}\]@\[${hostStyle}\]\h";
 PS1+="\[${Blue}\](\[${Yellow}\]\w\[${Blue}\])";
 PS1+="\[${Cyan}\]\$(veprompt -f '[%v:%n]' -t)";
 PS1+="\[${Green}\]\$(vcprompt)";
-PS1+="\[${White}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
-PS1+="\[${BIPurple}\]\$\[${LIGHT_GREY}\] ";
+PS1+="\[${BWhite}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
+PS1+="\[${BIPurple}\]\$\[${White}\] ";
 export PS1;
