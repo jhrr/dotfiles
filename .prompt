@@ -1,90 +1,90 @@
 # -*- mode: sh; -*-
 
 # Reset
-Color_Off='\e[0m'
+color_off='\e[0m'
 
 # Regular Colors
-Black='\e[0;30m'
-Red='\e[0;31m'
-Green='\e[0;32m'
-Yellow='\e[0;33m'
-Blue='\e[0;34m'
-Purple='\e[0;35m'
-Cyan='\e[0;36m'
-White='\e[0;37m'
+black='\e[0;30m'
+red='\e[0;31m'
+green='\e[0;32m'
+yellow='\e[0;33m'
+blue='\e[0;34m'
+purple='\e[0;35m'
+cyan='\e[0;36m'
+white='\e[0;37m'
 
-# Bold
-BBlack='\e[1;30m'
-BRed='\e[1;31m'
-BGreen='\e[1;32m'
-BYellow='\e[1;33m'
-BBlue='\e[1;34m'
-BPurple='\e[1;35m'
-BCyan='\e[1;36m'
-BWhite='\e[1;37m'
+# bold
+b_black='\e[1;30m'
+b_red='\e[1;31m'
+b_green='\e[1;32m'
+b_yellow='\e[1;33m'
+b_blue='\e[1;34m'
+b_purple='\e[1;35m'
+b_cyan='\e[1;36m'
+b_white='\e[1;37m'
 
-# Underline
-UBlack='\e[4;30m'
-URed='\e[4;31m'
-UGreen='\e[4;32m'
-UYellow='\e[4;33m'
-UBlue='\e[4;34m'
-UPurple='\e[4;35m'
-UCyan='\e[4;36m'
-UWhite='\e[4;37m'
+# underline
+u_black='\e[4;30m'
+u_red='\e[4;31m'
+u_green='\e[4;32m'
+u_yellow='\e[4;33m'
+u_blue='\e[4;34m'
+u_purple='\e[4;35m'
+u_cyan='\e[4;36m'
+u_white='\e[4;37m'
 
-# Background
-On_Black='\e[40m'
-On_Red='\e[41m'
-On_Green='\e[42m'
-On_Yellow='\e[43m'
-On_Blue='\e[44m'
-On_Purple='\e[45m'
-On_Cyan='\e[46m'
-On_White='\e[47m'
+# background
+on_black='\e[40m'
+on_red='\e[41m'
+on_green='\e[42m'
+on_yellow='\e[43m'
+on_blue='\e[44m'
+on_purple='\e[45m'
+on_cyan='\e[46m'
+on_white='\e[47m'
 
-# High Intensity
-IBlack='\e[0;90m'
-IRed='\e[0;91m'
-IGreen='\e[0;92m'
-IYellow='\e[0;93m'
-IBlue='\e[0;94m'
-IPurple='\e[0;95m'
-ICyan='\e[0;96m'
-IWhite='\e[0;97m'
+# high intensity
+i_black='\e[0;90m'
+i_red='\e[0;91m'
+i_green='\e[0;92m'
+i_yellow='\e[0;93m'
+i_blue='\e[0;94m'
+i_purple='\e[0;95m'
+i_cyan='\e[0;96m'
+i_white='\e[0;97m'
 
-# Bold High Intensity
-BIBlack='\e[1;90m'
-BIRed='\e[1;91m'
-BIGreen='\e[1;92m'
-BIYellow='\e[1;93m'
-BIBlue='\e[1;94m'
-BIPurple='\e[1;95m'
-BICyan='\e[1;96m'
-BIWhite='\e[1;97m'
+# bold high intensity
+b_i_black='\e[1;90m'
+b_i_red='\e[1;91m'
+b_i_green='\e[1;92m'
+b_i_yellow='\e[1;93m'
+b_i_blue='\e[1;94m'
+b_i_purple='\e[1;95m'
+b_i_cyan='\e[1;96m'
+b_i_white='\e[1;97m'
 
-# High Intensity backgrounds
-On_IBlack='\e[0;100m'
-On_IRed='\e[0;101m'
-On_IGreen='\e[0;102m'
-On_IYellow='\e[0;103m'
-On_IBlue='\e[0;104m'
-On_IPurple='\e[0;105m'
-On_ICyan='\e[0;106m'
-On_IWhite='\e[0;107m'
+# high intensity backgrounds
+on_i_black='\e[0;100m'
+on_i_red='\e[0;101m'
+on_i_green='\e[0;102m'
+on_i_yellow='\e[0;103m'
+on_i_blue='\e[0;104m'
+on_i_purple='\e[0;105m'
+on_i_cyan='\e[0;106m'
+on_i_white='\e[0;107m'
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
-  userStyle="${Cyan}";
+  user_style="${cyan}";
 else
-  userStyle="${BYellow}";
+  user_style="${b_yellow}";
 fi;
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-  hostStyle="${BRed}";
+  host_style="${b_red}";
 else
-  hostStyle="${BYellow}";
+  host_style="${b_yellow}";
 fi;
 
 [[ -f ~/bin/vcprompt ]] &&
@@ -92,10 +92,10 @@ fi;
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-PS1="\[${userStyle}\]\u\[${Blue}\]@\[${hostStyle}\]\h";
-PS1+="\[${Blue}\](\[${Yellow}\]\w\[${Blue}\])";
-PS1+="\[${Cyan}\]\$(veprompt -f '[%v:%n]' -t)";
-PS1+="\[${Green}\]\$(vcprompt)";
-PS1+="\[${BWhite}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
-PS1+="\[${BIPurple}\]\$\[${White}\] ";
+ps1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h";
+ps1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])";
+ps1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)";
+ps1+="\[${green}\]\$(vcprompt)";
+ps1+="\[${b_white}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
+ps1+="\[${b_i_purple}\]\$\[${white}\] ";
 export PS1;
