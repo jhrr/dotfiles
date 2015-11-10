@@ -13,7 +13,7 @@ purple='\e[0;35m'
 cyan='\e[0;36m'
 white='\e[0;37m'
 
-# bold
+# Bold
 b_black='\e[1;30m'
 b_red='\e[1;31m'
 b_green='\e[1;32m'
@@ -23,7 +23,7 @@ b_purple='\e[1;35m'
 b_cyan='\e[1;36m'
 b_white='\e[1;37m'
 
-# underline
+# Underlined
 u_black='\e[4;30m'
 u_red='\e[4;31m'
 u_green='\e[4;32m'
@@ -33,7 +33,7 @@ u_purple='\e[4;35m'
 u_cyan='\e[4;36m'
 u_white='\e[4;37m'
 
-# background
+# Background
 on_black='\e[40m'
 on_red='\e[41m'
 on_green='\e[42m'
@@ -43,7 +43,7 @@ on_purple='\e[45m'
 on_cyan='\e[46m'
 on_white='\e[47m'
 
-# high intensity
+# High Intensity
 i_black='\e[0;90m'
 i_red='\e[0;91m'
 i_green='\e[0;92m'
@@ -53,7 +53,7 @@ i_purple='\e[0;95m'
 i_cyan='\e[0;96m'
 i_white='\e[0;97m'
 
-# bold high intensity
+# Bold High Intensity
 b_i_black='\e[1;90m'
 b_i_red='\e[1;91m'
 b_i_green='\e[1;92m'
@@ -63,7 +63,7 @@ b_i_purple='\e[1;95m'
 b_i_cyan='\e[1;96m'
 b_i_white='\e[1;97m'
 
-# high intensity backgrounds
+# High Intensity Backgrounds
 on_i_black='\e[0;100m'
 on_i_red='\e[0;101m'
 on_i_green='\e[0;102m'
