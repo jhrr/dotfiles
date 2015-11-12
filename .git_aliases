@@ -101,6 +101,14 @@ git-conflict-cherry-pick() {
   fi
 }
 
+# Usage: git-delete-local-merged
+# Delete all local tracking branches that have been merged upstream.
+git-delete-local-merged() {
+  git branch -D \
+    | "$(git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n')"
+}
+
+
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
