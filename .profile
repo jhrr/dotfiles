@@ -5,12 +5,15 @@ PATH="/usr/local/bin:$PATH"
   PATH="$PATH:$HOME/bin"
 [ -d "$HOME/.cabal/bin" ] &&
   PATH="$PATH:$HOME/.cabal/bin"
-[ -d "/usr/lib/elixir/bin/" ] &&
-  PATH="$PATH:/usr/lib/elixir/bin/"
 [ -d "/usr/lib/smlnj" ] && {
   PATH="$PATH:/usr/lib/smlnj/bin"
   export SMLNJ_HOME="/usr/lib/smlnj"
 }
+
+[ -d "$HOME/.nix-profile/bin" ] &&
+  PATH="$PATH:$HOME/.nix-profile/bin"
+[ -d "$HOME/.nix-profile/sbin" ] &&
+  PATH="$PATH:$HOME/.nix-profile/sbin"
 
 [ -L "$HOME/bin/git-scripts" ] &&
   PATH="$PATH:$HOME/bin/git-scripts/"
