@@ -3,8 +3,8 @@ if [ -r ~/.profile ]; then
 fi
 
 case "$-" in
-    *i*)
-      if [ -r ~/.bashrc ]; then
-        . ~/.bashrc;
-      fi;;
+  *i*)
+    if [ -r ~/.bashrc ]; then
+      . ~/.bashrc;
+    fi;;
 esac
