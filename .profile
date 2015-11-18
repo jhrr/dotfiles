@@ -10,10 +10,8 @@ PATH="/usr/local/bin:$PATH"
   export SMLNJ_HOME="/usr/lib/smlnj"
 }
 
-[ -d "$HOME/.nix-profile/bin" ] &&
-  PATH="$PATH:$HOME/.nix-profile/bin"
-[ -d "$HOME/.nix-profile/sbin" ] &&
-  PATH="$PATH:$HOME/.nix-profile/sbin"
+[ -d "$HOME/.nix-profile" ] &&
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 [ -L "$HOME/bin/git-scripts" ] &&
   PATH="$PATH:$HOME/bin/git-scripts/"
