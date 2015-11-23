@@ -43,7 +43,28 @@ alias suv='sudo ${VISUAL}'
 # Stderr helper function.
 err() {
   echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
-  #exit 1
+  # exit 1
+}
+
+extract() {
+  if [[ -f "${1}" ]]; then
+    case "${1}" in
+      *.tar.bz2)   tar xvjf "${1}"     ;;
+      *.tar.gz)    tar xvzf "${1}"     ;;
+      *.bz2)       bunzip2 "${1}"      ;;
+      *.rar)       unrar x "${1}"      ;;
+      *.gz)        gunzip "${1}"       ;;
+      *.tar)       tar xvf "${1}"      ;;
+      *.tbz2)      tar xvjf "${1}"     ;;
+      *.tgz)       tar xvzf "${1}"     ;;
+      *.zip)       unzip "${1}"        ;;
+      *.Z)         uncompress "${1}"   ;;
+      *.7z)        7z x "${1}"         ;;
+      *)           echo "${1} cannot be extracted via >extract<" ;;
+    esac
+  else
+    err "Error: ${1} is not a valid file"
+  fi
 }
 
 ff() {
@@ -65,84 +86,10 @@ fwc() {
     | xargs -0 wc -l
 }
 
-extract() {
-  if [[ -f "${1}" ]]; then
-    case "${1}" in
-      *.tar.bz2)   tar xvjf "${1}"     ;;
-      *.tar.gz)    tar xvzf "${1}"     ;;
-      *.bz2)       bunzip2 "${1}"      ;;
-      *.rar)       unrar x "${1}"      ;;
-      *.gz)        gunzip "${1}"       ;;
-      *.tar)       tar xvf "${1}"      ;;
-      *.tbz2)      tar xvjf "${1}"     ;;
-      *.tgz)       tar xvzf "${1}"     ;;
-      *.zip)       unzip "${1}"        ;;
-      *.Z)         uncompress "${1}"   ;;
-      *.7z)        7z x "${1}"         ;;
-      *)           echo "${1} cannot be extracted via >extract<" ;;
-    esac
-  else
-    echo "${1} is not a valid file!"
-  fi
+routerip() {
+  netstat -nr \
+    | awk '$1 == "0.0.0.0" {print $2}'
 }
-
-emacs_server_ok() {
-  emacsclient -a "false" -e "(boundp 'server-process)"
-}
-
-e() {
-  if [[ "${1}" == '' ]]; then
-    emacsclient --tty  .
-  else
-    emacsclient --tty "${1}"
-  fi
-} # Open, in current shell, using the emacs daemon.
-
-et() {
-  if [[ "${1}" == '' ]]; then
-    emacs --no-window-system --quick .
-  else
-    emacs --no-window-system --quick "${1}"
-  fi
-} # Open quickly, in the current shell, using no config or daemon.
-
-ec() {
-  if [[ "${1}" == '' ]]; then
-    emacsclient --no-wait .
-  else
-    emacsclient --no-wait "${1}"
-  fi
-} # Open, in the current frame, using the emacs daemon.
-
-en() {
-  if [[ "${1}" == '' ]]; then
-    emacsclient --no-wait --create-frame .
-  else
-    emacsclient --no-wait --create-frame "${1}"
-  fi
-} # Open, in a new frame, using the emacs daemon.
-
-ek() {
-  if [[ "t" == "$(emacs_server_ok)" ]]; then
-    echo "Shutting down the emacs server"
-    emacsclient -e '(kill-emacs)'
-  else
-    echo "Emacs server not running"
-  fi
-} # Shutdown the running emacs daemon if the server-process is bound
-  # and the server is in a good state.
-
-ers() {
-  if [[ "t" == "$(emacs_server_ok)" ]]; then
-    echo "Shutting down the emacs server..."
-    emacsclient -e '(kill-emacs)'
-    echo "Restarting the emacs server..."
-    emacs -u "${USER}" --daemon --eval '(server-start)'
-    emacsclient --no-wait --create-frame
-  else
-    echo "Emacs server not running, cannot restart. Invoke: 'esd'"
-  fi
-} # Safely shutdown and restart the emacs daemon.
 
 sreboot() {
   if [[ "t" == "$(server_ok)" ]]; then
@@ -152,4 +99,70 @@ sreboot() {
   echo "Shutting down MPD..."
   mpd --kill
   sudo shutdown -r now
+}
+
+# Emacs daemon functions.
+
+emacs_server_ok() {
+  emacsclient -a "false" -e "(boundp 'server-process)"
+}
+
+# Open a file, in the current shell, using the emacs daemon.
+e() {
+  if [[ "${1}" == '' ]]; then
+    emacsclient --tty  .
+  else
+    emacsclient --tty "${1}"
+  fi
+}
+
+# Open a file, in the current shell, using no config or daemon.
+et() {
+  if [[ "${1}" == '' ]]; then
+    emacs --no-window-system --quick .
+  else
+    emacs --no-window-system --quick "${1}"
+  fi
+}
+
+# Open a file, in the current frame, using the emacs daemon.
+ec() {
+  if [[ "${1}" == '' ]]; then
+    emacsclient --no-wait .
+  else
+    emacsclient --no-wait "${1}"
+  fi
+}
+
+ # Open a file, in a new frame, using the emacs daemon.
+en() {
+  if [[ "${1}" == '' ]]; then
+    emacsclient --no-wait --create-frame .
+  else
+    emacsclient --no-wait --create-frame "${1}"
+  fi
+}
+
+# Shutdown the running emacs daemon if the server-process is bound
+# and the server is in a good state.
+ek() {
+  if [[ "t" == "$(emacs_server_ok)" ]]; then
+    echo "Shutting down the emacs server"
+    emacsclient -e '(kill-emacs)'
+  else
+    err "Error: Emacs server not running"
+  fi
+}
+
+# Safely shutdown and restart the emacs daemon.
+ers() {
+  if [[ "t" == "$(emacs_server_ok)" ]]; then
+    echo "Shutting down the emacs server..."
+    emacsclient -e '(kill-emacs)'
+    echo "Restarting the emacs server..."
+    emacs -u "${USER}" --daemon --eval '(server-start)'
+    emacsclient --no-wait --create-frame
+  else
+    err "Error: Emacs server not running, cannot restart. Try invoking: 'esd'"
+  fi
 }
