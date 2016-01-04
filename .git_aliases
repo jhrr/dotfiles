@@ -27,10 +27,10 @@ eval "
 
 # TEST THIS...
 __git_shortcut() {
-  local shortcut=$1
-  type _git_$2_shortcut &>/dev/null || __define_git_completion $1 $2
-  "${shortcut}"() { "git $2 $3" }
-  complete -o default -o nospace -F _git_$2_shortcut $1
+  local shortcut=$1;
+  type "_git_$2_shortcut" &>/dev/null || __define_git_completion "$1" "$2"
+  eval "\"${shortcut}\"() { \"git $2 $3\" }"
+  complete -o default -o nospace -F "_git_$2_shortcut" "$1"
 }
 
 # Quote block of arguments > $3 if it contains any spaces.
@@ -65,17 +65,17 @@ __git_shortcut  gst  status
 # Test if we are currently under version control with git.
 git-in-repo() {
   if ! git branch >/dev/null 2>&1; then
-    err "Error: \`$(basename ${PWD})\` is not a git repository."
-      return 1
+    err "Error: \`$(basename "${PWD}")\` is not a git repository."
+    return 1
   else
-      return 0
+    return 0
   fi
 }
 
 # Usage: git-commit-for-squash
 # TODO: kwatz!
 git-commit-for-squash() {
-  git commit -v -m 'squash!'
+  git commit -v -m 'squash!';
 }
 alias gcS='git-commit-for-squash'
 
@@ -83,7 +83,7 @@ alias gcS='git-commit-for-squash'
 # Make a commit for a projected squashing. Requires --autosquash or:
 # `$ git config --global rebase.autosquash true'
 git-commit-all-for-squash() {
-  git add . && git commit -v -m 'squash!'
+  git add . && git commit -v -m 'squash!';
 }
 alias gcAS='git-commit-all-for-squash'
 
@@ -92,7 +92,7 @@ alias gcAS='git-commit-all-for-squash'
 # be a clone of the supplied $PARENT_BRANCH.
 git-conflict-cherry-pick() {
   if [[ "$#" -ne 2 ]]; then
-    err 'Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH'
+    err "Usage: git-conflict-cherry-pick \$PARENT_BRANCH \$HASH"
   else
     git-in-repo;
     if [[ $? -eq 0 ]]; then
@@ -105,27 +105,29 @@ git-conflict-cherry-pick() {
 # Delete all local tracking branches that have been merged upstream.
 git-delete-local-merged() {
   git branch -D \
-    | "$(git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n')"
+    | git branch --merged \
+    | grep -v '^.*' \
+    | grep -v 'master' \
+    | tr -d '\n';
 }
-
 
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
 git-minimum-hash() {
   git rev-parse HEAD \
-    | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)"
+    | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)";
 }
 
 # Usage: git-purge-local-branches
 # Delete all local tracking branches except master.
 git-purge-local-branches() {
-  git branch | grep -v 'master' | xargs git branch -D
+  git branch | grep -v 'master' | xargs git branch -D;
 }
 
 # Usage: git-grep-replace $TARGET $NEW
 # Replace a $TARGET string with a $NEW string repo-wide.
 git-grep-replace() {
   git grep --full-name --files-with-matches "$1" \
-    | xargs sed --in-place -e "s/$1/$2/"
+    | xargs sed --in-place -e "s/$1/$2/";
 }

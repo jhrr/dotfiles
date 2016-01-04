@@ -42,6 +42,10 @@ _islinux=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] &&
   _islinux=true
 
+_isosx=false
+[[ "$(uname -s)" =~ Darwin ]] &&
+  _isosx=true
+
 _isfreebsd=false
 [[ "$(uname -s)" =~ FreeBSD ]] &&
   _isfreebsd=true
