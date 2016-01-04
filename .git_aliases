@@ -120,7 +120,9 @@ git-minimum-hash() {
 # Usage: git-purge-local-branches
 # Delete all local tracking branches except master.
 git-purge-local-branches() {
-  git branch | grep -v 'master' | xargs git branch -D;
+  git branch \
+    | grep -v 'master' \
+    | xargs git branch -D;
 }
 
 # Usage: git-grep-replace $TARGET $NEW
