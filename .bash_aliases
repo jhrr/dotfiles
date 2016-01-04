@@ -43,7 +43,7 @@ alias suv='sudo ${VISUAL}'
 # Usage: err "Unable to do_something"
 # Stderr helper function.
 err() {
-  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2;
   # exit 1
 }
 
@@ -69,7 +69,7 @@ extract() {
 }
 
 ff() {
-  find . -type f -iname "*""$*""*"
+  find . -type f -iname "*""$*""*";
 }
 
 fx() {
@@ -79,19 +79,20 @@ fx() {
 
 frep() {
   find . -name "${1}" -print0 \
-    | xargs -0 ack -i "${2}"
+    | xargs -0 ack -i "${2}";
 }
 
 fwc() {
   find . -name "*.${1}" -print0 \
-    | xargs -0 wc -l
+    | xargs -0 wc -l;
 }
 
 routerip() {
   netstat -nr \
-    | awk '$1 == "0.0.0.0" {print $2}'
+    | awk '$1 == "0.0.0.0" {print $2}';
 }
 
+# TODO: linux only
 sreboot() {
   if [[ "t" == "$(server_ok)" ]]; then
     echo "Shutting down the emacs server..."
@@ -105,7 +106,7 @@ sreboot() {
 # Emacs daemon functions.
 
 emacs_server_ok() {
-  emacsclient -a "false" -e "(boundp 'server-process)"
+  emacsclient -a "false" -e "(boundp 'server-process)";
 }
 
 # Open a file, in the current shell, using the emacs daemon.
