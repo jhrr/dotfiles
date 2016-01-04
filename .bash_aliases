@@ -92,7 +92,7 @@ routerip() {
     | awk '$1 == "0.0.0.0" {print $2}';
 }
 
-[[ "${IS_LINUX}" =~ true ]] &&
+[[ "${IS_LINUX}" == true ]] &&
   sreboot() {
       if [[ "t" == "$(server_ok)" ]]; then
         echo "Shutting down the emacs server..."

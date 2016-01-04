@@ -120,7 +120,7 @@ if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi
 
-[[ "${IS_OSX}" =~ true ]] &&
+[[ "${IS_OSX}" == true ]] &&
   export GREP_OPTIONS='--color=auto'
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
