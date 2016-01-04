@@ -92,16 +92,16 @@ routerip() {
     | awk '$1 == "0.0.0.0" {print $2}';
 }
 
-# TODO: linux only
-sreboot() {
-  if [[ "t" == "$(server_ok)" ]]; then
-    echo "Shutting down the emacs server..."
-    emacsclient -e '(client-save-kill-emacs)'
-  fi
-  echo "Shutting down MPD..."
-  mpd --kill
-  sudo shutdown -r now
-}
+[[ "${IS_LINUX}" =~ true ]] &&
+  sreboot() {
+      if [[ "t" == "$(server_ok)" ]]; then
+        echo "Shutting down the emacs server..."
+        emacsclient -e '(client-save-kill-emacs)'
+      fi
+      echo "Shutting down MPD..."
+      mpd --kill
+      sudo shutdown -r now
+  }
 
 # Emacs daemon functions.
 

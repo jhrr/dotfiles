@@ -38,21 +38,23 @@ HISTIGNORE="&:l:ls:ll:cd:exit:clear:history:h"
 HISTFILESIZE=10000
 HISTSIZE=10000
 
-_islinux=false
-[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] &&
-  _islinux=true
+IS_LINUX=false
+[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && {
+  IS_LINUX=true
+  export IS_LINUX
 
-_isosx=false
+IS_OSX=false
 [[ "$(uname -s)" =~ Darwin ]] &&
-  _isosx=true
+  IS_OSX=true
+  export IS_OSX
 
-_isfreebsd=false
+IS_FREEBSD=false
 [[ "$(uname -s)" =~ FreeBSD ]] &&
-  _isfreebsd=true
+  IS_FREEBSD=true
 
-_withx=false
+WITH_X=false
 [[ "${DISPLAY}" ]] &&
-  _withx=true
+  WITH_X=true
 
 editors="emacs:vim:vi"
 browsers="elinks:lynx:links"
@@ -70,7 +72,7 @@ _set_preferred() {
   done
 }
 _set_preferred "EDITOR" $editors
-if [[ "${_withx}" =~ true ]]; then
+if [[ "${WITH_X}" =~ true ]]; then
   _set_preferred "BROWSER" $xbrowsers
 else
   _set_preferred "BROWSER" $browsers
@@ -117,5 +119,8 @@ export PAGER MANPAGER
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi
+
+[[ "${IS_OSX}" =~ true ]] &&
+  export GREP_OPTIONS='--color=auto'
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
