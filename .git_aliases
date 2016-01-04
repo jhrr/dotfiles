@@ -42,7 +42,6 @@ __git_shortcut  gc  commit '-v -m'
 __git_shortcut  gco  checkout
 __git_shortcut  gcoA  checkout '-- .'
 __git_shortcut  gcoB  checkout -b
-__git_shortcut  gconf  cat "./.git/config"
 __git_shortcut  gd  diff
 __git_shortcut  gdo  diff 'origin/$(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gF  fetch --all
