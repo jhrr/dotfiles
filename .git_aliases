@@ -26,7 +26,6 @@ eval "
 }
 
 __git_shortcut() {
-  set -x
   local shortcut=$1
   type "_git_$2_shortcut" &>/dev/null || __define_git_completion "$1" "$2"
   eval "function ${shortcut} { git $2 $3; }"
