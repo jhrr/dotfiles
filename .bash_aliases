@@ -14,6 +14,7 @@ alias g='ack -i'
 alias grd='ls -aliF | ack -i'
 alias h='history | grep -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
+alias l='ls -aliF'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias open='xdg-open &>/dev/null'
