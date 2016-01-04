@@ -1,10 +1,10 @@
-if [ -r ~/.profile ]; then
+if [[ -r ~/.profile ]]; then
   . ~/.profile;
 fi
 
 case "$-" in
   *i*)
-    if [ -r ~/.bashrc ]; then
+    if [[ -r ~/.bashrc ]]; then
       . ~/.bashrc;
     fi;;
 esac
