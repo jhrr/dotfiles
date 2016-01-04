@@ -39,7 +39,7 @@ HISTFILESIZE=10000
 HISTSIZE=10000
 
 IS_LINUX=false
-[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && {
+[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] &&
   IS_LINUX=true
   export IS_LINUX
 
@@ -50,11 +50,11 @@ IS_OSX=false
 
 IS_FREEBSD=false
 [[ "$(uname -s)" =~ FreeBSD ]] &&
-  IS_FREEBSD=true
+  export IS_FREEBSD=true
 
 WITH_X=false
 [[ "${DISPLAY}" ]] &&
-  WITH_X=true
+  export WITH_X=true
 
 editors="emacs:vim:vi"
 browsers="elinks:lynx:links"
