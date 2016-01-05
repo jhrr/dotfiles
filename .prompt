@@ -92,10 +92,10 @@ fi;
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-ps1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h";
-ps1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])";
-ps1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)";
-ps1+="\[${green}\]\$(vcprompt)";
-ps1+="\[${b_white}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
-ps1+="\[${b_i_purple}\]\$\[${white}\] ";
+PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h";
+PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])";
+PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)";
+PS1+="\[${green}\]\$(vcprompt)";
+PS1+="\[${b_white}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
+PS1+="\[${b_i_purple}\]\$\[${white}\] ";
 export PS1;
