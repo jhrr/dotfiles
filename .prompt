@@ -92,10 +92,10 @@ fi;
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h";
-PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])";
-PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)";
-PS1+="\[${green}\]\$(vcprompt)";
-PS1+="\[${b_white}\]\$(vcprompt -f '%u %m')\n"; # These really suck.
-PS1+="\[${b_i_purple}\]\$\[${white}\] ";
+PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
+PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
+PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt
+PS1+="\[${green}\]\$(vcprompt)"; # Vcprompt
+PS1+="\[${b_white}\]\$(vcprompt -f '%u %m')\n"; # VCS state symbols. This sucks
+PS1+="\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
 export PS1;
