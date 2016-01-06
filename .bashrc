@@ -1,8 +1,5 @@
 # -*- mode: sh; -*-
 
-# TODO: ls defaults
-# TODO: TMUX -- https://wiki.archlinux.org/index.php/tmux#Start_tmux_on_every_shell_login
-
 [[ -f /etc/bashrc ]] &&
   . /etc/bashrc
 
