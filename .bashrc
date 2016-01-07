@@ -108,6 +108,8 @@ export PAGER MANPAGER
   . ~/.bash_aliases
 [[ -f ~/.git_aliases ]] &&
   . ~/.git_aliases
+[[ -f ~/.nix_aliases ]] &&
+  . ~/.nix_aliases
 
 [[ -f ~/.prompt ]] &&
   . ~/.prompt

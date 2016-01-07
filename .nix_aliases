@@ -1,0 +1,14 @@
+ncpu=$(sysctl -n hw.ncpu)
+
+nix-grep() {
+  nix-env -qaP \* \
+    | grep -i "$@";
+}
+
+nix-install() {
+  nix-env -Q -j$(ncpu) -k -i "$@";
+}
+
+nix-update() {
+  nix-env -i "$@";
+}
