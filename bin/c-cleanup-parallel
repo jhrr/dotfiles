@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# https://matt.sh/howto-c
+
+# clang-tidy only accepts one file at a time, but we can run it
+# parallel against disjoint collections at once.
+
+find . -print0 \( -name \*.c -or -name \*.cpp -or -name \*.cc \) \
+  | xargs -n1 -P4 cleanup-tidy
+
+# clang-format accepts multiple files during one run, but let's limit
+# it to 12 here so we (hopefully) avoid excessive memory usage.
+find . -print0 \( -name \*.c -or -name \*.cpp -or -name \*.cc -or -name \*.h \) \
+  | xargs -n12 -P4 cleanup-format -i

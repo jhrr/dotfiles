@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# https://matt.sh/howto-c
+
+# Script for automatic C formatting with clang-format.
+# Usage: cleanup-format -i *.{c,h,cc,cpp,hpp,cxx}
+
+clang-format \
+  -style="{BasedOnStyle: llvm, IndentWidth: 4, AllowShortFunctionsOnASingleLine: None, KeepEmptyLinesAtTheStartOfBlocks: false}" "$@"

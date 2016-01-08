@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# https://matt.sh/howto-c
+
+# Script for automatic C refactoring with clang-tidy.
+# clang-tidy can get stuck on complex codebases.
+# http://clang.llvm.org/extra/clang-tidy/
+
+clang-tidy \
+    -fix \
+    -fix-errors \
+    -header-filter=.* \
+    --checks=readability-braces-around-statements,misc-macro-parentheses \
+    $1 \
+    -- -I.
