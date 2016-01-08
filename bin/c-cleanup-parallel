@@ -4,7 +4,6 @@
 
 # clang-tidy only accepts one file at a time, but we can run it
 # parallel against disjoint collections at once.
-
 find . -print0 \( -name \*.c -or -name \*.cpp -or -name \*.cc \) \
   | xargs -n1 -P4 cleanup-tidy
 
