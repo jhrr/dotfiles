@@ -59,8 +59,8 @@ __git_shortcut  grm  commit '-F .git/MERGE_MSG'
 __git_shortcut  gsh  show
 __git_shortcut  gst  status
 
-format="%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) "
-format+="%C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)"
+format="%C(bold red)%h%C(reset)%C(blue) %cn%C(reset)"
+format+="%C(yellow)%C(reset) %s %C(red)(%cr) "
 
 gl() { git log --graph --pretty=format:"${format}" --abbrev-commit; }
 
