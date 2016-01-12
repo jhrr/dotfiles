@@ -1,8 +1,11 @@
 [ -L "$HOME/.nix-profile" ] &&
   . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-PATH="/usr/local/bin:$PATH"
+# export NIX_PATH=nixpkgs=/Users/jhrr/code/oss/nixpkgs
+
+[[ "${IS_OSX}" == false ]] &&
+  PATH="$PATH:/usr/local/bin"
+  PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
 [ -d "$HOME/bin" ] &&
   PATH="$PATH:$HOME/bin"
