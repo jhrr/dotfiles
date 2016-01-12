@@ -59,7 +59,10 @@ __git_shortcut  grm  commit '-F .git/MERGE_MSG'
 __git_shortcut  gsh  show
 __git_shortcut  gst  status
 
-# git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit
+format="%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) "
+format+="%C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)"
+
+gl() { git log --graph --pretty=format:"${format}" --abbrev-commit; }
 
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
