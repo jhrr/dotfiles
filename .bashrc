@@ -104,12 +104,12 @@ export PAGER MANPAGER
 [[ -f /etc/bash_completion.d/password-store ]] &&
   . /etc/bash_completion.d/password-store
 
-[[ -f ~/.bash_aliases ]] &&
-  . ~/.bash_aliases
-[[ -f ~/.git_aliases ]] &&
-  . ~/.git_aliases
-[[ -f ~/.nix_aliases ]] &&
-  . ~/.nix_aliases
+[[ -f ~/.bash-aliases ]] &&
+  . ~/.bash-aliases
+[[ -f ~/.git-aliases ]] &&
+  . ~/.git-aliases
+[[ -f ~/.nix-aliases ]] &&
+  . ~/.nix-aliases
 
 [[ -f ~/.prompt ]] &&
   . ~/.prompt
