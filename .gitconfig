@@ -2,7 +2,7 @@
   name = jhrr
   email = jhrr@users.noreply.github.com
 [core]
-	editor = '$VISUAL' 
+  editor = vim 
 [push]
   default = current
 [color]
