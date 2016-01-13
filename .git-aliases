@@ -104,16 +104,6 @@ git-conflict-cherry-pick() {
   fi
 }
 
-# Usage: git-delete-local-merged
-# Delete all local tracking branches that have been merged upstream.
-git-delete-local-merged() {
-  git branch -D \
-    | git branch --merged \
-    | grep -v '^.*' \
-    | grep -v 'master' \
-    | tr -d '\n';
-}
-
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
@@ -122,12 +112,23 @@ git-minimum-hash() {
     | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)";
 }
 
-# Usage: git-purge-local-branches
+# Usage: git-purge-local
 # Delete all local tracking branches except master.
 git-purge-local-branches() {
   git branch \
     | grep -v 'master' \
     | xargs git branch -D;
+}
+
+# Usage: git-purge-local-merged
+# Delete all local tracking branches except master that have been
+# merged upstream.
+git-delete-local-merged() {
+  git branch -D \
+    | git branch --merged \
+    | grep -v '^.*' \
+    | grep -v 'master' \
+    | tr -d '\n';
 }
 
 # Usage: git-grep-replace $TARGET $NEW
