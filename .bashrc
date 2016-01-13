@@ -114,6 +114,8 @@ export PAGER MANPAGER
 [[ -f ~/.prompt ]] &&
   . ~/.prompt
 
+# export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi

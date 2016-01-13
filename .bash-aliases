@@ -87,6 +87,10 @@ fwc() {
     | xargs -0 wc -l;
 }
 
+pip-grep() {
+  pip search "$1" | grep "$1";
+}
+
 routerip() {
   netstat -nr \
     | awk '$1 == "0.0.0.0" {print $2}';
