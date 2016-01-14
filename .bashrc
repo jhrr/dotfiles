@@ -89,14 +89,14 @@ else
 fi
 export PAGER MANPAGER
 
-if [[ "${IS_LINUX}" == true ]]; then
+[[ "${IS_LINUX}" == true ]] && {
   if [[ "${WITH_X}" == true ]]; then
     _set_preferred "BROWSER" $xbrowsers
   else
     _set_preferred "BROWSER" $browsers
   fi
   export BROWSER
-fi
+} 
 
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
   . /usr/bin/virtualenvwrapper.sh
