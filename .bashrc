@@ -36,14 +36,16 @@ HISTFILESIZE=10000
 HISTSIZE=10000
 
 IS_LINUX=false
-[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] &&
+[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && {
   IS_LINUX=true
   export IS_LINUX
+}
 
 IS_OSX=false
-[[ "$(uname -s)" =~ Darwin ]] &&
+[[ "$(uname -s)" =~ Darwin ]] && {
   IS_OSX=true
   export IS_OSX
+}
 
 IS_FREEBSD=false
 [[ "$(uname -s)" =~ FreeBSD ]] &&
