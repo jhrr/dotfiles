@@ -31,7 +31,7 @@ set -o notify
 unset MAILCHECK
 
 HISTCONTROL=ignoreboth,erasedups
-HISTIGNORE="&:l:ls:ll:cd:exit:clear:history:h"
+HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
 HISTFILESIZE=10000
 HISTSIZE=10000
 
@@ -53,7 +53,7 @@ WITH_X=false
 [[ "${DISPLAY}" ]] &&
   export WITH_X=true
 
-editors="emacs:vim:vi"
+editors="vim:vi:emacs"
 browsers="elinks:lynx:links"
 xbrowsers="chromium:firefox:uzbl"
 
@@ -67,20 +67,16 @@ _set_preferred() {
     fi
   done
 }
-_set_preferred "EDITOR" $editors
-if [[ "${WITH_X}" =~ true ]]; then
-  _set_preferred "BROWSER" $xbrowsers
-else
-  _set_preferred "BROWSER" $browsers
-fi
 
+_set_preferred "VISUAL" $editors
 HAVE_VIM=$(command -v vim)
 if [[ -x "${HAVE_VIM}" ]]; then
-  VISUAL=vim
+  EDITOR=vim
 else
-  VISUAL=vi
+  EDITOR=vi
 fi
 export VISUAL
+export EDITOR
 
 HAVE_LESS=$(command -v less)
 if [[ -x "${HAVE_LESS}" ]]; then
@@ -111,10 +107,10 @@ export PAGER MANPAGER
 [[ -f ~/.nix-aliases ]] &&
   . ~/.nix-aliases
 
-[[ -f ~/.prompt ]] &&
+[[ -f ~/.prompt ]] && {
   . ~/.prompt
-
-# export VIRTUAL_ENV_DISABLE_PROMPT=1
+  # export VIRTUAL_ENV_DISABLE_PROMPT=1
+}
 
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
