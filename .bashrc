@@ -99,7 +99,7 @@ export PAGER MANPAGER
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
   . /usr/bin/virtualenvwrapper.sh
   export WORKON_HOME=~/.virtualenvs
-  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+  # export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 }
 
 [[ -f ~/bin/git-completion ]] &&
