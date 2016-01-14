@@ -75,8 +75,7 @@ if [[ -x "${HAVE_VIM}" ]]; then
 else
   EDITOR=vi
 fi
-export VISUAL
-export EDITOR
+export VISUAL EDITOR
 
 HAVE_LESS=$(command -v less)
 if [[ -x "${HAVE_LESS}" ]]; then
@@ -87,6 +86,15 @@ else
   MANPAGER="${PAGER}"
 fi
 export PAGER MANPAGER
+
+if [[ "${IS_LINUX}" == true ]]; then
+  if [[ "${WITH_X}" == true ]]; then
+    _set_preferred "BROWSER" $xbrowsers
+  else
+    _set_preferred "BROWSER" $browsers
+  fi
+  export BROWSER
+fi
 
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
   . /usr/bin/virtualenvwrapper.sh
