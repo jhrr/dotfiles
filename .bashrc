@@ -48,12 +48,10 @@ IS_OSX=false
 }
 
 IS_FREEBSD=false
-[[ "$(uname -s)" =~ FreeBSD ]] &&
-  export IS_FREEBSD=true
-
-WITH_X=false
-[[ "${DISPLAY}" ]] &&
-  export WITH_X=true
+[[ "$(uname -s)" =~ FreeBSD ]] && {
+  IS_FREEBSD=true
+  export IS_FREEBSD
+}
 
 editors="vim:vi:emacs"
 browsers="elinks:lynx:links"
@@ -90,7 +88,7 @@ fi
 export PAGER MANPAGER
 
 [[ "${IS_LINUX}" == true ]] && {
-  if [[ "${WITH_X}" == true ]]; then
+  if [[ "${DISPLAY}" == true ]]; then
     _set_preferred "BROWSER" $xbrowsers
   else
     _set_preferred "BROWSER" $browsers
