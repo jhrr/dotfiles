@@ -48,13 +48,14 @@ __git_shortcut  gF  fetch --all
 __git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd `gh`
 __git_shortcut  gPo  push 'origin $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gPoF  push 'origin -f $(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gpLUM  pull '--ff-only upstream master'
 __git_shortcut  gpLR  pull --rebase
+__git_shortcut  gpLOM  pull '--ff-only origin master'
+__git_shortcut  gpLUM  pull '--ff-only upstream master'
 __git_shortcut  gRi  rebase -i
-__git_shortcut  gRom  rebase 'origin/master'
 __git_shortcut  gRiom  rebase '-i origin/master'
-__git_shortcut  gRSo  reset '--hard origin/$(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gRSom  reset '--hard origin/master'
+__git_shortcut  gRom  rebase 'origin/master'
+__git_shortcut  grsHOB  reset '--hard origin/$(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  grsHOM  reset '--hard origin/master'
 __git_shortcut  grm  commit '-F .git/MERGE_MSG'
 __git_shortcut  gsh  show
 __git_shortcut  gst  status
