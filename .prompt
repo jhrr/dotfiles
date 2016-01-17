@@ -92,6 +92,12 @@ fi;
 [[ -f ~/bin/veprompt ]] &&
   export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# if [[ "${IS_OSX}" == true ]]; then
+#   _host=$(scutil --get ComputerName);
+# else
+#   _host=$(hostname)
+# fi;
+
 PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
 # PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt
