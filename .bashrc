@@ -115,10 +115,11 @@ export PAGER MANPAGER
 [[ -f ~/.nix-aliases ]] &&
   . ~/.nix-aliases
 
-[[ -f ~/.prompt ]] && {
+[[ -f ~/.prompt ]] && 
   . ~/.prompt
-  # export VIRTUAL_ENV_DISABLE_PROMPT=1
-}
+
+[[ -f ~/bin/z ]] &&
+  . ~/bin/z
 
 if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
