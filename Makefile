@@ -13,15 +13,15 @@ vcp_tmp = $(tmp)/$(vcp_dir)
 vep_src = https://github.com/jhrr/veprompt/raw/master/bin/veprompt
 z_src = https://github.com/rupa/z/raw/master/z.sh
 
-all: symlinks scripts
+all : symlinks scripts
 
-help:
+help :
 
 # Something like this...
 # objects = $(addprefix $(OBJDIR)/, kumain.o kudlx.o kusolvesk.o kugetpuz.o kuutils.o \
 # 					  kurand.o kuASCboard.o kuPDFs.o kupuzstrings.o kugensud.o kushapes.o )
 
-symlinks-common:
+symlinks-common :
 		mkdir ~/.vim-tmp
 		# We can clearly refactor this to be reusable for clean, or whatever
 		ln -fs $(dot)/.bash-aliases ~/.bash-aliases
@@ -39,22 +39,22 @@ symlinks-common:
 		ln -fs $(dot)/.sbclrc ~/.bash-aliases
 		ln -fs $(dot)/.tmux.conf ~/.tmux.conf
 
-symlinks-linux:
+symlinks-linux :
 		ln -fs $(dot)/.conkyrc-xmonad ~/.conkyrc-xmonad
 		ln -fs $(dot)/.dunstrc ~/.dunstrc
 		ln -fs $(dot)/.inputrc ~/.inputrc
 		ln -fs $(dot)/.xinitrc ~/.xinitrc
 
-symlinks-osx:
+symlinks-osx :
 		ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 		ln -fs $(dot)/.nix-aliases ~/.nix-aliases
 
-vim:
+vim :
 		[ -d ~/.vim-tmp ] && rm -rf .vim-tmp
 		mkdir ~/.vim-tmp
 		ln -fs $(dot)/.vimrc ~/.vimrc
 
-symlinks: symlinks-common (if osx: symlinks-osx else: symlinks-linux) vim
+symlinks : symlinks-common vim
 
 # ifeq ($(OS),Darwin)
 # symlinks-osx
@@ -62,7 +62,7 @@ symlinks: symlinks-common (if osx: symlinks-osx else: symlinks-linux) vim
 # symlinks-linux
 # endif
 
-make-bin:
+make-bin :
 		[ -d ~/bin ] && rm -rf ~/bin
 		mkdir ~/bin
 
@@ -91,6 +91,7 @@ link-scripts :
 		@echo "Need to link contents of bin"
 		# loop over all files and ln -fs
 
-scripts : make-bin update-vcprompt update-veprompt update-z \
+scripts : 
+	make-bin update-vcprompt update-veprompt update-z \
 	update-git-scripts link-scripts
 
