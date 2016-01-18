@@ -9,12 +9,6 @@
 ;;; Tell the compiler to optimize for debugging.
 (declaim (optimize (debug 3)))
 
-;;; Ensure some libraries are available.
-(dolist (p '("caveman2"
-             "quickproject"
-             "hunchentoot"))
-  (ql:quickload p))
-
 ;;; Better printing for hash tables
 ;; (set-pprint-dispatch 'hash-table
 ;;  (lambda (str ht)

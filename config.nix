@@ -2,6 +2,7 @@
 
 { pkgs }: {
 
+  allowUnfree = true;
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
   
     userEnv = pkgs.buildEnv {
@@ -20,6 +21,7 @@
         less
         llvm
         nix-repl
+        nox
         pass
         python27Full
         python35
