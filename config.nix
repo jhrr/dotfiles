@@ -7,8 +7,11 @@
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
       paths = [
+        ack
         clang
+        cmake
         ctags
+        curl
         emacs24Macport
         ghc
         git
@@ -19,9 +22,11 @@
         nix-repl
         pass
         python27Full
-        python3
+        python35
+        rsync
         stack
         tig
+        tree
         vim
         yank
       ];
@@ -29,3 +34,6 @@
   };
 }
 
+# emacs = if pkgs.stdenv.isDarwin
+#         then pkgs.emacs24Macport
+#         else pkgs.emacs24;
