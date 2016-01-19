@@ -30,7 +30,7 @@ set -o emacs
 set -o notify
 unset MAILCHECK
 
-HISTCONTROL=ignoreboth,erasedups
+HISTCONTROL=ignoreboth:ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
 HISTFILESIZE=10000
 HISTSIZE=10000
