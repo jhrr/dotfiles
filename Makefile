@@ -43,28 +43,34 @@ clean-bin:
                 @mkdir ~/bin
 
 update-vcprompt:
-                curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
-                cd $(vcp_tmp) && ./configure CC=clang
-                $(MAKE) -C $(vcp_tmp)
-                $(MAKE) -C $(vcp_tmp) install PREFIX=$(bin)
+                @echo "Getting vcprompt source..."
+                @curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
+                @echo "Compiling vcprompt..."
+                @cd $(vcp_tmp) && ./configure CC=clang
+                @$(MAKE) -C $(vcp_tmp)
+                @echo "Installing vcprompt in:"
+                @echo $(bin)
+                @$(MAKE) -C $(vcp_tmp) install PREFIX=$(bin)
                 @rm -rf $(vcp_tmp)
 
 update-veprompt:
-                curl -sL $(vep_src) > $(bin)/veprompt
+                @echo "Installing veprompt in:"
+                @echo $(bin)
+                @curl -sL $(vep_src) > $(bin)/veprompt
                 @chmod a+x $(bin)/veprompt
 
 update-z:
-                curl -sL $(z_src) > $(bin)/z
+                @echo "Installing z.sh in:"
+                @echo $(bin)
+                @curl -sL $(z_src) > $(bin)/z
                 @chmod a+x $(bin)/z
 
 update-git-scripts:
-                @echo "Linking git-scripts/"
                 @if [ -d ~/code/oss/git-scripts ]; then \
                         ln -fns ~/code/oss/git-scripts ~/bin/git-scripts; \
                 fi;
 
 link-scripts:
-                @echo "Linking bin/"
                 @if [ -d ~/bin ]; then \
                         rm -rf ~/bin; \
                 fi;
