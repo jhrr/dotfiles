@@ -24,8 +24,10 @@ symlinks-common: .bash-aliases .bash_profile .bashrc .ctags .eslintrc .flake8rc 
 symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc .Xdefaults
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
-symlinks-osx: config.nix .nix-aliases
+symlinks-osx: .nix-aliases
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
+		@if [ ! -d ~/.nixpkgs ]; then mkdir ~/.nixpkgs; fi;
+		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 
 vim:
 		@if [ -d ~/.vim-tmp ]; then rm -rf ~/.vim-tmp; fi;
