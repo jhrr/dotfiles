@@ -38,10 +38,6 @@ else
 symlinks: symlinks-common symlinks-linux vim
 endif
 
-clean-bin:
-		@if [ -d ~/bin ]; then rm -rf ~/bin; fi;
-		@mkdir ~/bin
-
 update-vcprompt:
 		@echo "Getting vcprompt source..."
 		@curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
@@ -50,7 +46,8 @@ update-vcprompt:
 		@$(MAKE) -C $(vcp_tmp)
 		@echo "Installing vcprompt in:"
 		@echo $(bin)
-		@$(MAKE) -C $(vcp_tmp) install PREFIX=$(bin)
+		@$(MAKE) -C $(vcp_tmp) install PREFIX=$(dot)
+		@rm -rf $(dot)/man
 		@rm -rf $(vcp_tmp)
 
 update-veprompt:
@@ -71,7 +68,8 @@ update-git-scripts:
 
 link-scripts:
 		@if [ -d ~/bin ]; then rm -rf ~/bin; fi;
-		@ln -fns $(dot)/bin/* ~/bin
+		@mkdir ~/bin
+		@ln -s $(dot)/bin/* ~/bin/
 
-scripts: clean-bin update-vcprompt update-veprompt update-z \
-        update-git-scripts link-scripts
+scripts: update-vcprompt update-veprompt update-z \
+	update-git-scripts link-scripts
