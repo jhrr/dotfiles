@@ -21,7 +21,7 @@ symlinks-common: .bash-aliases .bash_profile .bashrc .ctags .eslintrc .flake8rc 
         .ghci .git-aliases .gitconfig .profile .prompt .psqlrc .tmux.conf
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
-symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc
+symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc .Xdefaults
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
 symlinks-osx: config.nix .nix-aliases
