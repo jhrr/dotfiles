@@ -23,13 +23,13 @@ help:
 
 symlinks-common: .bash-aliases .bash_profile .bashrc .ctags .eslintrc .flake8rc \
 	.ghci .git-aliases .gitconfig .profile .prompt .psqlrc .bash-aliases .tmux.conf
-	    @for file in $^; do ln -fs $(dot)/$$file ${HOME}/$$file; done
+	    @for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
 symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc
-		@for file in $^; do ln -fs $(dot)/$$file ${HOME}/$$file; done
+		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
 symlinks-osx: config.nix .nix-aliases
-		@for file in $^; do ln -fs $(dot)/$$file ${HOME}/$$file; done
+		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
 vim:
 		@if [ -d ~/.vim-tmp ]; then rm -rf ~/.vim-tmp; fi;
@@ -42,15 +42,11 @@ else
 symlinks: symlinks-common symlinks-linux vim
 endif
 
-make-bin:
-		@if [ -d ~/bin ]; then rm -rf ~/bin; fi;
-		@mkdir ~/bin
-
 update-vcprompt:
-		curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
-		$(vcp_tmp)/configure CC=clang
-		$(vcp_tmp)/make
-		$(vcp_tmp)/make install PREFIX=$(dot)
+	curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
+		cd $(vcp_tmp) && ./configure CC=clang
+		$(MAKE) -C $(vcp_tmp) 
+		$(MAKE) -C $(vcp_tmp) install PREFIX=$(bin)
 		@rm -rf $(vcp_tmp)
 
 update-veprompt:
@@ -64,11 +60,16 @@ update-z:
 update-git-scripts:
 		@echo "Linking git-scripts/"
 		@if [ -d ~/code/oss/git-scripts ]; then \
-			ln -fns ~/code/oss/git-scripts ~/bin; fi;
+			ln -fns ~/code/oss/git-scripts ~/bin/git-scripts; \
+		fi;
 
+# We don't really want bin to be a symlink, better to link each
+# file individually with a loop.
 link-scripts:
 		@echo "Linking bin/"
-		@if [ -d ~/bin ]; then rm -rf ~/bin; fi;
+		@if [ -d ~/bin ]; then \
+			rm -rf ~/bin; \
+		fi;
 	    @ln -fns $(dot)/bin ~/bin
 
 scripts: update-vcprompt update-veprompt update-z update-git-scripts \
