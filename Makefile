@@ -2,9 +2,9 @@
 
 OS:=$(shell uname -s)
 
-dot=$(CURDIR)
-bin=$(dot)/bin
-tmp=/tmp
+dot:=$(CURDIR)
+bin:=$(dot)/bin
+tmp:=/tmp
 
 vcp_ver=1.2.1
 vcp_dir=vcprompt-$(vcp_ver)
