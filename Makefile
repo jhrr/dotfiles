@@ -30,8 +30,7 @@ symlinks-osx: .nix-aliases
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 
 vim:
-		@if [ -d ~/.vim-tmp ]; then rm -rf ~/.vim-tmp; fi;
-		@mkdir ~/.vim-tmp
+		@if [ ! -d ~/.vim-tmp ]; then mkdir ~/.vim-tmp; fi;
 		@ln -fs $(dot)/.vimrc ~/.vimrc
 
 ifeq ($(OS),'Darwin')
