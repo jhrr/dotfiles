@@ -96,11 +96,13 @@ export PAGER MANPAGER
   export BROWSER
 } 
 
-[[ -f /usr/bin/virtualenvwrapper.sh ]] && {
+if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   . /usr/bin/virtualenvwrapper.sh
   export WORKON_HOME=~/.virtualenvs
-  # export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
-}
+elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
+  . "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh
+  export WORKON_HOME=~/.virtualenvs
+fi
 
 [[ -f ~/bin/git-completion ]] &&
   . ~/bin/git-completion
