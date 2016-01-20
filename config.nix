@@ -14,6 +14,7 @@
         ctags
         curl
         emacs24Macport
+        erlang
         ghc
         git
         gitAndTools.hub
@@ -25,6 +26,8 @@
         pass
         python27Full
         python35
+        python27Packages.ipython
+        python35Packages.ipython
         rsync
         stack
         tig
