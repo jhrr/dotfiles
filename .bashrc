@@ -129,5 +129,6 @@ fi
 
 [[ "${IS_OSX}" == true ]] &&
   export GREP_OPTIONS='--color=auto'
+  export LS_COLORS='di=1;34:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35'
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
