@@ -91,6 +91,13 @@ pip-grep() {
   pip search "$1" | grep -i "$1";
 }
 
+pskill() {
+  local pid
+  pid=$(pgrep -f "$1")
+  printf "Killing: %s\n" "$pid"
+  kill -9 "$pid"
+}
+
 routerip() {
   netstat -nr \
     | awk '$1 == "0.0.0.0" {print $2}';
