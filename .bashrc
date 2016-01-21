@@ -127,22 +127,22 @@ if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi
 
-_ls_colors='fi=0:'     # file
-_ls_colors+='di=34:'   # directory
-_ls_colors+='ex=91:'   # executable
-_ls_colors+='ln=31:'   # symlink
-_ls_colors+='pi=5:'    # fifo
-_ls_colors+='so=5:'    # socket
-_ls_colors+='bd=5:'    # block special
-_ls_colors+='cd=5:'    # character special
-_ls_colors+='or=31:'   # symlink pointing to non-existent file
+_ls_colors='fi=00;00:'    # file
+_ls_colors+='di=00;94:'   # directory
+_ls_colors+='ex=00;31:'   # executable
+_ls_colors+='ln=00;32:'   # symlink
+_ls_colors+='pi=04;91:'   # fifo
+_ls_colors+='so=00;95:'   # socket
+_ls_colors+='bd=04;93:'   # block special
+_ls_colors+='cd=00;93:'   # character special
+_ls_colors+='or=07;31:'   # symlink pointing to non-existent file
 
-_ls_colors+='*.gz=1;31:'
-_ls_colors+='*.tar=1;31:'
-_ls_colors+='*.tgz=1;31:'
-_ls_colors+='*.tbz=1;31:'
-_ls_colors+='*.zip=1;31:'
-_ls_colors+='*.org=1;5:'
+_ls_colors+='*.gz=31;1:'
+_ls_colors+='*.tar=31;1:'
+_ls_colors+='*.tgz=31;1:'
+_ls_colors+='*.tbz=31;1:'
+_ls_colors+='*.zip=31;1:'
+_ls_colors+='*.org=5;1:'
 
 [[ "${IS_OSX}" == true ]] &&
   export GREP_OPTIONS='--color=auto'
