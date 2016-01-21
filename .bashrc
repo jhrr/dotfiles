@@ -137,12 +137,12 @@ _ls_colors+='bd=5:'    # block special
 _ls_colors+='cd=5:'    # character special
 _ls_colors+='or=31:'   # symlink pointing to non-existent file
 
-_ls_colors+='*.gz=1;31'
-_ls_colors+='*.tar=1;31'
-_ls_colors+='*.tgz=1;31'
-_ls_colors+='*.tbz=1;31'
-_ls_colors+='*.zip=1;31'
-_ls_colors+='*.org=1;5'
+_ls_colors+='*.gz=1;31:'
+_ls_colors+='*.tar=1;31:'
+_ls_colors+='*.tgz=1;31:'
+_ls_colors+='*.tbz=1;31:'
+_ls_colors+='*.zip=1;31:'
+_ls_colors+='*.org=1;5:'
 
 [[ "${IS_OSX}" == true ]] &&
   export GREP_OPTIONS='--color=auto'
