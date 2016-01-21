@@ -127,8 +127,19 @@ if pgrep 'gpg-agent'; then
   eval "$(gpg-agent --daemon)"
 fi
 
+_ls_colors='fi=0:'     # file
+_ls_colors+='di=34:'   # directory
+_ls_colors+='ex=91:'   # executable
+_ls_colors+='ln=31:'   # symlink
+_ls_colors+='pi=5:'    # fifo
+_ls_colors+='so=5:'    # socket
+_ls_colors+='bd=5:'    # block special
+_ls_colors+='cd=5:'    # character special
+_ls_colors+='or=31:'   # symlink pointing to non-existent file
+_ls_colors+='mi=0:'    # non-existent file pointed at by symlink
+
 [[ "${IS_OSX}" == true ]] &&
   export GREP_OPTIONS='--color=auto'
-  export LS_COLORS='di=1;34:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35'
+  export LS_COLORS="${_ls_colors}"
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
