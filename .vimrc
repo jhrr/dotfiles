@@ -40,6 +40,7 @@ set t_ti= t_te=
 set tabstop=4
 set title
 set ttyfast
+set tw=79
 set visualbell
 set wildmenu
 set wildmode=list:longest

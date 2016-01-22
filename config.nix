@@ -22,6 +22,7 @@
         less
         llvm
         nix-repl
+        nmap
         nox
         pass
         rsync
