@@ -26,11 +26,14 @@ symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc .Xdefaults
 
 symlinks-osx: .nix-aliases
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
-		@if [ ! -d ~/.nixpkgs ]; then mkdir ~/.nixpkgs; fi;
+		@mkdir -p ~/.nixpkgs
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 
 vim:
-		@if [ ! -d ~/.vim-tmp ]; then mkdir ~/.vim-tmp; fi;
+		@mkdir -p ~/.vim-tmp
+		@mkdir -p ~/.vim
+		@mkdir -p ~/.vim/autoload ~/.vim/bundle
+		@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen	
 		@ln -fs $(dot)/.vimrc ~/.vimrc
 
 ifeq ($(OS),'Darwin')

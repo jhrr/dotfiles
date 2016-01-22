@@ -1,6 +1,9 @@
+execute pathogen#infect()
+
 set nocompatible
 
 syntax on
+filetype plugin indent on
 
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -40,9 +43,6 @@ set ttyfast
 set visualbell
 set wildmenu
 set wildmode=list:longest
-
-filetype plugin on
-filetype indent on
 
 set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
