@@ -106,7 +106,8 @@ fi
 
 [[ -f ~/bin/git-completion ]] &&
   . ~/bin/git-completion
-
+[[ -f ~/bin/fabric-completion ]]
+  . ~/bin/fabric-completion
 [[ -f /etc/bash_completion.d/password-store ]] &&
   . /etc/bash_completion.d/password-store
 
@@ -144,8 +145,10 @@ _ls_colors+='*.tbz=01;31:'
 _ls_colors+='*.zip=01;31:'
 _ls_colors+='*.org=01;93:'
 
-[[ "${IS_OSX}" == true ]] &&
+[[ "${IS_OSX}" == true ]] && {
   export GREP_OPTIONS='--color=auto'
   export LS_COLORS="${_ls_colors}"
+  export CC="$(command -v clang)"
+}
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
