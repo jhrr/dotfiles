@@ -15,3 +15,7 @@ nix-install() {
 nix-update() {
   nix-env -i "$@";
 }
+
+nixpkgs-sync() {
+  git -C "${NIXPKGS_PATH}" pull --ff-only upstream master;
+}

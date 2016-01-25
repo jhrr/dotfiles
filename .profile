@@ -1,11 +1,13 @@
-[ -L "$HOME/.nix-profile" ] &&
+[ -L "$HOME/.nix-profile" ] && {
   . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+  export NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
+  export NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
+}
 
-# export NIX_PATH=nixpkgs=/Users/jhrr/code/oss/nixpkgs
-
-[[ "${IS_OSX}" == false ]] &&
+[[ "${IS_OSX}" == false ]] && {
   PATH="$PATH:/usr/local/bin"
   PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+}
 
 [ -d "$HOME/bin" ] &&
   PATH="$PATH:$HOME/bin"
