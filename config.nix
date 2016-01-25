@@ -4,7 +4,7 @@
 
   allowUnfree = true;
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
-  
+
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
       paths = [
@@ -15,17 +15,19 @@
         curl
         emacs24Macport
         erlang
-        ghc
         git
         gitAndTools.hub
-        gnupg
+        glib
+        # gnupg
         less
         llvm
         nix-repl
-        nmap
+        # nmap
         nox
-        pass
+        # otool
+        # pass
         rsync
+        # sbcl
         stack
         tig
         tree
@@ -33,7 +35,14 @@
         yank
       ];
     };
-    
+
+    haskellEnv = pkgs.buildEnv {
+      name = "haskellEnv";
+      paths = [
+        ghc
+      ];
+    };
+
     pythonEnv = pkgs.buildEnv {
       name = "pythonEnv";
       paths = [
@@ -44,10 +53,11 @@
         python27Packages.ipython
         python27Packages.virtualenv
         python27Packages.virtualenvwrapper
-        
+        python27Packages.flake8
+
         # Python3 packages
         python35Packages.ipython
-      ];      
+      ];
     };
   };
 }
