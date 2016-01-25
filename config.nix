@@ -42,7 +42,7 @@
         ghc
         stack
         # haskellPackages
-        haskellPackages.shellcheck
+        haskellPackages.ShellCheck
       ];
     };
 
