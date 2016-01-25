@@ -11,24 +11,24 @@
         ack
         clang
         cmake
+        coreutils
         ctags
         curl
         emacs24Macport
         erlang
         git
         gitAndTools.hub
-        glib
+        # glib
         # gnupg
         less
         llvm
         nix-repl
-        # nmap
+        nmap
         nox
-        # otool
+        otool
         # pass
         rsync
-        # sbcl
-        stack
+        sbcl
         tig
         tree
         vim
@@ -40,6 +40,9 @@
       name = "haskellEnv";
       paths = [
         ghc
+        stack
+        # haskellPackages
+        haskellPackages.shellcheck
       ];
     };
 
@@ -48,13 +51,11 @@
       paths = [
         python27Full
         python35
-
         # Python2 packages
         python27Packages.ipython
         python27Packages.virtualenv
         python27Packages.virtualenvwrapper
         python27Packages.flake8
-
         # Python3 packages
         python35Packages.ipython
       ];

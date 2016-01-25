@@ -56,6 +56,7 @@ IS_FREEBSD=false
 editors="vim:vi:emacs"
 browsers="elinks:lynx:links"
 xbrowsers="chromium:firefox:uzbl"
+greppage="ack:grep"
 
 _set_preferred() {
   local IFS=":" var="$1" list="$2" item
@@ -69,13 +70,23 @@ _set_preferred() {
 }
 
 _set_preferred "VISUAL" $editors
+_set_preferred "GREPPAGE" $greppage
+[[ "${IS_LINUX}" == true ]] && {
+  if [[ "${DISPLAY}" == true ]]; then
+    _set_preferred "BROWSER" $xbrowsers
+  else
+    _set_preferred "BROWSER" $browsers
+  fi
+  export BROWSER
+}
+
 HAVE_VIM=$(command -v vim)
 if [[ -x "${HAVE_VIM}" ]]; then
   EDITOR=vim
 else
   EDITOR=vi
 fi
-export VISUAL EDITOR
+export VISUAL EDITOR GREPPAGE
 
 HAVE_LESS=$(command -v less)
 if [[ -x "${HAVE_LESS}" ]]; then
@@ -87,20 +98,11 @@ else
 fi
 export PAGER MANPAGER
 
-[[ "${IS_LINUX}" == true ]] && {
-  if [[ "${DISPLAY}" == true ]]; then
-    _set_preferred "BROWSER" $xbrowsers
-  else
-    _set_preferred "BROWSER" $browsers
-  fi
-  export BROWSER
-} 
-
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   . /usr/bin/virtualenvwrapper.sh
   export WORKON_HOME=~/.virtualenvs
 elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
-  . "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh
+  . "${HOME}/.nix-profile/bin/virtualenvwrapper.sh"
   export WORKON_HOME=~/.virtualenvs
 fi
 
@@ -118,7 +120,7 @@ fi
 [[ -f ~/.nix-aliases ]] &&
   . ~/.nix-aliases
 
-[[ -f ~/.prompt ]] && 
+[[ -f ~/.prompt ]] &&
   . ~/.prompt
 
 [[ -f ~/bin/z ]] &&
