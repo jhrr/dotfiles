@@ -28,12 +28,15 @@ symlinks-osx: .nix-aliases
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 		@mkdir -p ~/.nixpkgs
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
+		@if [ -d ~/code/oss/nixpkgs ] && [ -f ~/.nix-defexpr/channels ]; then \
+			rm -f ~/.nix-defexpr/channels; \
+			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
 
 vim:
 		@mkdir -p ~/.vim-tmp
 		@mkdir -p ~/.vim
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
-		@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen	
+		@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen
 		@ln -fs $(dot)/.vimrc ~/.vimrc
 
 ifeq ($(OS),'Darwin')

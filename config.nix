@@ -41,7 +41,7 @@
       paths = [
         ghc
         stack
-        # haskellPackages
+        # Haskell packages
         haskellPackages.ShellCheck
       ];
     };

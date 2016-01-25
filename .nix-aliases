@@ -1,4 +1,5 @@
 # -*- mode: sh; -*-
+# vi: set ft=sh :
 
 nix-grep() {
   nix-env -qaP \* \
@@ -15,7 +16,7 @@ alias ngh='nix-grep-haskell'
 nix-install() {
   local ncpu
   ncpu=$(sysctl -n hw.ncpu)
-  nix-env -Q -j$ncpu -k -i "$@";
+  nix-env -Q -j$ncpu -k -i "$@"
 }
 
 nix-update() {
