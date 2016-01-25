@@ -100,10 +100,12 @@ export PAGER MANPAGER
 
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   . /usr/bin/virtualenvwrapper.sh
-  export WORKON_HOME=~/.virtualenvs
+  WORKON_HOME=~/.virtualenvs
+  export WORKON_HOME
 elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
   . "${HOME}/.nix-profile/bin/virtualenvwrapper.sh"
-  export WORKON_HOME=~/.virtualenvs
+  WORKON_HOME=~/.virtualenvs
+  export WORKON_HOME
 fi
 
 [[ -f ~/bin/git-completion ]] &&
@@ -148,9 +150,10 @@ _ls_colors+='*.zip=01;31:'
 _ls_colors+='*.org=01;93:'
 
 [[ "${IS_OSX}" == true ]] && {
-  export GREP_OPTIONS='--color=auto'
-  export LS_COLORS="${_ls_colors}"
-  export CC="$(command -v clang)"
+  GREP_OPTIONS='--color=auto'
+  LS_COLORS="${_ls_colors}"
+  CC="$(command -v clang)"
+  export GREP_OPTIONS LS_COLORS CC
 }
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
