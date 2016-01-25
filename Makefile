@@ -29,7 +29,7 @@ symlinks-osx: .nix-aliases
 		@mkdir -p ~/.nixpkgs
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 		@if [ -d ~/code/oss/nixpkgs ] && [ -f ~/.nix-defexpr/channels ]; then \
-			rm -f ~/.nix-defexpr/channels; \
+			rm -rf ~/.nix-defexpr/channels; \
 			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
 
 vim:
