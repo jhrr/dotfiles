@@ -36,7 +36,7 @@ vim:
 		@mkdir -p ~/.vim-tmp
 		@mkdir -p ~/.vim
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
-		@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen
+		@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 		@ln -fs $(dot)/.vimrc ~/.vimrc
 
 ifeq ($(OS),'Darwin')
