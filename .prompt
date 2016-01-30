@@ -95,7 +95,7 @@ fi;
 
 _vcprompt_hash() {
     if git-in-repo >/dev/null 2>&1; then
-      echo "$(git rev-parse --short=0 HEAD)"
+      echo "[$(vcprompt -f '%r' | $GREPPAGE -o $(git rev-parse --short=0 HEAD))]"
     fi
 }
 
@@ -117,6 +117,6 @@ PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
 # PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt, too slow!
 PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')";
 PS1+="\[${white}\]\$(_git_stats)";
-PS1+="\[${i_red}\][\$(_vcprompt_hash)]";
+PS1+="\[${i_red}\]\$(_vcprompt_hash)";
 PS1+="\n\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
 
