@@ -76,6 +76,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 autocmd FileType js setlocal shiftwidth=2 softtabstop=2
+autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sass setlocal shiftwidth=2 softtabstop=2

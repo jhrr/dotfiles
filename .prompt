@@ -93,8 +93,11 @@ fi;
 #   _host=$(hostname)
 # fi;
 
-[[ -f ~/bin/vcprompt ]] &&
-  export VCPROMPT_FORMAT="[%n:%b:%r]"
+_vcprompt_hash() {
+    if git-in-repo >/dev/null 2>&1; then
+      echo "$(git rev-parse --short=0 HEAD)"
+    fi
+}
 
 _git_stats() {
   local _diffs _untracked
@@ -112,7 +115,8 @@ _git_stats() {
 PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
 # PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt, too slow!
-PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')"; # Vcprompt
+PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')";
 PS1+="\[${white}\]\$(_git_stats)";
+PS1+="\[${i_red}\][\$(_vcprompt_hash)]";
 PS1+="\n\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
-export PS1;
+

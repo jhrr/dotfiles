@@ -111,7 +111,7 @@ git-conflict-cherry-pick() {
 # minimum hash highlighted.
 git-minimum-hash() {
   git rev-parse HEAD \
-    | GREP_COLORS='ms=34;1' grep "$(git rev-parse --short=0 HEAD)";
+    | GREP_COLORS='ms=34;1' $GREPPAGE "$(git rev-parse --short=0 HEAD)";
 }
 
 # Usage: git-purge-local

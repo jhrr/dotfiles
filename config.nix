@@ -32,6 +32,7 @@
         tmux
         tree
         vim
+        wget
         yank
       ];
     };
