@@ -43,6 +43,7 @@ __git_shortcut  gco  checkout
 __git_shortcut  gcoA  checkout '-- .'
 __git_shortcut  gcoB  checkout -b
 __git_shortcut  gd  diff
+__git_shortcut  gdc  diff --cached
 __git_shortcut  gdo  diff 'origin/$(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gF  fetch --all
 __git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd `gh`
@@ -60,10 +61,10 @@ __git_shortcut  grm  commit '-F .git/MERGE_MSG'
 __git_shortcut  gsh  show
 __git_shortcut  gst  status
 
-format="%C(bold red)%h%C(reset)%C(blue) %cn"
-format+="%C(reset) %s %C(red)(%cr) "
+_format="%C(bold red)%h%C(reset)%C(blue) %cn"
+_format+="%C(yellow)%d%C(reset) %s %C(red)(%cr) "
 
-gl() { git log --graph --pretty=format:"${format}" --abbrev-commit; }
+gl() { git log --graph --pretty=format:"${_format}" --abbrev-commit; }
 
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
