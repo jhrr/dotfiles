@@ -95,7 +95,7 @@ fi;
 
 _vcprompt_hash() {
     if git-in-repo >/dev/null 2>&1; then
-      echo "[$(vcprompt -f '%r' | $GREPPAGE -o $(git rev-parse --short=0 HEAD))]"
+      echo "[$(git rev-parse --short=0 HEAD)]"
     fi
 }
 
