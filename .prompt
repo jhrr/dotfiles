@@ -116,6 +116,5 @@ PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
 PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt
 PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')"; # Vcprompt
 PS1+="\[${white}\]\$(_git_stats)";
-# PS1+="\[${b_white}\]\$(vcprompt -f '%u %m')"; # VCS state symbols. This sucks
 PS1+="\n\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
 export PS1;
