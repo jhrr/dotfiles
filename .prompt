@@ -98,10 +98,24 @@ fi;
 #   _host=$(hostname)
 # fi;
 
+_git_stats() {
+  local _diffs _untracked
+  if git-in-repo >/dev/null 2>&1; then
+    _diffs=$(git status --porcelain 2>/dev/null | $GREPPAGE "M" | wc -l)
+    _untracked=$(git status --porcelain 2>/dev/null | $GREPPAGE "\?\?" | wc -l)
+    if [[ $_diffs != 0 ]] || [[ $_untracked != 0 ]]; then
+      echo "[$_diffs:$_untracked]"
+    else
+      echo ""
+    fi
+  fi
+}
+
 PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
 PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt
 PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')"; # Vcprompt
+PS1+="\[${white}\]\$(_git_stats)";
 # PS1+="\[${b_white}\]\$(vcprompt -f '%u %m')"; # VCS state symbols. This sucks
 PS1+="\n\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
 export PS1;
