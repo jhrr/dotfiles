@@ -14,7 +14,6 @@
         coreutils
         ctags
         curl
-        emacs24Macport
         erlang
         git
         gitAndTools.hub
@@ -30,9 +29,17 @@
         rsync
         sbcl
         tig
+        tmux
         tree
         vim
         yank
+      ];
+    };
+
+    emacsEnv = pkgs.buildEnv {
+      name = "emacsEnv";
+      paths = [
+        emacs24Macport
       ];
     };
 
@@ -42,6 +49,8 @@
         ghc
         stack
         # Haskell packages
+        # haskellPackages.ghc-mod
+        # haskellPackages.hdevtools
         haskellPackages.ShellCheck
       ];
     };

@@ -48,6 +48,8 @@ set wildmode=list:longest
 set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
 
+set grepprg=ack\ -i
+
 nnoremap ' `
 nnoremap ` '
 nnoremap <C-e> 3<C-e>
@@ -73,3 +75,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+autocmd FileType js setlocal shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal shiftwidth=2 softtabstop=2
+autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
+autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2

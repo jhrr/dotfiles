@@ -6,6 +6,8 @@ dot:=$(CURDIR)
 bin:=$(dot)/bin
 tmp:=/tmp
 
+pathogen_src=https://tpo.pe/pathogen.vim
+
 vcp_ver=1.2.1
 vcp_dir=vcprompt-$(vcp_ver)
 vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
@@ -17,8 +19,8 @@ all: symlinks scripts
 
 help:
 
-symlinks-common: .bash-aliases .bash_profile .bashrc .ctags .eslintrc .flake8rc \
-        .ghci .git-aliases .gitconfig .profile .prompt .psqlrc .tmux.conf
+symlinks-common: .ackrc .bash-aliases .bash_profile .bashrc .ctags .eslintrc \
+	.flake8rc .ghci .git-aliases .gitconfig .profile .prompt .psqlrc .tmux.conf
 		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
 
 symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc .Xdefaults
@@ -36,7 +38,7 @@ vim:
 		@mkdir -p ~/.vim-tmp
 		@mkdir -p ~/.vim
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
-		@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
 		@ln -fs $(dot)/.vimrc ~/.vimrc
 
 ifeq ($(OS),'Darwin')

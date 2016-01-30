@@ -80,16 +80,16 @@ _set_preferred "GREPPAGE" $greppage
   export BROWSER
 }
 
-HAVE_VIM=$(command -v vim)
-if [[ -x "${HAVE_VIM}" ]]; then
+_have_vim=$(command -v vim)
+if [[ -x "${_have_vim}" ]]; then
   EDITOR=vim
 else
   EDITOR=vi
 fi
 export VISUAL EDITOR GREPPAGE
 
-HAVE_LESS=$(command -v less)
-if [[ -x "${HAVE_LESS}" ]]; then
+_have_less=$(command -v less)
+if [[ -x "${_have_less}" ]]; then
   PAGER="less -FirSwX"
   MANPAGER="less -FiRswX"
 else
@@ -97,6 +97,10 @@ else
   MANPAGER="${PAGER}"
 fi
 export PAGER MANPAGER
+
+_have_tmux=$(command -v tmux)
+[[ -x "{$_have_tmux}" ]] && [[ -f ~/.tmux.conf ]] &&
+  tmux source ~/.tmux.conf
 
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   . /usr/bin/virtualenvwrapper.sh

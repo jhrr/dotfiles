@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+# Run this file with virtualenvwrapper's `postactivate' hook

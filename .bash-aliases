@@ -78,9 +78,11 @@ fx() {
     -exec "${2:-file}" {} \;  ;
 }
 
+# Usage: frep regex file-specifier
+# Grep for patterns over the results of a call to find.
 frep() {
-  find . -name "${1}" -print0 \
-    | xargs -0 ack -i "${2}";
+  find . -name "${2}" -print0 \
+    | xargs -0 ack -i "${1}";
 }
 
 fwc() {

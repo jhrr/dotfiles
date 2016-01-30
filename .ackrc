@@ -1,3 +1,6 @@
 # ~/.ackrc
+# Pass in --noenv to override this file.
+
+--color
 
 --color-match=bright_red
