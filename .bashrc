@@ -160,4 +160,7 @@ _ls_colors+='*.org=01;93:'
   export LS_COLORS CC
 }
 
+SHELLCHECK_OPTS="-e SC1090,SC1091"
+export SHELLCHECK_OPTS
+
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"

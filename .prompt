@@ -1,4 +1,5 @@
 # -*- mode: sh; -*-
+# vi: set ft=sh :
 
 # Reset
 color_off='\e[0m'
@@ -119,4 +120,3 @@ PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')";
 PS1+="\[${i_red}\]\$(_vcprompt_hash)";
 PS1+="\[${white}\]\$(_git_stats)";
 PS1+="\n\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
-
