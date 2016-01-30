@@ -75,14 +75,14 @@ on_i_white='\e[0;107m'
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
-  user_style="${cyan}";
+  user_style="${on_i_red}";
 else
   user_style="${b_yellow}";
 fi;
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-  host_style="${b_red}";
+  host_style="${u_red}";
 else
   host_style="${b_yellow}";
 fi;
@@ -100,8 +100,8 @@ fi;
 
 PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
-# PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt
-# PS1+="\[${green}\]\$(vcprompt)"; # Vcprompt
+PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt
+PS1+="\[${green}\]\$(vcprompt -f '[%n:%b]')"; # Vcprompt
 # PS1+="\[${b_white}\]\$(vcprompt -f '%u %m')"; # VCS state symbols. This sucks
 PS1+="\n\[${b_i_purple}\]\$\[${white}\] "; # Dollar prompt and command
 export PS1;

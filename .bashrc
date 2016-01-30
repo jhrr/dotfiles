@@ -154,10 +154,10 @@ _ls_colors+='*.zip=01;31:'
 _ls_colors+='*.org=01;93:'
 
 [[ "${IS_OSX}" == true ]] && {
-  GREP_OPTIONS='--color=auto'
+  # GREP_OPTIONS='--color=auto'
   LS_COLORS="${_ls_colors}"
   CC="$(command -v clang)"
-  export GREP_OPTIONS LS_COLORS CC
+  export LS_COLORS CC
 }
 
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
