@@ -37,10 +37,12 @@
       ];
     };
 
-    emacsEnv = pkgs.buildEnv {
-      name = "emacsEnv";
+    dbEnv = pkgs.buildEnv {
+      name = "dbEnv";
       paths = [
-        emacs24Macport
+        mysql
+        postgresql
+        redis
       ];
     };
 
