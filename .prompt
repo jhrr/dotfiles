@@ -96,7 +96,7 @@ fi;
 
 _vcprompt_hash() {
     if git-in-repo >/dev/null 2>&1; then
-      echo "$(git rev-parse --short=0 HEAD)"
+      git rev-parse --short=0 HEAD
     fi
 }
 
@@ -113,15 +113,23 @@ _git_stats() {
     _untracked=$(git status --porcelain 2>/dev/null | $GREPPAGE "\?\?" | wc -l)
     if [[ $_diffs != 0 ]] || [[ $_untracked != 0 ]]; then
       echo " -> $_diffs:$_untracked"
-    else
-      echo ""
     fi
   fi
 }
 
-PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
+_venv() {
+  local _name _python _array
+  _name=${VIRTUAL_ENV##*/}
+  if [[ -n "${_name}" ]]; then
+    _python=$(python -V 2>&1)
+    _array=($_python)
+    echo "("${_array[1]}":"${_name}")"
+  fi
+}
+
+PS1="\[${cyan}\]\$(_venv)";
+PS1+="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
-# PS1+="\[${cyan}\]\$(veprompt -f '[%v:%n]' -t)"; # Veprompt, too slow!
 PS1+="\[${green}\]\$(vcprompt -f ' %b')";
 PS1+="\[${white}\]\$(_print_if_vcs '|')";
 PS1+="\[${i_red}\]\$(_vcprompt_hash)";
