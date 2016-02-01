@@ -12,7 +12,6 @@ vcp_ver=1.2.1
 vcp_dir=vcprompt-$(vcp_ver)
 vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
 vcp_tmp=$(tmp)/$(vcp_dir)
-vep_src=https://github.com/jhrr/veprompt/raw/master/bin/veprompt
 z_src=https://github.com/rupa/z/raw/master/z.sh
 
 all: symlinks scripts
@@ -59,12 +58,6 @@ update-vcprompt:
 		@rm -rf $(dot)/man
 		@rm -rf $(vcp_tmp)
 
-update-veprompt:
-		@echo "Installing veprompt in:"
-		@echo $(bin)
-		@curl -sL $(vep_src) > $(bin)/veprompt
-		@chmod a+x $(bin)/veprompt
-
 update-z:
 		@echo "Installing z.sh in:"
 		@echo $(bin)
@@ -80,5 +73,4 @@ link-scripts:
 		@mkdir ~/bin
 		@ln -s $(dot)/bin/* ~/bin/
 
-scripts: update-vcprompt update-veprompt update-z \
-	update-git-scripts link-scripts
+scripts: update-vcprompt update-z update-git-scripts link-scripts
