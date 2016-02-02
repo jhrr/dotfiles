@@ -35,7 +35,7 @@ alias txn='tmux attach -t'
 alias txs='tmux switch -t'
 alias x='startx'
 alias vssh='vagrant ssh'
-alias vv='${VISUAL} ${HOME}/.vimrc'
+alias vv='${EDITOR} ${HOME}/.vimrc'
 
 alias sue='sudo emacs -nw'
 alias v='${VISUAL}'

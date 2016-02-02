@@ -127,7 +127,8 @@ _venv() {
   fi
 }
 
-PS1="\[${cyan}\]\$(_venv)";
+# PS1="\[${cyan}\]\$(_venv)";
+PS1="\[${cyan}\]\$(veprompt)";
 PS1+="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
 PS1+="\[${green}\]\$(vcprompt -f ' %b')";

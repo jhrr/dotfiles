@@ -15,6 +15,8 @@
         ctags
         curl
         erlang
+        # gcc
+        gdb
         git
         gitAndTools.hub
         # glib
@@ -31,16 +33,18 @@
         tig
         tmux
         tree
+        # valgrind
         vim
         wget
         yank
       ];
     };
 
-    dbEnv = pkgs.buildEnv {
-      name = "dbEnv";
+    serviceEnv = pkgs.buildEnv {
+      name = "serviceEnv";
       paths = [
         mysql
+        nginx
         postgresql
         redis
       ];
