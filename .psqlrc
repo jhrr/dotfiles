@@ -6,6 +6,6 @@
 \set ON_ERROR_ROLLBACK interactive
 \set VERBOSITY verbose
 \unset quiet
-\pset null '(null)'  -- Default NULL is an emptyspace. Make it explicit.
-\pset pager off  -- values: off, on, always
+\pset null '(null)'
+\pset pager off
 \x auto
