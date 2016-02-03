@@ -117,17 +117,6 @@ _git_stats() {
   fi
 }
 
-_venv() {
-  local _name _python _array
-  _name=${VIRTUAL_ENV##*/}
-  if [[ -n "${_name}" ]]; then
-    _python=$(python -V 2>&1)
-    _array=($_python)
-    echo "("${_array[1]}":"${_name}")"
-  fi
-}
-
-# PS1="\[${cyan}\]\$(_venv)";
 PS1="\[${cyan}\]\$(veprompt)";
 PS1+="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
 PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
