@@ -1,7 +1,8 @@
 [ -L "${HOME}/.nix-profile" ] && {
   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-  export NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
-  export NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
+  NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
+  NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
+  export NIXPKGS_PATH NIX_PATH
 }
 
 [ "${IS_OSX}" == false ] && {
@@ -9,7 +10,8 @@
   PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
   [ -d "/usr/lib/smlnj" ] && {
     PATH="$PATH:/usr/lib/smlnj/bin"
-    export SMLNJ_HOME="/usr/lib/smlnj"
+    SMLNJ_HOME="/usr/lib/smlnj"
+    export SMLNJ_HOME
   }
 }
 
