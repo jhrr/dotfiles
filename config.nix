@@ -29,6 +29,7 @@
         otool
         # pass
         rsync
+        ruby
         sbcl
         tig
         tmux
