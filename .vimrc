@@ -58,6 +58,7 @@ nnoremap <C-y> 3<C-y>
 let mapleader = ","
 
 inoremap jj <ESC>
+nnoremap <Leader>f :CtrlP<CR>
 
 runtime macros/matchit.vim
 
@@ -75,9 +76,16 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(DS_STORE|zip)$',
+    \ }
+
 autocmd FileType js setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+
