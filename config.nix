@@ -57,8 +57,8 @@
         ghc
         stack
         # Haskell packages
-        # haskellPackages.ghc-mod
-        # haskellPackages.hdevtools
+        haskellPackages.ghc-mod
+        haskellPackages.hdevtools
         haskellPackages.ShellCheck
       ];
     };
