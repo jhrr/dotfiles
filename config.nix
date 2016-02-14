@@ -15,12 +15,14 @@
         ctags
         curl
         erlang
+        gawk
         # gcc
         gdb
         git
         gitAndTools.hub
         # glib
         # gnupg
+        htop
         less
         llvm
         nix-repl
@@ -34,7 +36,7 @@
         tig
         tmux
         tree
-        # valgrind
+        unzip
         vim
         wget
         yank
@@ -44,7 +46,6 @@
     serviceEnv = pkgs.buildEnv {
       name = "serviceEnv";
       paths = [
-        mysql
         nginx
         postgresql
         redis
