@@ -28,6 +28,7 @@
         nix-repl
         nmap
         nox
+        openssl
         otool
         # pass
         rsync
@@ -49,6 +50,7 @@
         nginx
         postgresql
         redis
+        sqlite
       ];
     };
 
