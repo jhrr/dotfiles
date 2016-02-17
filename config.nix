@@ -5,6 +5,10 @@
   allowUnfree = true;
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
 
+    emacs = if pkgs.stdenv.isDarwin
+            then emacs24Macport
+            else emacs24;
+
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
       paths = [
@@ -14,26 +18,23 @@
         coreutils
         ctags
         curl
-        erlang
         gawk
-        # gcc
         gdb
         git
         gitAndTools.hub
-        # glib
         # gnupg
         htop
         less
-        llvm
+        netcat
         nix-repl
         nmap
         nox
         openssl
         otool
         # pass
+        pv
         rsync
-        ruby
-        sbcl
+        subversion
         tig
         tmux
         tree
@@ -80,9 +81,16 @@
         python35Packages.ipython
       ];
     };
+
+    langsEnv = pkgs.buildEnv {
+      name = "langsEnv";
+      paths = [
+        erlang
+        ruby
+        sbcl
+      ];
+    };
+
   };
 }
 
-# emacs = if pkgs.stdenv.isDarwin
-#         then pkgs.emacs24Macport
-#         else pkgs.emacs24;

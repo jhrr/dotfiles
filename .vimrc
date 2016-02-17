@@ -58,6 +58,7 @@ nnoremap <C-y> 3<C-y>
 let mapleader = ","
 
 inoremap jj <ESC>
+nnoremap <Leader>v :vsp<CR>
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
