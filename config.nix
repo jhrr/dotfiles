@@ -24,6 +24,7 @@
         gitAndTools.hub
         # gnupg
         htop
+        inconsolata-lgc
         less
         netcat
         nix-repl
