@@ -5,34 +5,29 @@
   allowUnfree = true;
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
 
-    emacs = if pkgs.stdenv.isDarwin
-            then emacs24Macport
-            else emacs24;
+    # emacs = if pkgs.stdenv.isDarwin
+    #         then emacs24Macport
+    #         else emacs24;
 
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
       paths = [
         ack
-        clang
         cmake
         coreutils
         ctags
         curl
         gawk
-        gdb
         git
         gitAndTools.hub
-        # gnupg
         htop
-        inconsolata-lgc
+        # inconsolata-lgc
         less
         netcat
         nix-repl
         nmap
         nox
-        openssl
-        otool
-        # pass
+        # otool
         pv
         rsync
         subversion
@@ -46,10 +41,31 @@
       ];
     };
 
+    # cryptoEnv = pkgs.buildEnv {
+    #   name = "cryptoEnv";
+    #   paths = [
+    #     # gnupg
+    #     # openssh
+    #     # openssl
+    #     # pass
+    #   ];
+    # };
+
+    cEnv = pkgs.buildEnv {
+      name = "cEnv";
+      paths = [
+        clang
+        # gcc
+        gdb
+        # llvm
+      ];
+    };
+
     serviceEnv = pkgs.buildEnv {
       name = "serviceEnv";
       paths = [
         nginx
+        node.js
         postgresql
         redis
         sqlite
@@ -61,7 +77,7 @@
       paths = [
         ghc
         stack
-        # Haskell packages
+        # Packages
         haskellPackages.ghc-mod
         haskellPackages.hdevtools
         haskellPackages.ShellCheck
@@ -71,7 +87,7 @@
     pythonEnv = pkgs.buildEnv {
       name = "pythonEnv";
       paths = [
-        python27Full
+        python27
         python35
         # Python2 packages
         python27Packages.ipython
@@ -94,4 +110,3 @@
 
   };
 }
-
