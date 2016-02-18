@@ -41,15 +41,15 @@
       ];
     };
 
-    # cryptoEnv = pkgs.buildEnv {
-    #   name = "cryptoEnv";
-    #   paths = [
-    #     # gnupg
-    #     # openssh
-    #     # openssl
-    #     # pass
-    #   ];
-    # };
+    cryptoEnv = pkgs.buildEnv {
+      name = "cryptoEnv";
+      paths = [
+        # gnupg
+        # openssh
+        # keychain
+        # pass
+      ];
+    };
 
     cEnv = pkgs.buildEnv {
       name = "cEnv";

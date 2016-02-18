@@ -33,5 +33,3 @@
   keepBackup = false
 [rebase]
   autosquash = true
-[http]
-  sslCAinfo = "$HOME/certs/cacert.pem"
