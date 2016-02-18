@@ -34,4 +34,4 @@
 [rebase]
   autosquash = true
 [http]
-  sslCAinfo = /Users/jhrr/certs/cacert.pem
+  sslCAinfo = "$HOME/certs/cacert.pem"

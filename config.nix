@@ -54,10 +54,9 @@
     cEnv = pkgs.buildEnv {
       name = "cEnv";
       paths = [
+        # binutils
         clang
-        # gcc
         gdb
-        # llvm
       ];
     };
 
