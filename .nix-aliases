@@ -5,19 +5,20 @@ nix-grep() {
   nix-env -qaP \* \
     | "$GREPPAGE" -i "$@";
 }
-alias ng='nix-grep'
+alias nxg='nix-grep'
 
 nix-grep-haskell() {
   nix-env -f "<nixpkgs>" -qaP -A haskellPackages \
     | "$GREPPAGE" -i "$@";
 }
-alias ngh='nix-grep-haskell'
+alias nxgh='nix-grep-haskell'
 
 nix-install() {
   local ncpu
   ncpu=$(sysctl -n hw.ncpu)
-  nix-env -Q -j$ncpu -k -i "$@"
+  nix-env -Q -j"$ncpu" -k -i "$@"
 }
+alias nxi='nix-install'
 
 nix-update() {
   nix-install "$@";
