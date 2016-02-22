@@ -20,13 +20,13 @@ alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias open='xdg-open &>/dev/null'
 alias p='ipython3'
-alias psql-u='sudo -i -u postgres psql'
+alias psql='sudo -i -u postgres psql'
 alias qp='ping -c 5 8.8.8.8'
 alias rms='reset; python manage.py runserver_plus localhost:8001'
 alias shclr='msgcat --color=test'
 alias shred='shred -zuv'
-alias startpg='pg_ctl -D /usr/local/var/postgres -l ~/.postgres-log start'
-alias stoppg='pg_ctl -D /usr/local/var/postgres -l ~/.postgres-log start'
+alias startpg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
+alias stoppg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
 alias reload='. ${HOME}/.bash_profile'
 alias tv1='xset s off && xset -dpms && echo "screen powersaving off..."'
 alias tv0='xset s default && xset +dpms && echo "screen powersaving on..."'
@@ -42,6 +42,12 @@ alias vv='${EDITOR} ${HOME}/.vimrc'
 alias sue='sudo emacs -nw'
 alias v='${VISUAL}'
 alias suv='sudo ${VISUAL}'
+
+# Usage: cp_p $SOURCE $DESTINATION
+# Copy with progress info.
+cp_p () {
+  rsync -WavP --human-readable --progress "$1" "$2";
+}
 
 # Usage: err "Unable to do_something"
 # Stderr helper function.
@@ -92,8 +98,13 @@ fwc() {
     | xargs -0 wc -l;
 }
 
+md() {
+  mkdir -p "$@" && cd "$@" || exit;
+}
+
 pip-grep() {
-  pip search "$1" | grep -i "$1";
+  pip search "$1" \
+    | grep -i "$1";
 }
 
 pskill() {
