@@ -1,0 +1,3 @@
+# OS X Settings
+
+defaults write com.apple.finder _FXShowPosixPathInTitle -boolean true;
