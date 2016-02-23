@@ -54,11 +54,6 @@ IS_FREEBSD=false
   export IS_FREEBSD
 }
 
-editors="vim:vi:emacs"
-browsers="elinks:lynx:links"
-xbrowsers="chromium:firefox:uzbl"
-greppage="ack:grep"
-
 _set_preferred() {
   local IFS=":" var="$1" list="$2" item
   for item in $list; do
@@ -70,7 +65,13 @@ _set_preferred() {
   done
 }
 
+editors="vim:vi:emacs"
+browsers="elinks:lynx:links"
+xbrowsers="chromium:firefox:uzbl"
+greppage="ack:grep"
+
 _set_preferred "VISUAL" $editors
+_set_preferred "EDITOR" $editors
 _set_preferred "GREPPAGE" $greppage
 [[ "${IS_LINUX}" == true ]] && {
   if [[ "${DISPLAY}" == true ]]; then
@@ -80,13 +81,6 @@ _set_preferred "GREPPAGE" $greppage
   fi
   export BROWSER
 }
-
-_have_vim=$(command -v vim)
-if [[ -x "${_have_vim}" ]]; then
-  EDITOR=vim
-else
-  EDITOR=vi
-fi
 export VISUAL EDITOR GREPPAGE
 
 _have_less=$(command -v less)
