@@ -18,16 +18,16 @@ all: symlinks scripts
 
 help:
 
-symlinks-common: .ackrc .bash-aliases .bash_profile .bashrc .ctags .eslintrc \
-	.flake8rc .ghci .git-aliases .gitconfig .profile .prompt .psqlrc .sbclrc \
-	.tmux.conf
-		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
+symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
+	flake8rc ghci git-aliases gitconfig profile prompt psqlrc sbclrc \
+	tmux.conf
+		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-symlinks-linux: .conkyrc-xmonad .dunstrc .inputrc .xinitrc .Xdefaults
-		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
+symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
+		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-symlinks-osx: .nix-aliases
-		@for file in $^; do ln -fs $(dot)/$$file ~/$$file; done
+symlinks-osx: nix-aliases
+		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@mkdir -p ~/.nixpkgs
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 		@if [ -d ~/code/oss/nixpkgs ] && [ -f ~/.nix-defexpr/channels ]; then \
@@ -39,7 +39,7 @@ vim:
 		@mkdir -p ~/.vim
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
 		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
-		@ln -fs $(dot)/.vimrc ~/.vimrc
+		@ln -fs $(dot)/vimrc ~/.vimrc
 
 ifeq ($(OS),'Darwin')
 symlinks: symlinks-common symlinks-osx vim
