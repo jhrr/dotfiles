@@ -86,8 +86,8 @@ git-commit-for-squash() {
 alias gcS='git-commit-for-squash'
 
 # Usage: git-commit-all-for-squash
-# Make a commit for a projected squashing. Requires --autosquash or:
-# `$ git config --global rebase.autosquash true'
+# Make a commit for a projected squashing. Useful is --autosquash or:
+# $ git config --global rebase.autosquash true
 git-commit-all-for-squash() {
   git-in-repo && \
   git add . && git commit -v -m 'squash!';
@@ -96,8 +96,8 @@ alias gcAS='git-commit-all-for-squash'
 alias kwatz='git-commit-all-for-squash'
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
-# Apply a $HASH to the HEAD of the current branch after updating it to
-# be a clone of the supplied $PARENT_BRANCH.
+# Apply a $HASH to the HEAD of the current branch after making it a
+# clone of the supplied $PARENT_BRANCH.
 git-conflict-cherry-pick() {
   if [[ "$#" -ne 2 ]]; then
     err "Usage: git-conflict-cherry-pick \$PARENT_BRANCH \$HASH"
