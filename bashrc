@@ -94,7 +94,7 @@ fi
 export PAGER MANPAGER
 
 _have_tmux=$(command -v tmux)
-[[ -x "{$_have_tmux}" ]] && [[ -f ~/.tmux.conf ]] &&
+[[ -x "${_have_tmux}" ]] && [[ -f ~/.tmux.conf ]] &&
   tmux source ~/.tmux.conf
 
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
