@@ -23,7 +23,9 @@ alias nxi='nix-install'
 nix-update() {
   nix-install "$@";
 }
+alias nxu='nix-update'
 
 nixpkgs-sync() {
   git -C "${NIXPKGS_PATH}" pull --ff-only upstream master;
 }
+alias nxsync='nixpkgs-sync'

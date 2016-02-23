@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Make a standalone emacs configuration.
 
@@ -26,48 +26,48 @@
 set -e
 
 if [ $# -ne 2 ]; then
-    echo "`basename $0` <emacs.d-directory|emacs-init-file> <output file>" \
-        > /dev/null 1>&2
-    exit 1
+  echo "$(basename "$0") <emacs.d-directory|emacs-init-file> <output file>" \
+    >/dev/null 1>&2
+  exit 1
 fi
 
-if which md5sum > /dev/null; then
-    MD5=md5sum
+if command -v md5sum >/dev/null; then
+  MD5=md5sum
 else
-    MD5=md5
+  MD5=md5
 fi
 
 EMACSD=$1
 OUTPUT=$2
 
 # Force absolute path for $OUTPUT.
-OUTPUT=$(cd `dirname $OUTPUT`; echo $PWD/`basename $OUTPUT`)
+OUTPUT=$(cd "$(dirname "$OUTPUT")"; echo "$PWD/$(basename "$OUTPUT")")
 
 
-if [ -d $EMACSD ]; then
-    cd $EMACSD
-    UNIQUE=`find . \! -name '*.elc' -ls | $MD5`
-    INIT="init.el"
-    FILES=`find . \! -name '*.elc' -print`
+if [[ -d "$EMACSD" ]]; then
+  cd "$EMACSD"
+  UNIQUE=$(find . \! -name '*.elc' -ls | "$MD5")
+  INIT="init.el"
+  FILES=$(find . \! -name '*.elc' -print)
 else
-    UNIQUE=`$MD5 < $EMACSD`
-    INIT=$EMACSD
-    FILES=$EMACSD
+  UNIQUE=$("$MD5" < "$EMACSD")
+  INIT="$EMACSD"
+  FILES="$EMACSD"
 fi
 
 UNIQUE=${UNIQUE:0:6}
 
-shar $FILES \
-    | sed -e "1 i\\
+shar "$FILES" \
+  | sed -e "1 i\\
 DIR=/tmp/emacs.$UNIQUE; if [ -d \$DIR ] ; then emacs -q -l \$DIR/$INIT \"\$@\"; exit; fi; echo \"extracting emacs.d..\"; OLDDIR=\$PWD; mkdir -p \$DIR; cd \$DIR" \
-    | sed -e "1 i\\
-UNIQUE=$UNIQUE"                                 \
-    | sed -e '1 i\
+  | sed -e "1 i\\
+UNIQUE=$UNIQUE" \
+  | sed -e '1 i
 #!/bin/sh' \
-    | sed -e '/^exit/,$ d'                      \
-    | sed -e "$ a\\
-cd \$OLDDIR; emacs -q -l \$DIR/$INIT \"\$@\""      \
-    | sed -e 's/^echo . .*//'                   \
-    > $OUTPUT
+  | sed -e '/^exit/,$ d' \
+  | sed -e "$ a\\
+cd \$OLDDIR; emacs -q -l \$DIR/$INIT \"\$@\"" \
+  | sed -e 's/^echo . .*//' \
+  > "$OUTPUT"
 
-chmod 0744 $OUTPUT
+chmod 0744 "$OUTPUT"
