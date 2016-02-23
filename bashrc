@@ -126,29 +126,25 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/bin/z ]] &&
   . ~/bin/z
 
-if pgrep 'gpg-agent'; then
-  eval "$(gpg-agent --daemon)"
-fi
-
-_ls_colors='fi=00;00:'   # file
-_ls_colors+='di=00;94:'  # directory
-_ls_colors+='ex=00;31:'  # executable
-_ls_colors+='ln=00;32:'  # symlink
-_ls_colors+='pi=04;91:'  # fifo
-_ls_colors+='so=00;95:'  # socket
-_ls_colors+='bd=04;93:'  # block special
-_ls_colors+='cd=00;93:'  # character special
-_ls_colors+='or=07;31:'  # symlink pointing to non-existent file
-
-_ls_colors+='*.gz=01;31:'
-_ls_colors+='*.tar=01;31:'
-_ls_colors+='*.tgz=01;31:'
-_ls_colors+='*.tbz=01;31:'
-_ls_colors+='*.zip=01;31:'
-_ls_colors+='*.org=01;93:'
-
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
+
+  _ls_colors='fi=00;00:'     # file
+  _ls_colors+='pi=04;91:'    # fifo
+  _ls_colors+='so=00;95:'    # socket
+  _ls_colors+='ln=00;32:'    # symlink
+  _ls_colors+='di=00;94:'    # directory
+  _ls_colors+='ex=00;31:'    # executable
+  _ls_colors+='bd=04;93:'    # block special
+  _ls_colors+='cd=00;93:'    # character special
+  _ls_colors+='or=07;31:'    # symlink to non-existent file
+  _ls_colors+='*.gz=01;31:'
+  _ls_colors+='*.tar=01;31:'
+  _ls_colors+='*.tgz=01;31:'
+  _ls_colors+='*.tbz=01;31:'
+  _ls_colors+='*.zip=01;31:'
+  _ls_colors+='*.org=01;93:'
+
   LS_COLORS="${_ls_colors}"
   CC="$(command -v clang)"
   export LS_COLORS CC
@@ -157,4 +153,7 @@ _ls_colors+='*.org=01;93:'
 SHELLCHECK_OPTS="-e SC1090,SC1091"
 export SHELLCHECK_OPTS
 
+if pgrep 'gpg-agent'; then
+  eval "$(gpg-agent --daemon)"
+fi
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"

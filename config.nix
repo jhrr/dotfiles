@@ -45,6 +45,7 @@
       name = "cryptoEnv";
       paths = [
         # gnupg
+        # gnupg-agent (?)
         # openssh
         # keychain
         # pass
