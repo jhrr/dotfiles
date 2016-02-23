@@ -194,7 +194,7 @@
     "comma-spacing": [                // enforce spacing before and after comma
       2, { "before": false, "after": true }
     ],
-    "comma-style": [2, "last],        // enforce one true comma style (off by default)
+    "comma-style": [2, "last"],        // enforce one true comma style (off by default)
     "computed-property-spacing": 0,   // require or disallow padding inside computed properties (off by default)
     "consistent-this": 0,             // enforces consistent naming when capturing the current execution context (off by default)
     "eol-last": 2,                    // enforce newline at the end of file, with no multiple empty lines
