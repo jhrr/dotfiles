@@ -1,3 +1,6 @@
+# -*- mode: sh; -*-
+# vi: set ft=sh :
+
 if [[ -r ~/.profile ]]; then
   . ~/.profile;
 fi

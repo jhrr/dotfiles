@@ -1,4 +1,5 @@
 # -*- mode: sh; -*-
+# vi: set ft=sh :
 
 alias ..='cd ..'
 alias .2='cd ../..'

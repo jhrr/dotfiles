@@ -1,3 +1,6 @@
+# -*- mode: sh; -*-
+# vi: set ft=sh :
+
 [ -L "${HOME}/.nix-profile" ] && {
   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
   NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"

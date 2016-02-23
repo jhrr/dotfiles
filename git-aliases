@@ -79,7 +79,6 @@ git-in-repo() {
 }
 
 # Usage: git-commit-for-squash
-# TODO: kwatz!
 git-commit-for-squash() {
   git-in-repo && \
   git commit -v -m 'squash!';
@@ -94,6 +93,7 @@ git-commit-all-for-squash() {
   git add . && git commit -v -m 'squash!';
 }
 alias gcAS='git-commit-all-for-squash'
+alias kwatz='git-commit-all-for-squash'
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
 # Apply a $HASH to the HEAD of the current branch after updating it to
