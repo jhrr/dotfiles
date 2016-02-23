@@ -104,15 +104,12 @@ _have_tmux=$(command -v tmux)
 
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   . /usr/bin/virtualenvwrapper.sh
-  WORKON_HOME=~/.virtualenvs
-  export WORKON_HOME
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
 elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
   . "${HOME}/.nix-profile/bin/virtualenvwrapper.sh"
-  WORKON_HOME=~/.virtualenvs
-  export WORKON_HOME
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
 fi
+WORKON_HOME=~/.virtualenvs
+VIRTUAL_ENV_DISABLE_PROMPT=1
+export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
 [[ -f ~/bin/git-completion ]] &&
   . ~/bin/git-completion
