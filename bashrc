@@ -126,6 +126,8 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/bin/z ]] &&
   . ~/bin/z
 
+# At some point we want to develop and merge this colourscheme with
+# the settings in Xdefaults for linux and bsd.
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
