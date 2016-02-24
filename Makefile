@@ -14,9 +14,20 @@ vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
 vcp_tmp=$(tmp)/$(vcp_dir)
 z_src=https://github.com/rupa/z/raw/master/z.sh
 
-all: symlinks scripts
+.PHONY: install help symlinks scripts
+
+install: symlinks scripts
 
 help:
+	@echo "Usage: make [OPTION]"
+	@echo "Makefile to configure user environment."
+	@echo ""
+	@echo "  make install     configure entire ~/. directory"
+	@echo "  make symlinks    only sync individual config files"
+	@echo "  make scripts     only sync ~/bin and its scripts"
+	@echo "  make vim         only sync ~/.vim and update its plugins"
+	@echo "  make help        display this message"
+	@echo ""
 
 symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
 	flake8rc ghci git-aliases gitconfig profile prompt psqlrc sbclrc \
@@ -36,18 +47,17 @@ symlinks-osx: nix-aliases
 
 vim:
 		@mkdir -p ~/.vim-tmp
-		@if [ -d ~/.vim ]; then rm -rf ~/.vim; fi;
-		ln -fns $(dot)/vim ~/.vim;
+		@ln -fns $(dot)/vim ~/.vim;
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
 		@ln -fs $(dot)/vimrc ~/.vimrc
-
-vim-extensions:
 		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
+		# @git -C ~/.vim submodule update --init
+		# git submodule foreach git pull --ff-only origin master
 
 ifeq ($(OS),'Darwin')
-symlinks: symlinks-common symlinks-osx vim vim-extensions
+symlinks: symlinks-common symlinks-osx vim
 else
-symlinks: symlinks-common symlinks-linux vim vim-extensions
+symlinks: symlinks-common symlinks-linux vim
 endif
 
 update-vcprompt:
