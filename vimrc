@@ -93,3 +93,14 @@ autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 
+"" Damian Conway's HUD Digraph Plugin
+
+inoremap <expr>  <C-J>       HUDG_GetDigraph()
+inoremap <expr>  <C-K>       BDG_GetDigraph()
+inoremap <expr>  <C-L>       HUDigraphs()
+
+function! HUDigraphs ()
+    digraphs
+    call getchar()
+    return "\<C-K>"
+endfunction
