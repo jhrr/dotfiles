@@ -36,15 +36,18 @@ symlinks-osx: nix-aliases
 
 vim:
 		@mkdir -p ~/.vim-tmp
-		@mkdir -p ~/.vim
+		@if [ -d ~/.vim ]; then rm -rf ~/.vim; fi;
+		ln -fns $(dot)/vim ~/.vim;
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
-		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
 		@ln -fs $(dot)/vimrc ~/.vimrc
 
+vim-extensions:
+		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
+
 ifeq ($(OS),'Darwin')
-symlinks: symlinks-common symlinks-osx vim
+symlinks: symlinks-common symlinks-osx vim vim-extensions
 else
-symlinks: symlinks-common symlinks-linux vim
+symlinks: symlinks-common symlinks-linux vim vim-extensions
 endif
 
 update-vcprompt:
