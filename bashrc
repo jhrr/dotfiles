@@ -27,6 +27,8 @@ shopt -u mailwarn >/dev/null 2>&1
 set -o emacs
 set -o notify
 unset MAILCHECK
+unset MANPATH
+unset TERMCAP
 
 HISTCONTROL=ignoreboth:ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
@@ -103,6 +105,8 @@ WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
+[[ -r /usr/share/bash-completion/bash_completion ]] &&
+  . /usr/share/bash-completion/bash_completion
 [[ -f ~/bin/git-completion ]] &&
   . ~/bin/git-completion
 [[ -f ~/bin/fabric-completion ]]

@@ -1,9 +1,6 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
-[ -r /etc/profile ] &&
-  . /etc/profile
-
 [ -L "${HOME}/.nix-profile" ] && {
   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
   NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
@@ -31,3 +28,11 @@ puniq() {
 }
 PATH="$(puniq "$PATH")"
 export PATH
+
+if [ -d /etc/profile.d/ ]; then
+  for profile in /etc/profile.d/*.sh; do
+    [ -r "${profile}" ] &&
+      . "${profile}"
+  done
+  unset profile
+fi
