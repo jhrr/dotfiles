@@ -8,7 +8,7 @@
   export NIXPKGS_PATH NIX_PATH
 }
 
-PATH="$PATH:/usr/local/bin"
+PATH="$PATH:/usr/local/bin:/usr/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
 [ -d "${HOME}/bin" ] &&
