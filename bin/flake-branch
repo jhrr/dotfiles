@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+_files=$(git diff --name-only "$(git merge-base origin/master HEAD)" | grep "\.py");
+for _pyfile in $_files; do
+  pyflakes "$(git rev-parse --show-toplevel)/${_pyfile}"
+  echo $'\n^^^' "${_pyfile}" $'(return to continue)\n'
+  read -r
+done
+unset _pyfile
