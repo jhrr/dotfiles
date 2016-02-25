@@ -52,7 +52,8 @@ vim:
 		@ln -fs $(dot)/vimrc ~/.vimrc
 		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
 		# @git -C ~/.vim submodule update --init
-		# git submodule foreach git pull --ff-only origin master
+		# @git -C ~/.vim submodule foreach \
+			git pull --ff-only origin master
 
 ifeq ($(OS),'Darwin')
 symlinks: symlinks-common symlinks-osx vim

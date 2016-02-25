@@ -1,6 +1,9 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
+[ -r /etc/profile ] &&
+  . /etc/profile
+
 [ -L "${HOME}/.nix-profile" ] && {
   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
   NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
@@ -8,15 +11,8 @@
   export NIXPKGS_PATH NIX_PATH
 }
 
-[ "${IS_OSX}" == false ] && {
-  PATH="$PATH:/usr/local/bin"
-  PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-  [ -d "/usr/lib/smlnj" ] && {
-    PATH="$PATH:/usr/lib/smlnj/bin"
-    SMLNJ_HOME="/usr/lib/smlnj"
-    export SMLNJ_HOME
-  }
-}
+PATH="$PATH:/usr/local/bin"
+PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
 [ -d "${HOME}/bin" ] &&
   PATH="$PATH:${HOME}/bin"

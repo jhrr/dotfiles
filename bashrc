@@ -1,9 +1,6 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
-[[ -f /etc/bashrc ]] &&
-  . /etc/bashrc
-
 : "${HOME=~}"
 : "${LOGNAME=$(id -un)}"
 : "${UNAME=$(uname)}"
