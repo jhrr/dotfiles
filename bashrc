@@ -14,7 +14,6 @@
 export LANG LANGUAGE LC_CTYPE LC_ALL
 
 ulimit -S -c 0
-umask 0022
 
 shopt -s cdspell >/dev/null 2>&1
 shopt -s extglob >/dev/null 2>&1

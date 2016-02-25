@@ -1,12 +1,7 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
-[ -L "${HOME}/.nix-profile" ] && {
-  . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-  NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
-  NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
-  export NIXPKGS_PATH NIX_PATH
-}
+umask 0022
 
 PATH="$PATH:/usr/local/bin:/usr/bin"
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
@@ -28,6 +23,13 @@ puniq() {
 }
 PATH="$(puniq "$PATH")"
 export PATH
+
+[ -L "${HOME}/.nix-profile" ] && {
+  . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+  NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
+  NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
+  export NIXPKGS_PATH NIX_PATH
+}
 
 if [ -d /etc/profile.d/ ]; then
   for profile in /etc/profile.d/*.sh; do
