@@ -14,16 +14,6 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 [ -L "${HOME}/bin/git-scripts" ] &&
   PATH="$PATH:${HOME}/bin/git-scripts/"
 
-# Usage: puniq [<path>]
-# Remove duplicate entries from a PATH style value, retaining the
-# original order. Non-destructive; use assignment capture.
-puniq() {
-  echo "$1" | tr : '\n' | nl | sort -u -k 2,2 | sort -n \
-    | cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
-}
-PATH="$(puniq "$PATH")"
-export PATH
-
 [ -L "${HOME}/.nix-profile" ] && {
   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
   NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
@@ -38,3 +28,13 @@ if [ -d /etc/profile.d/ ]; then
   done
   unset profile
 fi
+
+# Usage: puniq [<path>]
+# Remove duplicate entries from a PATH style value, retaining the
+# original order. Non-destructive; use assignment capture.
+puniq() {
+  echo "$1" | tr : '\n' | nl | sort -u -k 2,2 | sort -n \
+    | cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
+}
+PATH="$(puniq "$PATH")"
+export PATH
