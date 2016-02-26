@@ -83,13 +83,14 @@ export VISUAL EDITOR GREPPAGE
 
 _have_less=$(command -v less)
 if [[ -x "${_have_less}" ]]; then
-  PAGER="less -FirSwX"
-  MANPAGER="less -FiRswX"
+  LESS="less -iwFRSX"
+  PAGER="${LESS}"
+  MANPAGER="${PAGER}"
 else
   PAGER=more
   MANPAGER="${PAGER}"
 fi
-export PAGER MANPAGER
+export LESS PAGER MANPAGER
 
 _have_tmux=$(command -v tmux)
 [[ -x "${_have_tmux}" ]] && [[ -f ~/.tmux.conf ]] &&
