@@ -13,13 +13,13 @@
       name = "jhrrEnv";
       paths = [
         ack
-        cmake
         coreutils
         ctags
         curl
         gawk
         git
         gitAndTools.hub
+        gnumake
         htop
         # inconsolata-lgc
         less

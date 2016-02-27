@@ -32,20 +32,27 @@ help:
 symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
 	flake8rc ghci git-aliases gitconfig profile prompt psqlrc sbclrc \
 	tmux.conf
+		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
+		@echo "Done"
 
 symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
+		@echo "Symlinking Linux specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
+		@echo "Done"
 
-symlinks-osx: nix-aliases
+symlinks-osx: nix-aliases osx
+		@echo "Symlinking OS X specific config files and configuring Nix..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@mkdir -p ~/.nixpkgs
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
 		@if [ -d ~/code/oss/nixpkgs ] && [ -f ~/.nix-defexpr/channels ]; then \
 			rm -rf ~/.nix-defexpr/channels; \
 			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
+		@echo "Done"
 
 vim:
+		@echo "Configuring Vim..."
 		@mkdir -p ~/.vim-tmp
 		@ln -fns $(dot)/vim ~/.vim;
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -53,9 +60,10 @@ vim:
 		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
 		# @git -C ~/.vim submodule update --init
 		# @git -C ~/.vim submodule foreach \
-			git pull --ff-only origin master
+			# git pull --ff-only origin master
+		@echo "Done"
 
-ifeq ($(OS),'Darwin')
+ifeq ($(OS),Darwin)
 symlinks: symlinks-common symlinks-osx vim
 else
 symlinks: symlinks-common symlinks-linux vim
