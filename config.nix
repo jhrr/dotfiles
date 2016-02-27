@@ -56,7 +56,7 @@
       name = "cEnv";
       paths = [
         # binutils
-        clang
+        cc
         gdb
       ];
     };
