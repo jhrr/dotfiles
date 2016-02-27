@@ -83,7 +83,7 @@ export VISUAL EDITOR GREPPAGE
 
 _have_less=$(command -v less)
 if [[ -x "${_have_less}" ]]; then
-  LESS="less -iwFRSX"
+  LESS="less -iwrFSX"
   PAGER="${LESS}"
   MANPAGER="${PAGER}"
 else

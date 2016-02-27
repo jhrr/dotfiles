@@ -74,19 +74,22 @@ on_i_purple='\e[0;105m'
 on_i_cyan='\e[0;106m'
 on_i_white='\e[0;107m'
 
+# These next wo conditionals don't really work but the prompt 
+# depends on them to look the way it does, so! refactor please...
+
 # Highlight the user name when logged in as root.
-# if [[ "${USER}" == "root" ]]; then
-#   user_style="${on_i_red}";
-# else
-#   user_style="${b_yellow}";
-# fi;
+if [[ "${USER}" == "root" ]]; then
+  user_style="${on_i_red}";
+else
+  user_style="${b_yellow}";
+fi;
 
 # Highlight the hostname when connected via SSH.
-# if [[ "${SSH_TTY}" ]]; then
-#   host_style="${u_red}";
-# else
-#   host_style="${b_yellow}";
-# fi;
+if [[ "${SSH_TTY}" ]]; then
+  host_style="${u_red}";
+else
+  host_style="${b_yellow}";
+ fi;
 
 # if [[ "${IS_OSX}" == true ]]; then
 #   _host=$(scutil --get ComputerName);
