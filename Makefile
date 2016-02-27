@@ -51,7 +51,7 @@ symlinks-osx: nix-aliases osx
 			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
 		@echo "Done"
 
-vim:
+vim-config:
 		@echo "Configuring Vim..."
 		@mkdir -p ~/.vim-tmp
 		@ln -fns $(dot)/vim ~/.vim;
@@ -64,9 +64,9 @@ vim:
 		@echo "Done"
 
 ifeq ($(OS),Darwin)
-symlinks: symlinks-common symlinks-osx vim
+symlinks: symlinks-common symlinks-osx vim-config
 else
-symlinks: symlinks-common symlinks-linux vim
+symlinks: symlinks-common symlinks-linux vim-config
 endif
 
 update-vcprompt:
