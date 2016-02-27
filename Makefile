@@ -12,6 +12,8 @@ vcp_ver=1.2.1
 vcp_dir=vcprompt-$(vcp_ver)
 vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
 vcp_tmp=$(tmp)/$(vcp_dir)
+vep_src=https://www.github.com/jhrr/veprompt.git
+vep_tmp=$(tmp)/veprompt
 z_src=https://github.com/rupa/z/raw/master/z.sh
 
 .PHONY: install help symlinks scripts
@@ -80,6 +82,14 @@ update-vcprompt:
 		@$(MAKE) -C $(vcp_tmp) install PREFIX=$(dot)
 		@rm -rf $(dot)/man
 		@rm -rf $(vcp_tmp)
+
+update-veprompt:
+		@echo "Getting veprompt source..."
+		@git clone $(vep_src) $(vep_tmp)
+		@$(MAKE) -C $(vep_tmp)
+		@cp $(vep_tmp)/a.out $(bin)/veprompt
+		@chmod a+x $(bin)/veprompt
+		@rm -rf $(vep_tmp)
 
 update-z:
 		@echo "Installing z.sh in:"
