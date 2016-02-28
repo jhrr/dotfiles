@@ -25,9 +25,9 @@ help:
 	@echo "Makefile to configure user environment."
 	@echo ""
 	@echo "  make install     configure entire ~/. directory"
-	@echo "  make symlinks    only sync individual config files"
-	@echo "  make scripts     only sync ~/bin and its scripts"
-	@echo "  make vim         only sync ~/.vim and update its plugins"
+	@echo "  make symlinks    sync config files, en masse and platform specific"
+	@echo "  make scripts     sync ~/bin and its scripts"
+	@echo "  make vim         sync ~/.vim and update its plugins"
 	@echo "  make help        display this message"
 	@echo ""
 
