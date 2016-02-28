@@ -36,12 +36,10 @@ symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
 	tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
-		@echo "Done"
 
 symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@echo "Symlinking Linux specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
-		@echo "Done"
 
 symlinks-osx: nix-aliases osx
 		@echo "Symlinking OS X specific config files and configuring Nix..."
@@ -51,7 +49,6 @@ symlinks-osx: nix-aliases osx
 		@if [ -d ~/code/oss/nixpkgs ] && [ -f ~/.nix-defexpr/channels ]; then \
 			rm -rf ~/.nix-defexpr/channels; \
 			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
-		@echo "Done"
 
 vim-config:
 		@echo "Configuring Vim..."
@@ -63,7 +60,6 @@ vim-config:
 		# @git -C ~/.vim submodule update --init
 		# @git -C ~/.vim submodule foreach \
 			# git pull --ff-only origin master
-		@echo "Done"
 
 ifeq ($(OS),Darwin)
 symlinks: symlinks-common symlinks-osx vim-config
@@ -76,9 +72,9 @@ update-vcprompt:
 		@curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
 		@echo "Compiling vcprompt..."
 		@cd $(vcp_tmp) && ./configure CC=clang
-		@$(MAKE) -C $(vcp_tmp)
 		@echo "Installing vcprompt in:"
 		@echo $(bin)
+		@$(MAKE) -C $(vcp_tmp)
 		@$(MAKE) -C $(vcp_tmp) install PREFIX=$(dot)
 		@rm -rf $(dot)/man
 		@rm -rf $(vcp_tmp)
@@ -86,6 +82,8 @@ update-vcprompt:
 update-veprompt:
 		@echo "Getting veprompt source..."
 		@git clone $(vep_src) $(vep_tmp)
+		@echo "Installing vcprompt in:"
+		@echo $(bin)
 		@$(MAKE) -C $(vep_tmp)
 		@cp $(vep_tmp)/a.out $(bin)/veprompt
 		@chmod a+x $(bin)/veprompt
