@@ -32,10 +32,11 @@ help:
 	@echo ""
 
 symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
-	flake8rc ghci git-aliases gitconfig profile prompt psqlrc sbclrc \
-	tmux.conf
+	flake8rc ghci git-aliases gitconfig inputrc profile prompt psqlrc \
+	sbclrc tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
+		@ln -fns $(dot)/tmux.d ~/.tmux.d
 
 symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@echo "Symlinking Linux specific config files..."
