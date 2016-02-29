@@ -63,7 +63,6 @@ vim-config:
 		@echo "Configuring vim..."
 		@mkdir -p ~/.vim-tmp
 		@ln -fns $(dot)/vim ~/.vim;
-		@mkdir -p ~/.vim/autoload ~/.vim/bundle
 		@ln -fs $(dot)/vimrc ~/.vimrc
 		@echo "Installing pathogen..."
 		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
