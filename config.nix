@@ -16,6 +16,7 @@
         coreutils
         ctags
         curl
+        emacs25pre
         gawk
         git
         gitAndTools.hub
