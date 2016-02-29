@@ -68,8 +68,8 @@ runtime macros/matchit.vim
 set t_Co=256
 set background=dark
 
-set statusline=[%n]\ %<%F\ \ \ %m%r%h%w%y[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%\ \ \ %{strftime(\"%H:%M\ \")}
-
+set statusline=[%n]\ %<%F\ \ \ %m%r%h%w%y[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\
+set statusline+=\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%\ \ \ %{strftime(\"%H:%M\ \")}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -99,8 +99,8 @@ endfunction
 
 augroup MarkMargin
     autocmd!
-    autocmd  BufEnter  *       :call MarkMargin(1)
-    autocmd  BufEnter  *.vp*   :call MarkMargin(0)
+    autocmd BufEnter * :call MarkMargin(1)
+    autocmd BufEnter *.vp* :call MarkMargin(0)
 augroup END
 
 "" Syntastic
@@ -118,9 +118,9 @@ let g:ctrlp_custom_ignore = {
     \ }
 
 "" HUD Unicode Digraphs
-inoremap <expr>  <C-J>       HUDG_GetDigraph()
-inoremap <expr>  <C-K>       BDG_GetDigraph()
-inoremap <expr>  <C-L>       HUDigraphs()
+inoremap <expr> <C-J> HUDG_GetDigraph()
+inoremap <expr> <C-K> BDG_GetDigraph()
+inoremap <expr> <C-L> HUDigraphs()
 
 function! HUDigraphs ()
     digraphs

@@ -1,6 +1,11 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
+nix-cleanup() {
+  nix-env --delete-generations old && \
+    nix-collect-garbage;
+}
+
 nix-grep() {
   nix-env -qaP \* \
     | "$GREPPAGE" -i "$@";
