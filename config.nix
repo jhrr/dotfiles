@@ -67,6 +67,7 @@
       name = "musicEnv";
       paths = [
         mpd
+        mpdscribble
         ncmpcpp
       ];
     };
