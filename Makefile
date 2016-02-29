@@ -55,7 +55,7 @@ symlinks-osx: nix-aliases osx
 mpd-config: playlists mpd.log mpd.db mpd.pid mpd.state
 		@echo "Configuring mpd..."
 		@mkdir -p ~/.mpd
-		@ln -fs $(dot)/mpd.conf ~/.mpd/
+		@ln -fs $(dot)/mpd ~/.mpd/mpd.conf
 		@for file in $^; do \
 			if [ ! -f $$file ]; then touch ~/.mpd/$$file; fi; done
 
