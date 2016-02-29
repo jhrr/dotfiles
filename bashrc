@@ -153,12 +153,12 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
       # tmux source ~/.tmux.conf
   # fi
 
-  if ! pgrep -xu "${USER}" 'mpd' >/dev/null 2>&1; then
+  if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
     [[ -f "${HOME}/.mpd/mpd.conf" ]] &&
       mpd "${HOME}/.mpd/mpd.conf"
     # Make sure the scrobbler is running if we are starting mpd.
     # TODO: we also start these in xinit. That could use a refactor.
-    if ! pgrep -xu "${USER}" 'mpdscribble' >/dev/null 2>&1; then
+    if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
       [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
         mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
     fi
@@ -168,7 +168,7 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 SHELLCHECK_OPTS="-e SC1090,SC1091"
 export SHELLCHECK_OPTS
 
-if ! pgrep -xu "${USER}" 'gpg-agent' >/dev/null 2>&1; then
+if ! pgrep -xU "${UID}" 'gpg-agent' >/dev/null 2>&1; then
   eval "$(gpg-agent --daemon)"
 fi
 eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
