@@ -16,9 +16,10 @@ vep_src=https://www.github.com/jhrr/veprompt.git
 vep_tmp=$(tmp)/veprompt
 z_src=https://github.com/rupa/z/raw/master/z.sh
 
-.PHONY: install help symlinks scripts
+.PHONY: install help symlinks scripts \
+	playlists mpd.log mpd.db mpd.pid mpd.state
 
-install: symlinks scripts
+install: symlinks scripts 
 
 help:
 	@echo "Usage: make [OPTION]"
@@ -51,6 +52,13 @@ symlinks-osx: nix-aliases osx
 			rm -rf ~/.nix-defexpr/channels; \
 			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
 
+mpd-config: playlists mpd.log mpd.db mpd.pid mpd.state
+		@echo "Configuring mpd..."
+		@mkdir -p ~/.mpd
+		@ln -fs $(dot)/mpd.conf ~/.mpd/
+		@for file in $^; do \
+			if [ ! -e $$file ]; then touch ~/.mpd/$$file; fi; done
+
 vim-config:
 		@echo "Configuring Vim..."
 		@mkdir -p ~/.vim-tmp
@@ -64,9 +72,9 @@ vim-config:
 			# git pull --ff-only origin master
 
 ifeq ($(OS),Darwin)
-symlinks: symlinks-common symlinks-osx vim-config
+symlinks: symlinks-common symlinks-osx mpd-config vim-config
 else
-symlinks: symlinks-common symlinks-linux vim-config
+symlinks: symlinks-common symlinks-linux mpd-config vim-config
 endif
 
 update-vcprompt:
