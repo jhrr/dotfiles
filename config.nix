@@ -37,6 +37,7 @@
         tree
         unzip
         vim
+        # weechat
         wget
         yank
       ];
@@ -59,6 +60,14 @@
         # binutils
         cc
         gdb
+      ];
+    };
+
+    musicEnv = pkgs.buildEnv {
+      name = "musicEnv";
+      paths = [
+        mpd
+        ncmpcpp
       ];
     };
 

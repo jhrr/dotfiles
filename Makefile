@@ -44,7 +44,7 @@ symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
 symlinks-osx: nix-aliases osx
-		@echo "Symlinking OS X specific config files and configuring Nix..."
+		@echo "Symlinking OS X specific config files and configuring nix..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@mkdir -p ~/.nixpkgs
 		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
@@ -57,10 +57,10 @@ mpd-config: playlists mpd.log mpd.db mpd.pid mpd.state
 		@mkdir -p ~/.mpd
 		@ln -fs $(dot)/mpd.conf ~/.mpd/
 		@for file in $^; do \
-			if [ ! -e $$file ]; then touch ~/.mpd/$$file; fi; done
+			if [ ! -f $$file ]; then touch ~/.mpd/$$file; fi; done
 
 vim-config:
-		@echo "Configuring Vim..."
+		@echo "Configuring vim..."
 		@mkdir -p ~/.vim-tmp
 		@ln -fns $(dot)/vim ~/.vim;
 		@mkdir -p ~/.vim/autoload ~/.vim/bundle
