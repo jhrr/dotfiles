@@ -1,6 +1,9 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
+# TODO: encapsulate krey (chalk) theme
+# TODO: encapsulate zenburn theme
+
 # Reset
 color_off='\e[0m'
 

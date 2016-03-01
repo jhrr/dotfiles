@@ -123,8 +123,21 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/bin/z ]] &&
   . ~/bin/z
 
-# At some point we want to develop and merge this colourscheme with
-# the settings in Xdefaults for linux and bsd.
+start_mpd() {
+  if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
+    [[ -f "${HOME}/.mpd/mpd.conf" ]] &&
+      mpd "${HOME}/.mpd/mpd.conf"
+    # Make sure the scrobbler is running if we are starting mpd.
+    # TODO: we also start these in xinit. That could use a refactor.
+    if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
+      [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
+        mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
+    fi
+  fi
+}
+
+# TODO: At some point we want to develop and merge this colourscheme with the
+# settings in Xdefaults for linux and bsd.
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
@@ -153,16 +166,7 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
       # tmux source ~/.tmux.conf
   # fi
 
-  if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
-    [[ -f "${HOME}/.mpd/mpd.conf" ]] &&
-      mpd "${HOME}/.mpd/mpd.conf"
-    # Make sure the scrobbler is running if we are starting mpd.
-    # TODO: we also start these in xinit. That could use a refactor.
-    if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
-      [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
-        mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
-    fi
-  fi
+ start_mpd;
 }
 
 SHELLCHECK_OPTS="-e SC1090,SC1091"
