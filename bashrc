@@ -131,7 +131,7 @@ start_mpd() {
     # TODO: we also start these in xinit. That could use a refactor.
     if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
       [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
-        mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
+        "mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &"
     fi
   fi
 }
@@ -166,7 +166,7 @@ start_mpd() {
       # tmux source ~/.tmux.conf
   # fi
 
- start_mpd;
+  # start_mpd;
 }
 
 SHELLCHECK_OPTS="-e SC1090,SC1091"

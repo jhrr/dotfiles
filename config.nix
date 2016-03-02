@@ -40,6 +40,7 @@
         # weechat
         wget
         yank
+        yuicompressor
       ];
     };
 
