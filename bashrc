@@ -81,8 +81,7 @@ _set_preferred "GREPPAGE" $greppage
 }
 export VISUAL EDITOR GREPPAGE
 
-_have_less=$(command -v less)
-if [[ -x "${_have_less}" ]]; then
+if command -v less >/dev/null 2>&1; then
   LESS="less -iwrFSX"
   PAGER="${LESS}"
   MANPAGER="${PAGER}"
