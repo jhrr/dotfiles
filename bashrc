@@ -132,7 +132,7 @@ start_mpd() {
       if command -v 'mpdscribble' >/dev/null 2>&1; then
         if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
           [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
-            "mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &"
+            "mpdscribble --conf ${HOME}/.mpdscribble/mpdscribble.conf &"
         fi
       fi
     fi
