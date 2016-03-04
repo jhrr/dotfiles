@@ -7,13 +7,13 @@ nix-cleanup() {
 }
 
 nix-grep() {
-  nix-env -qaP \* \
+  nix-env -f "${NIXPKGS}" -qaP \* \
     | "$GREPPAGE" -i "$@";
 }
 alias nxg='nix-grep'
 
 nix-grep-haskell() {
-  nix-env -f "<nixpkgs>" -qaP -A haskellPackages \
+  nix-env -f "${NIXPKGS}" -qaP -A haskellPackages \
     | "$GREPPAGE" -i "$@";
 }
 alias nxgh='nix-grep-haskell'
@@ -21,7 +21,7 @@ alias nxgh='nix-grep-haskell'
 nix-install() {
   local ncpu
   ncpu=$(($(sysctl -n hw.ncpu) / 2))
-  nix-env -Q -j"$ncpu" -k -i "$@"
+  nix-env -f "${NIXPKGS}" -Q -j"$ncpu" -k -i "$@"
 }
 alias nxi='nix-install'
 

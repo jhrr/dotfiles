@@ -10,10 +10,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 errorlog="${HOME}/.xerrors"
-export errorlog
-emacsserver="/tmp/emacs$(id -u)/server"
-export emacsserver
-
 if (cp /dev/null "${errorlog}"); then
   chmod 600 "${errorlog}"
   exec >"${errorlog}" 2>&1
@@ -59,6 +55,8 @@ pkill dunst; dunst -config "${HOME}/.dunstrc" &
 urxvtd --quiet --opendisplay --fork
 "${HOME}/.dropbox-dist/dropboxd" &
 "${HOME}/bin/esd" &
+# This mpd stuff has been refactored in bashrc.
+# Need to find a platform agnostic way to start these services.
 pidof mpd >& /dev/null
 [ "$?" -ne 0 ] &&
   /usr/bin/mpd "${HOME}/.mpd/mpd.conf"
