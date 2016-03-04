@@ -77,7 +77,7 @@
       name = "serviceEnv";
       paths = [
         nginx
-        node.js
+        nodejs
         postgresql
         redis
         sqlite
