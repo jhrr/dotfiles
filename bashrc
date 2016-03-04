@@ -123,14 +123,18 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
   . ~/bin/z
 
 start_mpd() {
-  if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
-    [[ -f "${HOME}/.mpd/mpd.conf" ]] &&
-      mpd "${HOME}/.mpd/mpd.conf"
-    # Make sure the scrobbler is running if we are starting mpd.
-    # TODO: we also start these in xinit. That could use a refactor.
-    if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
-      [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
-        "mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &"
+  if command -v 'mpd' >/dev/null 2>&1; then
+    if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
+      [[ -f "${HOME}/.mpd/mpd.conf" ]] &&
+        mpd "${HOME}/.mpd/mpd.conf"
+      # Make sure the scrobbler is running if we are starting mpd.
+      # TODO: we also start these in xinit. That could use a refactor.
+      if command -v 'mpdscribble' >/dev/null 2>&1; then
+        if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
+          [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
+            "mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &"
+        fi
+      fi
     fi
   fi
 }
