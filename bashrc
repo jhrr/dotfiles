@@ -35,22 +35,16 @@ HISTFILESIZE=10000
 HISTSIZE=10000
 
 IS_LINUX=false
-[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && {
-  IS_LINUX=true
-  export IS_LINUX
-}
+[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && IS_LINUX=true
+export IS_LINUX
 
 IS_OSX=false
-[[ "$(uname -s)" =~ Darwin ]] && {
-  IS_OSX=true
-  export IS_OSX
-}
+[[ "$(uname -s)" =~ Darwin ]] && IS_OSX=true
+export IS_OSX
 
 IS_FREEBSD=false
-[[ "$(uname -s)" =~ FreeBSD ]] && {
-  IS_FREEBSD=true
-  export IS_FREEBSD
-}
+[[ "$(uname -s)" =~ FreeBSD ]] && IS_FREEBSD=true
+export IS_FREEBSD
 
 _set_preferred() {
   local IFS=":" var="$1" list="$2" item
@@ -102,12 +96,12 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
 [[ -r /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
-[[ -f ~/bin/git-completion ]] &&
-  . ~/bin/git-completion
-[[ -f ~/bin/fabric-completion ]]
-  . ~/bin/fabric-completion
 [[ -f /etc/bash_completion.d/password-store ]] &&
   . /etc/bash_completion.d/password-store
+[[ -f ~/bin/fabric-completion ]] &&
+  . ~/bin/fabric-completion
+[[ -f ~/bin/git-completion ]] &&
+  . ~/bin/git-completion
 
 [[ -f ~/.bash-aliases ]] &&
   . ~/.bash-aliases
