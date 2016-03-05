@@ -59,9 +59,6 @@ let mapleader = ","
 
 inoremap jj <ESC>
 nnoremap <Leader>v :vsp<CR>
-nnoremap <Leader>f :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
-nnoremap <Leader>h :CtrlPMixed<CR>
 
 runtime macros/matchit.vim
 
@@ -116,6 +113,9 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
     \ 'file': '\v\.(DS_STORE|zip)$',
     \ }
+nnoremap <Leader>f :CtrlP<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>h :CtrlPMixed<CR>
 
 "" HUD Unicode Digraphs
 inoremap <expr> <C-J> HUDG_GetDigraph()
