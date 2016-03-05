@@ -115,7 +115,7 @@
       name = "langsEnv";
       paths = [
         erlang
-        pltScheme
+        # pltScheme
         ruby
         sbcl
       ];
