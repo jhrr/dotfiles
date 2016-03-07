@@ -166,7 +166,7 @@ start_mpd() {
   # start_mpd;
 }
 
-SHELLCHECK_OPTS="-e SC1090,SC1091"
+SHELLCHECK_OPTS="-e SC1090,SC1091,SC2148"
 export SHELLCHECK_OPTS
 
 if command -v 'gpg-agent' >/dev/null 2>&1; then

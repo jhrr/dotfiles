@@ -10,3 +10,9 @@
 [submodule "vim/bundle/vim-commentary"]
 	path = vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/bundle/vim-better-whitespace"]
+	path = vim/bundle/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace

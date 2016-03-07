@@ -44,9 +44,14 @@ alias sue='sudo emacs -nw'
 alias v='${VISUAL}'
 alias suv='sudo ${VISUAL}'
 
+# Usage: add-vim-plugin "http://some.url/to/a/git/repo"
+add-vim-plugin() {
+  git -C ~/.vim/bundle submodule add "$@";
+}
+
 # Usage: cp_p $SOURCE $DESTINATION
 # Copy with progress info.
-cp_p () {
+cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
 
