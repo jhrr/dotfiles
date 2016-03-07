@@ -65,9 +65,10 @@ vim-config:
 		@ln -fs $(dot)/vimrc ~/.vimrc
 		@echo "Installing pathogen..."
 		@curl -LSso ~/.vim/autoload/pathogen.vim $(pathogen_src)
-		# @git -C $(dot) submodule update --init
-		# @git -C $(dot)/vim/bundle submodule foreach \
-			# git pull --ff-only origin master
+		@git -C $(dot) submodule update --init
+
+update-vim-plugins:
+		@git submodule foreach git pull --ff-only origin master
 
 ifeq ($(OS),Darwin)
 symlinks: symlinks-common symlinks-osx mpd-config vim-config
