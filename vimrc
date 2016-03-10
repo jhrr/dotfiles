@@ -1,6 +1,6 @@
-execute pathogen#infect()
-
 set nocompatible
+
+execute pathogen#infect()
 
 syntax on
 filetype plugin indent on
@@ -78,7 +78,7 @@ autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 
-"" Highlight lines breaking column 80 on a per-line basis.
+" Highlight lines breaking column 80 on a per-line basis.
 highlight ColorColumn ctermfg=208 ctermbg=Black
 
 function! MarkMargin (on)
@@ -100,14 +100,19 @@ augroup MarkMargin
     autocmd BufEnter *.vp* :call MarkMargin(0)
 augroup END
 
-"" Syntastic
+" Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_checkers = ['clang_check']
+let g:syntastic_cpp_checkers = ['clang_check']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_compiler_options += '-Wall -Wextra -Wpedantic'
+let g:syntastic_cpp_check_header = 1
 
-"" Ctrl-P
+" Ctrl-P
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -117,7 +122,7 @@ nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
 
-"" HUD Unicode Digraphs
+" HUD Unicode Digraphs
 inoremap <expr> <C-J> HUDG_GetDigraph()
 inoremap <expr> <C-K> BDG_GetDigraph()
 inoremap <expr> <C-L> HUDigraphs()
@@ -128,7 +133,7 @@ function! HUDigraphs ()
     return "\<C-K>"
 endfunction
 
-"" Change cursor shape between insert and normal mode in iTerm2
+" Change cursor shape between insert and normal mode in iTerm2
 if $TERM_PROGRAM =~ "iTerm"
   if empty($TMUX)
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"

@@ -12,18 +12,18 @@ alias t='tig'
 
 # Git alias shell-completion.
 __define_git_completion() {
-eval "
-  _git_$2_shortcut() {
-    COMP_LINE=\"git $2\${COMP_LINE#$1}\"
-    let COMP_POINT+=$((4+${#2}-${#1}))
-    COMP_WORDS=(git $2 \"\${COMP_WORDS[@]:1}\")
-    let COMP_CWORD+=1
+  eval "
+    _git_$2_shortcut() {
+      COMP_LINE=\"git $2\${COMP_LINE#$1}\"
+      let COMP_POINT+=$((4+${#2}-${#1}))
+      COMP_WORDS=(git $2 \"\${COMP_WORDS[@]:1}\")
+      let COMP_CWORD+=1
 
-    local cur words cword prev
-    _get_comp_words_by_ref -n =: cur words cword prev
-    _git_$2
-  }
-"
+      local cur words cword prev
+      _get_comp_words_by_ref -n =: cur words cword prev
+      _git_$2
+    }
+  "
 }
 
 __git_shortcut() {
@@ -33,7 +33,7 @@ __git_shortcut() {
   complete -o default -o nospace -F "_git_$2_shortcut" "$1"
 }
 
-# Quote block of arguments > $3 if it contains any spaces.
+# Quote block of arguments if it contains any spaces.
 __git_shortcut  ga  add '"$@"'
 __git_shortcut  gA  add '--all && git status'
 __git_shortcut  gb  branch '--color -v'
@@ -81,7 +81,7 @@ git-in-repo() {
 # Usage: git-commit-for-squash
 git-commit-for-squash() {
   git-in-repo && \
-  git commit -v -m 'squash!';
+    git commit -v -m 'squash!';
 }
 alias gcS='git-commit-for-squash'
 
@@ -90,10 +90,18 @@ alias gcS='git-commit-for-squash'
 # $ git config --global rebase.autosquash true
 git-commit-all-for-squash() {
   git-in-repo && \
-  git add . && git commit -v -m 'squash!';
+    git add . && git commit -v -m 'squash!';
 }
 alias gcAS='git-commit-all-for-squash'
 alias kwatz='git-commit-all-for-squash'
+
+# Fast commits for gists and such like when you don't want to write a
+# meaningful commit message but "kjhasdfd" is getting annoying.
+git-commit-all-uuid() {
+  git-in-repo && \
+    git add . && git commit -v -m "$(uuidgen)";
+}
+alias gcAU='git-commit-all-uuid';
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
 # Apply a $HASH to the HEAD of the current branch after making it a

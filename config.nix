@@ -28,7 +28,6 @@
         nix-repl
         nmap
         nox
-        # otool
         pv
         rsync
         subversion
@@ -37,7 +36,7 @@
         tree
         unzip
         vim
-        # weechat
+        weechat
         wget
         yank
         yuicompressor
@@ -67,9 +66,13 @@
     musicEnv = pkgs.buildEnv {
       name = "musicEnv";
       paths = [
-        mpd
-        mpdscribble
-        ncmpcpp
+        # fftw
+        flac
+        # libffi
+        # mpd
+        mpg123
+        # mpdscribble
+        # ncmpcpp
       ];
     };
 
