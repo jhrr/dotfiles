@@ -12,6 +12,12 @@ nix-grep() {
 }
 alias nxg='nix-grep'
 
+nix-grep-emacs() {
+  nix-env -f "${NIXPKGS_PATH}" -qaP -A emacsPackages \
+    | "${GREPPAGE}" -i "$@";
+}
+alias nxge='nix-grep-emacs'
+
 nix-grep-haskell() {
   nix-env -f "${NIXPKGS_PATH}" -qaP -A haskellPackages \
     | "${GREPPAGE}" -i "$@";
