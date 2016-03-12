@@ -76,7 +76,7 @@ _set_preferred "GREPPAGE" $greppage
 export VISUAL EDITOR GREPPAGE
 
 if command -v less >/dev/null 2>&1; then
-  LESS="less -FirSwX"
+  LESS="less -FiRswX"
   PAGER="${LESS}"
   MANPAGER="less -FiRswX"
 else
