@@ -76,14 +76,15 @@ _set_preferred "GREPPAGE" $greppage
 export VISUAL EDITOR GREPPAGE
 
 if command -v less >/dev/null 2>&1; then
-  LESS="less -FiRswX"
+  LESS="-FiRswX"
   PAGER="${LESS}"
-  MANPAGER="less -FiRswX"
+  MANPAGER="${PAGER}"
+  export LESS PAGER MANPAGER
 else
   PAGER=more
   MANPAGER="${PAGER}"
+  export PAGER MANPAGER
 fi
-export LESS PAGER MANPAGER
 
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   . /usr/bin/virtualenvwrapper.sh
