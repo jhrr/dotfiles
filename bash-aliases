@@ -117,7 +117,7 @@ fwc() {
 }
 
 grep-less() {
-  "${GREPPAGE}" --color -i -r "$@" . | less -R;
+  "${GREPPAGE}" --color -i -r "$@" . | less;
 }
 alias g='grep-less'
 
