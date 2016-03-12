@@ -49,6 +49,7 @@
         # gnupg
         # gnupg-agent (?)
         # openssh
+        openssl
         # keychain
         # pass
       ];
@@ -102,7 +103,7 @@
     pythonEnv = pkgs.buildEnv {
       name = "pythonEnv";
       paths = [
-        python27
+        python27Full
         python35
         # Python2 packages
         python27Packages.ipython
