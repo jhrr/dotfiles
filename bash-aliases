@@ -55,6 +55,15 @@ cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
 
+django-freeze-requirements() {
+  if [[ -n "${VIRTUAL_ENV}" ]]; then
+    pip install -r requirements-to-freeze.txt --upgrade &&
+    pip freeze > requirements.txt
+  else
+    err "Virtualenv not currently active..."
+  fi
+}
+
 # Usage: err "Unable to do_something"
 # Stderr helper function.
 err() {
