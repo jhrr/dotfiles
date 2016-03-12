@@ -12,7 +12,6 @@ alias du1='du -h --max-depth=1'
 alias ea='ec ${HOME}/dotfiles/'
 alias enx='vim ${HOME}/.nixpkgs/config.nix'
 alias exm='ec ${HOME}/.xmonad/xmonad.hs'
-alias g='ack -i'
 alias grd='ls -aliF | ack -i'
 alias h='history | grep -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
@@ -55,12 +54,16 @@ cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
 
-django-freeze-requirements() {
+django-collect-requirements() {
   if [[ -n "${VIRTUAL_ENV}" ]]; then
-    pip install -r requirements-to-freeze.txt --upgrade &&
-    pip freeze > requirements.txt
+    if [[ -f ./requirements-to-freeze.txt ]]; then
+      pip install -r requirements-to-freeze.txt --upgrade &&
+      pip freeze > requirements.txt
+    else
+     err "This repo is not using a dual requirements.txt workflow"
+    fi
   else
-    err "Virtualenv not currently active..."
+    err "Not currently in an active virtualenv"
   fi
 }
 
@@ -112,6 +115,11 @@ fwc() {
   find . -name "*.${1}" -print0 \
     | xargs -0 wc -l;
 }
+
+grep-less() {
+  "${GREPPAGE}" --color -i -r "$@" . | less -R;
+}
+alias g='grep-less'
 
 md() {
   mkdir -p "$@" && cd "$@" || exit;
