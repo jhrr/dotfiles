@@ -36,7 +36,7 @@
         tree
         unzip
         vim
-        weechat
+        # weechat
         wget
         yank
         yuicompressor

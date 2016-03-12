@@ -115,6 +115,13 @@ git-conflict-cherry-pick() {
   fi
 }
 
+# Usage: github-create-repo $USER $NAME
+# Create a bare git-repo on a github account. You will be prompted for your
+# password. Can also be achieved using `hub create', should you have hub.
+github-create-repo() {
+  curl -u "$1" https://api.github.com/user/repos -d '{"name":"'"$2"'"}'
+}
+
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
