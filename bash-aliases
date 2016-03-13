@@ -103,7 +103,7 @@ fx() {
     -exec "${2:-file}" {} \;  ;
 }
 
-# Usage: frep regex file-specifier
+# Usage: frep REGEX FILE-SPECIFIER
 # Grep for patterns over the results of a call to find.
 frep() {
   find . -name "${2}" -print0 \
@@ -119,6 +119,13 @@ grep-less() {
   "${GREPPAGE}" --color -i -r "$@" . | less;
 }
 alias g='grep-less'
+
+# Grep for "TODO" or "todo" anywhere from and below
+# this point in the file hierarchy.
+grep-todo() {
+  grep-less "todo";
+}
+alias gtodo='grep-todo';
 
 md() {
   mkdir -p "$@" && cd "$@" || exit;
