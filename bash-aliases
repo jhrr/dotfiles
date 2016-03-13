@@ -9,11 +9,10 @@ alias .5='cd ../../../../..'
 alias delpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias du='du -h -c'
 alias du1='du -h --max-depth=1'
-alias ea='ec ${HOME}/dotfiles/'
 alias enx='vim ${HOME}/.nixpkgs/config.nix'
 alias exm='ec ${HOME}/.xmonad/xmonad.hs'
-alias grd='ls -aliF | ack -i'
-alias h='history | grep -i'
+alias grd='ls -aliF | ${GREPPAGE} -i'
+alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
 alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
@@ -48,7 +47,7 @@ add-vim-plugin() {
   git -C ~/.vim/bundle submodule add "$@";
 }
 
-# Usage: cp_p $SOURCE $DESTINATION
+# Usage: cp-p $SOURCE $DESTINATION
 # Copy with progress info.
 cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
