@@ -3,7 +3,7 @@
     email = jhrr@users.noreply.github.com
 [core]
     editor = vim
-    pager = less "$LESS"
+    pager = less
 [push]
     default = current
 [color]
