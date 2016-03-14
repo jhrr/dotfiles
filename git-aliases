@@ -95,6 +95,7 @@ git-commit-all-for-squash() {
 alias gcAS='git-commit-all-for-squash'
 alias kwatz='git-commit-all-for-squash'
 
+# Usage: git-commit-all-uuid
 # Fast commits for gists and such like when you don't want to write a
 # meaningful commit message but "kjhasdfd" is getting annoying.
 git-commit-all-uuid() {
