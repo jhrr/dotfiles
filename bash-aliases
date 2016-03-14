@@ -115,6 +115,15 @@ fwc() {
     | xargs -0 wc -l;
 }
 
+# Usage: generate-timestamped-ssh-key DOMAIN
+generate-timestamped-ssh-key() {
+  local timestamp comment ssh_host
+  timestamp="$(date -u +"%Y%m%dT%H%M%SZ")"
+  comment="$(whoami)@$(hostname)-$timestamp-rsa"
+  ssh_host="$(whoami)@$1-$timestamp-rsa"
+  ssh-keygen -f "${HOME}/.ssh/$ssh_host" -C "$comment"
+}
+
 grep-less() {
   "${GREPPAGE}" --color -ir "$@" . | less;
 }
