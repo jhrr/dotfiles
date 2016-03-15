@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # overwrite:  copy standard input to output after EOF
 
 # `json_reformat < test.json > test.json` won’t work, but

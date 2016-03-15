@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # If not running, start the GNU Emacs daemon and open a new client.
 if [[ ! "$(pgrep --full emacs.*daemon)" ]]; then
