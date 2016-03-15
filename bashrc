@@ -176,6 +176,9 @@ if command -v 'gpg-agent' >/dev/null 2>&1; then
     eval "$(gpg-agent --daemon)"
   fi
 fi
-if command -v 'keychain' >/dev/null 2>&1; then
-  eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
-fi
+
+[[ "${IS_LINUX}" == true ]] && {
+  if command -v 'keychain' >/dev/null 2>&1; then
+    eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
+  fi
+}
