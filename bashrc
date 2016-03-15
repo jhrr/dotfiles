@@ -77,7 +77,7 @@ export VISUAL EDITOR GREPPAGE
 
 if command -v less >/dev/null 2>&1; then
   LESS="-FiRswX"
-  PAGER="${LESS}"
+  PAGER="less"
   MANPAGER="${PAGER}"
   export LESS PAGER MANPAGER
 else
