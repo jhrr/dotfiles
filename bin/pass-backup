@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Mounting /dev/sdb1..." >&2
+pmount /dev/sdb1
+
+target=/media/sdb1/
+
+echo "Removing password-store at $target" >&2
+rm -rf "$target"/.password-store/
+echo "Copying updated password-store to $target" >&2
+cp -r "${HOME}/.password-store/" "$target"
+
+echo "Copying .gpg files to $target" >&2
+cp "${HOME}/.gnupg/pubring.gpg" "$target"
+cp "${HOME}/.gnupg/secring.gpg" "$target"
+
+echo "Exporting gpg ownertrust to $target" >&2
+gpg --export-ownertrust > "$target"/jhr-ownertrust-gpg.txt
+
+echo "Unounting /dev/sdb1" >&2
+pumount /dev/sdb1
+
+echo "Done" >&2
