@@ -51,7 +51,7 @@
         # openssh
         openssl
         # keychain
-        # pass
+        pass
       ];
     };
 
@@ -119,7 +119,7 @@
       name = "langsEnv";
       paths = [
         erlang
-        # pltScheme
+        pltScheme
         ruby
         sbcl
       ];
