@@ -46,7 +46,7 @@
     cryptoEnv = pkgs.buildEnv {
       name = "cryptoEnv";
       paths = [
-        # gnupg
+        gnupg
         # gnupg-agent (?)
         # openssh
         openssl
