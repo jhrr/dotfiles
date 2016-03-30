@@ -25,9 +25,10 @@ nix-grep-haskell() {
 alias nxgh='nix-grep-haskell'
 
 nix-install() {
-  local ncpu
-  ncpu=$(($(sysctl -n hw.ncpu) / 2))
-  nix-env -f "${NIXPKGS_PATH}" -Q -j"$ncpu" -k -i "$@"
+  # local ncpu
+  # ncpu=$(($(sysctl -n hw.ncpu) / 2))
+  # nix-env -f "${NIXPKGS_PATH}" -Q -j"$ncpu" -k -i "$@"
+  nix-env -f "${NIXPKGS_PATH}" -Q -k -i "$@"
 }
 alias nxi='nix-install'
 

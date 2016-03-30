@@ -7,5 +7,6 @@
 \set VERBOSITY verbose
 \unset quiet
 \pset null '(null)'
-\pset pager off
+\pset pager always
 \x auto
+\timing

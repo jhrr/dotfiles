@@ -168,9 +168,6 @@ start_mpd() {
   # start_mpd;
 }
 
-SHELLCHECK_OPTS="-e SC1090,SC1091,SC2148"
-export SHELLCHECK_OPTS
-
 if command -v 'gpg-agent' >/dev/null 2>&1; then
   if ! pgrep -xU "${UID}" 'gpg-agent' >/dev/null 2>&1; then
     eval "$(gpg-agent --daemon)"
@@ -182,3 +179,6 @@ fi
     eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
   fi
 }
+
+SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
+export SHELLCHECK_OPTS
