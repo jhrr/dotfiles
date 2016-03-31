@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Cheers to you pbx!
+
 set -e
 
 _mergebase=$(git merge-base origin/master HEAD)
