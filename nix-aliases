@@ -37,6 +37,11 @@ nix-update() {
 }
 alias nxu='nix-update'
 
+nix-show-dependencies() {
+  nix-store --query --references  "$(nix-instantiate '<nixpkgs>' -A "$1")";
+}
+alias nxd='nix-show-dependencies'
+
 nixpkgs-sync() {
   git -C "${NIXPKGS_PATH}" pull --ff-only upstream master;
 }
