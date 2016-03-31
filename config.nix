@@ -3,11 +3,11 @@
 { pkgs }: {
 
   allowUnfree = true;
+  # vim = { ruby = true; };
+
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
 
-    # emacs = if pkgs.stdenv.isDarwin
-    #         then emacs24Macport
-    #         else emacs24;
+    emacs = emacs25pre;
 
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
@@ -16,7 +16,7 @@
         coreutils
         ctags
         curl
-        emacs25pre
+        emacs
         gawk
         git
         gitAndTools.hub
@@ -27,7 +27,6 @@
         netcat
         nix-repl
         nmap
-        nox
         pv
         rsync
         subversion
@@ -35,7 +34,7 @@
         tmux
         tree
         unzip
-        vim
+        # vim
         # weechat
         wget
         yank
