@@ -2,7 +2,7 @@
 
 # Cheers to you pbx!
 
-set -e
+set -euo pipefail
 
 _mergebase=$(git merge-base origin/master HEAD)
 _pyfiles=$(git diff --name-only "${_mergebase}" | grep "\.py")
