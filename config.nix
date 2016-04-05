@@ -9,7 +9,6 @@
     emacs = emacs25pre;
     # vim = pkgs.vim_configurable.override {
     #   ruby = true;
-    #   x11 = false;
     # };
 
     # vimEnv = pkgs.buildEnv {
@@ -130,6 +129,14 @@
         pltScheme
         ruby
         sbcl
+      ];
+    };
+
+    mlEnv = pkgs.buildEnv {
+      name = "mlEnv";
+      paths = [
+        ocaml
+        # smlnj
       ];
     };
 
