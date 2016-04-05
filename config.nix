@@ -3,11 +3,21 @@
 { pkgs }: {
 
   allowUnfree = true;
-  # vim = { ruby = true; };
 
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
 
     emacs = emacs25pre;
+    # vim = pkgs.vim_configurable.override {
+    #   ruby = true;
+    #   x11 = false;
+    # };
+
+    # vimEnv = pkgs.buildEnv {
+    #   name = "vimEnv";
+    #   paths = [
+    #     vim
+    #   ];
+    # };
 
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
@@ -34,7 +44,6 @@
         tmux
         tree
         unzip
-        # vim
         # weechat
         wget
         yank
