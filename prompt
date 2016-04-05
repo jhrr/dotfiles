@@ -118,7 +118,7 @@ _git_stats() {
     _diffs=$(git status --porcelain 2>/dev/null | $GREPPAGE "M" | wc -l)
     _untracked=$(git status --porcelain 2>/dev/null | $GREPPAGE "\?\?" | wc -l)
     if [[ $_diffs != 0 ]] || [[ $_untracked != 0 ]]; then
-      echo " -> $_diffs:$_untracked"
+      printf ' -> %s:%s' "$_diffs" "$_untracked"
     fi
   fi
 }
