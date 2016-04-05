@@ -7,16 +7,19 @@
   packageOverrides = super: let pkgs = super.pkgs; in with pkgs; rec {
 
     emacs = emacs25pre;
-    # vim = pkgs.vim_configurable.override {
-    #   ruby = true;
-    # };
+    myVim = pkgs.vim_configurable.override {
+      config.vim = {
+        ruby = true;
+      };
+      ruby = ruby;
+    };
 
-    # vimEnv = pkgs.buildEnv {
-    #   name = "vimEnv";
-    #   paths = [
-    #     vim
-    #   ];
-    # };
+    vimEnv = pkgs.buildEnv {
+      name = "vimEnv";
+      paths = [
+        myVim
+      ];
+    };
 
     userEnv = pkgs.buildEnv {
       name = "jhrrEnv";
@@ -50,6 +53,15 @@
       ];
     };
 
+    cEnv = pkgs.buildEnv {
+      name = "cEnv";
+      paths = [
+        # binutils
+        cc
+        gdb
+      ];
+    };
+
     cryptoEnv = pkgs.buildEnv {
       name = "cryptoEnv";
       paths = [
@@ -62,12 +74,34 @@
       ];
     };
 
-    cEnv = pkgs.buildEnv {
-      name = "cEnv";
+    haskellEnv = pkgs.buildEnv {
+      name = "haskellEnv";
       paths = [
-        # binutils
-        cc
-        gdb
+        ghc
+        stack
+        # Packages
+        haskellPackages.ghc-mod
+        haskellPackages.hdevtools
+        haskellPackages.ShellCheck
+      ];
+    };
+
+    langsEnv = pkgs.buildEnv {
+      name = "langsEnv";
+      paths = [
+        # clojure
+        erlang
+        pltScheme
+        ruby
+        sbcl
+      ];
+    };
+
+    mlEnv = pkgs.buildEnv {
+      name = "mlEnv";
+      paths = [
+        ocaml
+        # smlnj
       ];
     };
 
@@ -81,29 +115,6 @@
         mpg123
         # mpdscribble
         # ncmpcpp
-      ];
-    };
-
-    serviceEnv = pkgs.buildEnv {
-      name = "serviceEnv";
-      paths = [
-        nginx
-        nodejs
-        postgresql
-        redis
-        sqlite
-      ];
-    };
-
-    haskellEnv = pkgs.buildEnv {
-      name = "haskellEnv";
-      paths = [
-        ghc
-        stack
-        # Packages
-        haskellPackages.ghc-mod
-        haskellPackages.hdevtools
-        haskellPackages.ShellCheck
       ];
     };
 
@@ -122,21 +133,14 @@
       ];
     };
 
-    langsEnv = pkgs.buildEnv {
-      name = "langsEnv";
+    serviceEnv = pkgs.buildEnv {
+      name = "serviceEnv";
       paths = [
-        erlang
-        pltScheme
-        ruby
-        sbcl
-      ];
-    };
-
-    mlEnv = pkgs.buildEnv {
-      name = "mlEnv";
-      paths = [
-        ocaml
-        # smlnj
+        nginx
+        nodejs
+        postgresql
+        redis
+        sqlite
       ];
     };
 
