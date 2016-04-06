@@ -32,7 +32,5 @@
     keepTemporaries = false
     trustExitCode = false
     keepBackup = false
-[rebase]
-    autosquash = true
 [http]
     sslCAinfo = /Users/jhrr/.certs/cacert.pem
