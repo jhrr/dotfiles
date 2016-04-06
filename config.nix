@@ -102,6 +102,7 @@
       paths = [
         ocaml
         # smlnj
+        ocamlPackages.utop
       ];
     };
 
