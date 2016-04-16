@@ -112,7 +112,7 @@
         # fftw
         flac
         # libffi
-        # mpd
+        mpd
         mpg123
         # mpdscribble
         # ncmpcpp
