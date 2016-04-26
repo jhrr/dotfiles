@@ -41,6 +41,7 @@
         nmap
         pv
         rsync
+        silver-searcher
         subversion
         tig
         tmux
