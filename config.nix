@@ -90,7 +90,7 @@
     langsEnv = pkgs.buildEnv {
       name = "langsEnv";
       paths = [
-        # clojure
+        clojure
         erlang
         pltScheme
         ruby
@@ -140,6 +140,7 @@
       paths = [
         nginx
         nodejs
+        openjdk8
         postgresql
         redis
         sqlite
