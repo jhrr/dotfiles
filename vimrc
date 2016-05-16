@@ -78,6 +78,8 @@ autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 
+autocmd FileType nix setlocal commentstring=#\ %s
+
 " Highlight lines breaking column 80 on a per-line basis.
 highlight ColorColumn ctermfg=208 ctermbg=Black
 

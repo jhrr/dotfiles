@@ -140,10 +140,11 @@
       paths = [
         nginx
         nodejs
-        openjdk8
+        # openjdk8
         postgresql
         redis
         sqlite
+        # xquartz
       ];
     };
 
