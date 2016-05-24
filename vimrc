@@ -45,7 +45,6 @@ set visualbell
 set wildmenu
 set wildmode=list:longest
 
-set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
 
 set grepprg=ack\ -i
