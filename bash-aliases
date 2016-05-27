@@ -148,6 +148,12 @@ md() {
   mkdir -p "$@" && cd "$@" || exit;
 }
 
+# Usage: npm-do EXECUTABLE COMMANDS
+# Find local npm executables to invoke.
+function npm-do {
+  (PATH=$(npm bin):$PATH; eval "$@";)
+}
+
 pip-grep() {
   pip search "$1" \
     | grep -i "$1";
