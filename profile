@@ -21,6 +21,7 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
   export NIXPKGS_PATH NIX_PATH
 }
 
+# TODO: move this somewhere else
 [ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
   PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
 
