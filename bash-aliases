@@ -142,7 +142,7 @@ alias g='grep-less'
 grep-todo() {
   grep-less "todo";
 }
-alias gtodo='grep-todo';
+alias gtodo='grep-todo'
 
 md() {
   mkdir -p "$@" && cd "$@" || exit;
@@ -150,7 +150,7 @@ md() {
 
 # Usage: npm-do EXECUTABLE COMMANDS
 # Find local npm executables to invoke.
-function npm-do {
+npm-do() {
   (PATH=$(npm bin):$PATH; eval "$@";)
 }
 
