@@ -28,6 +28,7 @@ set modelines=3
 set nowb
 set noruler
 set number
+" set relativenumber
 set scrolloff=3
 set shiftwidth=4
 set showcmd

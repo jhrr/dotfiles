@@ -11,3 +11,4 @@ case "$-" in
       . ~/.bashrc;
     fi;;
 esac
+

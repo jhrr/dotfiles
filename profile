@@ -21,6 +21,9 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
   export NIXPKGS_PATH NIX_PATH
 }
 
+[ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
+  PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
+
 if [ -d /etc/profile.d/ ]; then
   for profile in /etc/profile.d/*.sh; do
     [ -r "${profile}" ] &&
