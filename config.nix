@@ -91,6 +91,7 @@
       name = "langsEnv";
       paths = [
         clojure
+        elmPackages.elm
         erlang
         pltScheme
         ruby
@@ -126,11 +127,12 @@
         python27Full
         python35
         # Python2 packages
+        python27Packages.flake8
         python27Packages.ipython
         python27Packages.virtualenv
         python27Packages.virtualenvwrapper
-        python27Packages.flake8
         # Python3 packages
+        python35Packages.flake8
         python35Packages.ipython
       ];
     };
