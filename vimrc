@@ -71,7 +71,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-autocmd FileType js setlocal shiftwidth=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
@@ -113,6 +113,12 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options += '-Wall -Wextra -Wpedantic'
 let g:syntastic_cpp_check_header = 1
+
+let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let b:syntastic_javascript_eslint_exec = substitute(
+    \ s:eslint_path,
+    \ '^\n*\s*\(.\{-}\)\n*\s*$', '\1', ''
+\)
 
 " Ctrl-P
 let g:ctrlp_show_hidden = 1
