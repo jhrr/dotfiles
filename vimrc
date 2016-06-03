@@ -115,15 +115,12 @@ let g:syntastic_cpp_compiler_options += '-Wall -Wextra -Wpedantic'
 let g:syntastic_cpp_check_header = 1
 
 let g:syntastic_javascript_checkers = ['eslint']
-let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint_d')
 let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
 " Ctrl-P
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(DS_STORE|zip)$',
-    \ }
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
