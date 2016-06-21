@@ -110,6 +110,8 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
   . ~/.git-aliases
 [[ -f ~/.nix-aliases ]] &&
   . ~/.nix-aliases
+[[ -f ~/.private ]] &&
+  . ~/.private
 
 [[ -f ~/.prompt ]] &&
   . ~/.prompt
