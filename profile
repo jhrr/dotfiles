@@ -14,12 +14,12 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 [ -L "${HOME}/bin/git-scripts" ] &&
   PATH="$PATH:${HOME}/bin/git-scripts/"
 
-[ -L "${HOME}/.nix-profile" ] && {
-  . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-  NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
-  NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
-  export NIXPKGS_PATH NIX_PATH
-}
+# [ -L "${HOME}/.nix-profile" ] && {
+#   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+#   NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
+#   NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
+#   export NIXPKGS_PATH NIX_PATH
+# }
 
 # TODO: move this somewhere else
 [ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
