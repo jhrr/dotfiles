@@ -101,9 +101,9 @@ else
 # fi;
 
 _vcprompt_hash() {
-    if git-in-repo >/dev/null 2>&1; then
-      git rev-parse --short=0 HEAD
-    fi
+  if git-in-repo >/dev/null 2>&1; then
+    git rev-parse --short=0 HEAD
+  fi
 }
 
 _print_if_vcs() {
@@ -115,8 +115,8 @@ _print_if_vcs() {
 _git_stats() {
   local _diffs _untracked
   if git-in-repo >/dev/null 2>&1; then
-    _diffs=$(git status --porcelain 2>/dev/null | $GREPPAGE "M" | wc -l)
-    _untracked=$(git status --porcelain 2>/dev/null | $GREPPAGE "\?\?" | wc -l)
+    _diffs=$(git status --porcelain 2>/dev/null | $GREPPAGE "M" | gwc -l)
+    _untracked=$(git status --porcelain 2>/dev/null | $GREPPAGE "\?\?" | gwc -l)
     if [[ $_diffs != 0 ]] || [[ $_untracked != 0 ]]; then
       printf ' -> %s:%s' "$_diffs" "$_untracked"
     fi
