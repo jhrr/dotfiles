@@ -1,6 +1,9 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
+[[ "${IS_OSX}" == true ]] &&
+  alias ls='gls'
+
 alias ..='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../../'
