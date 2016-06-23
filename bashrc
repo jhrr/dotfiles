@@ -86,10 +86,10 @@ else
   export PAGER MANPAGER
 fi
 
-if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
-  . /usr/bin/virtualenvwrapper.sh
-elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
-  . "${HOME}/.nix-profile/bin/virtualenvwrapper.sh"
+if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
+  . '/usr/local/bin/virtualenvwrapper.sh'
+# elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
+  # . "${HOME}/.nix-profile/bin/virtualenvwrapper.sh"
 fi
 WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
