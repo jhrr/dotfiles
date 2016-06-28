@@ -95,6 +95,8 @@ WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
+[[ -f /usr/local/etc/bash_completion.d/password-store ]] &&
+  . /usr/local/etc/bash_completion.d/password-store
 [[ -r /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
 [[ -f /etc/bash_completion.d/password-store ]] &&
