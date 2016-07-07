@@ -27,7 +27,8 @@ alias open='xdg-open &>/dev/null'
 alias p='ipython3'
 alias psql='sudo -i -u postgres psql'
 alias qp='ping -c 5 8.8.8.8'
-alias rds='reset; python manage.py runserver_plus --configuration=Dev'
+# TODO: push pwd to stack and pop back when server closes?
+alias rds='cd `gh` && reset && ./manage.py runserver_plus --configuration=Dev'
 alias shclr='msgcat --color=test'
 alias shred='shred -zuv'
 alias startpg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
@@ -105,13 +106,15 @@ ff() {
   find . -type f -iname "*""$*""*";
 }
 
+# Usage: fx FILE-IDENTIFIER COMMAND
+# Execute a command over the results of a call to `find'.
 fx() {
   find . -type f -iname "*""${1:-}""*" \
     -exec "${2:-file}" {} \;  ;
 }
 
 # Usage: frep REGEX FILE-SPECIFIER
-# Grep for patterns over the results of a call to find.
+# Grep for patterns over the results of a call to `find'.
 frep() {
   find . -name "${2}" -print0 \
     | xargs -0 ack -i "${1}";
