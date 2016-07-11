@@ -30,7 +30,11 @@ alias qp='ping -c 5 8.8.8.8'
 # TODO: push pwd to stack and pop back when server closes?
 alias rds='cd `gh` && reset && ./manage.py runserver_plus --configuration=Dev'
 alias shclr='msgcat --color=test'
-alias shred='shred -zuv'
+if [[ "${IS_OSX}" == true ]]; then
+  alias shred='gshred -zuv'
+else
+  alias shred='shred -zuv'
+fi
 alias startpg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
 alias stoppg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log stop'
 alias reload='. ${HOME}/.bash_profile'
