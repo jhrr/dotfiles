@@ -25,6 +25,7 @@ alias npmID='npm i -D'
 alias npmIS='npm i -S'
 alias open='xdg-open &>/dev/null'
 alias p='ipython3'
+alias pass='pass -c'
 alias psql='sudo -i -u postgres psql'
 alias qp='ping -c 5 8.8.8.8'
 # TODO: push pwd to stack and pop back when server closes?
