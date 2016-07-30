@@ -133,6 +133,11 @@ git-minimum-hash() {
     | GREP_COLORS='ms=34;1' $GREPPAGE "$(git rev-parse --short=0 HEAD)";
 }
 
+# Usage: git-nuke-branch $BRANCH
+git-nuke-branch() {
+  git push origin --delete "$1" && git branch -D "$1"
+}
+
 # Usage: git-purge-local
 # Delete all local tracking branches except master.
 git-purge-local() {
