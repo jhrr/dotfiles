@@ -218,7 +218,7 @@ et() {
 }
 
 # Open a file, in the current frame, using the emacs daemon.
-ec() {
+emc() {
   if [[ "${1}" == '' ]]; then
     emacsclient --no-wait .
   else
