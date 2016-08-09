@@ -59,6 +59,7 @@ let mapleader = ","
 
 inoremap jj <ESC>
 nnoremap <Leader>v :vsp<CR>
+nnoremap <Leader>s :shell<CR>
 
 runtime macros/matchit.vim
 
