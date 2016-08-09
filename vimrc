@@ -58,8 +58,10 @@ nnoremap <C-y> 3<C-y>
 let mapleader = ","
 
 inoremap jj <ESC>
-nnoremap <Leader>v :vsp<CR>
+nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>s :shell<CR>
+nnoremap <Leader>v :vsp<CR>
+nnoremap <Leader>w :w<CR>
 
 runtime macros/matchit.vim
 
