@@ -63,6 +63,18 @@ nnoremap <Leader>s :shell<CR>
 nnoremap <Leader>v :vsp<CR>
 nnoremap <Leader>w :w<CR>
 
+" Copy to system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
 runtime macros/matchit.vim
 
 set t_Co=256
