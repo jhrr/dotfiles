@@ -87,15 +87,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
-autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
-autocmd FileType css setlocal shiftwidth=2 softtabstop=2
-autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
-autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
-autocmd FileType html setlocal shiftwidth=2 softtabstop=2
-
-autocmd FileType nix setlocal commentstring=#\ %s
-
 " Highlight lines breaking column 80 on a per-line basis.
 highlight ColorColumn ctermfg=208 ctermbg=Black
 
@@ -124,6 +115,18 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
+
+" Modes
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
+autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal shiftwidth=2 softtabstop=2
+autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
+autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+
+autocmd FileType nix setlocal commentstring=#\ %s
+
+let g:rustfmt_autosave = 1
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
