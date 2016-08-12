@@ -124,6 +124,14 @@ github-create-repo() {
   curl -u "$1" https://api.github.com/user/repos -d '{"name":"'"$2"'"}'
 }
 
+# Usage: git-grep-replace $TARGET $NEW
+# Replace a $TARGET string with a $NEW string repo-wide.
+git-grep-replace() {
+  git-in-repo && \
+  git grep --full-name --files-with-matches "$1" \
+    | xargs sed --in-place -e "s/$1/$2/";
+}
+
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
@@ -159,12 +167,10 @@ git-purge-local-merged() {
     | tr -d '\n';
 }
 
-# Usage: git-grep-replace $TARGET $NEW
-# Replace a $TARGET string with a $NEW string repo-wide.
-git-grep-replace() {
+git-squash-x() {
+  # TODO: check args, if not $1 then default to '2'
   git-in-repo && \
-  git grep --full-name --files-with-matches "$1" \
-    | xargs sed --in-place -e "s/$1/$2/";
+  git rebase -i HEAD~"$1"
 }
 
 git-sync-fork() {
