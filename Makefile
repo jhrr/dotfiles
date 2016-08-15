@@ -19,7 +19,7 @@ z_src=https://github.com/rupa/z/raw/master/z.sh
 .PHONY: install help symlinks scripts \
 	playlists mpd.log mpd.db mpd.pid mpd.state
 
-install: symlinks scripts 
+install: symlinks scripts
 
 help:
 	@echo "Usage: make [OPTION]"
@@ -43,14 +43,9 @@ symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@echo "Symlinking Linux specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-symlinks-osx: nix-aliases osx
+symlinks-osx: osx
 		@echo "Symlinking OS X specific config files and configuring nix..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
-		@mkdir -p ~/.nixpkgs
-		@ln -fs $(dot)/config.nix ~/.nixpkgs/config.nix
-		@if [ -d ~/code/oss/nixpkgs ] && [ -f ~/.nix-defexpr/channels ]; then \
-			rm -rf ~/.nix-defexpr/channels; \
-			ln -fns ~/code/oss/nixpkgs ~/.nix-defexpr/nixpkgs; fi;
 
 mpd-config: playlists mpd.log mpd.db mpd.pid mpd.state
 		@echo "Configuring mpd..."
