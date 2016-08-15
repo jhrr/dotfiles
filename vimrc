@@ -59,6 +59,7 @@ let mapleader = ","
 
 inoremap jj <ESC>
 nnoremap <Leader>c :bd<CR>
+nnoremap <Leader>p :r !pbpaste<CR>
 nnoremap <Leader>s :shell<CR>
 nnoremap <Leader>S :StripWhitespace<CR>
 nnoremap <Leader>v :vsp<CR>
