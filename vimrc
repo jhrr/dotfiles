@@ -16,6 +16,7 @@ set rulerformat=%=%h%m%r%w\ %(%c%V%),%l/%L\ %P
 set autoindent
 set autoread
 set backspace=indent,eol,start
+" set clipboard=unamedplus,unnamed,autoselect
 set expandtab
 set hidden
 set history=1000
