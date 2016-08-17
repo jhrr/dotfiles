@@ -110,6 +110,7 @@ extract() {
 # TODO: Consider using '*/\.*', also 'node_modules'?
 ff() {
   find . -not -iwholename '*.git*' \
+    -not -name '*.pyc' \
     -type f -iname "*""$*""*";
 }
 
@@ -117,6 +118,7 @@ ff() {
 # Execute a command over the results of a call to `find'.
 fx() {
   find . -not -iwholename '*.git*' \
+    -not -name '*.pyc' \
     -type f -iname "*""${1:-}""*" \
     -exec "${2:-file}" {} \;  ;
 }
@@ -125,6 +127,7 @@ fx() {
 # Grep for patterns over the results of a call to `find'.
 frep() {
   find . -not -iwholename '*.git*' \
+    -not -name '*.pyc' \
     -name "${2}" -print0 \
     | xargs -0 ack -i "${1}";
 }
