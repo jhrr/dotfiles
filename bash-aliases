@@ -107,21 +107,25 @@ extract() {
   fi
 }
 
+# TODO: Consider using '*/\.*', also 'node_modules'?
 ff() {
-  find . -type f -iname "*""$*""*";
+  find . -not -iwholename '*.git*' \
+    -type f -iname "*""$*""*";
 }
 
 # Usage: fx FILE-IDENTIFIER COMMAND
 # Execute a command over the results of a call to `find'.
 fx() {
-  find . -type f -iname "*""${1:-}""*" \
+  find . -not -iwholename '*.git*' \
+    -type f -iname "*""${1:-}""*" \
     -exec "${2:-file}" {} \;  ;
 }
 
 # Usage: frep REGEX FILE-SPECIFIER
 # Grep for patterns over the results of a call to `find'.
 frep() {
-  find . -name "${2}" -print0 \
+  find . -not -iwholename '*.git*' \
+    -name "${2}" -print0 \
     | xargs -0 ack -i "${1}";
 }
 
