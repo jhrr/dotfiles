@@ -170,9 +170,16 @@ git-purge-local-merged() {
 }
 
 git-squash-x() {
-  # TODO: check args, if not $1 then default to '2'
   git-in-repo && \
-  git rebase -i HEAD~"$1"
+  if [[ $1 =~ ^-?[0-9]+$ ]]; then
+    git rebase -i HEAD~"$1"
+  else
+    if [[ $# -eq 0 ]]; then
+      git rebase -i HEAD~2
+    else
+      err "Pass in the NUMBER of commits behind HEAD that you desire to rebase upon."
+    fi
+  fi
 }
 
 git-sync-fork() {
