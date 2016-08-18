@@ -151,7 +151,7 @@ generate-timestamped-ssh-key() {
 }
 
 grep-less() {
-  "${GREPPAGE}" --color -ir "$@" . | less;
+  "${GREPPAGE}" --color -ir "$1" "$2" | less;
 }
 alias g='grep-less'
 
