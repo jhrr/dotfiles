@@ -114,7 +114,7 @@ ff() {
     -type f -iname "*""$*""*";
 }
 
-# Usage: fx FILE-IDENTIFIER COMMAND
+# Usage: fx FILE-SPECIFIER COMMAND
 # Execute a command over the results of a call to `find'.
 fx() {
   find . -not -iwholename '*.git*' \
