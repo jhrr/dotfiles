@@ -105,7 +105,7 @@ git-commit-all-uuid() {
   git-in-repo && \
     git add . && git commit -v -m "$(uuidgen)";
 }
-alias gcAU='git-commit-all-uuid';
+alias gcAU='git-commit-all-uuid'
 
 # Usage: git-conflict-cherry-pick $PARENT_BRANCH $HASH
 # Apply a $HASH to the HEAD of the current branch after making it a
@@ -181,6 +181,7 @@ git-squash-x() {
     fi
   fi
 }
+alias gsx='git-squash-x'
 
 git-sync-fork() {
   local _remote
