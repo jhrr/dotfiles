@@ -78,6 +78,9 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" Reformat JSON block
+" :%!python -m json.tool
+
 runtime macros/matchit.vim
 
 set t_Co=256
