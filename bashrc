@@ -90,8 +90,8 @@ fi
 
 [[ -f /usr/local/bin/virtualenvwrapper.sh ]] && {
   . '/usr/local/bin/virtualenvwrapper.sh'
-  alias ve2='mkvirtualenv --python=$(which python2)'
-  alias ve3='mkvirtualenv --python=$(which python3)'
+  alias ve2='mkvirtualenv --python=$(command -v python2)'
+  alias ve3='mkvirtualenv --python=$(command -v python3)'
 }
 WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
