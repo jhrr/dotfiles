@@ -88,14 +88,15 @@ else
   export PAGER MANPAGER
 fi
 
-if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
+[[ -f /usr/local/bin/virtualenvwrapper.sh ]] && {
   . '/usr/local/bin/virtualenvwrapper.sh'
-# elif [[ -f "${HOME}"/.nix-profile/bin/virtualenvwrapper.sh ]]; then
-  # . "${HOME}/.nix-profile/bin/virtualenvwrapper.sh"
-fi
+  alias ve2='mkvirtualenv --python=$(which python2)'
+  alias ve3='mkvirtualenv --python=$(which python3)'
+}
 WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
+
 
 [[ -f /usr/local/etc/bash_completion.d/password-store ]] &&
   . /usr/local/etc/bash_completion.d/password-store
