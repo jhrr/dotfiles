@@ -59,6 +59,7 @@ nnoremap <C-y> 3<C-y>
 let mapleader = ","
 
 inoremap jj <ESC>
+inoremap <S-Tab> <C-V><Tab>
 nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>p :r !pbpaste<CR>
 nnoremap <Leader>s :shell<CR>
