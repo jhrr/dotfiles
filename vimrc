@@ -66,6 +66,9 @@ nnoremap <Leader>S :StripWhitespace<CR>
 nnoremap <Leader>v :vsp<CR>
 nnoremap <Leader>w :w<CR>
 
+"Unset "last search pattern" register by hitting return.
+nnoremap <CR> :noh<CR><CR>
+
 " Copy to system clipboard
 vmap <Leader>y "+y
 vmap <Leader>d "+d
