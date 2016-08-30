@@ -5,6 +5,8 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+colors zenburn
+
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set nobackup
