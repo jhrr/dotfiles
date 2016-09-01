@@ -170,6 +170,9 @@ git-purge-local-merged() {
     | tr -d '\n';
 }
 
+# Usage: git-squash-x $INTEGER
+# Interactive rebase an $INTEGER's worth of commits backwards in the commit
+# history. If $INTEGER is not provided then default to 1 commit behind HEAD.
 git-squash-x() {
   git-in-repo && \
   if [[ $1 =~ ^-?[0-9]+$ ]]; then

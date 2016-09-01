@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+_python=$(command -v python)
+
+[[ "$(uname -s)" =~ Darwin ]] && IS_OSX=true
+
+if [[ "$IS_OSX" ]]; then
+  if command -v 'greadlink' >/dev/null 2>&1; then
+    greadlink -f "$_python"
+  else
+    echo 'Install coreutils!' >&2
+  fi
+else
+  readlink -f "$_python"
+fi
