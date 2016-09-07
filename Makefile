@@ -44,7 +44,7 @@ symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
 symlinks-osx: osx
-		@echo "Symlinking OS X specific config files and configuring nix..."
+		@echo "Symlinking OS X specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
 mpd-config: playlists mpd.log mpd.db mpd.pid mpd.state

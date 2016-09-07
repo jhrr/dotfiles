@@ -129,6 +129,7 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 nnoremap <Leader>f :CtrlP<CR>
+nnoremap <Leader>j :CtrlPBuffer<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
 
@@ -160,7 +161,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint_d')
 let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
-let g:syntastic_python_flake8_exe='whichpy'
+" let g:syntastic_python_flake8_exe='whichpy'
 
 "Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
