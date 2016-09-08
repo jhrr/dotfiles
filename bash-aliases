@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
@@ -58,6 +59,15 @@ alias suv='sudo ${VISUAL}'
 # Usage: add-vim-plugin "http://some.url/to/a/git/repo"
 add-vim-plugin() {
   git -C ~/.vim/bundle submodule add "$@";
+}
+
+# Usage: add-shellcheck-shebang $SHELL $FILE
+add-shellcheck-shebang() {
+  if command -v 'gsed' >/dev/null 2>&1; then
+    gsed -i "1s/^/# shellcheck shell=$1\n/" "$2"
+  else
+    echo 'Install gnu-sed!' >&2
+  fi
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
