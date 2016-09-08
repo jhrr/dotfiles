@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
@@ -90,6 +91,7 @@ fi
 
 [[ -f /usr/local/bin/virtualenvwrapper.sh ]] && {
   . '/usr/local/bin/virtualenvwrapper.sh'
+  # TODO: disallow when $VIRTUAL_ENV
   alias ve2='mkvirtualenv --python=$(command -v python2)'
   alias ve3='mkvirtualenv --python=$(command -v python3)'
 }
