@@ -37,7 +37,7 @@ __git_shortcut() {
 __git_shortcut  ga  add '"$@"'
 __git_shortcut  gA  add '--all && git status'
 __git_shortcut  gb  branch '--color -v'
-__git_shortcut  gbv  branch '--color -v | cut -c1-100'
+__git_shortcut  gbv  branch '--color -v | cut -c1-200'
 __git_shortcut  gbr  branch '"$@"'
 __git_shortcut  gc  commit '-v -m "$@"'
 __git_shortcut  gco  checkout '"$@"'
