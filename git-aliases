@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
