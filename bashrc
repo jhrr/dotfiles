@@ -149,15 +149,15 @@ start_mpd() {
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
-  _ls_colors='fi=00;00:'     # file
-  _ls_colors+='pi=04;91:'    # fifo
-  _ls_colors+='so=00;95:'    # socket
-  _ls_colors+='ln=00;32:'    # symlink
-  _ls_colors+='di=00;94:'    # directory
-  _ls_colors+='ex=00;31:'    # executable
-  _ls_colors+='bd=04;93:'    # block special
-  _ls_colors+='cd=00;93:'    # character special
-  _ls_colors+='or=07;31:'    # symlink to non-existent
+  _ls_colors='fi=00;00:'   # file
+  _ls_colors+='pi=04;91:'  # fifo
+  _ls_colors+='so=00;95:'  # socket
+  _ls_colors+='ln=00;32:'  # symlink
+  _ls_colors+='di=00;94:'  # directory
+  _ls_colors+='ex=00;31:'  # executable
+  _ls_colors+='bd=04;93:'  # block special
+  _ls_colors+='cd=00;93:'  # character special
+  _ls_colors+='or=07;31:'  # symlink to non-existent
 
   _ls_colors+='*.gz=01;31:'
   _ls_colors+='*.tar=01;31:'
