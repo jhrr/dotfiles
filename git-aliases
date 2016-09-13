@@ -34,7 +34,7 @@ __git_shortcut() {
   complete -o default -o nospace -F "_git_$2_shortcut" "$1"
 }
 
-# Quote block of arguments if it contains any spaces.
+# Quote block of arguments if it contains spaces or expansions.
 __git_shortcut  ga  add '"$@"'
 __git_shortcut  gA  add '--all && git status'
 __git_shortcut  gb  branch '--color -v'
@@ -48,7 +48,7 @@ __git_shortcut  gd  diff '"$@"'
 __git_shortcut  gdc  diff --cached
 __git_shortcut  gdo  diff 'origin/$(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gF  fetch --all
-__git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd `gh`
+__git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd $(gh)
 __git_shortcut  gPo  push 'origin $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gPoF  push 'origin -f $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gpL  pull '--ff-only origin $(git rev-parse --abbrev-ref HEAD)'
