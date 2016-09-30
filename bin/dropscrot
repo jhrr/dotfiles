@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+scrot "${HOME}/Dropbox/Screenshots/Scrotshot\ %Y-%m-%d\ %H.%M.%S.png"

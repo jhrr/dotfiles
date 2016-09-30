@@ -32,5 +32,3 @@
     keepTemporaries = false
     trustExitCode = false
     keepBackup = false
-[http]
-    sslCAinfo = /Users/jhrr/.certs/cacert.pem

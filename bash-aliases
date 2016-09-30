@@ -11,6 +11,8 @@ alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 alias curldump='curl --trace -'
+[[ "${IS_LINUX}" == true ]] &&
+  alias rmorph='pacman -Rsn $(pacman -Qqtd)' # Remove orphan packages on arch
 alias delpyc='find . -name '\*.pyc' -ls -exec rm {} \;'
 alias du='du -h -c'
 alias du1='du -h --max-depth=1'
