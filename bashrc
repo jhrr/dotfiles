@@ -175,7 +175,7 @@ start_mpd() {
       # tmux source ~/.tmux.conf
   # fi
 
-  # start_mpd;
+  start_mpd;
 }
 
 if command -v 'gpg-agent' >/dev/null 2>&1; then

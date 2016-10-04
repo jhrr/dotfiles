@@ -47,11 +47,12 @@ symlinks-osx: osx
 		@echo "Symlinking OS X specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-mpd-config: playlists mpd.log mpd.db mpd.pid mpd.state
+mpd-config: mpd.log mpd.db mpd.pid mpd.state
 		@echo "Configuring mpd..."
 		@mkdir -p ~/.mpd
+		@mkdir -p ~/.mpd/playlists
 		@ln -fs $(dot)/mpd ~/.mpd/mpd.conf
-		@for file in $^; do; touch ~/.mpd/$$file; done
+		@for file in $^; do touch ~/.mpd/$$file; done
 
 vim-config:
 		@echo "Configuring vim..."
