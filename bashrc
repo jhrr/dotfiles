@@ -99,7 +99,6 @@ WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
-
 [[ -f /usr/local/etc/bash_completion.d/password-store ]] &&
   . /usr/local/etc/bash_completion.d/password-store
 [[ -r /usr/share/bash-completion/bash_completion ]] &&
@@ -136,7 +135,7 @@ start_mpd() {
         if command -v 'mpdscribble' >/dev/null 2>&1; then
           if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
             [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
-              "mpdscribble --conf ${HOME}/.mpdscribble/mpdscribble.conf &"
+              mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
           fi
         fi
       }
