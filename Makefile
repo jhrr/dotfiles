@@ -51,7 +51,9 @@ mpd-config: mpd.log mpd.db mpd.pid mpd.state
 		@echo "Configuring mpd..."
 		@mkdir -p ~/.mpd
 		@mkdir -p ~/.mpd/playlists
+		@mkdir -p ~/.ncmcpp
 		@ln -fs $(dot)/mpd ~/.mpd/mpd.conf
+		@ln -fs $(dot)/ncmcpp ~/.ncmcpp/config
 		@for file in $^; do touch ~/.mpd/$$file; done
 
 vim-config:
