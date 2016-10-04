@@ -1,0 +1,9 @@
+[mpdscribble]
+log = /Users/jhrr/.mpdscribble/mpdscribble.log
+verbose = 2
+
+[last.fm]
+url = http://post.audioscrobbler.com/
+# username =
+# password =
+journal = /Users/jhrr/.mpdscribble/lastfm.journal

@@ -52,9 +52,12 @@ mpd-config: mpd.log mpd.db mpd.pid mpd.state
 		@mkdir -p ~/.mpd
 		@mkdir -p ~/.mpd/playlists
 		@mkdir -p ~/.ncmcpp
+		@mkdir -p ~/.mpdscribble
 		@ln -fs $(dot)/mpd ~/.mpd/mpd.conf
 		@ln -fs $(dot)/ncmcpp ~/.ncmcpp/config
+		@ln -fs $(dot)/mpdscribble ~/.mpdscribble/mpdscribble.conf
 		@for file in $^; do touch ~/.mpd/$$file; done
+		@echo "Ensure your last.fm credentials are in mpdscribble.conf..."
 
 vim-config:
 		@echo "Configuring vim..."
