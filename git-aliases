@@ -99,7 +99,7 @@ git-commit-all-for-squash() {
 }
 alias gcAS='git-commit-all-for-squash'
 alias kwatz='git-commit-all-for-squash'
-alias ummon='git-commit-all-for-squash && git rebase -i HEAD~2'
+alias mu='git-commit-all-for-squash && git rebase -i HEAD~2'
 
 # Usage: git-commit-all-uuid
 # Fast commits for gists and such like when you don't want to write a
