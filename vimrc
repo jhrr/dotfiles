@@ -20,7 +20,7 @@ set autoread
 set backspace=indent,eol,start
 " set clipboard=unamedplus,unnamed,autoselect
 set expandtab
-set fileformats+=dos
+set filetypes+=dos
 set hidden
 set history=1000
 set hlsearch
