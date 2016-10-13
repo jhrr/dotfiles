@@ -132,9 +132,10 @@ github-create-repo() {
 # Usage: git-grep-replace $TARGET $NEW
 # Replace a $TARGET string with a $NEW string repo-wide.
 git-grep-replace() {
+  # TODO: make sed & gsed portable
   git-in-repo && \
   git grep --full-name --files-with-matches "$1" \
-    | xargs sed --in-place -e "s/$1/$2/";
+    | xargs gsed --in-place -e "s/$1/$2/";
 }
 
 # Usage: git-minimum-hash
