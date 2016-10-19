@@ -138,6 +138,12 @@ git-grep-replace() {
     | xargs gsed --in-place -e "s/$1/$2/";
 }
 
+# Usage: git-merge-resolve
+# Open files with merge conflicts with $EDITOR.
+git-merge-resolve() {
+  "${EDITOR}" "$(git diff --name-only | uniq)";
+}
+
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
