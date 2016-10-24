@@ -134,14 +134,6 @@ nnoremap <Leader>j :CtrlPBuffer<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
 
-" Modes
-autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
-autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
-autocmd FileType css setlocal shiftwidth=2 softtabstop=2
-autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
-autocmd FileType sass setlocal shiftwidth=2 softtabstop=2
-autocmd FileType html setlocal shiftwidth=2 softtabstop=2
-
 autocmd FileType nix setlocal commentstring=#\ %s
 
 let g:rustfmt_autosave = 1
