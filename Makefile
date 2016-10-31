@@ -55,6 +55,7 @@ mpd-config: mpd.log mpd.db mpd.pid mpd.state
 		@mkdir -p ~/.mpdscribble
 		@ln -fs $(dot)/mpd ~/.mpd/mpd.conf
 		@ln -fs $(dot)/ncmpcpp ~/.ncmpcpp/config
+		@ln -fs $(dot)/ncmpcpp_bindings ~/.ncmpcpp/bindings
 		@ln -fs $(dot)/mpdscribble ~/.mpdscribble/mpdscribble.conf
 		@for file in $^; do touch ~/.mpd/$$file; done
 		@echo "Ensure your last.fm credentials are in mpdscribble.conf..."
