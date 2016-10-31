@@ -1,0 +1,2 @@
+def_key "D"
+  delete_playlist_items
