@@ -3,7 +3,8 @@
 chflags nohidden ~/Library
 
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 defaults write com.apple.dock launchanim -bool false

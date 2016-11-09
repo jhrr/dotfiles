@@ -22,6 +22,7 @@ set backspace=indent,eol,start
 set expandtab
 set fileformat=unix
 set fileformats=unix,dos
+set formatoptions-=t
 set hidden
 set history=1000
 set hlsearch
