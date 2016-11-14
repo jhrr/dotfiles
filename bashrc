@@ -105,6 +105,8 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
   . /usr/share/bash-completion/bash_completion
 [[ -f /etc/bash_completion.d/password-store ]] &&
   . /etc/bash_completion.d/password-store
+[[ -f ~/bin/django-bash-completion ]] &&
+  . ~/bin/django-bash-completion
 [[ -f ~/bin/fabric-completion ]] &&
   . ~/bin/fabric-completion
 [[ -f ~/bin/git-completion ]] &&
