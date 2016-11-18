@@ -63,7 +63,7 @@ _set_preferred() {
 editors="vim:vi:emacs"
 browsers="elinks:lynx:links"
 xbrowsers="chromium:firefox:uzbl"
-greppage="ack:grep"
+greppage="rg:ack:grep"
 
 _set_preferred "VISUAL" $editors
 _set_preferred "EDITOR" $editors

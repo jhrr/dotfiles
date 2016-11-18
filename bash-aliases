@@ -166,8 +166,12 @@ generate-timestamped-ssh-key() {
 }
 
 grep-less() {
-  "${GREPPAGE}" --color -ir "$@" | less
+  "${GREPPAGE}" -p -i "$@" | less
 }
+
+# grep-less() {
+#   "${GREPPAGE}" --color -ir "$@" | less
+# }
 alias g='grep-less'
 
 # Grep for "TODO" or "todo" anywhere from and below
