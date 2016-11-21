@@ -155,14 +155,16 @@ let g:syntastic_javascript_checkers = ['eslint']
 let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint_d')
 let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
-let g:syntastic_python_checkers=['flake8']
+let g:jsx_ext_required = 0
+
+let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_exe = system('whichpy')
 let g:syntastic_python_flake8_args = '--max-complexity 10'
 
 "Ultisnips
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<c-b>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
 
 " HUD Unicode Digraphs
 inoremap <expr> <C-J> HUDG_GetDigraph()
