@@ -138,12 +138,6 @@ git-grep-replace() {
     | xargs gsed --in-place -e "s/$1/$2/";
 }
 
-# Usage: git-merge-resolve
-# Open files with merge conflicts with $EDITOR.
-git-merge-resolve() {
-  "${EDITOR}" "$(git diff --name-only | uniq)";
-}
-
 # Usage: git-minimum-hash
 # Print the entire SHA1 commit hash of the current HEAD with the
 # minimum hash highlighted.
@@ -177,6 +171,20 @@ git-purge-local-merged() {
     | grep -v '^.*' \
     | grep -v 'master' \
     | tr -d '\n';
+}
+
+# Usage: git-resolve-merge
+# Open files with merge conflicts sequentially using $EDITOR.
+git-resolve-merge() {
+  "${EDITOR}" "$(git diff --name-only | uniq)";
+}
+
+# Usage: git-resolve-rebase
+# Grep for all files containing merge conflicts and checkout the file from the
+# current branch in preference to the file from the branch we are rebasing onto.
+git-resolve-rebase() {
+  grep -lr '<<<<<<<' . \
+    | xargs git checkout --ours
 }
 
 # Usage: git-squash-x $INTEGER
