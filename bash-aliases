@@ -40,6 +40,7 @@ if [[ "${IS_OSX}" == true ]]; then
 else
   alias shred='shred -zuv'
 fi
+alias sp='python manage.py shell_plus'
 alias startpg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
 alias stoppg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log stop'
 alias reload='. ${HOME}/.bash_profile'
