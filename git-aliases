@@ -180,13 +180,16 @@ git-resolve-merge() {
 }
 
 # Usage: git-resolve-rebase
-# Grep for all files containing merge conflicts and checkout the file from the
-# current branch in preference to the file from the branch we are rebasing onto.
-# git-resolve-rebase() {
-#   grep -lr '<<<<<<<' . \
-#     | xargs git checkout --ours    -- during a rebase 'ours' is the anonymous, detached head branch being built
-#     | xargs git checkout --theirs  -- 'theirs' is the the original pre-rebase branch
-# }
+# Grep for all files with merge conflicts and checkout the diffs from the
+# current branch in preference to, or on top of, those from the upstream branch
+# we are rebasing onto.
+git-resolve-rebase() {
+  # During a rebase 'ours' is the anonymous, detached HEAD branch being
+  # built up and 'theirs' refers to the current, working branch.
+  # Mnemonic: whatever HEAD is pointing to is 'ours'.
+  grep -lr '<<<<<<<' . \
+    | xargs git checkout --theirs
+}
 
 # Usage: git-squash-x $INTEGER
 # Interactive rebase an $INTEGER's worth of commits backwards in the commit
