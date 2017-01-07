@@ -180,7 +180,7 @@ git-resolve-merge() {
 }
 
 # Usage: git-resolve-rebase
-# Grep for all files with merge conflicts and checkout the diffs from the
+# Grep for all files with merge conflicts and checkout the file from the
 # current branch in preference to, or on top of, those from the upstream branch
 # we are rebasing onto.
 git-resolve-rebase() {
@@ -189,6 +189,8 @@ git-resolve-rebase() {
   # Mnemonic: whatever HEAD is pointing to is 'ours'.
   grep -lr '<<<<<<<' . \
     | xargs git checkout --theirs
+  # TODO: maybe prefer 'git rebase -s recursive -X theirs'
+  # TODO: this also overwrites the whole file? maybe not ideal
 }
 
 # Usage: git-squash-x $INTEGER
