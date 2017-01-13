@@ -86,7 +86,7 @@ git-in-repo() {
 # Usage: git-commit-for-squash
 git-commit-for-squash() {
   git-in-repo && \
-    git commit -v -m 'squash!';
+  git commit -v -m 'squash!';
 }
 alias gcS='git-commit-for-squash'
 
@@ -95,7 +95,7 @@ alias gcS='git-commit-for-squash'
 # $ git config --global rebase.autosquash true
 git-commit-all-for-squash() {
   git-in-repo && \
-    git add . && git commit -v -m 'squash!';
+  git add . && git commit -v -m 'squash!';
 }
 alias gcAS='git-commit-all-for-squash'
 alias kwatz='git-commit-all-for-squash'
@@ -106,7 +106,7 @@ alias mu='git-commit-all-for-squash && git rebase -i HEAD~2'
 # meaningful commit message but "kjhasdfd" is getting annoying.
 git-commit-all-uuid() {
   git-in-repo && \
-    git add . && git commit -v -m "$(uuidgen)";
+  git add . && git commit -v -m "$(uuidgen)";
 }
 alias gcAU='git-commit-all-uuid'
 
