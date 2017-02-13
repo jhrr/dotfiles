@@ -123,9 +123,19 @@ extract() {
   fi
 }
 
-# TODO: Consider using '*/\.*', also 'node_modules'?
+# TODO: Consider using '*/\.*'
+fd() {
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
+    -not -name '*.pyc' \
+    -type d -iname "*""$*""*";
+}
+
 ff() {
-  find . -not -iwholename '*.git*' \
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
     -not -name '*.pyc' \
     -type f -iname "*""$*""*";
 }
