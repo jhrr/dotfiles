@@ -1,4 +1,4 @@
-music_directory "~/Music"
+music_directory "~/Dropbox/music/keep"
 playlist_directory "~/.mpd/playlists"
 db_file "~/.mpd/mpd.db"
 log_file "~/.mpd/mpd.log"
@@ -9,18 +9,11 @@ auto_update_depth "2"
 follow_outside_symlinks "yes"
 follow_inside_symlinks "yes"
 
+bind_to_address "127.0.0.1"
+port "6600"
+
 audio_output {
     type "osx"
     name "CoreAudio"
     mixer_type "software"
 }
-
-decoder {
-    plugin "mp4ff"
-    enabled "no"
-}
-
-bind_to_address "127.0.0.1"
-port "6600"
-
-user "jhrr"
