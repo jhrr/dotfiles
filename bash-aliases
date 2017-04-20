@@ -32,8 +32,9 @@ alias passc='pass -c'
 alias psql='sudo -i -u postgres psql'
 alias qp='ping -c 5 8.8.8.8'
 # TODO: push pwd to stack and pop back when server closes?
-alias rds='cd $(gh) && reset && ./manage.py runserver_plus --configuration=Dev'
-alias rdsql='cd $(gh) && reset && ./manage.py runserver_plus --print-sql --configuration=Dev'
+alias rs='cd $(gh) && ./manage.py runserver'
+alias rds='cd $(gh) && ./manage.py runserver_plus --configuration=Dev'
+alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=Dev'
 alias shclr='msgcat --color=test'
 if [[ "${IS_OSX}" == true ]]; then
   alias shred='gshred -zuv'
