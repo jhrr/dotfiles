@@ -33,8 +33,8 @@ unset TERMCAP
 shopt -s histappend
 HISTCONTROL=ignoreboth:ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
-HISTFILESIZE=10000
-HISTSIZE=10000
+HISTSIZE=
+HISTFILESIZE=
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 IS_LINUX=false
