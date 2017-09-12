@@ -25,6 +25,9 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 [ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
   PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
 
+# Temporary after homebrew bork.
+PATH="/usr/local/Cellar/gnupg/2.1.23/bin:$PATH"
+
 if [ -d /etc/profile.d/ ]; then
   for profile in /etc/profile.d/*.sh; do
     [ -r "${profile}" ] &&

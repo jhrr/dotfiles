@@ -134,6 +134,7 @@ nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>j :CtrlPBuffer<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>h :CtrlPMixed<CR>
+nnoremap <Leader>t :!./manage.py test<CR>
 
 autocmd FileType nix setlocal commentstring=#\ %s
 
