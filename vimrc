@@ -55,6 +55,7 @@ set wildmode=list:longest
 nmap <silent> <leader>s :set nolist!<CR>
 
 set grepprg=ack\ -i
+set rtp+=/usr/local/opt/fzf
 
 nnoremap ' `
 nnoremap ` '
@@ -130,10 +131,17 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 " Can't use 'custom_ignore' and 'user_command' " together
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-nnoremap <Leader>f :CtrlP<CR>
-nnoremap <Leader>j :CtrlPBuffer<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
-nnoremap <Leader>h :CtrlPMixed<CR>
+" nnoremap <Leader>f :CtrlP<CR>
+" nnoremap <Leader>j :CtrlPBuffer<CR>
+" nnoremap <Leader>b :CtrlPBuffer<CR>
+" nnoremap <Leader>h :CtrlPMixed<CR>
+
+nnoremap ; :Buffers<CR>
+nnoremap <Leader>h :Files<CR>
+nnoremap <Leader>j :GFiles<CR>
+nnoremap <Leader>f :GFiles?<CR>
+nnoremap <Leader>b :Buffers<CR>
+
 nnoremap <Leader>t :!./manage.py test<CR>
 
 autocmd FileType nix setlocal commentstring=#\ %s
