@@ -125,10 +125,8 @@ augroup MarkMargin
 augroup END
 
 " Ctrl-P
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-" TODO: ignore via gitignore.
-" Can't use 'custom_ignore' and 'user_command' " together
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 " nnoremap <Leader>f :CtrlP<CR>

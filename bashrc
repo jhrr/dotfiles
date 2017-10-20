@@ -124,6 +124,8 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/.prompt ]] &&
   . ~/.prompt
 
+[[ -f ~/.fzf.bash ]] &&
+  . ~/.fzf.bash
 [[ -f ~/bin/z ]] &&
   . ~/bin/z
 
@@ -193,5 +195,3 @@ fi
 
 SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
 export SHELLCHECK_OPTS
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
