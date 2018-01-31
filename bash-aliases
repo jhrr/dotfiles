@@ -16,6 +16,7 @@ alias du='du -h -c'
 alias du1='du -h --max-depth=1'
 alias enx='vim ${HOME}/.nixpkgs/config.nix'
 alias exm='ec ${HOME}/.xmonad/xmonad.hs'
+alias ecshell='ec run web -- python manage.py shell'
 alias grd='ls -aliF | ${GREPPAGE} -i'
 alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
@@ -148,11 +149,11 @@ fx() {
   find . -not -iwholename '*.git*' \
     -not -name '*.pyc' \
     -type f -iname "*""${1:-}""*" \
-    -exec "${2:-file}" {} \;  ;
+    -exec "${2:-file}" {} \; ;
 }
 
 # Usage: frep REGEX FILE-SPECIFIER
-# Grep for patterns over the results of a call to `find'.
+# Grep for patterns within the results of a call to `find'.
 frep() {
   find . -not -iwholename '*.git*' \
     -not -name '*.pyc' \

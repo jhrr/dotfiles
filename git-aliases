@@ -178,6 +178,7 @@ git-purge-local-merged() {
 git-resolve-merge() {
   "${EDITOR}" "$(git diff --name-only | uniq)";
 }
+alias grsv='git-resolve-merge'
 
 # Usage: git-resolve-rebase
 # Grep for all files with merge conflicts and checkout the file from the
