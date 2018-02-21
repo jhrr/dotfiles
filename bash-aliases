@@ -20,6 +20,7 @@ alias ecshell='ec run web -- python manage.py shell'
 alias grd='ls -aliF | ${GREPPAGE} -i'
 alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
+alias killnode='killall -KILL node'
 alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
