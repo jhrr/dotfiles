@@ -196,6 +196,11 @@ grep-todo() {
 }
 alias gtodo='grep-todo'
 
+# Usage: kill-port PORT
+kill-port() {
+  lsof -t -i tcp:"$1" | xargs kill -9
+}
+
 md() {
   mkdir -p "$@" && cd "$@" || exit;
 }
