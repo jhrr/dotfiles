@@ -89,15 +89,17 @@ else
   export PAGER MANPAGER
 fi
 
-[[ -f /usr/local/bin/virtualenvwrapper.sh ]] && {
-  . '/usr/local/bin/virtualenvwrapper.sh'
-  # TODO: disallow when $VIRTUAL_ENV
+WORKON_HOME=~/.virtualenvs
+VIRTUAL_ENV_DISABLE_PROMPT=1
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT \
+  VIRTUALENVWRAPPER_PYTHON VIRTUALENVWRAPPER_SCRIPT
+[[ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]] && {
+  . '/usr/local/bin/virtualenvwrapper_lazy.sh'
   alias ve2='mkvirtualenv --python=$(command -v python2)'
   alias ve3='mkvirtualenv --python=$(command -v python3)'
 }
-WORKON_HOME=~/.virtualenvs
-VIRTUAL_ENV_DISABLE_PROMPT=1
-export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
 [[ -f /usr/local/etc/bash_completion.d/password-store ]] &&
   . /usr/local/etc/bash_completion.d/password-store
