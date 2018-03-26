@@ -76,7 +76,7 @@ add-vim-plugin() {
 # Usage: add-shellcheck-shebang $SHELL $FILE
 add-shellcheck-shebang() {
   if command -v 'gsed' >/dev/null 2>&1; then
-    gsed -i "1s/^/# shellcheck shell=$1\n/" "$2"
+    gsed -i "1s/^/# shellcheck shell=$1\\n" "$2"
   else
     echo 'Install gnu-sed!' >&2
   fi
@@ -221,7 +221,7 @@ pip-grep() {
 pskill() {
   local pid
   pid=$(pgrep -f "$1")
-  printf "Killing: %s\n" "$pid"
+  printf "Killing: %s\\n" "$pid"
   kill -9 "$pid"
 }
 
@@ -240,6 +240,16 @@ routerip() {
       mpd --kill
       sudo shutdown -r now
   }
+
+is-vim-running() {
+  local proc
+  proc=$(tty | sed -e "s:/dev/::")
+  ps \
+    | "${GREPPAGE}" /usr/local/bin/vim \
+    | "${GREPPAGE}" -v rg \
+    | ${GREPPAGE} "$proc";
+}
+alias iv='is-vim-running'
 
 # Emacs daemon functions.
 
