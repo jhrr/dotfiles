@@ -245,9 +245,9 @@ is-vim-running() {
   local proc
   proc=$(tty | sed -e "s:/dev/::")
   ps \
-    | "${GREPPAGE}" /usr/local/bin/vim \
+    | "${GREPPAGE}" '/usr/local/bin/vim' \
     | "${GREPPAGE}" -v rg \
-    | ${GREPPAGE} "$proc";
+    | "${GREPPAGE}" "$proc";
 }
 alias iv='is-vim-running'
 
