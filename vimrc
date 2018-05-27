@@ -139,6 +139,7 @@ nnoremap <Leader>h :Files<CR>
 nnoremap <Leader>j :GFiles<CR>
 nnoremap <Leader>f :GFiles?<CR>
 nnoremap <Leader>b :Buffers<CR>
+" Clear higlights
 nnoremap <Leader>L :noh<CR>
 nnoremap <Leader>t :!./manage.py test<CR>
 
