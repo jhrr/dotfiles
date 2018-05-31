@@ -84,7 +84,7 @@ if command -v less >/dev/null 2>&1; then
   MANPAGER="${PAGER}"
   export LESS PAGER MANPAGER
 else
-  PAGER=more
+  PAGER="more"
   MANPAGER="${PAGER}"
   export PAGER MANPAGER
 fi
