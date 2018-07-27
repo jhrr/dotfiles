@@ -158,6 +158,7 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options += '-Wall -Wextra -Wpedantic'
 let g:syntastic_cpp_check_header = 1
+let g:syntastic_rst_checkers=['sphinx']
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
