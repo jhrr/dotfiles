@@ -28,6 +28,7 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 # Temporary after homebrew bork.
 PATH="/usr/local/Cellar/gnupg/2.1.23/bin:$PATH"
 PATH="/Users/jhrr/Library/Python/3.6/bin:$PATH"
+PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 PATH="$PATH:$(brew --prefix gettext)/bin"
 
 if [ -d /etc/profile.d/ ]; then

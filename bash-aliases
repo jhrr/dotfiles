@@ -184,7 +184,7 @@ generate-timestamped-ssh-key() {
 
 grep-less() {
   if command -v 'rg' >/dev/null 2>&1; then
-    "${GREPPAGE}" -p -i "$@" | less
+    "${GREPPAGE}" --pretty -i "$@" | less
   else
     "${GREPPAGE}" --color -ir "$@" | less
   fi

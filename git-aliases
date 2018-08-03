@@ -211,6 +211,7 @@ git-squash-x() {
 }
 alias gsx='git-squash-x'
 
+# Usage: git-sync-fork $REMOTE
 git-sync-fork() {
   local _remote
   _remote='upstream'
