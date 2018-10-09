@@ -139,9 +139,12 @@ nnoremap <Leader>h :Files<CR>
 nnoremap <Leader>j :GFiles<CR>
 nnoremap <Leader>f :GFiles?<CR>
 nnoremap <Leader>b :Buffers<CR>
-" Clear higlights
 nnoremap <Leader>L :noh<CR>
-nnoremap <Leader>t :!./manage.py test<CR>
+
+" Pytest
+nmap <silent><Leader>F <Esc>:Pytest file<CR>
+nmap <silent><Leader>C <Esc>:Pytest class<CR>
+nmap <silent><Leader>M <Esc>:Pytest method<CR>
 
 autocmd FileType nix setlocal commentstring=#\ %s
 
@@ -195,3 +198,5 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   endif
 endif
+
+
