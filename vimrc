@@ -146,9 +146,10 @@ nmap <silent><Leader>F <Esc>:Pytest file<CR>
 nmap <silent><Leader>C <Esc>:Pytest class<CR>
 nmap <silent><Leader>M <Esc>:Pytest method<CR>
 
-autocmd FileType nix setlocal commentstring=#\ %s
-
+" Formatting
 let g:rustfmt_autosave = 1
+autocmd FileType nix setlocal commentstring=#\ %s
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
