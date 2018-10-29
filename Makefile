@@ -9,10 +9,6 @@ tmp:=/tmp
 pathogen_src=https://tpo.pe/pathogen.vim
 
 vcp_ver=1.2.1
-vcp_dir=vcprompt-$(vcp_ver)
-vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
-# vcp_src=https://bitbucket.org/gward/vcprompt/downloads/
-vcp_tmp=$(tmp)/$(vcp_dir)
 vep_src=https://www.github.com/jhrr/veprompt.git
 vep_tmp=$(tmp)/veprompt
 z_src=https://github.com/rupa/z/raw/master/z.sh
@@ -79,23 +75,10 @@ else
 symlinks: symlinks-common symlinks-linux mpd-config vim-config
 endif
 
-update-vcprompt:
-		@echo "Getting vcprompt source..."
-		@curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
-		# @curl -sL $(vcp_src)
-		@echo "Compiling vcprompt..."
-		@cd $(vcp_tmp) && ./configure CC=clang
-		@echo "Installing vcprompt in:"
-		@echo $(bin)
-		@$(MAKE) -C $(vcp_tmp)
-		@$(MAKE) -C $(vcp_tmp) install PREFIX=$(dot)
-		@rm -rf $(dot)/man
-		@rm -rf $(vcp_tmp)
-
 update-veprompt:
 		@echo "Getting veprompt source..."
 		@git clone $(vep_src) $(vep_tmp)
-		@echo "Installing vcprompt in:"
+		@echo "Installing veprompt in:"
 		@echo $(bin)
 		@$(MAKE) -C $(vep_tmp)
 		@cp $(vep_tmp)/a.out $(bin)/veprompt
@@ -117,4 +100,4 @@ link-scripts:
 		@mkdir ~/bin
 		@ln -s $(dot)/bin/* ~/bin/
 
-scripts: update-vcprompt update-z update-git-scripts link-scripts
+scripts: update-z update-git-scripts link-scripts
