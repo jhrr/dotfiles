@@ -10,7 +10,8 @@ pathogen_src=https://tpo.pe/pathogen.vim
 
 vcp_ver=1.2.1
 vcp_dir=vcprompt-$(vcp_ver)
-vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
+# vcp_src=https://bitbucket.org/gward/vcprompt/downloads/$(vcp_dir).tar.gz
+vcp_src=https://bitbucket.org/gward/vcprompt/downloads/
 vcp_tmp=$(tmp)/$(vcp_dir)
 vep_src=https://www.github.com/jhrr/veprompt.git
 vep_tmp=$(tmp)/veprompt
@@ -80,7 +81,8 @@ endif
 
 update-vcprompt:
 		@echo "Getting vcprompt source..."
-		@curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
+		# @curl -sL $(vcp_src) | tar -zx --directory=$(tmp)
+		@curl -sL $(vcp_src)
 		@echo "Compiling vcprompt..."
 		@cd $(vcp_tmp) && ./configure CC=clang
 		@echo "Installing vcprompt in:"
