@@ -174,9 +174,9 @@ generate-timestamped-ssh-key() {
   if [[ -n $1 ]]; then
     local timestamp comment ssh_host
     timestamp="$(date -u +"%Y%m%dT%H%M%Z")"
-    comment="$(whoami)@$(hostname)-$timestamp-rsa"
-    ssh_host="$(whoami)@$1-$timestamp-rsa"
-    ssh-keygen -f "${HOME}/.ssh/$ssh_host" -C "$comment"
+    # comment="$(whoami)@$(hostname)-$timestamp-rsa"
+    ssh_host="$(whoami)@$(hostname)--$1-$timestamp-rsa"
+    ssh-keygen -f "${HOME}/.ssh/$ssh_host"
   else
     err "Please provide the ssh server's domain name"
   fi
