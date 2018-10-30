@@ -102,7 +102,7 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT \
 }
 
 [[ -d /usr/local/etc/bash_completion.d/ ]] &&
-  for f in /usr/local/etc/bash_completion.d/*; do . $f; done
+  for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
 [[ -f ~/bin/django-bash-completion ]] &&
   . ~/bin/django-bash-completion
 [[ -f ~/bin/fabric-completion ]] &&
@@ -149,6 +149,13 @@ start_mpd() {
 # with the settings in Xdefaults for linux and bsd.
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
+
+  BREW_PREFIX=$(brew --prefix)
+
+  if ! grep -F -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+    echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+    chsh -s "${BREW_PREFIX}/bin/bash";
+  fi;
 
   _ls_colors='fi=00;00:'   # file
   _ls_colors+='pi=04;91:'  # fifo
