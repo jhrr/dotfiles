@@ -101,12 +101,8 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT \
   alias ve3='mkvirtualenv --python=$(command -v python3)'
 }
 
-[[ -f /usr/local/etc/bash_completion.d/password-store ]] &&
-  . /usr/local/etc/bash_completion.d/password-store
-[[ -r /usr/share/bash-completion/bash_completion ]] &&
-  . /usr/share/bash-completion/bash_completion
-[[ -f /etc/bash_completion.d/password-store ]] &&
-  . /etc/bash_completion.d/password-store
+[[ -d /usr/local/etc/bash_completion.d/ ]] &&
+  for f in /usr/local/etc/bash_completion.d/*; do . $f; done
 [[ -f ~/bin/django-bash-completion ]] &&
   . ~/bin/django-bash-completion
 [[ -f ~/bin/fabric-completion ]] &&
