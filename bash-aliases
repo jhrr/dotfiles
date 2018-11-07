@@ -32,7 +32,8 @@ alias open='xdg-open &>/dev/null'
 alias p='ipython'
 alias passc='pass -c'
 alias pmg='cd $(gh) && ./manage.py migrate'
-alias psql='sudo -i -u postgres psql'
+alias psh='pipenv shell'
+alias psql='sudo -i -u postgres psql'  # TODO: osx version of this?
 alias qp='ping -c 5 8.8.8.8'
 [[ "${IS_LINUX}" == true ]] &&
   alias rmorph='pacman -Rsn $(pacman -Qqtd)' # Remove orphan packages on arch
