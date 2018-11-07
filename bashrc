@@ -101,10 +101,6 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT \
   alias ve3='mkvirtualenv --python=$(command -v python3)'
 }
 
-if command -v pyenv >/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 [[ -d /usr/local/etc/bash_completion.d/ ]] &&
   for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
 [[ -f ~/bin/django-bash-completion ]] &&

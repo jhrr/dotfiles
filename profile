@@ -14,22 +14,18 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 [ -L "${HOME}/bin/git-scripts" ] &&
   PATH="$PATH:${HOME}/bin/git-scripts/"
 
-# [ -L "${HOME}/.nix-profile" ] && {
-#   . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-#   NIXPKGS_PATH="${HOME}/code/oss/nixpkgs"
-#   NIX_PATH=nixpkgs="${NIXPKGS_PATH}"
-#   export NIXPKGS_PATH NIX_PATH
-# }
-
-# TODO: move this somewhere else
 [ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
   PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
 
-# TODO: Temporary after homebrew bork.
-PATH="/usr/local/Cellar/gnupg/2.1.23/bin:$PATH"
-# PATH="/Users/jhrr/Library/Python/3.6/bin:$PATH"
-# PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-PATH="$PATH:$(brew --prefix gettext)/bin"
+[ "$(uname -s)" = Darwin ] && {
+  PATH="$PATH:$(brew --prefix gettext)/bin"
+  test -e "${HOME}/.iterm2_shell_integration.bash" &&
+    . "${HOME}/.iterm2_shell_integration.bash"
+}
+
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 if [ -d /etc/profile.d/ ]; then
   for profile in /etc/profile.d/*.sh; do
