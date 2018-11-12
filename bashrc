@@ -132,7 +132,7 @@ start_mpd() {
   if command -v 'mpd' >/dev/null 2>&1; then
     if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
       [[ -f "${HOME}/.mpd/mpd.conf" ]] && {
-        mpd "${HOME}/.mpd/mpd.conf"
+        mpd "${HOME}/.mpd/mpd.conf" -v
         # Make sure the scrobbler is running if we are starting mpd.
         if command -v 'mpdscribble' >/dev/null 2>&1; then
           if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
