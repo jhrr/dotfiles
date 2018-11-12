@@ -4,6 +4,7 @@ verbose = 2
 
 [last.fm]
 url = http://post.audioscrobbler.com/
-# username =
-# password =
+username =
+# echo -n "password" | md5 | cut -f 1 -d " "
+password =
 journal = /Users/jhrr/.mpdscribble/lastfm.journal
