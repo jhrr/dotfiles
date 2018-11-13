@@ -174,9 +174,9 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--max-complexity 10'
 
 "Ultisnips
-" let g:UltiSnipsExpandTrigger = '<tab>'
-" let g:UltiSnipsJumpForwardTrigger = '<c-b>'
-" let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<c-b>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
 
 " HUD Unicode Digraphs
 inoremap <expr> <C-J> HUDG_GetDigraph()
