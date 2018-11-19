@@ -27,6 +27,7 @@ alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias n='ncmpcpp'
+alias np='mpc toggle'
 alias npmID='npm i -D'
 alias npmIS='npm i -S'
 alias open='xdg-open &>/dev/null'
