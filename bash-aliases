@@ -26,6 +26,7 @@ alias killnode='killall -KILL node'
 alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
+alias n='ncmpcpp'
 alias npmID='npm i -D'
 alias npmIS='npm i -S'
 alias open='xdg-open &>/dev/null'
@@ -173,7 +174,7 @@ fwc() {
 # Usage: generate-timestamped-ssh-key DOMAIN
 generate-timestamped-ssh-key() {
   if [[ -n $1 ]]; then
-    local timestamp comment ssh_host
+    local timestamp ssh_host
     timestamp="$(date -u +"%Y%m%dT%H%M%Z")"
     # comment="$(whoami)@$(hostname)-$timestamp-rsa"
     ssh_host="$(whoami)@$(hostname)--$1-$timestamp-rsa"
