@@ -35,7 +35,8 @@ HISTCONTROL=ignoreboth:ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
 HISTSIZE=
 HISTFILESIZE=
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+PROMPT_COMMAND='history -a;'"${PROMPT_COMMAND}"
+export PROMPT_COMMAND
 
 IS_LINUX=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && IS_LINUX=true
@@ -177,6 +178,22 @@ start_mpd() {
   LS_COLORS="${_ls_colors}"
   CC="$(command -v clang)"
   export LS_COLORS CC
+
+  if [[ $ITERM_SESSION_ID ]]; then
+    # Display the current git repo, or directory, in iterm tabs.
+    get_iterm_label() {
+      if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        local directory
+        directory=${PWD##*/}
+        echo -ne "\\033];$directory\\007"
+      else
+        local branch
+        branch=$(basename "$(git rev-parse --show-toplevel)")
+        echo -ne "\\033];$branch\\007"
+      fi
+    }
+    export PROMPT_COMMAND=get_iterm_label;"${PROMPT_COMMAND}"
+  fi
 
   # if pgrep 'tmux'; then
     # [[ -f ~/.tmux.conf ]] &&
