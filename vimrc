@@ -31,8 +31,9 @@ set ignorecase smartcase
 set laststatus=2
 set modeline
 set modelines=3
-set nowb
+set nofixendofline
 set noruler
+set nowb
 set number
 " set relativenumber
 set scrolloff=3
