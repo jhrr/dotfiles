@@ -55,15 +55,6 @@ pkill dunst; dunst -config "${HOME}/.dunstrc" &
 urxvtd --quiet --opendisplay --fork
 "${HOME}/.dropbox-dist/dropboxd" &
 "${HOME}/bin/esd" &
-# This mpd stuff has been refactored in bashrc.
-# Need to find a platform agnostic way to start these services.
-pidof mpd >& /dev/null
-[ "$?" -ne 0 ] &&
-  /usr/bin/mpd "${HOME}/.mpd/mpd.conf"
-pidof mpdscribble >& /dev/null
-[ "$?" -ne 0 ] &&
-  /usr/bin/mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
-
 cd "${HOME}" || exit
 xmonad
 urxvtc

@@ -90,6 +90,9 @@ else
   export PAGER MANPAGER
 fi
 
+SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
+export SHELLCHECK_OPTS
+
 WORKON_HOME=~/.virtualenvs
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
@@ -119,24 +122,6 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
   . ~/.fzf.bash
 [[ -f ~/bin/z ]] &&
   . ~/bin/z
-
-# TODO: we also start these in xinit. That could use a refactor.
-start_mpd() {
-  if command -v 'mpd' >/dev/null 2>&1; then
-    if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
-      [[ -f "${HOME}/.mpd/mpd.conf" ]] && {
-        mpd "${HOME}/.mpd/mpd.conf" -v
-        # Make sure the scrobbler is running if we are starting mpd.
-        if command -v 'mpdscribble' >/dev/null 2>&1; then
-          if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
-            [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
-              mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
-          fi
-        fi
-      }
-    fi
-  fi
-}
 
 # TODO: At some point we want to develop and merge this colourscheme
 # with the settings in Xdefaults for linux and bsd.
@@ -187,13 +172,25 @@ start_mpd() {
     export PROMPT_COMMAND=get_iterm_label;"${PROMPT_COMMAND}"
   fi
 
-  # if pgrep 'tmux'; then
-    # [[ -f ~/.tmux.conf ]] &&
-      # tmux source ~/.tmux.conf
-  # fi
-
-  start_mpd;
 }
+
+mpd-start() {
+  if command -v 'mpd' >/dev/null 2>&1; then
+    if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
+      [[ -f "${HOME}/.mpd/mpd.conf" ]] && {
+        mpd "${HOME}/.mpd/mpd.conf" -v
+        # Make sure the scrobbler is running if we are starting mpd.
+        if command -v 'mpdscribble' >/dev/null 2>&1; then
+          if ! pgrep -xU "${UID}" 'mpdscribble' >/dev/null 2>&1; then
+            [[ -f "${HOME}/.mpdscribble/mpdscribble.conf" ]] &&
+              mpdscribble --conf "${HOME}/.mpdscribble/mpdscribble.conf" &
+          fi
+        fi
+      }
+    fi
+  fi
+}
+mpd-start
 
 if command -v 'gpg-agent' >/dev/null 2>&1; then
   if ! pgrep -xU "${UID}" 'gpg-agent' >/dev/null 2>&1; then
@@ -206,6 +203,3 @@ fi
     eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
   fi
 }
-
-SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
-export SHELLCHECK_OPTS
