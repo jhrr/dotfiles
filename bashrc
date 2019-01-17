@@ -97,14 +97,16 @@ WORKON_HOME="${HOME}/.virtualenvs"
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
-fasd_cache="${HOME}/.fasd-init-bash"
-if [[ "$(command -v fasd)" -nt "${fasd_cache}" ]] \
-  || [[ ! -s "${fasd_cache}" ]]; then
-    fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install \
-      >| "${fasd_cache}"
-fi
-source "${fasd_cache}"
-unset fasd_cache
+eval "$(fasd --init auto)"
+
+# fasd_cache="${HOME}/.fasd-init-bash"
+# if [[ "$(command -v fasd)" -nt "${fasd_cache}" ]] \
+#   || [[ ! -s "${fasd_cache}" ]]; then
+#     fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install \
+#       >| "${fasd_cache}"
+# fi
+# source "${fasd_cache}"
+# unset fasd_cache
 
 [[ -d /usr/local/etc/bash_completion.d/ ]] &&
   for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
