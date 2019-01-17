@@ -163,6 +163,9 @@ unset fasd_cache
   CC="$(command -v clang)"
   export LS_COLORS CC
 
+  [[ -f ~/.iterm2_shell_integration.bash ]] &&
+    . ~/.iterm2_shell_integration.bash
+
   if [[ $ITERM_SESSION_ID ]]; then
     # Display the current git repo, or directory, in iterm tabs.
     get_iterm_label() {
