@@ -69,6 +69,7 @@ alias vv='${EDITOR} ${HOME}/.vimrc'
 
 alias sue='sudo emacs -nw'
 alias v='${VISUAL}'
+alias vf='f -e ${VISUAL}'  # Quick open with fasd + vim.
 alias suv='sudo ${VISUAL}'
 
 # Usage: add-vim-plugin "http://some.url/to/a/git/repo"

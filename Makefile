@@ -11,7 +11,6 @@ pathogen_src=https://tpo.pe/pathogen.vim
 vcp_ver=1.2.1
 vep_src=https://www.github.com/jhrr/veprompt.git
 vep_tmp=$(tmp)/veprompt
-z_src=https://github.com/rupa/z/raw/master/z.sh
 
 .PHONY: install help symlinks scripts \
 	playlists mpd.log mpd.db mpd.pid mpd.state
@@ -90,12 +89,6 @@ update-veprompt:
 		@chmod a+x $(bin)/veprompt
 		@rm -rf $(vep_tmp)
 
-update-z:
-		@echo "Installing z.sh in:"
-		@echo $(bin)
-		@curl -sL $(z_src) > $(bin)/z
-		@chmod a+x $(bin)/z
-
 update-git-scripts:
 		@if [ -d ~/code/oss/git-scripts ]; then \
 			ln -fns ~/code/oss/git-scripts ~/bin/git-scripts; fi;
@@ -105,4 +98,4 @@ link-scripts:
 		@mkdir ~/bin
 		@ln -s $(dot)/bin/* ~/bin/
 
-scripts: update-z update-git-scripts link-scripts
+scripts: update-git-scripts link-scripts

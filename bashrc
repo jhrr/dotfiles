@@ -93,9 +93,18 @@ fi
 SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
 export SHELLCHECK_OPTS
 
-WORKON_HOME=~/.virtualenvs
+WORKON_HOME="${HOME}/.virtualenvs"
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
+
+fasd_cache="${HOME}/.fasd-init-bash"
+if [[ "$(command -v fasd)" -nt "${fasd_cache}" ]] \
+  || [[ ! -s "${fasd_cache}" ]]; then
+    fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install \
+      >| "${fasd_cache}"
+fi
+source "${fasd_cache}"
+unset fasd_cache
 
 [[ -d /usr/local/etc/bash_completion.d/ ]] &&
   for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
@@ -120,8 +129,6 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
 [[ -f ~/.fzf.bash ]] &&
   . ~/.fzf.bash
-[[ -f ~/bin/z ]] &&
-  . ~/bin/z
 
 # TODO: At some point we want to develop and merge this colourscheme
 # with the settings in Xdefaults for linux and bsd.
