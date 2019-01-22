@@ -10,19 +10,17 @@ alias .2='cd ../..'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
-alias ksv='killall -KILL node && kill-port 3000 && kill-port 8000'
 alias curldump='curl --trace -'
 alias delpyc='find . -name '\*.pyc' -ls -exec rm {} \;'
 alias dev='npm run dev'
 alias du='du -h -c'
 alias du1='du -h --max-depth=1'
-alias enx='vim ${HOME}/.nixpkgs/config.nix'
-alias exm='ec ${HOME}/.xmonad/xmonad.hs'
 alias ecshell='ec run web -- python manage.py shell'
 alias grd='ls -aliF | ${GREPPAGE} -i'
 alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
 alias killnode='killall -KILL node'
+alias ksv='killall -KILL node && kill-port 3000 && kill-port 8000'
 alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
@@ -35,75 +33,49 @@ alias p='ipython'
 alias passc='pass -c'
 alias pmg='cd $(gh) && ./manage.py migrate'
 alias psh='pipenv shell'
-alias psql='sudo -i -u postgres psql'  # TODO: osx version of this?
+alias psql='sudo -i -u postgres psql'  # TODO: osx version of this
 alias qp='ping -c 5 8.8.8.8'
-[[ "${IS_LINUX}" == true ]] &&
-  alias rmorph='pacman -Rsn $(pacman -Qqtd)' # Remove orphan packages on arch
-# TODO: push pwd to stack and pop back when server closes?
 alias rs='cd $(gh) && ./manage.py runserver'
 alias rds='cd $(gh) && ./manage.py runserver_plus --configuration=Dev'
 alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=Dev'
 alias shclr='msgcat --color=test'
-if [[ "${IS_OSX}" == true ]]; then
-  alias sed='gsed'
-  alias shred='gshred -zuv'
-else
-  alias shred='shred -zuv'
-fi
 alias sp='python manage.py shell_plus'
 alias startpg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
 alias stoppg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log stop'
-alias reload='. ${HOME}/.bash_profile'
+alias reload='source ${HOME}/.bash_profile'
 alias td='tree -d'
 alias ta='python manage.py test'
 alias tf='python manage.py test --fast'
-alias tv1='xset s off && xset -dpms && echo "screen powersaving off..."'
-alias tv0='xset s default && xset +dpms && echo "screen powersaving on..."'
 alias txa='tmux attach'
 alias txd='tmux detach'
 alias txl='tmux ls'
 alias txn='tmux attach -t'
 alias txs='tmux switch -t'
-alias x='startx'
-alias vssh='vagrant ssh'
-alias vv='${EDITOR} ${HOME}/.vimrc'
 
 alias sue='sudo emacs -nw'
 alias v='${VISUAL}'
 alias vf='f -e ${VISUAL}'  # Quick open with fasd + vim.
+alias vv='${EDITOR} ${HOME}/.vimrc'
 alias suv='sudo ${VISUAL}'
 
-# Usage: add-vim-plugin "http://some.url/to/a/git/repo"
-add-vim-plugin() {
-  git -C ~/.vim/bundle submodule add "$@";
+[[ "${IS_LINUX}" == true ]] && {
+  alias exm='ec ${HOME}/.xmonad/xmonad.hs'
+  alias rmorph='pacman -Rsn $(pacman -Qqtd)' # Remove orphan packages on arch
+  alias shred='shred -zuv'
+  alias tv1='xset s off && xset -dpms && echo "screen powersaving off..."'
+  alias tv0='xset s default && xset +dpms && echo "screen powersaving on..."'
+  alias x='startx'
 }
 
-# Usage: add-shellcheck-shebang $SHELL $FILE
-add-shellcheck-shebang() {
-  if command -v 'gsed' >/dev/null 2>&1; then
-    gsed -i "1s/^/# shellcheck shell=$1\\n" "$2"
-  else
-    echo 'Install gnu-sed!' >&2
-  fi
+[[ "${IS_OSX}" == true ]] && {
+  alias sed='gsed'
+  alias shred='gshred -zuv'
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
 # Copy with progress info.
 cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
-}
-
-django-collect-requirements() {
-  if [[ -n "${VIRTUAL_ENV}" ]]; then
-    if [[ -f ./requirements-to-freeze.txt ]]; then
-      pip install -r requirements-to-freeze.txt --upgrade &&
-      pip freeze > requirements.txt
-    else
-     err "This repo is not using a dual requirements.txt workflow"
-    fi
-  else
-    err "Not currently in an active virtualenv"
-  fi
 }
 
 # Usage: err "Unable to do_something"
@@ -196,8 +168,6 @@ grep-less() {
 }
 alias g='grep-less'
 
-# Grep for "TODO" or "todo" anywhere from and below
-# this point in the file hierarchy.
 grep-todo() {
   grep-less "todo" ./ ;
 }
@@ -235,6 +205,15 @@ routerip() {
     | awk '$1 == "0.0.0.0" {print $2}';
 }
 
+# Usage: shellcheck-add-shebang $SHELL $FILE
+shellcheck-add-shebang() {
+  if command -v 'gsed' >/dev/null 2>&1; then
+    gsed -i "1s/^/# shellcheck shell=$1\\n" "$2"
+  else
+    echo 'Install gnu-sed!' >&2
+  fi
+}
+
 [[ "${IS_LINUX}" == true ]] &&
   sreboot() {
       if [[ "t" == "$(server_ok)" ]]; then
@@ -246,7 +225,12 @@ routerip() {
       sudo shutdown -r now
   }
 
-is-vim-running() {
+# Usage: vim-add-plugin "http://some.url/to/a/git/repo"
+vim-add-plugin() {
+  git -C "${HOME}/.vim/bundle" submodule add "$@";
+}
+
+vim-is-running() {
   local proc
   proc=$(tty | sed -e "s:/dev/::")
   ps \
@@ -254,70 +238,8 @@ is-vim-running() {
     | "${GREPPAGE}" -v rg \
     | "${GREPPAGE}" "$proc";
 }
-alias iv='is-vim-running'
+alias iv='vim-is-running'
 
-# Emacs daemon functions.
-
-emacs_server_ok() {
-  emacsclient -a "false" -e "(boundp 'server-process)";
-}
-
-# Open a file, in the current shell, using the emacs daemon.
-e() {
-  if [[ "${1}" == '' ]]; then
-    emacsclient --tty  .
-  else
-    emacsclient --tty "${1}"
-  fi
-}
-
-# Open a file, in the current shell, using no config or daemon.
-et() {
-  if [[ "${1}" == '' ]]; then
-    emacs --no-window-system --quick .
-  else
-    emacs --no-window-system --quick "${1}"
-  fi
-}
-
-# Open a file, in the current frame, using the emacs daemon.
-emc() {
-  if [[ "${1}" == '' ]]; then
-    emacsclient --no-wait .
-  else
-    emacsclient --no-wait "${1}"
-  fi
-}
-
- # Open a file, in a new frame, using the emacs daemon.
-en() {
-  if [[ "${1}" == '' ]]; then
-    emacsclient --no-wait --create-frame .
-  else
-    emacsclient --no-wait --create-frame "${1}"
-  fi
-}
-
-# Shutdown the running emacs daemon if the server-process is bound
-# and the server is in a good state.
-ek() {
-  if [[ "t" == "$(emacs_server_ok)" ]]; then
-    echo "Shutting down the emacs server"
-    emacsclient -e '(kill-emacs)'
-  else
-    err "Error: Emacs server not running"
-  fi
-}
-
-# Safely shutdown and restart the emacs daemon.
-ers() {
-  if [[ "t" == "$(emacs_server_ok)" ]]; then
-    echo "Shutting down the emacs server..."
-    emacsclient -e '(kill-emacs)'
-    echo "Restarting the emacs server..."
-    emacs -u "${USER}" --daemon --eval '(server-start)'
-    emacsclient --no-wait --create-frame
-  else
-    err "Error: Emacs server not running, cannot restart. Try invoking: 'esd'"
-  fi
+vim-update-plugins() {
+  git -C "${HOME}/.vim/bundle" submodule foreach git pull origin master
 }
