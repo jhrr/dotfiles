@@ -97,12 +97,6 @@ WORKON_HOME="${HOME}/.virtualenvs"
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
 
-# TODO: None of these work reliably...
-eval "$(fasd --init auto)"
-
-# command -v fasd >/dev/null 2>&1 &&
-#   eval "$(fasd --init auto)"
-
 # fasd_cache="${HOME}/.fasd-init-bash"
 # if [[ "$(command -v fasd)" -nt "${fasd_cache}" ]] \
 #   || [[ ! -s "${fasd_cache}" ]]; then

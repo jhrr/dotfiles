@@ -45,7 +45,6 @@ alias rds='cd $(gh) && ./manage.py runserver_plus --configuration=Dev'
 alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=Dev'
 alias shclr='msgcat --color=test'
 if [[ "${IS_OSX}" == true ]]; then
-  alias awk='gawk'
   alias sed='gsed'
   alias shred='gshred -zuv'
 else
