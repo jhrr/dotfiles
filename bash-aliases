@@ -46,11 +46,6 @@ alias reload='source ${HOME}/.bash_profile'
 alias td='tree -d'
 alias ta='python manage.py test'
 alias tf='python manage.py test --fast'
-alias txa='tmux attach'
-alias txd='tmux detach'
-alias txl='tmux ls'
-alias txn='tmux attach -t'
-alias txs='tmux switch -t'
 
 alias sue='sudo emacs -nw'
 alias v='${VISUAL}'
@@ -70,6 +65,7 @@ alias suv='sudo ${VISUAL}'
 [[ "${IS_OSX}" == true ]] && {
   alias sed='gsed'
   alias shred='gshred -zuv'
+  alias su='sudo su -'
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
