@@ -49,6 +49,7 @@ alias suv='sudo ${VISUAL}'
 }
 
 [[ "${IS_OSX}" == true ]] && {
+  alias pg='psql -h localhost -d postgres'
   alias sed='gsed'
   alias shred='gshred -zuv'
   alias su='sudo su -'
