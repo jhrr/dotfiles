@@ -2,8 +2,7 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
-[[ "${IS_OSX}" == true ]] &&
-  alias ls='gls'
+[[ "${IS_OSX}" == true ]] && alias ls='gls'
 
 alias ..='cd ..'
 alias .2='cd ../..'
@@ -12,42 +11,27 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 alias curldump='curl --trace -'
 alias delpyc='find . -name '\*.pyc' -ls -exec rm {} \;'
-alias dev='npm run dev'
 alias du='du -h -c'
 alias du1='du -h --max-depth=1'
-alias ecshell='ec run web -- python manage.py shell'
-alias grd='ls -aliF | ${GREPPAGE} -i'
 alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
 alias killnode='killall -KILL node'
-alias ksv='killall -KILL node && kill-port 3000 && kill-port 8000'
+alias ksrv='killall -KILL node && kill-port 3000 && kill-port 8000'
 alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias n='ncmpcpp'
 alias np='mpc toggle'
-alias npmID='npm i -D'
-alias npmIS='npm i -S'
-alias open='xdg-open &>/dev/null'
-alias p='ipython'
-alias passc='pass -c'
 alias pmg='cd $(gh) && ./manage.py migrate'
 alias psh='pipenv shell'
-alias psql='sudo -i -u postgres psql'  # TODO: osx version of this
 alias qp='ping -c 5 8.8.8.8'
 alias rs='cd $(gh) && ./manage.py runserver'
 alias rds='cd $(gh) && ./manage.py runserver_plus --configuration=Dev'
 alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=Dev'
-alias shclr='msgcat --color=test'
 alias sp='python manage.py shell_plus'
-alias startpg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log start'
-alias stoppg='pg_ctl -D /usr/local/var/postgres -l ${HOME}/.postgres-log stop'
 alias reload='source ${HOME}/.bash_profile'
 alias td='tree -d'
-alias ta='python manage.py test'
-alias tf='python manage.py test --fast'
 
-alias sue='sudo emacs -nw'
 alias v='${VISUAL}'
 alias vf='f -e ${VISUAL}'  # Quick open with fasd + vim.
 alias vv='${EDITOR} ${HOME}/.vimrc'
@@ -56,7 +40,9 @@ alias suv='sudo ${VISUAL}'
 [[ "${IS_LINUX}" == true ]] && {
   alias exm='ec ${HOME}/.xmonad/xmonad.hs'
   alias rmorph='pacman -Rsn $(pacman -Qqtd)' # Remove orphan packages on arch
+  alias shclr='msgcat --color=test'
   alias shred='shred -zuv'
+  alias sue='sudo emacs -nw'
   alias tv1='xset s off && xset -dpms && echo "screen powersaving off..."'
   alias tv0='xset s default && xset +dpms && echo "screen powersaving on..."'
   alias x='startx'
@@ -195,6 +181,15 @@ pskill() {
   printf "Killing: %s\\n" "$pid"
   kill -9 "$pid"
 }
+
+py() {
+  if command -v 'ipython' >/dev/null 2>&1; then
+    ipython
+  else
+    python3
+  fi
+}
+alias p='py'
 
 routerip() {
   netstat -nr \
