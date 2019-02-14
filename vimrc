@@ -65,7 +65,7 @@ nnoremap <C-y> 3<C-y>
 let mapleader = ","
 
 inoremap jj <ESC>
-inoremap <S-Tab> <C-V><Tab>
+" inoremap <S-Tab> <C-V><Tab>
 nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>p :r !pbpaste<CR>
 nnoremap <Leader>s :shell<CR>
@@ -100,7 +100,7 @@ set statusline=[%n]\ %<%F\ \ \ %m%r%h%w%y[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\
 set statusline+=\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%\ \ \ %{strftime(\"%H:%M\ \")}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline;
+set statusline+=%*
 
 " Highlight lines breaking column 80 on a per-line basis.
 highlight ColorColumn ctermfg=208 ctermbg=Black
@@ -146,13 +146,6 @@ let g:rustfmt_autosave = 1
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 
-" Mu-complete
-" set completeopt+=menuone
-" set completeopt+=noselect
-" set shortmess+=c
-" set belloff+=ctrlg
-" let g:mucomplete#completion_delay = 1
-
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -176,9 +169,16 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--max-complexity 10'
 
 "Ultisnips
-let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-b>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+
+" Mu-complete
+set completeopt+=menuone
+set completeopt+=noselect
+set shortmess+=c
+set belloff+=ctrlg
+let g:mucomplete#completion_delay = 1
 
 " HUD Unicode Digraphs
 inoremap <expr> <C-J> HUDG_GetDigraph()
