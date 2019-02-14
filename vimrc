@@ -55,7 +55,6 @@ set wildmode=list:longest
 
 nmap <silent> <leader>s :set nolist!<CR>
 
-set grepprg=ack\ -i
 set rtp+=/usr/local/opt/fzf
 
 nnoremap ' `
@@ -101,7 +100,7 @@ set statusline=[%n]\ %<%F\ \ \ %m%r%h%w%y[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\
 set statusline+=\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%\ \ \ %{strftime(\"%H:%M\ \")}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set statusline;
 
 " Highlight lines breaking column 80 on a per-line basis.
 highlight ColorColumn ctermfg=208 ctermbg=Black
@@ -142,15 +141,17 @@ nnoremap <Leader>f :GFiles?<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>L :noh<CR>
 
-" Pytest
-nmap <silent><Leader>F <Esc>:Pytest file<CR>
-nmap <silent><Leader>C <Esc>:Pytest class<CR>
-nmap <silent><Leader>M <Esc>:Pytest method<CR>
-
 " Formatting
 let g:rustfmt_autosave = 1
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+
+" Mu-complete
+" set completeopt+=menuone
+" set completeopt+=noselect
+" set shortmess+=c
+" set belloff+=ctrlg
+" let g:mucomplete#completion_delay = 1
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1

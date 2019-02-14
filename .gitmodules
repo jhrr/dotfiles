@@ -49,12 +49,12 @@
 [submodule "vim/bundle/wildfire.vim"]
 	path = vim/bundle/wildfire.vim
 	url = https://github.com/gcmt/wildfire.vim
-[submodule "vim/bundle/pytest.vim"]
-	path = vim/bundle/pytest.vim
-	url = https://github.com/alfredodeza/pytest.vim
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
 [submodule "vim/bundle/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
+[submodule "vim/bundle/vim-mucomplete"]
+	path = vim/bundle/vim-mucomplete
+	url = https://github.com/lifepillar/vim-mucomplete.git
