@@ -157,16 +157,13 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options += '-Wall -Wextra -Wpedantic'
 let g:syntastic_cpp_check_header = 1
-let g:syntastic_rst_checkers=['sphinx']
-
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-
 let g:jsx_ext_required = 0
-
 let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_exe = system('whichpy')
 let g:syntastic_python_flake8_args = '--max-complexity 10'
+let g:syntastic_rst_checkers=['sphinx']
 
 "Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-j>'
@@ -179,6 +176,10 @@ set completeopt+=noselect
 set shortmess+=c
 set belloff+=ctrlg
 let g:mucomplete#completion_delay = 1
+
+" Jedi
+" autocmd FileType python setlocal completeopt-=preview
+" let g:jedi#popup_on_dot = 0
 
 " HUD Unicode Digraphs
 inoremap <expr> <C-J> HUDG_GetDigraph()
@@ -201,5 +202,3 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   endif
 endif
-
-
