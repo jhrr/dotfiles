@@ -145,6 +145,7 @@ nnoremap <Leader>L :noh<CR>
 let g:rustfmt_autosave = 1
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
