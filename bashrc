@@ -193,6 +193,10 @@ mpd-start() {
 }
 mpd-start
 
+mpd-restart() {
+  mpd --kill && mpd-start
+}
+
 if command -v 'gpg-agent' >/dev/null 2>&1; then
   if ! pgrep -xU "${UID}" 'gpg-agent' >/dev/null 2>&1; then
     eval "$(gpg-agent --daemon)"
