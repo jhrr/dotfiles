@@ -129,19 +129,6 @@ fwc() {
     | xargs -0 wc -l;
 }
 
-# Usage: generate-timestamped-ssh-key DOMAIN
-generate-timestamped-ssh-key() {
-  if [[ -n $1 ]]; then
-    local timestamp ssh_host
-    timestamp="$(date -u +"%Y%m%dT%H%M%Z")"
-    # comment="$(whoami)@$(hostname)-$timestamp-rsa"
-    ssh_host="$(whoami)@$(hostname)--$1-$timestamp-rsa"
-    ssh-keygen -f "${HOME}/.ssh/$ssh_host"
-  else
-    err "Please provide the ssh server's domain name"
-  fi
-}
-
 grep-less() {
   if command -v 'rg' >/dev/null 2>&1; then
     "${GREPPAGE}" --pretty -i "$@" | less
@@ -216,6 +203,19 @@ shellcheck-add-shebang() {
       mpd --kill
       sudo shutdown -r now
   }
+
+# Usage: generate-timestamped-ssh-key DOMAIN
+ssh-generate-timestamped-key() {
+  if [[ -n $1 ]]; then
+    local timestamp ssh_host
+    timestamp="$(date -u +"%Y%m%dT%H%M%Z")"
+    # comment="$(whoami)@$(hostname)-$timestamp-rsa"
+    ssh_host="$(whoami)@$(hostname)--$1-$timestamp-rsa"
+    ssh-keygen -f "${HOME}/.ssh/$ssh_host"
+  else
+    err "Please provide the ssh server's domain name"
+  fi
+}
 
 # Usage: vim-add-plugin "http://some.url/to/a/git/repo"
 vim-add-plugin() {
