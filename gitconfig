@@ -23,15 +23,6 @@
     untracked = blue bold
 [hub]
     protocol = https
-[merge]
-    keepBackup = false
-    tool = p4merge
-    conflictstyle = diff3
-[mergetool "p4merge"]
-    cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-    keepTemporaries = false
-    trustExitCode = false
-    keepBackup = false
 [init]
 	templatedir = ~/.git_template
 [alias]
