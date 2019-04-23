@@ -70,7 +70,10 @@ alias .g='cd $(gh)'  # Jump to repo root.
 _format="%C(bold red)%h%C(reset)%C(blue) %cn"
 _format+="%C(yellow)%d%C(reset) %s %C(red)(%cr) "
 
-gl() { git log --graph --pretty=format:"${_format}" --abbrev-commit; }
+# Usage: gl
+gl() {
+  git log --graph --pretty=format:"${_format}" --abbrev-commit
+}
 
 # Usage: git-in-repo
 # Test if we are currently under version control with git.
