@@ -157,6 +157,13 @@ export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
   [[ -f ~/.iterm2_shell_integration.bash ]] &&
     . ~/.iterm2_shell_integration.bash
 
+  # TODO: Check it's installed, prefer double parens
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] &&
+    . "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] &&
+    . "/usr/local/opt/nvm/etc/bash_completion"
+
   if [[ $ITERM_SESSION_ID ]]; then
     # Display the current git repo, or directory, in iterm tabs.
     get_iterm_label() {

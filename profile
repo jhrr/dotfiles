@@ -11,15 +11,14 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 [ -d "${HOME}/.cabal/bin" ] &&
   PATH="$PATH:${HOME}/.cabal/bin"
 
-[ -L "${HOME}/bin/git-scripts" ] &&
-  PATH="$PATH:${HOME}/bin/git-scripts/"
-
 [ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
   PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
 
 if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+export PATH="$PATH:$(brew --prefix gettext)/bin"
 
 if [ -d /etc/profile.d/ ]; then
   for profile in /etc/profile.d/*.sh; do
