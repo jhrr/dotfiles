@@ -184,6 +184,13 @@ git-resolve-merge() {
 }
 alias grsv='git-resolve-merge'
 
+# Usage: git-edit-changes
+# Load all files with diffs into $EDITOR.
+git-edit-changed() {
+  "${EDITOR}" "$(git status --porcelain | awk '{print $2}')"
+}
+alias edf='git-edit-changed'
+
 # Usage: git-squash-x $INTEGER
 # Interactive rebase an $INTEGER's worth of commits backwards in the commit
 # history. If $INTEGER is not provided then default to 1 commit behind HEAD.
