@@ -109,7 +109,9 @@ ff() {
 # Usage: fx FILE-SPECIFIER COMMAND
 # Execute a command over the results of a call to `find'.
 fx() {
-  find . -not -iwholename '*.git*' \
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
     -not -name '*.pyc' \
     -type f -iname "*""${1:-}""*" \
     -exec "${2:-file}" {} \; ;
@@ -118,10 +120,13 @@ fx() {
 # Usage: frep REGEX FILE-SPECIFIER
 # Grep for patterns within the results of a call to `find'.
 frep() {
-  find . -not -iwholename '*.git*' \
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
     -not -name '*.pyc' \
     -name "${2}" -print0 \
-    | xargs -0 "${GREPPAGE}" -i "${1}";
+    | xargs -0 "${GREPPAGE}" --pretty -i "${1}" \
+    | less;
 }
 
 fwc() {
