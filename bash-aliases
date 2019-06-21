@@ -63,6 +63,12 @@ cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
 
+# Usage dsh $CONTAINER
+# Shell into a docker container.
+dsh() {
+ docker exec -it "${1}" sh
+}
+
 # Usage: err "Unable to do_something"
 # Stderr helper function.
 err() {
