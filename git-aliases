@@ -162,7 +162,7 @@ git-purge-local() {
   git-in-repo && \
     git branch \
       | grep -v 'master' \
-      | xargs git branch -D;
+      | xargs git branch -D
 }
 
 # Usage: git-purge-local-merged
@@ -170,11 +170,10 @@ git-purge-local() {
 # merged upstream.
 git-purge-local-merged() {
   git-in-repo && \
-    git branch -D \
-      | git branch --merged \
-      | grep -v '^.*' \
+    git branch --merged \
       | grep -v 'master' \
-      | tr -d '\n';
+      | tr -d '\n' \
+      | xargs git branch -D
 }
 
 # Usage: git-resolve-merge
