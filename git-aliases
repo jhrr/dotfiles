@@ -227,8 +227,7 @@ git-todo() {
 
 # Usage: git-edit-all-diffs
 git-edit-all-diffs() {
-  # TODO: Open nothing if no diffs
   git-in-repo && \
-    "${VISUAL}" "$(git status --porcelain | awk '{print $2}')";
+    "${VISUAL}" "$(git diff --name-only --diff-filter=U  | uniq)";
 }
 alias va='git-edit-all-diffs'
