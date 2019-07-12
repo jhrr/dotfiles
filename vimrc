@@ -149,6 +149,10 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vue syntax sync fromstart
 autocmd FileType vue setlocal commentstring=//\ %s
 
+" SC
+au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
+au Filetype supercollider packadd scvim
+
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
