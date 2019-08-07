@@ -69,6 +69,12 @@ dsh() {
  docker exec -it "${1}" sh
 }
 
+# Usage dcx $CONTAINER $COMMAND
+# Execute a command in a container.
+dcx() {
+  docker-compose exec -T "$1" "$2"
+}
+
 # Usage: err "Unable to do_something"
 # Stderr helper function.
 err() {
