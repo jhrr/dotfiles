@@ -172,7 +172,7 @@ grep-todo() {
 }
 alias gtodo='grep-todo'
 
-# Usage: kill-port PORT
+# Usage: kill-port $PORT
 kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
@@ -187,9 +187,9 @@ npm-do() {
   (PATH=$(npm bin):$PATH; eval "$@";)
 }
 
-pip-grep() {
-  pip search "$1" \
-    | grep -i "$1";
+# Usage: prettier-commit $HASH
+prettier-commit() {
+  PATH=$(npm bin):$PATH; git-list-diff "$1" | xargs prettier --write
 }
 
 pskill() {
