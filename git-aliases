@@ -228,6 +228,13 @@ git-todo() {
 # Usage: git-edit-all-diffs
 git-edit-all-diffs() {
   git-in-repo && \
-    "${VISUAL}" "$(git diff --name-only --diff-filter=U  | uniq)";
+    "${VISUAL}" "$(git diff --name-only --diff-filter=U  | uniq)"
 }
 alias va='git-edit-all-diffs'
+
+# Usage: git-list-diff $HASH
+# List all files contained in a commit.
+git-list-diff() {
+  git-in-repo && \
+    git diff-tree --no-commit-id --name-only -r "$1"
+}
