@@ -30,13 +30,13 @@ unset MAILCHECK
 unset MANPATH
 unset TERMCAP
 
-shopt -s histappend
-HISTCONTROL=ignoreboth:ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
 HISTSIZE=
 HISTFILESIZE=
-PROMPT_COMMAND='history -a;'"${PROMPT_COMMAND}"
-export PROMPT_COMMAND
+HISTCONTROL=ignoredups:erasedups
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+shopt -s histappend
+export HISTCONTROL HISTIGNORE HISTSIZE HISTFILESIZE PROMPT_COMMAND
 
 IS_LINUX=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && IS_LINUX=true
