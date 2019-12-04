@@ -94,8 +94,9 @@ SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
 export SHELLCHECK_OPTS
 
 WORKON_HOME="${HOME}/.virtualenvs"
+PIP_REQUIRE_VIRTUALENV=true
 VIRTUAL_ENV_DISABLE_PROMPT=1
-export WORKON_HOME VIRTUAL_ENV_DISABLE_PROMPT
+export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 
 [[ -d /usr/local/etc/bash_completion.d/ ]] &&
   for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
