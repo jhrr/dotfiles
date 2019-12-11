@@ -24,8 +24,8 @@
 [hub]
     protocol = https
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.git_template
 [alias]
-	ctags = !.git/hooks/ctags
+    ctags = !.git/hooks/ctags
 [diff]
-	noprefix = true
+    noprefix = true
