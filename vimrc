@@ -141,6 +141,11 @@ autocmd FileType vue syntax sync fromstart
 autocmd FileType vue setlocal commentstring=//\ %s
 
 " SuperCollider
+" ,. -> Hard stop.
+" ,o -> Run line of code.
+" ,i -> Run block.
+" K  -> Open help file.
+" ^] -> Jump to tagfile.
 let g:sclangTerm = "open -a hyper.app"
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 au Filetype supercollider packadd scvim
