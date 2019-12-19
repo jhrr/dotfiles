@@ -153,15 +153,17 @@ let g:scSplitSize=70
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 au Filetype supercollider packadd scvim
 au Filetype supercollider nnoremap <leader>b :call SClangStart()<CR>
-au Filetype supercollider inoremap <leader>b :call SClangStart()<CR>a
+au Filetype supercollider inoremap <leader>b :call SClangStart()<CR>
 au Filetype supercollider vnoremap <leader>b :call SClangStart()<CR>
 au Filetype supercollider nnoremap <leader>o :call SClang_line()<CR>
-au Filetype supercollider inoremap <leader>o :call SClang_line()<CR>a
+au Filetype supercollider inoremap <leader>o :call SClang_line()<CR>
 au Filetype supercollider vnoremap <leader>o :call SClang_line()<CR>
 au Filetype supercollider nnoremap <leader>i :call SClang_block()<CR>
-au Filetype supercollider inoremap <leader>i :call SClang_block()<CR>a
+au Filetype supercollider inoremap <leader>i :call SClang_block()<CR>
 au Filetype supercollider vnoremap <leader>i :call SClang_send()<CR>
-au Filetype supercollider nnoremap <buffer>. :call SClangHardstop()<CR>
+au Filetype supercollider nnoremap <leader>. :call SClangHardstop()<CR>
+au Filetype supercollider inoremap <leader>. :call SClangHardstop()<CR>
+au Filetype supercollider vnoremap <leader>. :call SClangHardstop()<CR>
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
