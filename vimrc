@@ -149,7 +149,7 @@ autocmd FileType vue setlocal commentstring=//\ %s
 " ^] -> Jump to tagfile.
 let g:scTerminalBuffer="on"
 let g:scSplitDirection="v"
-let g:scSplitSize=70
+let g:scSplitSize=33
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 au Filetype supercollider packadd scvim
 au Filetype supercollider nnoremap <leader>b :call SClangStart()<CR>
