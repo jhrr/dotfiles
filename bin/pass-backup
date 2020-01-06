@@ -19,7 +19,7 @@ cp "${HOME}/.gnupg/secring.gpg" "$target"
 echo "Exporting gpg ownertrust to $target" >&2
 gpg --export-ownertrust > "$target"/jhr-ownertrust-gpg.txt
 
-echo "Unounting /dev/sdb1" >&2
+echo "Unmounting /dev/sdb1" >&2
 pumount /dev/sdb1
 
 echo "Done" >&2
