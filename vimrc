@@ -206,15 +206,15 @@ let g:mucomplete#completion_delay = 1
 " let g:jedi#popup_on_dot = 0
 
 " HUD Unicode Digraphs
-inoremap <expr> <C-J> HUDG_GetDigraph()
-inoremap <expr> <C-K> BDG_GetDigraph()
-inoremap <expr> <C-L> HUDigraphs()
+" inoremap <expr> <C-J> HUDG_GetDigraph()
+" inoremap <expr> <C-K> BDG_GetDigraph()
+" inoremap <expr> <C-L> HUDigraphs()
 
-function! HUDigraphs ()
-    digraphs
-    call getchar()
-    return "\<C-K>"
-endfunction
+" function! HUDigraphs ()
+"     digraphs
+"     call getchar()
+"     return "\<C-K>"
+" endfunction
 
 " Change cursor shape between insert and normal mode in iTerm2
 if $TERM_PROGRAM =~ "iTerm"
