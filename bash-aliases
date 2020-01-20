@@ -109,6 +109,7 @@ fd() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
     -not -name '*.pyc' \
     -type d -iname "*""$*""*";
 }
@@ -117,6 +118,7 @@ ff() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
     -not -name '*.pyc' \
     -type f -iname "*""$*""*";
 }
@@ -127,6 +129,7 @@ fx() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
     -not -name '*.pyc' \
     -type f -iname "*""${1:-}""*" \
     -exec "${2:-file}" {} \; ;
@@ -138,6 +141,7 @@ frep() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
     -not -name '*.pyc' \
     -name "${2}" -print0 \
     | xargs -0 "${GREPPAGE}" --pretty -i "${1}" \
@@ -184,11 +188,13 @@ md() {
 # Usage: npm-do EXECUTABLE COMMANDS
 # Find local npm executables to invoke.
 npm-do() {
+  # shellcheck disable=SC2030
   (PATH=$(npm bin):$PATH; eval "$@";)
 }
 
 # Usage: prettier-commit $HASH
 prettier-commit() {
+  # shellcheck disable=SC2031
   PATH=$(npm bin):$PATH; git-list-diff "$1" | xargs prettier --write
 }
 
