@@ -34,6 +34,8 @@ alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=
 alias sp='python manage.py shell_plus'
 alias reload='source ${HOME}/.bash_profile'
 alias td='tree -d'
+alias ve='python -m venv venv'
+alias ave='. venv/bin/activate'
 
 alias v='${VISUAL}'
 alias vf='f -e ${VISUAL}'  # Quick open with fasd + vim.
