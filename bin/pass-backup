@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# TODO: Replace most of this.
+# $ tar -cz "${HOME}/.password-store/" \
+#     | gpg --sign --encrypt -r $GPG_KEY_UID \
+#     > password-store-backup.tar.gz.gpg
+#
+# $ gpg --decrypt \
+#     < password-store-backup.tar.gz.gpg \
+#     | tar -xz "${HOME}/.password-store/"
+
 set -e
 
 echo "Mounting /dev/sdb1..." >&2
@@ -17,7 +26,7 @@ cp "${HOME}/.gnupg/pubring.gpg" "$target"
 cp "${HOME}/.gnupg/secring.gpg" "$target"
 
 echo "Exporting gpg ownertrust to $target" >&2
-gpg --export-ownertrust > "$target"/jhr-ownertrust-gpg.txt
+gpg --export-ownertrust > "$target"/jharrgt@gmail.com-ownertrust-gpg.txt
 
 echo "Unmounting /dev/sdb1" >&2
 pumount /dev/sdb1
