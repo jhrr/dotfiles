@@ -9,6 +9,8 @@
 #     < password-store-backup.tar.gz.gpg \
 #     | tar -xz "${HOME}/.password-store/"
 
+# cd "${HOME}/.password-store/" && git reset --hard master
+
 set -e
 
 echo "Mounting /dev/sdb1..." >&2
