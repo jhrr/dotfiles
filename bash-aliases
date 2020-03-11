@@ -36,6 +36,7 @@ alias reload='source ${HOME}/.bash_profile'
 alias td='tree -d'
 alias ve='python -m venv venv'
 alias ave='. venv/bin/activate'
+alias yt='yarn test'
 
 alias v='${VISUAL}'
 alias vf='f -e ${VISUAL}'  # Quick open with fasd + vim.
