@@ -142,19 +142,16 @@ autocmd FileType vue setlocal commentstring=//\ %s
 
 " SuperCollider
 " ,b -> Start server.
-" ,. -> Hard stop.
 " ,o -> Run line of code.
 " ,i -> Run block of code.
+" ,k -> Kill the server completely.
+" ,. -> Hard stop.
 " K  -> Open help file.
 " ^] -> Jump to tagfile.
 let g:scTerminalBuffer="on"
 let g:scSplitDirection="v"
 let hostname = substitute(system("hostname"), "\n", "", "")
-if hostname == "paradise"
-    let g:scSplitSize="70%"
-else
-    let g:scSplitSize="33%"
-endif
+let g:scSplitSize = '50%'
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 au Filetype supercollider packadd scvim
 au Filetype supercollider nnoremap <leader>b :call SClangStart()<CR>
@@ -165,10 +162,13 @@ au Filetype supercollider inoremap <leader>o :call SClang_line()<CR>
 au Filetype supercollider vnoremap <leader>o :call SClang_line()<CR>
 au Filetype supercollider nnoremap <leader>i :call SClang_block()<CR>
 au Filetype supercollider inoremap <leader>i :call SClang_block()<CR>
-au Filetype supercollider vnoremap <leader>i :call SClang_send()<CR>
+au Filetype supercollider vnoremap <leader>i :call SClang_block()<CR>
 au Filetype supercollider nnoremap <leader>. :call SClangHardstop()<CR>
 au Filetype supercollider inoremap <leader>. :call SClangHardstop()<CR>
 au Filetype supercollider vnoremap <leader>. :call SClangHardstop()<CR>
+au Filetype supercollider nnoremap <leader>k :call SClangKill()<CR>
+au Filetype supercollider inoremap <leader>k :call SClangKill()<CR>
+au Filetype supercollider vnoremap <leader>k :call SClangKill()<CR>
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
