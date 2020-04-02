@@ -29,8 +29,8 @@ help:
 	@echo ""
 
 symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
-	fasdrc flake8rc ghci git-aliases gitconfig inputrc profile prompt \
-	psqlrc sbclrc tmux.conf
+	fasdrc flake8rc ghci git-aliases gitconfig gitignore_global inputrc \
+	profile prompt psqlrc sbclrc tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@ln -fns $(dot)/tmux.d ~/.tmux.d
