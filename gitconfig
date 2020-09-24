@@ -30,3 +30,5 @@
     ctags = !.git/hooks/ctags
 [diff]
     noprefix = true
+[pull]
+	ff = only
