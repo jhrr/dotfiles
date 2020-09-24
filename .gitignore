@@ -2,3 +2,5 @@ bin/lein
 .DS_Store
 .netrwhist
 vim/view/
+bin/sync-vault
+logfile
