@@ -28,7 +28,7 @@ help:
 	@echo "  make help        display this message"
 	@echo ""
 
-symlinks-common: ackrc bash-aliases bash_profile bashrc ctags eslintrc \
+symlinks-common: ackrc bash-aliases bash_profile bashrc ctags \
 	fasdrc flake8rc ghci git-aliases gitconfig gitignore_global inputrc \
 	profile prompt psqlrc sbclrc tmux.conf
 		@echo "Symlinking common config files..."
