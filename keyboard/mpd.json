@@ -1,0 +1,53 @@
+{
+  "title": "MPD",
+  "rules": [
+    {
+      "description": "Previous",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f7"
+          },
+          "to": [
+            {
+              "shell_command": "/usr/local/bin/mpc prev"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Toggle",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f8"
+          },
+          "to": [
+            {
+              "shell_command": "/usr/local/bin/mpc toggle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Next",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f9"
+          },
+          "to": [
+            {
+              "shell_command": "/usr/local/bin/mpc next"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
