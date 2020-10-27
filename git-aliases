@@ -207,15 +207,19 @@ git-squash-x() {
 }
 alias gsx='git-squash-x'
 
-# Usage: git-sync-fork $REMOTE
+# Usage: git-sync-fork $REMOTE $BRANCH
 git-sync-fork() {
   local _remote
   _remote='upstream'
   git-in-repo && \
     if [[ $# -eq 0 ]]; then
       git pull --ff-only "${_remote}" master
-    else
+    elif [[ $# -eq 1 ]]; then
       git pull --ff-only "$1" master
+    elif [[ $# -eq 2 ]]; then
+      git pull --ff-only "$1" "$2"
+    else
+      err "Too many arguments..."
     fi
 }
 
