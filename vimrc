@@ -131,6 +131,7 @@ nnoremap <Leader>j :GFiles<CR>
 nnoremap <Leader>f :GFiles?<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>L :noh<CR>
+nnoremap <Leader>t :e ./TODO.org<CR>
 
 " Formatting
 let g:rustfmt_autosave = 1
