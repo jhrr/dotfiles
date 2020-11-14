@@ -98,9 +98,6 @@ set background=dark
 
 set statusline=[%n]\ %<%F\ \ \ %m%r%h%w%y[%{strlen(&fenc)?&fenc:'none'},%{&ff}]\
 set statusline+=\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%\ \ \ %{strftime(\"%H:%M\ \")}
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 " Highlight lines breaking column 80 on a per-line basis.
 highlight ColorColumn ctermfg=208 ctermbg=Black
@@ -136,7 +133,6 @@ nnoremap <Leader>t :e ./TODO.org<CR>
 " Formatting
 let g:rustfmt_autosave = 1
 autocmd FileType nix setlocal commentstring=#\ %s
-autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vue syntax sync fromstart
 autocmd FileType vue setlocal commentstring=//\ %s
@@ -171,24 +167,25 @@ au Filetype supercollider nnoremap <leader>k :call SClangKill()<CR>
 au Filetype supercollider inoremap <leader>k :call SClangKill()<CR>
 au Filetype supercollider vnoremap <leader>k :call SClangKill()<CR>
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_c_checkers = ['clang_check']
-let g:syntastic_cpp_checkers = ['clang_check']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
-let g:syntastic_cpp_compiler_options += '-Wall -Wextra -Wpedantic'
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-let g:jsx_ext_required = 0
-let g:syntastic_python_checkers = ['flake8']
-" let g:syntastic_python_flake8_exe = system('whichpy')
-let g:syntastic_python_flake8_args = '--max-complexity 10'
-let g:syntastic_rst_checkers=['sphinx']
+" ALE
+" TODO: :help ale-go-to-definition
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_fix_on_save = 1
+let g:ale_python_mypy_options = ''
+let g:ale_python_mypy_ignore_invalid_syntax = 1
+let g:ale_linters = {
+\   'javascript': ['prettier', 'eslint'],
+\   'python': ['flake8', 'mypy'],
+\   'rust': ['rls'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'python': ['isort', 'yapf'],
+\   'rust': ['rustfmt'],
+\}
+nnoremap <Leader>l :ALEFix<CR>
 
 "Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-j>'

@@ -25,6 +25,7 @@ alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias mv='mv -iv'
 alias n='ncmpcpp'
 alias np='mpc toggle'
+alias p='ipython'
 alias pmg='cd $(gh) && ./manage.py migrate'
 alias psh='pipenv shell'
 alias pt='py.test'
@@ -209,15 +210,6 @@ pskill() {
   printf "Killing: %s\\n" "$pid"
   kill -9 "$pid"
 }
-
-py() {
-  if command -v 'ipython' >/dev/null 2>&1; then
-    ipython
-  else
-    python3
-  fi
-}
-alias p='py'
 
 routerip() {
   netstat -nr \
