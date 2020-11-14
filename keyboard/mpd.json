@@ -2,6 +2,22 @@
   "title": "MPD",
   "rules": [
     {
+      "description": "Player",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f6"
+          },
+          "to": [
+            {
+              "shell_command": "~/bin/player"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Previous",
       "manipulators": [
         {

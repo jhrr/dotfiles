@@ -1,6 +1,3 @@
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim
@@ -67,3 +64,6 @@
 [submodule "vim/bundle/vim-smoothie"]
 	path = vim/bundle/vim-smoothie
 	url = https://github.com/psliwka/vim-smoothie
+[submodule "vim/bundle/ale"]
+	path = vim/bundle/ale
+	url = https://github.com/dense-analysis/ale
