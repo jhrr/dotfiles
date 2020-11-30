@@ -19,7 +19,7 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
   PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
 
 [ "$(uname -s)" = Darwin ] &&
-  PATH="$PATH:$(brew --prefix gettext)/bin"
+  PATH="$PATH:/usr/local/bin"
 
 if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"

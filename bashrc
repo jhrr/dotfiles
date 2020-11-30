@@ -27,7 +27,6 @@ shopt -u mailwarn >/dev/null 2>&1
 set -o emacs
 set -o notify
 unset MAILCHECK
-unset MANPATH
 unset TERMCAP
 
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
@@ -98,21 +97,10 @@ PIP_REQUIRE_VIRTUALENV=true
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 
-[[ -d /usr/local/etc/bash_completion.d/ ]] &&
-  for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
-[[ -f ~/bin/django-bash-completion ]] &&
-  . ~/bin/django-bash-completion
-[[ -f ~/bin/fabric-completion ]] &&
-  . ~/bin/fabric-completion
-[[ -f ~/bin/git-completion ]] &&
-  . ~/bin/git-completion
-
 [[ -f ~/.bash-aliases ]] &&
   . ~/.bash-aliases
 [[ -f ~/.git-aliases ]] &&
   . ~/.git-aliases
-[[ -f ~/.nix-aliases ]] &&
-  . ~/.nix-aliases
 [[ -f ~/.private ]] &&
   . ~/.private
 
@@ -127,7 +115,7 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
-  BREW_PREFIX=$(brew --prefix)
+  BREW_PREFIX='/usr/local'
 
   if ! grep -F -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
     echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
@@ -157,13 +145,6 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 
   [[ -f ~/.iterm2_shell_integration.bash ]] &&
     . ~/.iterm2_shell_integration.bash
-
-  # TODO: Check it's installed, prefer double parens
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] &&
-    . "/usr/local/opt/nvm/nvm.sh"
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] &&
-    . "/usr/local/opt/nvm/etc/bash_completion"
 
   if [[ $ITERM_SESSION_ID ]]; then
     # Display the current git repo, or directory, in iterm tabs.
