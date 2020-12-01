@@ -97,6 +97,9 @@ PIP_REQUIRE_VIRTUALENV=true
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 
+
+[[ -d /usr/local/etc/bash_completion.d/ ]] &&
+  for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
 [[ -f ~/.bash-aliases ]] &&
   . ~/.bash-aliases
 [[ -f ~/.git-aliases ]] &&
