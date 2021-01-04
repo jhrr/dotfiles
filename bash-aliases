@@ -265,5 +265,5 @@ vim-is-running() {
 alias iv='vim-is-running'
 
 vim-update-plugins() {
-  git -C "${HOME}/.vim/bundle" submodule foreach git pull origin master
+  git submodule update --init --recursive;
 }
