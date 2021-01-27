@@ -125,6 +125,8 @@ ff() {
     -not -iwholename '*.git*' \
     -not -iwholename '*node_modules*' \
     -not -iwholename '*venv*' \
+    -not -iwholename '*.tox*' \
+    -not -iwholename '*.mypy_cache*' \
     -not -name '*.pyc' \
     -type f -iname "*""$*""*";
 }
