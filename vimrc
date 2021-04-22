@@ -173,14 +173,17 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_virtualenv_dir_names = ['venv', '.venv']
+let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['prettier', 'eslint'],
-\   'python': ['flake8', 'mypy'],
+\   'vue': ['prettier', 'eslint'],
+\   'python': ['mypy', 'flake8'],
 \   'rust': ['rls'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
+\   'vue': ['prettier', 'eslint'],
 \   'python': ['isort', 'yapf'],
 \   'rust': ['rustfmt'],
 \}
