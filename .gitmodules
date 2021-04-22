@@ -58,9 +58,6 @@
 [submodule "vim/bundle/vim-vue"]
 	path = vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue
-[submodule "vim/bundle/scvim"]
-	path = vim/bundle/scvim
-	url = https://github.com/supercollider/scvim
 [submodule "vim/bundle/vim-smoothie"]
 	path = vim/bundle/vim-smoothie
 	url = https://github.com/psliwka/vim-smoothie
@@ -70,3 +67,12 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat
+[submodule "vim/bundle/scvim"]
+	path = vim/bundle/scvim
+	url = https://github.com/supercollider/scvim
+[submodule "vim/bundle/vim-react-snippets"]
+	path = vim/bundle/vim-react-snippets
+	url = https://github.com/mlaursen/vim-react-snippets
+[submodule "vim/bundle/vim-jest-snippets"]
+	path = vim/bundle/vim-jest-snippets
+	url = https://github.com/jhkersul/vim-jest-snippets
