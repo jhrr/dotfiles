@@ -72,6 +72,7 @@ nnoremap <Leader>s :shell<CR>
 nnoremap <Leader>S :StripWhitespace<CR>
 nnoremap <Leader>v :vsp<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>m :Snippets<CR>
 
 "Unset "last search pattern" register by hitting return.
 nnoremap <CR> :noh<CR><CR>
