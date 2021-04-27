@@ -192,8 +192,8 @@ nnoremap <Leader>l :ALEFix<CR>
 
 "Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpForwardTrigger = '<c-b>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+" let g:UltiSnipsJumpForwardTrigger = '<c-b>'
+" let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
 
 " Mu-complete
 set completeopt+=menuone
