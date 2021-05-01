@@ -43,11 +43,6 @@ symlinks-osx: osx
 		@echo "Symlinking OS X specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-git-template:
-		# https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-		@echo "Symlinking git_template directory..."
-		@ln -fns $(dot)/git_template ~/.git_template
-
 mpd-config: mpd.log mpd.db mpd.pid mpd.state
 		@echo "Configuring mpd..."
 		@mkdir -p ~/.mpd
@@ -74,9 +69,9 @@ update-vim-plugins:
 		@git submodule foreach git pull --ff-only origin master
 
 ifeq ($(OS),Darwin)
-symlinks: symlinks-common symlinks-osx git-template mpd-config vim-config
+symlinks: symlinks-common symlinks-osx mpd-config vim-config
 else
-symlinks: symlinks-common symlinks-linux git-template mpd-config vim-config
+symlinks: symlinks-common symlinks-linux mpd-config vim-config
 endif
 
 update-veprompt:
