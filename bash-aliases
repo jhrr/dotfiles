@@ -182,7 +182,7 @@ alias g='grep-less'
 grep-todo() {
   grep-less "todo" ./ ;
 }
-alias gtodo='grep-todo'
+alias todo='grep-todo'
 
 # Usage: kill-port $PORT
 kill-port() {
