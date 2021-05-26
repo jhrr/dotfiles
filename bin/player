@@ -1,11 +1,20 @@
 #!/usr/bin/osascript
-
+#
 tell application "iTerm"
-    # TODO: check is session with name ncmpcpp is running
-    # TODO: if it is bring to front else...
-    set newWindow to (create window with default profile)
-    # TODO: set name to ncmpcpp
-    tell current session of newWindow
-        write text "ncmpcpp"
-    end tell
+    set player to false
+    repeat with w in windows
+        set n to profile name of current session of w
+        if n is "ncmpcpp" then
+            select w
+            set player to true
+            exit repeat
+        end if
+    end repeat
+    if not player then
+        set newWindow to (create window with default profile)
+        tell current session of newWindow
+            write text "ncmpcpp"
+            set name to "ncmpcpp"
+        end tell
+    end if
 end tell
