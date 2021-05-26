@@ -18,6 +18,22 @@
       ]
     },
     {
+      "description": "Close Player",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f5"
+          },
+          "to": [
+            {
+              "shell_command": "~/bin/closeplayer"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Previous",
       "manipulators": [
         {

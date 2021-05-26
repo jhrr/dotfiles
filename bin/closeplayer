@@ -1,0 +1,11 @@
+#!/usr/bin/osascript
+
+tell application "iTerm"
+    repeat with w in windows
+        set c to current session of w
+        if profile name of c is "ncmpcpp" then
+            tell w to close c
+            exit repeat
+        end if
+    end repeat
+end tell

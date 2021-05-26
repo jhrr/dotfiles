@@ -1,5 +1,5 @@
 #!/usr/bin/osascript
-#
+
 tell application "iTerm"
     set player to false
     repeat with w in windows

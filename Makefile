@@ -39,7 +39,7 @@ symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@echo "Symlinking Linux specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-symlinks-osx: osx
+symlinks-osx: osx player closeplayer
 		@echo "Symlinking OS X specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
