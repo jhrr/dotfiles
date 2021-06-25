@@ -119,8 +119,10 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 
   if [ "${architecture}" = "x86_64" ]; then
     export BREW_PREFIX='/usr/local'
+    eval "$(/usr/local/bin/brew shellenv)"
   else
     export BREW_PREFIX='/opt/homebrew'
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
   if ! grep -F -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
