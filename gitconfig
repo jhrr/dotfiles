@@ -24,10 +24,6 @@
     untracked = blue bold
 [hub]
     protocol = https
-[init]
-    templatedir = ~/.git_template
-[alias]
-    ctags = !.git/hooks/ctags
 [diff]
     noprefix = true
 [pull]

@@ -3,23 +3,11 @@
 
 umask 0022
 
-PATH="$PATH:/usr/local/bin:/usr/bin"
-PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-
 [ -d "${HOME}/bin" ] &&
   PATH="$PATH:${HOME}/bin"
 
-[ -d "${HOME}/.cabal/bin" ] &&
-  PATH="$PATH:${HOME}/.cabal/bin"
-
 [ -d "${HOME}/.cargo/bin" ]
   PATH="$HOME/.cargo/bin:$PATH"
-
-[ -d "${HOME}/cdpr7/_cdp/_cdprogs" ] &&
-  PATH="${HOME}/cdpr7/_cdp/_cdprogs:$PATH"
-
-[ "$(uname -s)" = Darwin ] &&
-  PATH="$PATH:/usr/local/bin"
 
 if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"

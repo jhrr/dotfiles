@@ -43,7 +43,7 @@
           },
           "to": [
             {
-              "shell_command": "/usr/local/bin/mpc prev"
+              "shell_command": "mpc prev"
             }
           ]
         }
@@ -59,7 +59,7 @@
           },
           "to": [
             {
-              "shell_command": "/usr/local/bin/mpc toggle"
+              "shell_command": "mpc toggle"
             }
           ]
         }
@@ -75,7 +75,7 @@
           },
           "to": [
             {
-              "shell_command": "/usr/local/bin/mpc next"
+              "shell_command": "mpc next"
             }
           ]
         }

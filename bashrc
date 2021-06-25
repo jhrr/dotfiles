@@ -97,9 +97,6 @@ PIP_REQUIRE_VIRTUALENV=true
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 
-
-[[ -d /usr/local/etc/bash_completion.d/ ]] &&
-  for f in /usr/local/etc/bash_completion.d/*; do . "${f}"; done
 [[ -f ~/.bash-aliases ]] &&
   . ~/.bash-aliases
 [[ -f ~/.git-aliases ]] &&
@@ -118,7 +115,13 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
-  BREW_PREFIX='/usr/local'
+  architecture="$(uname -m)"
+
+  if [ "${architecture}" = "x86_64" ]; then
+    export BREW_PREFIX='/usr/local'
+  else
+    export BREW_PREFIX='/opt/homebrew'
+  fi
 
   if ! grep -F -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
     echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
@@ -145,6 +148,9 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
   LS_COLORS="${_ls_colors}"
   CC="$(command -v clang)"
   export LS_COLORS CC
+
+  [[ -d "${BREW_PREFIX}/etc/bash_completion.d/" ]] &&
+    for f in "${BREW_PREFIX}"/etc/bash_completion.d/*; do . "${f}"; done
 
   [[ -f ~/.iterm2_shell_integration.bash ]] &&
     . ~/.iterm2_shell_integration.bash

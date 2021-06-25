@@ -55,7 +55,7 @@ set wildmode=list:longest
 
 nmap <silent> <leader>s :set nolist!<CR>
 
-set rtp+=/usr/local/opt/fzf
+exe "set rtp+=" . $BREW_PREFIX . "/opt/fzf"
 
 nnoremap ' `
 nnoremap ` '

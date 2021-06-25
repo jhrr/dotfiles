@@ -58,10 +58,11 @@ alias suv='sudo ${VISUAL}'
 }
 
 [[ "${IS_OSX}" == true ]] && {
-  alias pg='psql -h localhost -d postgres'
+  alias awk='gsed'
   alias sed='gsed'
   alias shred='gshred -zuv'
   alias su='sudo su -'
+  alias pg='psql -h localhost -d postgres'
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
@@ -256,11 +257,15 @@ vim-add-plugin() {
   git -C "${HOME}/.vim/bundle" submodule add "$@";
 }
 
+vim-remove-plugin() {
+  echo 'Not implemented!' >&2
+}
+
 vim-is-running() {
   local proc
   proc=$(tty | sed -e "s:/dev/::")
   ps \
-    | "${GREPPAGE}" '/usr/local/bin/vim' \
+    | "${GREPPAGE}" vim \
     | "${GREPPAGE}" -v rg \
     | "${GREPPAGE}" "$proc";
 }
