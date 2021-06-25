@@ -39,7 +39,7 @@ symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@echo "Symlinking Linux specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
-symlinks-osx: osx 'bin/player' 'bin/closeplayer'
+symlinks-osx: osx
 		@echo "Symlinking OS X specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
@@ -84,13 +84,9 @@ update-veprompt:
 		@chmod a+x $(bin)/veprompt
 		@rm -rf $(vep_tmp)
 
-update-git-scripts:
-		@if [ -d ~/code/oss/git-scripts ]; then \
-			ln -fns ~/code/oss/git-scripts ~/bin/git-scripts; fi;
-
 link-scripts:
 		@if [ -d ~/bin ]; then rm -rf ~/bin; fi;
 		@mkdir ~/bin
 		@ln -s $(dot)/bin/* ~/bin/
 
-scripts: update-git-scripts link-scripts
+scripts: link-scripts
