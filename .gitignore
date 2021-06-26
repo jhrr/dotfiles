@@ -4,3 +4,4 @@ bin/lein
 vim/view/
 bin/sync-vault
 logfile
+.version.swp
