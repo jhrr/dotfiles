@@ -19,7 +19,7 @@ alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
 alias killnode='killall -KILL node'
 alias ksrv='killall -KILL node && kill-port 3000 && kill-port 8000'
-alias l='ls -halG --color | ${PAGER}'
+alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias mv='mv -iv'
@@ -189,6 +189,7 @@ alias todo='grep-todo'
 kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
+l
 
 md() {
   mkdir -p "$@" && cd "$@" || exit;
