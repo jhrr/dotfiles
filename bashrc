@@ -49,67 +49,6 @@ IS_FREEBSD=false
 [[ "$(uname -s)" =~ FreeBSD ]] && IS_FREEBSD=true
 export IS_FREEBSD
 
-_set_preferred() {
-  local IFS=":" var="$1" list="$2" item
-  for item in $list; do
-    program="$(command -v "${item}" 2>/dev/null)"
-    if [[ -x "${program}" ]]; then
-      printf -v "${var}" %s "${program}"
-      break
-    fi
-  done
-}
-
-editors="vim:vi:emacs"
-browsers="elinks:lynx:links"
-xbrowsers="chromium:firefox:uzbl"
-greppage="rg:ack:grep"
-
-_set_preferred "VISUAL" $editors
-_set_preferred "EDITOR" $editors
-_set_preferred "GREPPAGE" $greppage
-[[ "${IS_LINUX}" == true ]] && {
-  if [[ "${DISPLAY}" == true ]]; then
-    _set_preferred "BROWSER" $xbrowsers
-  else
-    _set_preferred "BROWSER" $browsers
-  fi
-  export BROWSER
-}
-export VISUAL EDITOR GREPPAGE
-
-if command -v less >/dev/null 2>&1; then
-  LESS="-FiRswX"
-  PAGER="less"
-  MANPAGER="${PAGER}"
-  export LESS PAGER MANPAGER
-else
-  PAGER="more"
-  MANPAGER="${PAGER}"
-  export PAGER MANPAGER
-fi
-
-SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
-export SHELLCHECK_OPTS
-
-WORKON_HOME="${HOME}/.virtualenvs"
-PIP_REQUIRE_VIRTUALENV=true
-VIRTUAL_ENV_DISABLE_PROMPT=1
-export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
-
-[[ -f ~/.bash-aliases ]] &&
-  . ~/.bash-aliases
-[[ -f ~/.git-aliases ]] &&
-  . ~/.git-aliases
-[[ -f ~/.private ]] &&
-  . ~/.private
-
-[[ -f ~/.prompt ]] &&
-  . ~/.prompt
-
-[[ -f ~/.fzf.bash ]] &&
-  . ~/.fzf.bash
-
 # TODO: At some point we want to develop and merge this colourscheme
 # with the settings in Xdefaults for linux and bsd.
 [[ "${IS_OSX}" == true ]] && {
@@ -174,6 +113,67 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
   fi
 
 }
+
+_set_preferred() {
+  local IFS=":" var="$1" list="$2" item
+  for item in $list; do
+    program="$(command -v "${item}" 2>/dev/null)"
+    if [[ -x "${program}" ]]; then
+      printf -v "${var}" %s "${program}"
+      break
+    fi
+  done
+}
+
+editors="vim:vi:emacs"
+browsers="elinks:lynx:links"
+xbrowsers="chromium:firefox:uzbl"
+greppage="rg:ack:grep"
+
+_set_preferred "VISUAL" $editors
+_set_preferred "EDITOR" $editors
+_set_preferred "GREPPAGE" $greppage
+[[ "${IS_LINUX}" == true ]] && {
+  if [[ "${DISPLAY}" == true ]]; then
+    _set_preferred "BROWSER" $xbrowsers
+  else
+    _set_preferred "BROWSER" $browsers
+  fi
+  export BROWSER
+}
+export VISUAL EDITOR GREPPAGE
+
+if command -v less >/dev/null 2>&1; then
+  LESS="-FiRswX"
+  PAGER="less"
+  MANPAGER="${PAGER}"
+  export LESS PAGER MANPAGER
+else
+  PAGER="more"
+  MANPAGER="${PAGER}"
+  export PAGER MANPAGER
+fi
+
+SHELLCHECK_OPTS="-e SC1090,SC1092,SC2148"
+export SHELLCHECK_OPTS
+
+WORKON_HOME="${HOME}/.virtualenvs"
+PIP_REQUIRE_VIRTUALENV=true
+VIRTUAL_ENV_DISABLE_PROMPT=1
+export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
+
+[[ -f ~/.bash-aliases ]] &&
+  . ~/.bash-aliases
+[[ -f ~/.git-aliases ]] &&
+  . ~/.git-aliases
+[[ -f ~/.private ]] &&
+  . ~/.private
+
+[[ -f ~/.prompt ]] &&
+  . ~/.prompt
+
+[[ -f ~/.fzf.bash ]] &&
+  . ~/.fzf.bash
 
 mpd-start() {
   if command -v 'mpd' >/dev/null 2>&1; then
