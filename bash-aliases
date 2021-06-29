@@ -173,15 +173,15 @@ fwc() {
 
 grep-less() {
   if command -v 'rg' >/dev/null 2>&1; then
-    "${GREPPAGE}" --pretty -i "$@" | less
+    "${GREPPAGE}" --pretty -i "$@" | ${PAGER}
   else
-    "${GREPPAGE}" --color -ir "$@" | less
+    "${GREPPAGE}" --color -ir "$@" | ${PAGER}
   fi
 }
 alias g='grep-less'
 
 grep-todo() {
-  grep-less "todo" ./ ;
+  grep-less "todo" ./
 }
 alias todo='grep-todo'
 
@@ -189,7 +189,6 @@ alias todo='grep-todo'
 kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
-l
 
 md() {
   mkdir -p "$@" && cd "$@" || exit;
