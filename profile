@@ -6,8 +6,9 @@ umask 0022
 [ -d "${HOME}/bin" ] &&
   PATH="$PATH:${HOME}/bin"
 
-[ -d "${HOME}/.cargo/bin" ]
-  PATH="$HOME/.cargo/bin:$PATH"
+# shellcheck disable=SC1091
+[ -f "${HOME}/.cargo/env" ] &&
+  . "${HOME}/.cargo/env"
 
 if command -v pyenv >/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"

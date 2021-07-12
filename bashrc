@@ -90,6 +90,10 @@ export IS_FREEBSD
   CC="$(command -v clang)"
   export LS_COLORS CC
 
+  # shellcheck disable=SC1091
+  [[ -f "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] &&
+    . "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
+
   [[ -d "${BREW_PREFIX}/etc/bash_completion.d/" ]] &&
     for f in "${BREW_PREFIX}"/etc/bash_completion.d/*; do . "${f}"; done
 
