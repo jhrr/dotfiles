@@ -73,3 +73,6 @@
 [submodule "vim/bundle/vim-jest-snippets"]
 	path = vim/bundle/vim-jest-snippets
 	url = https://github.com/jhkersul/vim-jest-snippets
+[submodule "vim/bundle/vim-hardtime"]
+	path = vim/bundle/vim-hardtime
+	url = https://github.com/takac/vim-hardtime

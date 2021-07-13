@@ -53,6 +53,8 @@ set visualbell
 set wildmenu
 set wildmode=list:longest
 
+let g:hardtime_default_on = 1
+
 nmap <silent> <leader>s :set nolist!<CR>
 
 exe "set rtp+=" . $BREW_PREFIX . "/opt/fzf"
