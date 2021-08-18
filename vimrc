@@ -171,7 +171,6 @@ au Filetype supercollider inoremap <leader>k :call SClangKill()<CR>
 au Filetype supercollider vnoremap <leader>k :call SClangKill()<CR>
 
 " ALE
-" TODO: :help ale-go-to-definition
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -181,7 +180,7 @@ let g:ale_linters = {
 \   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
 \   'python': ['mypy', 'flake8'],
-\   'rust': ['rls'],
+\   'rust': ['rls', 'analyzer'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],

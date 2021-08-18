@@ -179,6 +179,11 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/.fzf.bash ]] &&
   . ~/.fzf.bash
 
+# if command -v 'py' >/dev/null 2>&1 && command -v 'pyenv' >/dev/null 2>&1; then
+#   PY_PYTHON="$(head -n 1 "$(pyenv root)/version" | cut -d "." -f 1,2)"
+#   export PY_PYTHON
+# fi
+
 mpd-start() {
   if command -v 'mpd' >/dev/null 2>&1; then
     if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then

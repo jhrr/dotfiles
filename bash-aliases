@@ -25,7 +25,6 @@ alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias mv='mv -iv'
 alias n='ncmpcpp'
 alias np='mpc toggle'
-alias p='ipython'
 alias pmg='cd $(gh) && ./manage.py migrate'
 alias psh='pipenv shell'
 alias pt='py.test'
@@ -257,6 +256,10 @@ vim-add-plugin() {
   git -C "${HOME}/.vim/bundle" submodule add "$@";
 }
 
+vim-update-plugins() {
+  git -C "${HOME}/.vim/bundle" submodule update --init --recursive;
+}
+
 vim-remove-plugin() {
   echo 'Not implemented!' >&2
 }
@@ -270,7 +273,3 @@ vim-is-running() {
     | "${GREPPAGE}" "$proc";
 }
 alias iv='vim-is-running'
-
-vim-update-plugins() {
-  git submodule update --init --recursive;
-}
