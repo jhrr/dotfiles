@@ -223,6 +223,21 @@ git-sync-fork() {
     fi
 }
 
+# Usage: git-sync-branch
+git-sync-branch() {
+  local _remote _branch _branches
+  _remote='origin'
+  _branch="$(git rev-parse --abbrev-ref HEAD)"
+  _branches=('master' 'main' 'develop')
+  if [[ "${_branches[*]}" =~ ${_branch} ]]; then
+    git-in-repo && \
+      git fetch --all && \
+      git reset --hard "${_remote}/$(git rev-parse --abbrev-ref HEAD)"
+  else
+    err 'Probably not the right branch for this...'
+  fi
+}
+
 # Usage: git-todo
 git-todo() {
   git-in-repo && \
