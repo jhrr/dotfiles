@@ -207,6 +207,22 @@ git-squash-x() {
 }
 alias gsx='git-squash-x'
 
+# Usage: git-sync-branch
+git-sync-branch() {
+  local _remote _branch _branches
+  _remote='origin'
+  _branch="$(git rev-parse --abbrev-ref HEAD)"
+  _branches=('master' 'main' 'develop')
+  if [[ "${_branches[*]}" =~ ${_branch} ]]; then
+    git-in-repo && \
+      git fetch --all && \
+      git reset --hard "${_remote}/$(git rev-parse --abbrev-ref HEAD)"
+  else
+    err 'Probably not the right branch for this...'
+  fi
+}
+alias gSB='git-sync-branch'
+
 # Usage: git-sync-fork $REMOTE $BRANCH
 git-sync-fork() {
   local _remote
@@ -222,21 +238,7 @@ git-sync-fork() {
       err "Too many arguments..."
     fi
 }
-
-# Usage: git-sync-branch
-git-sync-branch() {
-  local _remote _branch _branches
-  _remote='origin'
-  _branch="$(git rev-parse --abbrev-ref HEAD)"
-  _branches=('master' 'main' 'develop')
-  if [[ "${_branches[*]}" =~ ${_branch} ]]; then
-    git-in-repo && \
-      git fetch --all && \
-      git reset --hard "${_remote}/$(git rev-parse --abbrev-ref HEAD)"
-  else
-    err 'Probably not the right branch for this...'
-  fi
-}
+alias gSF='git-sync-fork'
 
 # Usage: git-todo
 git-todo() {
