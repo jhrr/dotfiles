@@ -247,12 +247,13 @@ git-todo() {
     git grep -n -e TODO -e FIXME -e XXX
 }
 
-# Usage: git-edit-all-diffs
-git-edit-all-diffs() {
+# Usage: git-edit-modified
+git-edit-modified() {
+  # shellcheck disable=SC2046
   git-in-repo && \
-    "${VISUAL}" "$(git diff --name-only --diff-filter=U  | uniq)"
+    "${VISUAL}" $(git ls-files -o -m --exclude-standard)
 }
-alias va='git-edit-all-diffs'
+alias va='git-edit-modified'
 
 # Usage: git-list-diff $HASH
 # List all files contained in a commit.
