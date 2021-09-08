@@ -225,13 +225,14 @@ alias gSB='git-sync-branch'
 
 # Usage: git-sync-fork $REMOTE $BRANCH
 git-sync-fork() {
-  local _remote
-  _remote='upstream'
   git-in-repo && \
+    git fetch --all && \
     if [[ $# -eq 0 ]]; then
-      git pull --ff-only "${_remote}" master
+      local _remote
+      _remote='upstream'
+      git pull --ff-only "${_remote}" "$(git rev-parse --abbrev-ref HEAD)"
     elif [[ $# -eq 1 ]]; then
-      git pull --ff-only "$1" master
+      git pull --ff-only "$1" "$(git rev-parse --abbrev-ref HEAD)"
     elif [[ $# -eq 2 ]]; then
       git pull --ff-only "$1" "$2"
     else
