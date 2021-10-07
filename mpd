@@ -1,4 +1,4 @@
-music_directory "~/Dropbox/music/tagged"
+music_directory "~/Dropbox/music"
 db_file "~/.mpd/mpd.db"
 log_file "~/.mpd/mpd.log"
 pid_file "~/.mpd/mpd.pid"

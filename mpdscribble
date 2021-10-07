@@ -1,5 +1,3 @@
-[mpdscribble]
-log = /Users/jhrr/.mpdscribble/mpdscribble.log
 verbose = 2
 
 [last.fm]
@@ -7,3 +5,6 @@ url = http://post.audioscrobbler.com/
 username = Communty
 password = b965aaa1b72c6de6747e53656ac9dbeb
 journal = /Users/jhrr/.mpdscribble/lastfm.journal
+
+[file]
+file = /Users/jhrr/.mpdscribble/mpdscribble.log
