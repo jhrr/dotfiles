@@ -73,3 +73,6 @@
 [submodule "vim/bundle/vim-hardtime"]
 	path = vim/bundle/vim-hardtime
 	url = https://github.com/takac/vim-hardtime
+[submodule "vim/bundle/vim-terraform"]
+	path = vim/bundle/vim-terraform
+	url = https://github.com/hashivim/vim-terraform

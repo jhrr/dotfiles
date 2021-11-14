@@ -251,11 +251,13 @@ ssh-generate-timestamped-key() {
   fi
 }
 
+# TODO: Refactor to use native plugin mechanism.
 # Usage: vim-add-plugin "http://some.url/to/a/git/repo"
 vim-add-plugin() {
   git -C "${HOME}/.vim/bundle" submodule add "$@";
 }
 
+# TODO: Refactor to use native plugin mechanism.
 vim-update-plugins() {
   git -C "${HOME}/.vim/bundle" submodule update --init --recursive;
 }
