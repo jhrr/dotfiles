@@ -26,3 +26,7 @@ if command -v fasd >/dev/null 2>&1; then
   . "${fasd_cache}"
   unset fasd_cache
 fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init bash)"
+fi
