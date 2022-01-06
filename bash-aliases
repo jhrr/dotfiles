@@ -36,8 +36,6 @@ alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=
 alias sp='python manage.py shell_plus --ipython'
 alias reload='source ${HOME}/.bash_profile'
 alias td='tree -d'
-alias ve='python -m venv venv'
-alias ave='. venv/bin/activate'
 alias yt='yarn test'
 
 alias v='${VISUAL}'
@@ -248,6 +246,14 @@ ssh-generate-timestamped-key() {
     ssh-keygen -f "${HOME}/.ssh/$ssh_host"
   else
     err "Please provide the ssh server's domain name"
+  fi
+}
+
+venv() {
+  if [[ -d "./venv" ]]; then
+    . ./venv/bin/activate
+  else
+    py -m venv venv && . venv/bin/activate
   fi
 }
 
