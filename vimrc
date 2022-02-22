@@ -37,15 +37,15 @@ set nowb
 set number
 " set relativenumber
 set scrolloff=3
-set shiftwidth=4
+set shiftwidth=2
 set showcmd
 set showmode
 set smartcase
 set smartindent
 set smarttab
-set softtabstop=4
+set softtabstop=2
 set t_ti= t_te=
-set tabstop=4
+set tabstop=2
 set title
 set ttyfast
 set tw=79
