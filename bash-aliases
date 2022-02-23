@@ -251,7 +251,7 @@ ssh-generate-timestamped-key() {
 
 venv() {
   if [[ -d "./venv" ]]; then
-    . ./venv/bin/activate
+    source ./venv/bin/activate
   else
     py -m venv venv && . venv/bin/activate
   fi

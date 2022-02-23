@@ -70,7 +70,7 @@ inoremap jj <ESC>
 " inoremap <S-Tab> <C-V><Tab>
 nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>p :r !pbpaste<CR>
-nnoremap <Leader>s :shell<CR>
+" nnoremap <Leader>s :shell<CR>
 nnoremap <Leader>S :StripWhitespace<CR>
 nnoremap <Leader>v :vsp<CR>
 nnoremap <Leader>w :w<CR>
