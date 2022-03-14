@@ -101,19 +101,9 @@ export IS_FREEBSD
     . ~/.iterm2_shell_integration.bash
 
   if [[ $ITERM_SESSION_ID ]]; then
-    # Display the current git repo, or directory, in iterm tabs.
-    get_iterm_label() {
-      if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-        local directory
-        directory=${PWD##*/}
-        echo -ne "\\033];$directory\\007"
-      else
-        local branch
-        branch=$(basename "$(git rev-parse --show-toplevel)")
-        echo -ne "\\033];$branch\\007"
-      fi
-    }
-    export PROMPT_COMMAND=get_iterm_label;"${PROMPT_COMMAND}"
+    export DISABLE_AUTO_TITLE="true"
+    # Sets the tab title to current dir.
+    export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}$(__git_ps1 :%s)\007"'
   fi
 
 }
