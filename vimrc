@@ -179,22 +179,30 @@ let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
-\   'python': ['mypy', 'flake8'],
+\   'python': ['flake8', 'mypy'],
 \   'rust': ['rls', 'analyzer'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
-\   'python': ['isort', 'yapf'],
+\   'python': ['black', 'isort'],
 \   'rust': ['rustfmt'],
 \}
+let isort_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .isort.cfg'))
+let g:ale_python_isort_options =  '--settings-file=' . isort_config
+let flake8_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .flake8'))
+let g:ale_python_flake8_options =  '--config=' . flake8_config
+let mypy_config = trim(system('gfind ~+ -maxdepth 2 -type f -name mypy.ini'))
+let g:ale_python_mypy_options = '--config=' . mypy_config
+let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv*"'))
+let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>
 
-"Ultisnips
+" Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-j>'
 " let g:UltiSnipsJumpForwardTrigger = '<c-b>'
-" let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+" let g:UltiSnipsJumpBackwardTrigger = '<c-z
 
 " Mu-complete
 set completeopt+=menuone
@@ -202,7 +210,6 @@ set completeopt+=noselect
 set shortmess+=c
 set belloff+=ctrlg
 let g:mucomplete#completion_delay = 1
-
 " Change cursor shape between insert and normal mode in iTerm2
 if $TERM_PROGRAM =~ "iTerm"
   if empty($TMUX)
