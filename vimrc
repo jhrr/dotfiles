@@ -179,7 +179,7 @@ let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
-\   'python': ['flake8', 'mypy'],
+\   'python': ['flake8', 'mypy', 'pydocstyle'],
 \   'rust': ['rls', 'analyzer'],
 \}
 let g:ale_fixers = {

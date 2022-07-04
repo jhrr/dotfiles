@@ -187,17 +187,6 @@ kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
 
-md() {
-  mkdir -p "$@" && cd "$@" || exit;
-}
-
-# Usage: npm-do EXECUTABLE COMMANDS
-# Find local npm executables to invoke.
-npm-do() {
-  # shellcheck disable=SC2030
-  (PATH=$(npm bin):$PATH; eval "$@";)
-}
-
 # Usage: prettier-commit $HASH
 prettier-commit() {
   # shellcheck disable=SC2031

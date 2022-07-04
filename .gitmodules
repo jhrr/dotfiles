@@ -76,3 +76,6 @@
 [submodule "vim/bundle/vim-terraform"]
 	path = vim/bundle/vim-terraform
 	url = https://github.com/hashivim/vim-terraform
+[submodule "vim/bundle/polar.vim"]
+	path = vim/bundle/polar.vim
+	url = https://github.com/osohq/polar.vim
