@@ -178,6 +178,7 @@ let g:ale_virtualenv_dir_names = ['venv', '.venv']
 let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
 \   'python': ['flake8', 'mypy', 'pydocstyle'],
 \   'rust': ['rls', 'analyzer'],
@@ -185,6 +186,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
 \   'python': ['black', 'isort'],
 \   'rust': ['rustfmt'],
