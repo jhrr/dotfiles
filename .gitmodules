@@ -79,3 +79,9 @@
 [submodule "vim/bundle/polar.vim"]
 	path = vim/bundle/polar.vim
 	url = https://github.com/osohq/polar.vim
+[submodule "vim/bundle/tsuquyomi"]
+	path = vim/bundle/tsuquyomi
+	url = https://github.com/Quramy/tsuquyomi
+[submodule "vim/bundle/tsuquyomi-vue"]
+	path = vim/bundle/tsuquyomi-vue
+	url = https://github.com/Quramy/tsuquyomi-vue
