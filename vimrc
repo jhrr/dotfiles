@@ -221,3 +221,6 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   endif
 endif
+
+" UTL
+let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
