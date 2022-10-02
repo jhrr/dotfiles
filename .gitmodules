@@ -88,3 +88,21 @@
 [submodule "vim/bundle/vim-orgmode"]
 	path = vim/bundle/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode
+[submodule "vim/bundle/vim-speeddating"]
+	path = vim/bundle/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating
+[submodule "vim/bundle/utl.vim"]
+	path = vim/bundle/utl.vim
+	url = https://github.com/vim-scripts/utl.vim
+[submodule "vim/bundle/vim-SyntaxRange"]
+	path = vim/bundle/vim-SyntaxRange
+	url = https://github.com/inkarkat/vim-SyntaxRange
+[submodule "vim/bundle/calendar-vim"]
+	path = vim/bundle/calendar-vim
+	url = https://github.com/mattn/calendar-vim
+[submodule "vim/bundle/taglist"]
+	path = vim/bundle/taglist
+	url = https://github.com/yegappan/taglist
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/preservim/tagbar
