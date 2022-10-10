@@ -141,36 +141,6 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vue syntax sync fromstart
 autocmd FileType vue setlocal commentstring=//\ %s
 
-" SuperCollider
-" ,b -> Start server.
-" ,o -> Run line of code.
-" ,i -> Run block of code.
-" ,k -> Kill the server completely.
-" ,. -> Hard stop.
-" K  -> Open help file.
-" ^] -> Jump to tagfile.
-let g:scTerminalBuffer="on"
-let g:scSplitDirection="v"
-let hostname = substitute(system("hostname"), "\n", "", "")
-let g:scSplitSize = '50%'
-au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
-au Filetype supercollider packadd scvim
-au Filetype supercollider nnoremap <leader>b :call SClangStart()<CR>
-au Filetype supercollider inoremap <leader>b :call SClangStart()<CR>
-au Filetype supercollider vnoremap <leader>b :call SClangStart()<CR>
-au Filetype supercollider nnoremap <leader>o :call SClang_line()<CR>
-au Filetype supercollider inoremap <leader>o :call SClang_line()<CR>
-au Filetype supercollider vnoremap <leader>o :call SClang_line()<CR>
-au Filetype supercollider nnoremap <leader>i :call SClang_block()<CR>
-au Filetype supercollider inoremap <leader>i :call SClang_block()<CR>
-au Filetype supercollider vnoremap <leader>i :call SClang_block()<CR>
-au Filetype supercollider nnoremap <leader>. :call SClangHardstop()<CR>
-au Filetype supercollider inoremap <leader>. :call SClangHardstop()<CR>
-au Filetype supercollider vnoremap <leader>. :call SClangHardstop()<CR>
-au Filetype supercollider nnoremap <leader>k :call SClangKill()<CR>
-au Filetype supercollider inoremap <leader>k :call SClangKill()<CR>
-au Filetype supercollider vnoremap <leader>k :call SClangKill()<CR>
-
 " ALE
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -201,10 +171,9 @@ let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv
 let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>
 
-" Ultisnips
-let g:UltiSnipsExpandTrigger = '<c-j>'
-" let g:UltiSnipsJumpForwardTrigger = '<c-b>'
-" let g:UltiSnipsJumpBackwardTrigger = '<c-z
+" Org
+let g:org_indent = 0
+autocmd FileType org setlocal shiftwidth=2 tabstop=2
 
 " Mu-complete
 set completeopt+=menuone
@@ -222,6 +191,41 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   endif
 endif
+
+" SuperCollider
+" ,b -> Start server.
+" ,o -> Run line of code.
+" ,i -> Run block of code.
+" ,k -> Kill the server completely.
+" ,. -> Hard stop.
+" K  -> Open help file.
+" ^] -> Jump to tagfile.
+let g:scTerminalBuffer="on"
+let g:scSplitDirection="v"
+let hostname = substitute(system("hostname"), "\n", "", "")
+let g:scSplitSize = '50%'
+au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
+au Filetype supercollider packadd scvim
+au Filetype supercollider nnoremap <leader>b :call SClangStart()<CR>
+au Filetype supercollider inoremap <leader>b :call SClangStart()<CR>
+au Filetype supercollider vnoremap <leader>b :call SClangStart()<CR>
+au Filetype supercollider nnoremap <leader>o :call SClang_line()<CR>
+au Filetype supercollider inoremap <leader>o :call SClang_line()<CR>
+au Filetype supercollider vnoremap <leader>o :call SClang_line()<CR>
+au Filetype supercollider nnoremap <leader>i :call SClang_block()<CR>
+au Filetype supercollider inoremap <leader>i :call SClang_block()<CR>
+au Filetype supercollider vnoremap <leader>i :call SClang_block()<CR>
+au Filetype supercollider nnoremap <leader>. :call SClangHardstop()<CR>
+au Filetype supercollider inoremap <leader>. :call SClangHardstop()<CR>
+au Filetype supercollider vnoremap <leader>. :call SClangHardstop()<CR>
+au Filetype supercollider nnoremap <leader>k :call SClangKill()<CR>
+au Filetype supercollider inoremap <leader>k :call SClangKill()<CR>
+au Filetype supercollider vnoremap <leader>k :call SClangKill()<CR>
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger = '<c-j>'
+" let g:UltiSnipsJumpForwardTrigger = '<c-b>'
+" let g:UltiSnipsJumpBackwardTrigger = '<c-z
 
 " UTL
 let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
