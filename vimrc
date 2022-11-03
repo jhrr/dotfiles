@@ -68,8 +68,8 @@ let mapleader = ","
 let maplocalleader="\<space>"
 
 inoremap jj <ESC>
-" inoremap <S-Tab> <C-V><Tab>
-" nnoremap <Leader>c :bd<CR>
+nnoremap <Leader>d :Git diff<CR>
+nnoremap <Leader>D :Gdiffsplit<CR>
 nnoremap <Leader>p :r !pbpaste<CR>
 nnoremap <Leader>g :Rg<CR>
 nnoremap <Leader>S :StripWhitespace<CR>
