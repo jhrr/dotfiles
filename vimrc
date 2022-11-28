@@ -53,7 +53,7 @@ set visualbell
 set wildmenu
 set wildmode=list:longest
 
-let g:hardtime_default_on = 1
+let hostname = substitute(system("hostname"), "\n", "", "")
 
 nmap <silent> <leader>s :set nolist!<CR>
 
@@ -161,6 +161,7 @@ let g:ale_fixers = {
 \   'python': ['black', 'isort'],
 \   'rust': ['rustfmt'],
 \}
+" TODO: This is all far from ideal but does the job for now.
 let isort_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .isort.cfg'))
 let g:ale_python_isort_options =  '--settings-file=' . isort_config
 let flake8_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .flake8'))
@@ -171,15 +172,18 @@ let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv
 let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>
 
+" Hardtime
+let g:hardtime_default_on = 1
+
 " Org
 let g:org_indent = 0
 autocmd FileType org setlocal shiftwidth=2 tabstop=2
 
 " Mu-complete
+set belloff+=ctrlg
 set completeopt+=menuone
 set completeopt+=noselect
 set shortmess+=c
-set belloff+=ctrlg
 let g:mucomplete#completion_delay = 1
 " Change cursor shape between insert and normal mode in iTerm2
 if $TERM_PROGRAM =~ "iTerm"
@@ -202,7 +206,6 @@ endif
 " ^] -> Jump to tagfile.
 let g:scTerminalBuffer="on"
 let g:scSplitDirection="v"
-let hostname = substitute(system("hostname"), "\n", "", "")
 let g:scSplitSize = '50%'
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd set filetype=supercollider
 au Filetype supercollider packadd scvim

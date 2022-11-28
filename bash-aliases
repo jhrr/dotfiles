@@ -9,7 +9,7 @@ alias .2='cd ../..'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
-alias cp='cp -iv'
+alias b='btop'
 alias curldump='curl --trace -'
 alias delpyc='find . -name '\*.pyc' -ls -exec rm {} \;'
 alias dps='docker ps'
@@ -68,6 +68,7 @@ alias suv='sudo ${VISUAL}'
 cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
+alias cp='cp-p'
 
 # Usage dsh $CONTAINER
 # Shell into a docker container.
