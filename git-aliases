@@ -216,14 +216,9 @@ git-sync-branch() {
   local _remote _branch _branches
   _remote='origin'
   _branch="$(git rev-parse --abbrev-ref HEAD)"
-  _branches=('master' 'main' 'develop' 'development')
-  if [[ "${_branches[*]}" =~ ${_branch} ]]; then
-    git-in-repo && \
-      git fetch --all && \
-      git pull --ff-only "${_remote}" "${_branch}"
-  else
-    err 'Probably not the right branch for this...'
-  fi
+  git-in-repo && \
+    git fetch --all && \
+    git pull --ff-only "${_remote}" "${_branch}"
 }
 alias gSB='git-sync-branch'
 

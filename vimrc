@@ -152,6 +152,7 @@ let g:ale_linters = {
 \   'typescript': ['eslint', 'tsserver'],
 \   'python': ['flake8', 'mypy', 'pydocstyle'],
 \   'rust': ['rls', 'analyzer'],
+\   'terraform':  ['terraform', 'tflint'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -160,6 +161,7 @@ let g:ale_fixers = {
 \   'vue': ['prettier', 'eslint'],
 \   'python': ['black', 'isort'],
 \   'rust': ['rustfmt'],
+\   'terraform': ['terraform'],
 \}
 " TODO: This is all far from ideal but does the job for now.
 let isort_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .isort.cfg'))
