@@ -100,6 +100,9 @@ export IS_FREEBSD
   [[ -f ~/.iterm2_shell_integration.bash ]] &&
     . ~/.iterm2_shell_integration.bash
 
+  PATH="${BREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
+  PATH="${BREW_PREFIX}/opt/gsed/libexec/gnubin:$PATH"
+
   if [[ $ITERM_SESSION_ID ]]; then
     export DISABLE_AUTO_TITLE="true"
     # Sets the tab title to current dir.
