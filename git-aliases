@@ -51,6 +51,8 @@ __git_shortcut  gF  fetch --all
 __git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd $(gh)
 __git_shortcut  gPo  push 'origin $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gPoF  push 'origin -f $(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gPu push 'upstream $(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gPuF push 'upstream -f $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gpL  pull '--ff-only origin $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gpLR  pull --rebase
 __git_shortcut  gpLom  pull '--ff-only origin master'
