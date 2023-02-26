@@ -171,6 +171,8 @@ let flake8_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .flake8'))
 let g:ale_python_flake8_options =  '--config=' . flake8_config
 let mypy_config = trim(system('gfind ~+ -maxdepth 2 -type f -name mypy.ini'))
 let g:ale_python_mypy_options = '--config=' . mypy_config
+let pydocstyle_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .pydocstyle'))
+let g:ale_python_pydocstyle_options = '--config=' . pydocstyle_config
 let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv*"'))
 let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>
