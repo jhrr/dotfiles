@@ -177,7 +177,7 @@ grep-less() {
 alias g='grep-less'
 
 grep-todo() {
-  grep-less "todo" ./
+  grep-less "todo" .
 }
 alias todo='grep-todo'
 
@@ -186,12 +186,7 @@ kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
 
-# Usage: prettier-commit $HASH
-prettier-commit() {
-  # shellcheck disable=SC2031
-  PATH=$(npm bin):$PATH; git-list-diff "$1" | xargs prettier --write
-}
-
+# Usage: pskill $PID
 pskill() {
   local pid
   pid=$(pgrep -f "$1")
@@ -207,7 +202,7 @@ routerip() {
 # Usage: shellcheck-add-shebang $SHELL $FILE
 shellcheck-add-shebang() {
   if command -v 'gsed' >/dev/null 2>&1; then
-    gsed -i "1s/^/# shellcheck shell=$1\\n" "$2"
+    sed -i "1s/^/# shellcheck shell=$1\\n" "$2"
   else
     echo 'Install gnu-sed!' >&2
   fi
