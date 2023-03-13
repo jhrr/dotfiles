@@ -44,6 +44,7 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
+set spell spelllang=en_gb
 set t_ti= t_te=
 set tabstop=2
 set title
