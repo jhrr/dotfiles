@@ -152,7 +152,7 @@ let g:ale_linter_aliases = {'vue': ['javascript', 'typescript']}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint', 'tsserver'],
-\   'python': ['flake8', 'mypy', 'pydocstyle'],
+\   'python': ['flake8', 'mypy', 'pydocstyle', 'ruff'],
 \   'rust': ['rls', 'analyzer'],
 \   'terraform':  ['terraform', 'tflint'],
 \}
@@ -161,7 +161,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
-\   'python': ['black', 'isort'],
+\   'python': ['black', 'isort', 'ruff'],
 \   'rust': ['rustfmt'],
 \   'terraform': ['terraform'],
 \}
