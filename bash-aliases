@@ -240,19 +240,20 @@ venv() {
   fi
 }
 
-# TODO: Refactor to use native plugin mechanism.
 # Usage: vim-add-plugin "http://some.url/to/a/git/repo"
 vim-add-plugin() {
-  git -C "${HOME}/.vim/bundle" submodule add "$@";
+  git -C "${HOME}/.vim/pack/jhrr/start" submodule add "$1"
 }
 
-# TODO: Refactor to use native plugin mechanism.
 vim-update-plugins() {
-  git -C "${HOME}/.vim/bundle" submodule update --init --recursive;
+  git -C "${HOME}/.vim/pack/jhrr/start" submodule update --remote --merge;
 }
 
+# Usage: vim-remove-plugin 'some-plugin'
 vim-remove-plugin() {
-  echo 'Not implemented!' >&2
+  git submodule deinit -f -- "vim/pack/jhrr/start/${1}"
+  rm -rf ".git/modules/vim/pack/jhrr/start/${1}"
+  git rm -f "vim/pack/jhrr/start/${1}"
 }
 
 vim-is-running() {
