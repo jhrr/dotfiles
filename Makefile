@@ -24,7 +24,6 @@ help:
 	@echo "  make install     configure entire ~/. directory"
 	@echo "  make symlinks    sync config files, en masse and platform specific"
 	@echo "  make scripts     sync ~/bin and its scripts"
-	@echo "  make vim         sync ~/.vim and update its plugins"
 	@echo "  make help        display this message"
 	@echo ""
 
@@ -58,7 +57,6 @@ mpd-config: mpd.log mpd.db mpd.pid mpd.state
 
 vim-config:
 		@echo "Configuring vim..."
-		@mkdir -p ~/.vim-tmp
 		@ln -fns $(dot)/vim ~/.vim;
 		@ln -fs $(dot)/vimrc ~/.vimrc
 		@git -C $(dot) submodule update --init
