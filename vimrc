@@ -7,6 +7,8 @@ filetype plugin indent on
 
 colors zenburn
 
+let hostname = substitute(system("hostname"), "\n", "", "")
+
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set nobackup
@@ -44,7 +46,6 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
-set spell spelllang=en_gb
 set t_ti= t_te=
 set tabstop=2
 set title
@@ -54,7 +55,10 @@ set visualbell
 set wildmenu
 set wildmode=list:longest
 
-let hostname = substitute(system("hostname"), "\n", "", "")
+augroup spellcheck
+    autocmd!
+    autocmd FileType markdown,org,text setlocal spell spelllang=en_gb
+augroup END
 
 nmap <silent> <leader>s :set nolist!<CR>
 
