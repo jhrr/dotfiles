@@ -169,7 +169,7 @@ fwc() {
 
 grep-less() {
   if command -v 'rg' >/dev/null 2>&1; then
-    "${GREPPAGE}" --pretty -i "$@" | ${PAGER}
+    "${GREPPAGE}" --pretty --no-ignore -i "$@" | ${PAGER}
   else
     "${GREPPAGE}" --color -ir "$@" | ${PAGER}
   fi
