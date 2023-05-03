@@ -152,6 +152,7 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_virtualenv_dir_names = ['venv', '.venv']
+let g:ale_virtualtext_cursor = 0
 let g:ale_linter_aliases = {'vue': ['javascript', 'typescript']}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
