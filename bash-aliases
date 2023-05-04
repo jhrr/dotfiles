@@ -169,7 +169,15 @@ fwc() {
 
 grep-less() {
   if command -v 'rg' >/dev/null 2>&1; then
-    "${GREPPAGE}" --pretty --no-ignore -i "$@" | ${PAGER}
+    "${GREPPAGE}" --pretty --hidden \
+      -g '!.git/' \
+      -g '!.venv/' \
+      -g '!static/' \
+      -g '!yarn.lock' \
+      -g '!migrations/' \
+      -g '!node_modules/' \
+      -i "$@" \
+      | ${PAGER}
   else
     "${GREPPAGE}" --color -ir "$@" | ${PAGER}
   fi
