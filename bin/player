@@ -13,7 +13,7 @@ tell application "iTerm"
     if not player then
         set newWindow to (create window with default profile)
         tell current session of newWindow
-            write text "ncmpcpp"
+            write text "ncmpcpp -s playlist -S browser"
             set name to "ncmpcpp"
         end tell
     end if
