@@ -207,6 +207,10 @@ routerip() {
     | awk '$1 == "0.0.0.0" {print $2}';
 }
 
+scan-ports() {
+  sudo lsof -i -P -n | grep LISTEN
+}
+
 # Usage: shellcheck-add-shebang $SHELL $FILE
 shellcheck-add-shebang() {
   if command -v 'gsed' >/dev/null 2>&1; then
