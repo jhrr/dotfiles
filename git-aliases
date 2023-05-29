@@ -261,3 +261,10 @@ git-list-diff() {
   git-in-repo && \
     git diff-tree --no-commit-id --name-only -r "$1"
 }
+
+# Usage: git-restore-files $SHA $FILENAME_1 $FILENAME_N
+# Pull files into HEAD from a specified commit.
+git-restore-files() {
+  git-in-repo && \
+    git restore -s "${1}" -- "${@:2}"
+}
