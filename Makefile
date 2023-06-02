@@ -6,8 +6,6 @@ dot:=$(CURDIR)
 bin:=$(dot)/bin
 tmp:=/tmp
 
-pathogen_src=https://tpo.pe/pathogen.vim
-
 vcp_ver=1.2.1
 vep_src=https://www.github.com/jhrr/veprompt.git
 vep_tmp=$(tmp)/veprompt
