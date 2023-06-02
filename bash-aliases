@@ -65,7 +65,6 @@ alias suv='sudo ${VISUAL}'
 cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
-alias cp='cp-p'
 
 # Usage dsh $CONTAINER
 # Shell into a docker container.
