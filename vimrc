@@ -241,3 +241,9 @@ let g:UltiSnipsExpandTrigger = '<c-j>'
 
 " UTL
 let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
+
+" UUID
+function InsertUUID()
+  r !uuidgen | sed "s/.*/&/" | tr "[A-Z]" "[a-z]"
+endfunction
+nnoremap <Leader>u :call InsertUUID()<CR>
