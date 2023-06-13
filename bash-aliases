@@ -152,15 +152,6 @@ frep() {
     | less;
 }
 
-# Usage: vrep REGEX FILE-SPECIFIER
-# Grep for patterns and open matches for editing.
-vrep() {
-  ${GREPPAGE} -il "$@" | while IFS='' read -r line
-  do
-   xargs -o "${VISUAL}" "${line}"
-  done
-}
-
 fwc() {
   find . -name "*.${1}" -print0 \
     | xargs -0 wc -l;
@@ -178,7 +169,7 @@ grep-less() {
       -i "$@" \
       | ${PAGER}
   else
-    "${GREPPAGE}" --color -ir "$@" | ${PAGER}
+    "${GREPPAGE}" --color -r "$@" | ${PAGER}
   fi
 }
 alias g='grep-less'
@@ -187,6 +178,15 @@ grep-todo() {
   grep-less "todo" .
 }
 alias todo='grep-todo'
+
+# Usage: vrep REGEX FILE-SPECIFIER
+# Grep for patterns and open matches for editing.
+vrep() {
+  ${GREPPAGE} -il "$@" | while IFS='' read -r line
+  do
+   xargs -o "${VISUAL}" "${line}"
+  done
+}
 
 # Usage: kill-port $PORT
 kill-port() {
