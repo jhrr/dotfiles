@@ -35,7 +35,7 @@ alias rds='cd $(gh) && ./manage.py runserver_plus --configuration=Dev'
 alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=Dev'
 alias reload='source ${HOME}/.bash_profile'
 alias rs='cd $(gh) && ./manage.py runserver'
-alias tree='tree -I "node_modules|.git|.venv"'
+alias tree='tree -I "node_modules|__pycache__|.git|*venv"'
 alias yt='yarn test'
 
 alias v='${VISUAL}'
