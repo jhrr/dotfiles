@@ -139,6 +139,7 @@ nnoremap <Leader>t :e ./TODO.org<CR>
 
 " Formatting
 let g:rustfmt_autosave = 1
+let g:splitjoin_python_brackets_on_separate_lines = 1
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
