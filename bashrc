@@ -166,11 +166,13 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/.private ]] &&
   . ~/.private
 
-[[ -f ~/.prompt ]] &&
-  . ~/.prompt
-
 [[ -f ~/.fzf.bash ]] &&
   . ~/.fzf.bash
+
+if command -v 'starship' >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+  export STARSHIP_CONFIG=~/code/src/dotfiles/starship.toml
+fi
 
 # if command -v 'py' >/dev/null 2>&1 && command -v 'pyenv' >/dev/null 2>&1; then
 #   PY_PYTHON="$(head -n 1 "$(pyenv root)/version" | cut -d "." -f 1,2)"

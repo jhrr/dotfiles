@@ -1,0 +1,53 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = '''
+[┌](white) $username$hostname\($directory\) $git_branch${custom.git_sha}$git_status
+[│](white) $aws$nix_shell$python$rust
+[└](white) [\$](bold purple) '''
+
+[aws]
+format = '[$profile -> $region]($style)'
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+truncation_length = 5
+style = 'yellow'
+[git_branch]
+always_show_remote = true
+format = '[$branch(:$remote_branch)]($style)[|](white)'
+style = 'green'
+[git_state]
+format = '[\($state($progress_current of $progress_total)\)]($style)'
+[git_status]
+# https://github.com/starship/starship/blob/master/src/modules/git_status.rs#L246
+ahead = 'A'
+behind = 'B'
+conflicted = 'C'
+diverged = 'D'
+format = '[(-> ($modified(:$untracked)))]($style)'
+modified = '$count'
+stashed = 'S'
+style = 'white'
+up_to_date = ''
+untracked = '$count'
+[hostname]
+format = '[$hostname]($style)'
+ssh_only = false
+style = 'bold yellow'
+[nix_shell]
+format = ' [|](white) [nix $state(\($name\))]($style)'
+[python]
+format = ' [|](white) [$version (-> $virtualenv)]($style)'
+version_format = 'python ${raw}'
+[rust]
+format = '[|](white) [rustc $version]($style)'
+[username]
+format = '[$user]($style)@'
+show_always = true
+style_user = 'bold yellow'
+
+[custom.git_sha]
+command = 'git rev-parse --short=0 HEAD'
+when = true
+style = 'bold red'
