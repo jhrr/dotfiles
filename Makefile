@@ -6,10 +6,6 @@ dot:=$(CURDIR)
 bin:=$(dot)/bin
 tmp:=/tmp
 
-vcp_ver=1.2.1
-vep_src=https://www.github.com/jhrr/veprompt.git
-vep_tmp=$(tmp)/veprompt
-
 .PHONY: install help symlinks scripts \
 	playlists mpd.log mpd.db mpd.pid mpd.state
 
@@ -27,7 +23,7 @@ help:
 
 symlinks-common: ackrc bash-aliases bash_profile bashrc \
 	fasdrc flake8rc ghci git-aliases gitconfig gitignore_global inputrc \
-	profile prompt psqlrc sbclrc tmux.conf
+	profile psqlrc sbclrc tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@ln -fns $(dot)/tmux.d ~/.tmux.d
@@ -64,16 +60,6 @@ symlinks: symlinks-common symlinks-osx mpd-config vim-config
 else
 symlinks: symlinks-common symlinks-linux mpd-config vim-config
 endif
-
-update-veprompt:
-		@echo "Getting veprompt source..."
-		@git clone $(vep_src) $(vep_tmp)
-		@echo "Installing veprompt in:"
-		@echo $(bin)
-		@$(MAKE) -C $(vep_tmp)
-		@cp $(vep_tmp)/a.out $(bin)/veprompt
-		@chmod a+x $(bin)/veprompt
-		@rm -rf $(vep_tmp)
 
 link-scripts:
 		@if [ -d ~/bin ]; then rm -rf ~/bin; fi;
