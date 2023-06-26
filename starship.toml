@@ -3,7 +3,7 @@
 add_newline = false
 
 format = '''
-[┌](white) $username$hostname\($directory\) $git_branch${custom.git_sha}$git_status
+[┌](white) $username$hostname\($directory\) $git_branch${custom.git_sha}$git_status$git_state
 [│](white) $aws$nix_shell$python$rust
 [└](white) [\$](bold purple) '''
 
@@ -18,7 +18,8 @@ always_show_remote = true
 format = '[$branch(:$remote_branch)]($style)[|](white)'
 style = 'green'
 [git_state]
-format = '[\($state($progress_current of $progress_total)\)]($style)'
+format = '[| ](white)[$state( $progress_current/$progress_total)]($style)'
+style = 'bold blue'
 [git_status]
 # https://github.com/starship/starship/blob/master/src/modules/git_status.rs#L246
 ahead = 'A'
