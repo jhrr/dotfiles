@@ -169,16 +169,6 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/.fzf.bash ]] &&
   . ~/.fzf.bash
 
-if command -v 'starship' >/dev/null 2>&1; then
-  eval "$(starship init bash)"
-  export STARSHIP_CONFIG=~/code/src/dotfiles/starship.toml
-fi
-
-# if command -v 'py' >/dev/null 2>&1 && command -v 'pyenv' >/dev/null 2>&1; then
-#   PY_PYTHON="$(head -n 1 "$(pyenv root)/version" | cut -d "." -f 1,2)"
-#   export PY_PYTHON
-# fi
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ] && \
   . "${BREW_PREFIX}/opt/nvm/nvm.sh"
@@ -207,6 +197,11 @@ mpd-restart() {
   mpd --kill && mpd-start
 }
 
+# if command -v 'py' >/dev/null 2>&1 && command -v 'pyenv' >/dev/null 2>&1; then
+#   PY_PYTHON="$(head -n 1 "$(pyenv root)/version" | cut -d "." -f 1,2)"
+#   export PY_PYTHON
+# fi
+
 if command -v 'gpg-agent' >/dev/null 2>&1; then
   if ! pgrep -xU "${UID}" 'gpg-agent' >/dev/null 2>&1; then
     eval "$(gpg-agent --daemon)"
@@ -218,3 +213,8 @@ fi
     eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
   fi
 }
+
+if command -v 'starship' >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+  export STARSHIP_CONFIG=~/code/src/dotfiles/starship.toml
+fi
