@@ -1,0 +1,132 @@
+# -*- mode: sh; -*-
+# vi: set ft=sh :
+
+# TODO: encapsulate krey (chalk) theme
+# TODO: encapsulate zenburn theme
+
+# Reset
+color_off='\e[0m'
+
+# Regular Colors
+black='\e[0;30m'
+red='\e[0;31m'
+green='\e[0;32m'
+yellow='\e[0;33m'
+blue='\e[0;34m'
+purple='\e[0;35m'
+cyan='\e[0;36m'
+white='\e[0;37m'
+
+# Bold
+b_black='\e[1;30m'
+b_red='\e[1;31m'
+b_green='\e[1;32m'
+b_yellow='\e[1;33m'
+b_blue='\e[1;34m'
+b_purple='\e[1;35m'
+b_cyan='\e[1;36m'
+b_white='\e[1;37m'
+
+# Underlined
+u_black='\e[4;30m'
+u_red='\e[4;31m'
+u_green='\e[4;32m'
+u_yellow='\e[4;33m'
+u_blue='\e[4;34m'
+u_purple='\e[4;35m'
+u_cyan='\e[4;36m'
+u_white='\e[4;37m'
+
+# Background
+on_black='\e[40m'
+on_red='\e[41m'
+on_green='\e[42m'
+on_yellow='\e[43m'
+on_blue='\e[44m'
+on_purple='\e[45m'
+on_cyan='\e[46m'
+on_white='\e[47m'
+
+# High Intensity
+i_black='\e[0;90m'
+i_red='\e[0;91m'
+i_green='\e[0;92m'
+i_yellow='\e[0;93m'
+i_blue='\e[0;94m'
+i_purple='\e[0;95m'
+i_cyan='\e[0;96m'
+i_white='\e[0;97m'
+
+# Bold High Intensity
+b_i_black='\e[1;90m'
+b_i_red='\e[1;91m'
+b_i_green='\e[1;92m'
+b_i_yellow='\e[1;93m'
+b_i_blue='\e[1;94m'
+b_i_purple='\e[1;95m'
+b_i_cyan='\e[1;96m'
+b_i_white='\e[1;97m'
+
+# High Intensity Backgrounds
+on_i_black='\e[0;100m'
+on_i_red='\e[0;101m'
+on_i_green='\e[0;102m'
+on_i_yellow='\e[0;103m'
+on_i_blue='\e[0;104m'
+on_i_purple='\e[0;105m'
+on_i_cyan='\e[0;106m'
+on_i_white='\e[0;107m'
+
+# These next two conditionals don't really work but the prompt
+# depends on them to look the way it does, so! refactor please...
+
+# Highlight the user name when logged in as root.
+if [[ "${USER}" == 'root' ]]; then
+  user_style="${on_i_red}";
+else
+  user_style="${b_yellow}";
+fi;
+
+# Highlight the hostname when connected via SSH.
+if [[ "${SSH_TTY}" ]]; then
+  host_style="${u_red}";
+else
+  host_style="${b_yellow}";
+ fi;
+
+# if [[ "${IS_OSX}" == true ]]; then
+#   _host=$(scutil --get ComputerName);
+# else
+#   _host=$(hostname)
+# fi;
+
+_vcprompt_hash() {
+  if git-in-repo >/dev/null 2>&1; then
+    git rev-parse --short=0 HEAD
+  fi
+}
+
+_print_if_vcs() {
+  if git-in-repo >/dev/null 2>&1; then
+    echo "$1"
+  fi
+}
+
+_git_stats() {
+  local _diffs _untracked
+  if git-in-repo >/dev/null 2>&1; then
+    _diffs=$(git status --porcelain 2>/dev/null | $GREPPAGE "M" | gwc -l)
+    _untracked=$(git status --porcelain 2>/dev/null | $GREPPAGE "\?\?" | gwc -l)
+    if [[ $_diffs != 0 ]] || [[ $_untracked != 0 ]]; then
+      printf ' -> %s:%s' "$_diffs" "$_untracked"
+    fi
+  fi
+}
+
+PS1="\[${user_style}\]\u\[${blue}\]@\[${host_style}\]\h"; # User and host
+PS1+="\[${blue}\](\[${yellow}\]\w\[${blue}\])"; # Current working directory
+PS1+="\[${green}\]\$(vcprompt -f ' %b')";
+PS1+="\[${white}\]\$(_print_if_vcs '|')";
+PS1+="\[${i_red}\]\$(_vcprompt_hash)";
+PS1+="\[${white}\]\$(_git_stats)";
+PS1+="\n\[${i_purple}\]\$\[${white}\] "; # Dollar prompt and command
