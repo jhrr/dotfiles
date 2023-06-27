@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
+command_timeout = 1000
 
 format = '''
 [┌](white) $username$hostname\($directory\) $git_branch${custom.git_sha}$git_status$git_state

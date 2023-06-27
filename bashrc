@@ -49,8 +49,6 @@ IS_FREEBSD=false
 [[ "$(uname -s)" =~ FreeBSD ]] && IS_FREEBSD=true
 export IS_FREEBSD
 
-# TODO: At some point we want to develop and merge this colourscheme
-# with the settings in Xdefaults for linux and bsd.
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
@@ -197,11 +195,6 @@ mpd-restart() {
   mpd --kill && mpd-start
 }
 
-# if command -v 'py' >/dev/null 2>&1 && command -v 'pyenv' >/dev/null 2>&1; then
-#   PY_PYTHON="$(head -n 1 "$(pyenv root)/version" | cut -d "." -f 1,2)"
-#   export PY_PYTHON
-# fi
-
 if command -v 'gpg-agent' >/dev/null 2>&1; then
   if ! pgrep -xU "${UID}" 'gpg-agent' >/dev/null 2>&1; then
     eval "$(gpg-agent --daemon)"
@@ -213,8 +206,3 @@ fi
     eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
   fi
 }
-
-if command -v 'starship' >/dev/null 2>&1; then
-  eval "$(starship init bash)"
-  export STARSHIP_CONFIG=~/code/src/dotfiles/starship.toml
-fi
