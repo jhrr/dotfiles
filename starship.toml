@@ -12,6 +12,7 @@ format = '''
 format = '[$profile -> $region]($style)'
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
+truncate_to_repo = false
 truncation_length = 5
 style = 'yellow'
 [git_branch]
