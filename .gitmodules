@@ -97,3 +97,15 @@
 [submodule "vim/pack/jhrr/start/wildfire.vim"]
 	path = vim/pack/jhrr/start/wildfire.vim
 	url = https://github.com/gcmt/wildfire.vim
+[submodule "vim/pack/jhrr/start/html5.vim"]
+	path = vim/pack/jhrr/start/html5.vim
+	url = https://github.com/othree/html5.vim
+[submodule "vim/pack/jhrr/start/https:/github.com/chr4/nginx.vim"]
+	path = vim/pack/jhrr/start/https:/github.com/chr4/nginx.vim
+	url = https://github.com/LnL7/vim-nix
+[submodule "vim/pack/jhrr/start/vim-nix"]
+	path = vim/pack/jhrr/start/vim-nix
+	url = https://github.com/LnL7/vim-nix
+[submodule "vim/pack/jhrr/start/nginx.vim"]
+	path = vim/pack/jhrr/start/nginx.vim
+	url = https://github.com/chr4/nginx.vim

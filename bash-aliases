@@ -243,17 +243,11 @@ ssh-generate-timestamped-key() {
   fi
 }
 
-venv() {
-  if [[ -d "./venv" ]]; then
-    source ./venv/bin/activate
-  else
-    py -m venv venv && . venv/bin/activate
-  fi
-}
-
-# Usage: vim-add-plugin "http://some.url/to/a/git/repo"
-vim-add-plugin() {
-  git -C "${HOME}/.vim/pack/jhrr/start" submodule add "$1"
+# Usage: vim-add-plugins "http://some.url/to/a/git/repo"
+vim-add-plugins() {
+  for repo in "$@"; do
+    git -C "${HOME}/.vim/pack/jhrr/start" submodule add "${repo}"
+  done
 }
 
 vim-update-plugins() {
