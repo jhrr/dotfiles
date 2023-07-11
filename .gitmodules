@@ -109,3 +109,6 @@
 [submodule "vim/pack/jhrr/start/nginx.vim"]
 	path = vim/pack/jhrr/start/nginx.vim
 	url = https://github.com/chr4/nginx.vim
+[submodule "vim/pack/jhrr/start/sslsecure.vim"]
+	path = vim/pack/jhrr/start/sslsecure.vim
+	url = https://github.com/chr4/sslsecure.vim
