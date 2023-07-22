@@ -1,0 +1,8 @@
+# shellcheck shell=bash
+# -*- mode: sh; -*-
+# vi: set ft=sh :
+
+nix_restart_daemon() {
+  sudo launchctl stop org.nixos.nix-daemon
+  sudo launchctl start org.nixos.nix-daemon
+}

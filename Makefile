@@ -23,7 +23,7 @@ help:
 
 symlinks-common: ackrc bash-aliases bash_profile bashrc \
 	fasdrc flake8rc ghci git-aliases gitconfig gitignore_global inputrc \
-	profile psqlrc sbclrc tmux.conf
+	nix-aliases profile psqlrc sbclrc tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@ln -fns $(dot)/tmux.d ~/.tmux.d
