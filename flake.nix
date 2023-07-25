@@ -1,11 +1,35 @@
 {
-  description = "A very basic flake";
+  description = "Nix ~jhrr";
 
-  outputs = { self, nixpkgs }: {
+  inputs = {
+      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
+      # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+      home-manager.url = "github:nix-community/home-manager";
+      home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+      darwin.url = "github:lnl7/nix-darwin";
+      darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+      flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
+      flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, home-manager, darwin }: {
+    darwinConfigurations."paradise" = darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
+      modules = [
+        home-manager.darwinModules.home-manager
+        ./hosts/paradise/default.nix
+      ];
+    };
+
+    darwinConfigurations."purgatory" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        home-manager.darwinModules.home-manager
+        ./hosts/paradise/default.nix
+      ];
+    };
   };
 }
