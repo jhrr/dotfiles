@@ -164,7 +164,6 @@ grep-less() {
       -g '!.venv/' \
       -g '!static/' \
       -g '!yarn.lock' \
-      -g '!migrations/' \
       -g '!node_modules/' \
       -i "$@" \
       | ${PAGER}
