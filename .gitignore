@@ -2,6 +2,7 @@ bin/lein
 .DS_Store
 .netrwhist
 vim/view/
+vim/spell/
 bin/sync-vault
 logfile
 .version.swp
