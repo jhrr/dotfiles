@@ -1,9 +1,9 @@
 {
-  description = "Nix ~jhrr";
+  description = "~jhrr";
 
   inputs = {
       nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
-      # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
       home-manager.url = "github:nix-community/home-manager";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +12,10 @@
       darwin.inputs.nixpkgs.follows = "nixpkgs";
 
       flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
-      flake-utils.url = "github:numtide/flake-utils";
+      flake-utils = {
+        url = "github:numtide/flake-utils";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs = { self, nixpkgs, home-manager, darwin }: {

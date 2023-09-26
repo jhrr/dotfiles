@@ -2,7 +2,19 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
-nix_restart_daemon() {
+nix-channel-update() {
+  nix-channel --update nixpkgs
+}
+
+nix-upgrade-nix() {
+  sudo -i sh -c \
+    nix-channel --update && \
+    nix-env --install --attr nixpkgs.nix && \
+    launchctl remove org.nixos.nix-daemon && \
+    launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+}
+
+nix-restart-daemon() {
   sudo launchctl stop org.nixos.nix-daemon
   sudo launchctl start org.nixos.nix-daemon
 }
