@@ -178,6 +178,8 @@ let mypy_config = trim(system('gfind ~+ -maxdepth 2 -type f -name mypy.ini'))
 let g:ale_python_mypy_options = '--config=' . mypy_config
 let pydocstyle_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .pydocstyle'))
 let g:ale_python_pydocstyle_options = '--config=' . pydocstyle_config
+let g:ale_rust_rls_toolchain = 'nightly'
+let g:ale_rust_rustfmt_options = '--edition 2018'
 let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv*"'))
 let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>
