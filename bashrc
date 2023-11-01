@@ -29,13 +29,12 @@ set -o notify
 unset MAILCHECK
 unset TERMCAP
 
-HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
+shopt -s histappend
 HISTSIZE=
 HISTFILESIZE=
 HISTCONTROL=ignoredups:erasedups
+HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
-shopt -s histappend
-export HISTCONTROL HISTIGNORE HISTSIZE HISTFILESIZE PROMPT_COMMAND
 
 IS_LINUX=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && IS_LINUX=true
