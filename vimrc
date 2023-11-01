@@ -135,6 +135,10 @@ nnoremap <Leader>j :GFiles<CR>
 nnoremap <Leader>f :GFiles?<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>L :noh<CR>
+
+" let s:project = system('git rev-parse --show-toplevel')
+" let s:todo = "TODO.org"
+" let s:path = s:project . "/" . s:todo
 nnoremap <Leader>t :e ./TODO.org<CR>
 
 " Formatting
@@ -157,7 +161,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint', 'tsserver'],
 \   'python': ['flake8', 'mypy', 'pydocstyle', 'ruff'],
-\   'rust': ['rls', 'analyzer'],
+\   'rust': ['analyzer', 'cargo', 'cspell', 'rls'],
 \   'terraform':  ['terraform', 'tflint'],
 \}
 let g:ale_fixers = {
@@ -179,7 +183,8 @@ let g:ale_python_mypy_options = '--config=' . mypy_config
 let pydocstyle_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .pydocstyle'))
 let g:ale_python_pydocstyle_options = '--config=' . pydocstyle_config
 let g:ale_rust_rls_toolchain = 'nightly'
-let g:ale_rust_rustfmt_options = '--edition 2018'
+let rustfmt_config = trim(system('gfind ~+ -maxdepth 2 -type f -name rustfmt.toml'))
+let g:ale_rust_rustfmt_options = '--edition 2018 --config-path=' . rustfmt_config
 let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv*"'))
 let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>

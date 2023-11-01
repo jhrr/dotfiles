@@ -45,7 +45,6 @@ alias suv='sudo ${VISUAL}'
 
 [[ "${IS_LINUX}" == true ]] && {
   alias exm='ec ${HOME}/.xmonad/xmonad.hs'
-  alias rmorph='pacman -Rsn $(pacman -Qqtd)' # Remove orphan packages on arch
   alias shclr='msgcat --color=test'
   alias shred='shred -zuv'
   alias sue='sudo emacs -nw'
@@ -257,7 +256,7 @@ vim-update-plugins() {
 vim-remove-plugin() {
   git submodule deinit -f -- "vim/pack/jhrr/start/${1}"
   git rm -f "vim/pack/jhrr/start/${1}"
-  rm -rf ".git/modules/vim/pack/jhrr/start/${1}"
+  # rm -rf ".git/modules/vim/pack/jhrr/start/${1}"
   git add "vim/pack/jhrr/start/${1}"
   git commit -m "Uninstall ${1} vim plugin"
 }
