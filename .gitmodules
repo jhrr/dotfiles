@@ -70,9 +70,6 @@
 [submodule "vim/pack/jhrr/start/vim-mucomplete"]
 	path = vim/pack/jhrr/start/vim-mucomplete
 	url = https://github.com/lifepillar/vim-mucomplete
-[submodule "vim/pack/jhrr/start/vim-orgmode"]
-	path = vim/pack/jhrr/start/vim-orgmode
-	url = https://github.com/jceb/vim-orgmode
 [submodule "vim/pack/jhrr/start/vim-repeat"]
 	path = vim/pack/jhrr/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
