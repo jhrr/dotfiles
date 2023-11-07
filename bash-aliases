@@ -257,8 +257,6 @@ vim-remove-plugin() {
   git submodule deinit -f -- "vim/pack/jhrr/start/${1}"
   git rm -f "vim/pack/jhrr/start/${1}"
   # rm -rf ".git/modules/vim/pack/jhrr/start/${1}"
-  git add "vim/pack/jhrr/start/${1}"
-  git commit -m "Uninstall ${1} vim plugin"
 }
 
 vim-is-running() {
