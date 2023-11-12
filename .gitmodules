@@ -109,3 +109,6 @@
 [submodule "vim/pack/jhrr/start/sslsecure.vim"]
 	path = vim/pack/jhrr/start/sslsecure.vim
 	url = https://github.com/chr4/sslsecure.vim
+[submodule "vim/pack/jhrr/start/vim-orgmode"]
+	path = vim/pack/jhrr/start/vim-orgmode
+	url = https://github.com/jceb/vim-orgmode
