@@ -44,10 +44,6 @@ IS_OSX=false
 [[ "$(uname -s)" =~ Darwin ]] && IS_OSX=true
 export IS_OSX
 
-IS_FREEBSD=false
-[[ "$(uname -s)" =~ FreeBSD ]] && IS_FREEBSD=true
-export IS_FREEBSD
-
 [[ "${IS_OSX}" == true ]] && {
   [[ -f ~/.osx ]] && . ~/.osx
 
