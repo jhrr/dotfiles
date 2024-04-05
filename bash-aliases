@@ -9,7 +9,6 @@ alias .2='cd ../..'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
-alias whoami-aws='aws sts get-caller-identity'
 alias b='btop'
 alias curldump='curl --trace -'
 alias delpyc='find . -name '\*.pyc' -ls -exec rm {} \;'
@@ -18,8 +17,6 @@ alias du='du -h -c'
 alias du1='du -h --max-depth=1'
 alias h='history | ${GREPPAGE} -i'
 alias kcC='keychain --clear'  # safely decache keychain keys
-alias killnode='killall -KILL node'
-alias ksrv='killall -KILL node && kill-port 3000 && kill-port 8000'
 alias l='ls -halG --color'
 alias lift='sudo $(history -p \!\!)'  # sudo previous command
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
@@ -37,6 +34,7 @@ alias rdsql='cd $(gh) && ./manage.py runserver_plus --print-sql --configuration=
 alias reload='source ${HOME}/.bash_profile'
 alias rs='cd $(gh) && ./manage.py runserver'
 alias tree='tree -I "node_modules|__pycache__|.git|*venv"'
+alias whoami-aws='aws sts get-caller-identity'
 alias yt='yarn test'
 
 alias v='${VISUAL}'
@@ -234,7 +232,6 @@ ssh-generate-timestamped-key() {
   if [[ -n $1 ]]; then
     local timestamp ssh_host
     timestamp="$(date -u +"%Y%m%dT%H%M%Z")"
-    # comment="$(whoami)@$(hostname)-$timestamp-rsa"
     ssh_host="$(whoami)@$(hostname)--$1-$timestamp-rsa"
     ssh-keygen -f "${HOME}/.ssh/$ssh_host"
   else
