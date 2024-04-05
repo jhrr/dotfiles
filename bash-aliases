@@ -190,6 +190,11 @@ kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
 
+# Usage: touchp some/dir/that/might/not/exist/somefile.foo
+touchp() {
+  mkdir -p "$(dirname "$1")" && touch "$1"
+}
+
 # Usage: pskill $PID
 pskill() {
   local pid
