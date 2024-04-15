@@ -51,34 +51,33 @@
     nixpkgs,
     nur,
     ...
-  }: {
-    homeManagerConfFor = config: {...}: {
-      nixpkgs.overlays = [nur.overlay];
-      imports = [config];
-    };
+  }:
+    let
+      homeManagerConfFor = config: {...}: {
+        nixpkgs.overlays = [nur.overlay];
+        imports = [config];
+      };
+    in {
+      darwinConfigurations."paradise" = darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+          ./hosts/paradise/darwin.nix
+          home-manager.darwinModules.home-manager {
+            home-manager.users.jhrr = homeManagerConfFor ./hosts/paradise/home.nix;
+          }
+        ];
+        specialArgs = { inherit nixpkgs; };
+      };
 
-    darwinConfigurations."paradise" = darwin.lib.darwinSystem {
-      system = "x86_64-darwin";
-      modules = [
-        ./hosts/paradise/darwin.nix
-        home-manager.darwinModules.home-manager
-        # {
-        #   home-manager.users.jhrr = homeManagerConfFor ./home.nix;
-        # }
-      ];
-      specialArgs = { inherit nixpkgs; };
-    };
-
-    darwinConfigurations."purgatory" = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      modules = [
-        ./hosts/purgatory/darwin.nix
-        home-manager.darwinModules.home-manager
-        # {
-        #   home-manager.users.jhrr = homeManagerConfFor ./home.nix;
-        # }
-      ];
-      specialArgs = { inherit nixpkgs; };
-    };
+      darwinConfigurations."purgatory" = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./hosts/purgatory/darwin.nix
+          home-manager.darwinModules.home-manager {
+            home-manager.users.jhrr = homeManagerConfFor ./hosts/purgatory/home.nix;
+          }
+        ];
+        specialArgs = { inherit nixpkgs; };
+      };
   };
 }
