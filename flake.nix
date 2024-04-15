@@ -2,7 +2,7 @@
   description = "~jhrr";
 
   inputs = {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
+      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
       nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
       darwin.url = "github:lnl7/nix-darwin";
