@@ -9,7 +9,7 @@
 # git symbolic-ref --short HEAD || git rev-parse --abbrev-ref HEAD
 # git log --left-right --graph --cherry-pick --oneline @{u}..
 
-alias t='tig'
+alias t='tig --topo-order'
 
 # Git alias shell-completion.
 __define_git_completion() {
