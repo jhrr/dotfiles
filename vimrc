@@ -152,6 +152,7 @@ autocmd FileType vue setlocal commentstring=//\ %s
 
 " ALE
 let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_virtualenv_dir_names = ['venv', '.venv']
@@ -160,7 +161,7 @@ let g:ale_linter_aliases = {'vue': ['javascript', 'typescript']}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint', 'tsserver'],
-\   'python': ['flake8', 'mypy', 'pydocstyle', 'ruff'],
+\   'python': ['mypy', 'ruff'],
 \   'rust': ['analyzer', 'cargo', 'cspell', 'rls'],
 \   'terraform':  ['terraform', 'tflint'],
 \}
@@ -169,19 +170,13 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
-\   'python': ['black', 'isort', 'ruff'],
+\   'python': ['ruff'],
 \   'rust': ['rustfmt'],
 \   'terraform': ['terraform'],
 \}
 " TODO: This is all far from ideal but does the job for now.
-let isort_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .isort.cfg'))
-let g:ale_python_isort_options =  '--settings-file=' . isort_config
-let flake8_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .flake8'))
-let g:ale_python_flake8_options =  '--config=' . flake8_config
 let mypy_config = trim(system('gfind ~+ -maxdepth 2 -type f -name mypy.ini'))
 let g:ale_python_mypy_options = '--config=' . mypy_config
-let pydocstyle_config = trim(system('gfind ~+ -maxdepth 2 -type f -name .pydocstyle'))
-let g:ale_python_pydocstyle_options = '--config=' . pydocstyle_config
 let g:ale_rust_rls_toolchain = 'nightly'
 let rustfmt_config = trim(system('gfind ~+ -maxdepth 2 -type f -name rustfmt.toml'))
 let g:ale_rust_rustfmt_options = '--edition 2018 --config-path=' . rustfmt_config
