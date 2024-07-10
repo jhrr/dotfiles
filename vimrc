@@ -175,7 +175,7 @@ let g:ale_fixers = {
 \   'terraform': ['terraform'],
 \}
 " TODO: This is all far from ideal but does the job for now.
-let mypy_config = trim(system('gfind ~+ -maxdepth 2 -type f -name mypy.ini'))
+let mypy_config = trim(system('gfind ~+ -maxdepth 2 -type f -name pyproject.toml'))
 let g:ale_python_mypy_options = '--config=' . mypy_config
 let g:ale_rust_rls_toolchain = 'nightly'
 let rustfmt_config = trim(system('gfind ~+ -maxdepth 2 -type f -name rustfmt.toml'))
