@@ -1,32 +1,32 @@
 [user]
-    name = jhrr
-    email = jhrr@users.noreply.github.com
+  name = jhrr
+  email = jhrr@users.noreply.github.com
 [core]
-    editor = vim
-    pager = less
-    excludesfile = ~/.gitignore_global
+  editor = vim
+  pager = less
+  excludesfile = ~/.gitignore_global
 [push]
-    default = current
+  default = current
 [color]
-    ui = true
+  ui = true
 [color "diff"]
-    meta = blue bold
-    frag = magenta bold
-    old = red bold
+  meta = blue bold
+  frag = magenta bold
+  old = red bold
 [color "branch"]
-    current = yellow reverse
-    local = yellow bold
-    remote = green bold
-    plain = red bold
+  current = yellow reverse
+  local = yellow bold
+  remote = green bold
+  plain = red bold
 [color "status"]
-    added = yellow
-    changed = green bold
-    untracked = blue bold
+  added = yellow
+  changed = green bold
+  untracked = blue bold
 [hub]
-    protocol = https
+  protocol = https
 [diff]
-    noprefix = true
+  noprefix = true
 [pull]
-	ff = only
+  ff = only
 [init]
 	defaultBranch = main

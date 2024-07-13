@@ -1,4 +1,5 @@
-TODO.org
-venv
-'/'
 "\\"
+'/'
+*venv
+.DS_STORE
+TODO.org
