@@ -170,7 +170,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'eslint'],
 \   'vue': ['prettier', 'eslint'],
-\   'python': ['ruff'],
+\   'python': ['ruff', 'ruff_format'],
 \   'rust': ['rustfmt'],
 \   'terraform': ['terraform'],
 \}
