@@ -190,6 +190,61 @@ kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
 
+# Usage: create-tf-module parent/dir module
+create-tf-module() {
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: create-tf-module <directory> <module>"
+    return 1
+  fi
+
+  local dir="$1"
+  local module="$2"
+  local module_dir="${dir}/${module}"
+
+  if [ -z "$dir" ] || [ -z "$module" ]; then
+    echo "Both directory and module arguments must be provided"
+    return 1
+  fi
+
+   if [ -d "$module_dir" ]; then
+    echo "Module at ${module_dir} already exists"
+    return 1
+  fi
+
+  local readme="${module_dir}/README.md"
+
+  if [ -e "${readme}" ]; then
+    echo "File ${path} already exists. Skipping."
+  else
+    touchp "${path}"
+    echo "${module^}" > "${readme}"
+  fi
+
+  local filenames=('data' 'iam' 'labels' 'main' 'outputs' 'variables' 'versions')
+
+  for filename in "${filenames[@]}"; do
+    path="${module_dir}/${filename}.tf"
+
+    if [ -e "${path}" ]; then
+      echo "File ${path} already exists. Skipping."
+    else
+      touchp "${path}"
+
+      if [ "${filename}" == 'data' ]; then
+        echo "# Data sources for the ${module} module." > "${path}"
+      elif [ "${filename}" == 'iam' ]; then
+        echo "# IAM roles and permissions for the ${module} module." > "${path}"
+      elif [ "${filename}" == 'main' ]; then
+        echo "# Entrypoint for the ${module} module." > "${path}"
+      elif [ "${filename}" == 'versions' ]; then
+        echo "# Providers for the ${module} module." > "${path}"
+      else
+        echo "# ${filename^} for the ${module} module." > "${path}"
+      fi
+    fi
+  done
+}
+
 # Usage: touchp some/dir/that/might/not/exist/somefile.foo
 touchp() {
   mkdir -p "$(dirname "$1")" && touch "$1"
