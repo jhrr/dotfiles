@@ -2,8 +2,6 @@
 # -*- mode: sh; -*-
 # vi: set ft=sh :
 
-[[ "${IS_OSX}" == true ]] && alias ls='gls'
-
 alias ..='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../../'
@@ -16,9 +14,9 @@ alias dps='docker ps'
 alias du='du -h -c'
 alias du1='du -h --max-depth=1'
 alias h='history | ${GREPPAGE} -i'
-alias kcC='keychain --clear'  # safely decache keychain keys
+alias kcC='keychain --clear'  # Safely decache keychain keys.
 alias l='ls -halG --color'
-alias lift='sudo $(history -p \!\!)'  # sudo previous command
+alias lift='sudo $(history -p \!\!)'  # Sudo previous command.
 alias myip='curl --silent http://tnx.nl/ip; printf "\n"'
 alias mv='mv -iv'
 alias n='ncmpcpp -s playlist -S browser'
@@ -53,9 +51,9 @@ alias suv='sudo ${VISUAL}'
 }
 
 [[ "${IS_OSX}" == true ]] && {
+  alias ls='gls'
   alias shred='gshred -zuv'
   alias su='sudo su -'
-  alias pg='psql -h localhost -d postgres'
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
@@ -64,133 +62,13 @@ cp-p() {
   rsync -WavP --human-readable --progress "$1" "$2";
 }
 
-# Usage dsh $CONTAINER
-# Shell into a docker container.
-dsh() {
- docker exec -it "${1}" sh
-}
-
-# Usage dcx $CONTAINER $COMMAND
-# Execute a command in a container.
-dcx() {
-  docker-compose exec -T "$1" "$2"
-}
-
-# Usage: err "Unable to do_something"
-# Stderr helper function.
-err() {
-  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2;
-  # exit 1
-}
-
-extract() {
-  if [[ -f "${1}" ]]; then
-    case "${1}" in
-      *.tar.bz2)   tar xvjf "${1}"     ;;
-      *.tar.gz)    tar xvzf "${1}"     ;;
-      *.bz2)       bunzip2 "${1}"      ;;
-      *.rar)       unrar x "${1}"      ;;
-      *.gz)        gunzip "${1}"       ;;
-      *.tar)       tar xvf "${1}"      ;;
-      *.tbz2)      tar xvjf "${1}"     ;;
-      *.tgz)       tar xvzf "${1}"     ;;
-      *.zip)       unzip "${1}"        ;;
-      *.Z)         uncompress "${1}"   ;;
-      *.7z)        7z x "${1}"         ;;
-      *)           echo "${1} cannot be extracted via >extract<" ;;
-    esac
-  else
-    err "Error: ${1} is not a valid file"
-  fi
-}
-
-# TODO: Consider using '*/\.*'
-fd() {
-  find . \
-    -not -iwholename '*.git*' \
-    -not -iwholename '*node_modules*' \
-    -not -iwholename '*venv*' \
-    -not -name '*.pyc' \
-    -type d -iname "*""$*""*";
-}
-
-ff() {
-  find . \
-    -not -iwholename '*.git*' \
-    -not -iwholename '*node_modules*' \
-    -not -iwholename '*venv*' \
-    -not -iwholename '*.tox*' \
-    -not -iwholename '*.mypy_cache*' \
-    -not -name '*.pyc' \
-    -type f -iname "*""$*""*";
-}
-
-# Usage: fx FILE-SPECIFIER COMMAND
-# Execute a command over the results of a call to `find'.
-fx() {
-  find . \
-    -not -iwholename '*.git*' \
-    -not -iwholename '*node_modules*' \
-    -not -iwholename '*venv*' \
-    -not -name '*.pyc' \
-    -type f -iname "*""${1:-}""*" \
-    -exec "${2:-file}" {} \; ;
-}
-
-# Usage: frep REGEX FILE-SPECIFIER
-# Grep for patterns within the results of a call to `find'.
-frep() {
-  find . \
-    -not -iwholename '*.git*' \
-    -not -iwholename '*node_modules*' \
-    -not -iwholename '*venv*' \
-    -not -name '*.pyc' \
-    -name "${2}" -print0 \
-    | xargs -0 "${GREPPAGE}" --pretty -i "${1}" \
-    | less;
-}
-
-fwc() {
-  find . -name "*.${1}" -print0 \
-    | xargs -0 wc -l;
-}
-
-grep-less() {
-  if command -v 'rg' >/dev/null 2>&1; then
-    "${GREPPAGE}" --pretty --hidden \
-      -g '!.git/' \
-      -g '!.venv/' \
-      -g '!static/' \
-      -g '!yarn.lock' \
-      -g '!node_modules/' \
-      -i "$@" \
-      | ${PAGER}
-  else
-    "${GREPPAGE}" --color -r "$@" | ${PAGER}
-  fi
-}
-alias g='grep-less'
-
-grep-todo() {
-  grep-less "todo" .
-}
-alias todo='grep-todo'
-
-# Usage: vrep REGEX FILE-SPECIFIER
-# Grep for patterns and open matches for editing.
-vrep() {
-  ${GREPPAGE} -il "$@" | while IFS='' read -r line
-  do
-   xargs -o "${VISUAL}" "${line}"
-  done
-}
-
-# Usage: kill-port $PORT
-kill-port() {
-  lsof -t -i tcp:"$1" | xargs kill -9
-}
-
-# Usage: create-tf-module parent/dir module
+# Usage: create-tf-module $DIRECTORY $MODULE
+# Create a Terraform module with a well-specified structure.
+#
+# The resulting module doesn't cleave to 'terraform_standard_module_structure'
+# as understood by tflint (that shape is too constrained for my tastes so I
+# have some additional files) so you'll need to disable that rule if you are
+# linting your Terraform.
 create-tf-module() {
   if [ "$#" -ne 2 ]; then
     echo "Usage: create-tf-module <directory> <module>"
@@ -245,12 +123,130 @@ create-tf-module() {
   done
 }
 
-# Usage: touchp some/dir/that/might/not/exist/somefile.foo
-touchp() {
-  mkdir -p "$(dirname "$1")" && touch "$1"
+# Usage dsh $CONTAINER
+# Shell into a docker container.
+dsh() {
+ docker exec -it "${1}" sh
+}
+
+# Usage: err $MESSAGE
+# Stderr helper function.
+err() {
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2;
+}
+
+# Usage: extract $COMPRESSED-FILE
+extract() {
+  if [[ -f "${1}" ]]; then
+    case "${1}" in
+      *.tar.bz2)   tar xvjf "${1}"     ;;
+      *.tar.gz)    tar xvzf "${1}"     ;;
+      *.bz2)       bunzip2 "${1}"      ;;
+      *.rar)       unrar x "${1}"      ;;
+      *.gz)        gunzip "${1}"       ;;
+      *.tar)       tar xvf "${1}"      ;;
+      *.tbz2)      tar xvjf "${1}"     ;;
+      *.tgz)       tar xvzf "${1}"     ;;
+      *.zip)       unzip "${1}"        ;;
+      *.Z)         uncompress "${1}"   ;;
+      *.7z)        7z x "${1}"         ;;
+      *)           echo "${1} cannot be extracted via >extract<" ;;
+    esac
+  else
+    err "Error: ${1} is not a valid file"
+  fi
+}
+
+# Usage: ff $DIR-SPECIFIER
+# Find directories.
+# TODO: Consider using '*/\.*'
+fd() {
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
+    -not -name '*.pyc' \
+    -type d -iname "*""$*""*";
+}
+
+# Usage: ff $FILE-SPECIFIER
+# Find files.
+ff() {
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
+    -not -iwholename '*.tox*' \
+    -not -iwholename '*.mypy_cache*' \
+    -not -name '*.pyc' \
+    -type f -iname "*""$*""*";
+}
+
+# Usage: frep $REGEX $FILE-SPECIFIER
+# Grep for patterns within the results of a call to `find'.
+frep() {
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
+    -not -name '*.pyc' \
+    -name "${2}" -print0 \
+    | xargs -0 "${GREPPAGE}" --pretty -i "${1}" \
+    | less;
+}
+
+# Usage: fx $FILE-SPECIFIER $COMMAND
+# Execute a command over the results of a call to `find'.
+fx() {
+  find . \
+    -not -iwholename '*.git*' \
+    -not -iwholename '*node_modules*' \
+    -not -iwholename '*venv*' \
+    -not -name '*.pyc' \
+    -type f -iname "*""${1:-}""*" \
+    -exec "${2:-file}" {} \; ;
+}
+
+# Usage: fwc $FILE-SPECIFIER
+# Find files and count the number of lines.
+fwc() {
+  find . -name "*.${1}" -print0 \
+    | xargs -0 wc -l;
+}
+
+# Usage: grep-less $REGEX
+# Grep for patterns under cwd and pipe the results through the pager.
+grep-less() {
+  if command -v 'rg' >/dev/null 2>&1; then
+    "${GREPPAGE}" --pretty --hidden \
+      -g '!.git/' \
+      -g '!.venv/' \
+      -g '!static/' \
+      -g '!yarn.lock' \
+      -g '!node_modules/' \
+      -i "$@" \
+      | ${PAGER}
+  else
+    "${GREPPAGE}" --color -r "$@" | ${PAGER}
+  fi
+}
+alias g='grep-less'
+
+# Usage: grep-todo
+# Show all 'todo' items relative to cwd.
+grep-todo() {
+  grep-less "todo" .
+}
+alias todo='grep-todo'
+
+# Usage: kill-port $PORT
+# Kill a bound port.
+kill-port() {
+  lsof -t -i tcp:"$1" | xargs kill -9
 }
 
 # Usage: pskill $PID
+# Hard kill a running process.
 pskill() {
   local pid
   pid=$(pgrep -f "$1")
@@ -258,13 +254,10 @@ pskill() {
   kill -9 "$pid"
 }
 
-routerip() {
-  netstat -nr \
-    | awk '$1 == "0.0.0.0" {print $2}';
-}
-
+# Usage: scan-ports
+# List all files listening on ports.
 scan-ports() {
-  sudo lsof -i -P -n | grep LISTEN
+  sudo lsof -i -n -P | grep LISTEN
 }
 
 # Usage: shellcheck-add-shebang $SHELL $FILE
@@ -276,6 +269,7 @@ shellcheck-add-shebang() {
   fi
 }
 
+# Usage: sreboot
 [[ "${IS_LINUX}" == true ]] &&
   sreboot() {
       if [[ "t" == "$(server_ok)" ]]; then
@@ -287,7 +281,7 @@ shellcheck-add-shebang() {
       sudo shutdown -r now
   }
 
-# Usage: generate-timestamped-ssh-key DOMAIN
+# Usage: generate-timestamped-ssh-key $DOMAIN
 ssh-generate-timestamped-key() {
   if [[ -n $1 ]]; then
     local timestamp ssh_host
@@ -299,24 +293,20 @@ ssh-generate-timestamped-key() {
   fi
 }
 
-# Usage: vim-add-plugins "http://some.url/to/a/git/repo"
+# Usage: touchp $DIRECTORY/$FILENAME
+touchp() {
+  mkdir -p "$(dirname "$1")" && touch "$1"
+}
+
+# Usage: vim-add-plugins $REPO-URL
 vim-add-plugins() {
   for repo in "$@"; do
     git -C "${HOME}/.vim/pack/jhrr/start" submodule add "${repo}"
   done
 }
 
-vim-update-plugins() {
-  git -C "${HOME}/.vim/pack/jhrr/start" submodule update --remote --merge;
-}
-
-# Usage: vim-remove-plugin 'some-plugin'
-vim-remove-plugin() {
-  git -C "${HOME}/.vim/pack/jhrr/start" submodule deinit -f -- "${1}"
-  git -C "${HOME}/.vim/pack/jhrr/start" rm -f "${1}"
-  rm -rf ".git/modules/vim/pack/jhrr/start/${1}"
-}
-
+# Usage: vim-is-running
+# Enumerate any Vim processes running in the shell.
 vim-is-running() {
   local proc
   proc=$(tty | sed -e "s:/dev/::")
@@ -326,3 +316,32 @@ vim-is-running() {
     | "${GREPPAGE}" "$proc";
 }
 alias iv='vim-is-running'
+
+# Usage: vim-nuke-all
+# A brute force way to kill all instances of Vim at once.
+# We wouldn't need such a murderous device if we just got to grips with tmux
+# properly instead of being such a ctrl-z lazybones.
+vim-nuke-all() {
+   iv | awk '{ print $1 }' | xargs kill -9
+}
+
+# Usage: vim-remove-plugin $PLUGIN
+vim-remove-plugin() {
+  git -C "${HOME}/.vim/pack/jhrr/start" submodule deinit -f -- "${1}"
+  git -C "${HOME}/.vim/pack/jhrr/start" rm -f "${1}"
+  rm -rf ".git/modules/vim/pack/jhrr/start/${1}"
+}
+
+# Usage: vim-update-plugins
+vim-update-plugins() {
+  git -C "${HOME}/.vim/pack/jhrr/start" submodule update --remote --merge;
+}
+
+# Usage: vrep REGEX FILE-SPECIFIER
+# Grep for patterns and open matches for editing.
+vrep() {
+  ${GREPPAGE} -il "$@" | while IFS='' read -r line
+  do
+   xargs -o "${VISUAL}" "${line}"
+  done
+}
