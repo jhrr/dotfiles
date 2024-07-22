@@ -197,15 +197,16 @@ set completeopt+=menuone
 set completeopt+=noselect
 set shortmess+=c
 let g:mucomplete#completion_delay = 1
-" Change cursor shape between insert and normal mode in iTerm2
-if $TERM_PROGRAM =~ "iTerm"
-  if empty($TMUX)
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  else
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  endif
+
+" Cursor shapes per mode.
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\e[5 q"
+  let &t_SR = "\e[4 q"
+  let &t_EI = "\e[1 q"
 endif
 
 " SuperCollider
