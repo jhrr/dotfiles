@@ -80,22 +80,23 @@ create-tf-module() {
   local module_dir="${dir}/${module}"
 
   if [ -z "$dir" ] || [ -z "$module" ]; then
-    echo "Both directory and module arguments must be provided"
+    err "Both directory and module arguments must be provided"
     return 1
   fi
 
    if [ -d "$module_dir" ]; then
-    echo "Module at ${module_dir} already exists"
+    err "Module at ${module_dir} already exists"
     return 1
   fi
 
   local readme="${module_dir}/README.md"
 
   if [ -e "${readme}" ]; then
-    echo "File ${path} already exists. Skipping."
+    err "File ${path} already exists. Skipping."
   else
-    touchp "${path}"
+    touchp "${readme}"
     echo "${module^}" > "${readme}"
+    err "Created ${readme}"
   fi
 
   local filenames=('data' 'iam' 'labels' 'main' 'outputs' 'variables' 'versions')
@@ -104,7 +105,7 @@ create-tf-module() {
     path="${module_dir}/${filename}.tf"
 
     if [ -e "${path}" ]; then
-      echo "File ${path} already exists. Skipping."
+      err "File ${path} already exists. Skipping."
     else
       touchp "${path}"
 
@@ -120,6 +121,7 @@ create-tf-module() {
         echo "# ${filename^} for the ${module} module." > "${path}"
       fi
     fi
+    err "Created ${path}"
   done
 }
 
