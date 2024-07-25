@@ -84,11 +84,6 @@ create-tf-module() {
     return 1
   fi
 
-   # if [ -d "$module_dir" ]; then
-   #  err "Module at ${module_dir} already exists"
-   #  return 1
-  # fi
-
   local readme="${module_dir}/README.md"
 
   if [ -e "${readme}" ]; then
