@@ -90,7 +90,7 @@ create-tf-module() {
     err "File ${path} already exists. Skipping."
   else
     touchp "${readme}"
-    echo "${module^}" > "${readme}"
+    echo "# ${module^}" > "${readme}"
     err "Created ${readme}"
   fi
 
