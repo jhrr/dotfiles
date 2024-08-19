@@ -56,6 +56,20 @@ alias suv='sudo ${VISUAL}'
   alias su='sudo su -'
 }
 
+# Usage: aws-login-sso some-aws-acount-012345678 some-deploy-environment
+aws-login-sso() {
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: aws-login-sso profile environment"
+    return 1
+  fi
+
+  aws sso login --profile "${1}"
+
+  export AWS_PROFILE="${1}" ENVIRONMENT="${2}"
+  err "AWS_PROFILE -> ${1}"
+  err "ENVIRONMENT -> ${2}"
+}
+
 # Usage: cp-p $SOURCE $DESTINATION
 # Copy with progress info.
 cp-p() {
