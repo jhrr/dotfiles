@@ -112,3 +112,6 @@
 [submodule "vim/pack/jhrr/start/vim-orgmode"]
 	path = vim/pack/jhrr/start/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode
+[submodule "vim/pack/jhrr/start/vim-svelte"]
+	path = vim/pack/jhrr/start/vim-svelte
+	url = https://github.com/evanleck/vim-svelte
