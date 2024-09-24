@@ -308,7 +308,9 @@ ssh-generate-timestamped-key() {
 
 # Usage: touchp $DIRECTORY/$FILENAME
 touchp() {
-  mkdir -p "$(dirname "$1")" && touch "$1"
+  for file in "$@"; do
+    mkdir -p "$(dirname "${file}")" && touch "${file}"
+  done
 }
 
 # Usage: vim-add-plugins $REPO-URL
