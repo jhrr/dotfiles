@@ -177,6 +177,7 @@ fd() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*.mypy_cache*' \
+    -not -iwholename '*.terragrunt-cache*' \
     -not -iwholename '*node_modules*' \
     -not -iwholename '*venv*' \
     -not -name '*.pyc' \
@@ -189,6 +190,7 @@ ff() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*.mypy_cache*' \
+    -not -iwholename '*.terragrunt-cache*' \
     -not -iwholename '*node_modules*' \
     -not -iwholename '*venv*' \
     -not -name '*.pyc' \
@@ -201,6 +203,7 @@ frep() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*.mypy_cache*' \
+    -not -iwholename '*.terragrunt-cache*' \
     -not -iwholename '*node_modules*' \
     -not -iwholename '*venv*' \
     -not -name '*.pyc' \
@@ -215,6 +218,7 @@ fx() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*.mypy_cache*' \
+    -not -iwholename '*.terragrunt-cache*' \
     -not -iwholename '*node_modules*' \
     -not -iwholename '*venv*' \
     -not -name '*.pyc' \
@@ -239,6 +243,7 @@ grep-less() {
       -g '!static/' \
       -g '!yarn.lock' \
       -g '!node_modules/' \
+      -g '!.terragrunt-cache/' \
       -i "$@" \
       | ${PAGER}
   else
