@@ -68,6 +68,7 @@ aws-login-sso() {
   export AWS_PROFILE="${1}" ENVIRONMENT="${2}"
   err "AWS_PROFILE -> ${1}"
   err "ENVIRONMENT -> ${2}"
+  aws sts get-caller-identity
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
