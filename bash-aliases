@@ -56,10 +56,11 @@ alias suv='sudo ${VISUAL}'
   alias su='sudo su -'
 }
 
-# Usage: aws-login-sso some-aws-acount-012345678 some-deploy-environment
+# Usage: aws-login-sso $AWS_PROFILE $ENVIRONMENT
 aws-login-sso() {
   if [ "$#" -ne 2 ]; then
-    echo "Usage: aws-login-sso profile environment"
+    # shellcheck disable=SC2016
+    echo 'Usage: aws-login-sso $AWS_PROFILE $ENVIRONMENT'
     return 1
   fi
 
