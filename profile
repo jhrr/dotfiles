@@ -4,12 +4,17 @@
 umask 0022
 
 [ -d "${HOME}/bin" ] &&
-  PATH="$PATH:${HOME}/bin"
+  PATH="$PATH:${HOME}/bin:${HOME}/.local/bin"
 
 # shellcheck disable=SC1091
 [ -f "${HOME}/.cargo/env" ] &&
   . "${HOME}/.cargo/env"
 
+# shellcheck disable=SC1091
+[ -f "$HOME/.local/bin/env" ] &&
+  . "$HOME/.local/bin/env"
+
+# shellcheck disable=SC1091
 [ -f "${HOME}/.prompt" ] &&
   . "${HOME}/.prompt"
 
@@ -48,5 +53,6 @@ puniq() {
   echo "$1" | tr : '\n' | nl | sort -u -k 2,2 | sort -n \
     | cut -f 2- | tr '\n' : | sed -e 's/:$//' -e 's/^://'
 }
+
 PATH="$(puniq "$PATH")"
 export PATH
