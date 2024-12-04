@@ -155,6 +155,15 @@ git-minimum-hash() {
       | GREP_COLORS='ms=34;1' $GREPPAGE "$(git rev-parse --short=0 HEAD)";
 }
 
+# Usage: git-nuke-diffs
+git-nuke-all-diffs() {
+  confirm-potentially-stupid && \
+    git-in-repo && \
+    git restore --staged . \
+    git restore -- .
+}
+alias gNAD=git-nuke-all-diffs
+
 # Usage: git-nuke-branch $BRANCH
 git-nuke-branch() {
   git-in-repo && \

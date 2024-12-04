@@ -72,6 +72,12 @@ aws-login-sso() {
   aws sts get-caller-identity
 }
 
+# Usage: confirm-potentially-stupid
+confirm-potentially-stupid() {
+  echo "DESTRUCTIVE OPERATION - Are you sure? [y/N] " && \
+    read -r answer && [ "${answer:-N}" = y ]
+}
+
 # Usage: cp-p $SOURCE $DESTINATION
 # Copy with progress info.
 cp-p() {
