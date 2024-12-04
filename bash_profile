@@ -12,12 +12,6 @@ case "$-" in
     fi;;
 esac
 
-[ -r "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ] &&
-  . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-
-[ -f ~/.iterm2_shell_integration.bash ] &&
-  . ~/.iterm2_shell_integration.bash
-
 if command -v fasd >/dev/null 2>&1; then
   fasd_cache="${HOME}/.fasd-init-bash"
   if [ -n "$(find -L "$(command -v fasd)" -prune -newer "${fasd_cache}")" ] \

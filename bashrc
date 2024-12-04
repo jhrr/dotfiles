@@ -83,6 +83,12 @@ export IS_OSX
   CC="$(command -v clang)"
   export LS_COLORS CC
 
+  [ -r "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ] &&
+    . "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
+
+  [ -f ~/.iterm2_shell_integration.bash ] &&
+    . ~/.iterm2_shell_integration.bash
+
   PATH="${BREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
   PATH="${BREW_PREFIX}/opt/gsed/libexec/gnubin:$PATH"
 
@@ -91,7 +97,6 @@ export IS_OSX
     # Sets the tab title to current dir.
     export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}$(__git_ps1 :%s)\007"'
   fi
-
 }
 
 _set_preferred() {
