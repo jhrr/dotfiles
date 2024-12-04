@@ -28,6 +28,10 @@ umask 0022
 #   fi
 # fi
 
+if command -v 'fnm' >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell bash)"
+fi
+
 if command -v 'pyenv' >/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"

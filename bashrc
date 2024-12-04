@@ -164,12 +164,6 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/.fzf.bash ]] &&
   . ~/.fzf.bash
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ] && \
-  . "${BREW_PREFIX}/opt/nvm/nvm.sh"
-[ -s "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && \
-  . "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
-
 mpd-start() {
   if command -v 'mpd' >/dev/null 2>&1; then
     if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
