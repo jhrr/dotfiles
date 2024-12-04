@@ -83,16 +83,6 @@ export IS_OSX
   CC="$(command -v clang)"
   export LS_COLORS CC
 
-  # shellcheck disable=SC1091
-  [[ -f "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] &&
-    . "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
-
-  [[ -d "${BREW_PREFIX}/etc/bash_completion.d/" ]] &&
-    for f in "${BREW_PREFIX}"/etc/bash_completion.d/*; do . "${f}"; done
-
-  [[ -f ~/.iterm2_shell_integration.bash ]] &&
-    . ~/.iterm2_shell_integration.bash
-
   PATH="${BREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
   PATH="${BREW_PREFIX}/opt/gsed/libexec/gnubin:$PATH"
 
