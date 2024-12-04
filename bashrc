@@ -159,6 +159,21 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
 [[ -f ~/.fzf.bash ]] &&
   . ~/.fzf.bash
 
+if command -v 'fnm' >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell bash)"
+fi
+
+if command -v 'pyenv' >/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
+# TODO: Can't recall why this exists...
+if command -v '/opt/homebrew/opt/postgresql@15/bin/postgres' >/dev/null 2>&1; then
+  export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+fi
+
 mpd-start() {
   if command -v 'mpd' >/dev/null 2>&1; then
     if ! pgrep -xU "${UID}" 'mpd' >/dev/null 2>&1; then
