@@ -75,7 +75,7 @@ aws-login-sso() {
 # Usage: confirm-potentially-stupid
 confirm-potentially-stupid() {
   echo "DESTRUCTIVE OPERATION - Are you sure? [y/N] " && \
-    read -r answer && [ "${answer:-N}" = y ]
+    read -r ans && [ $"${ans:-N}" = y ]
 }
 
 # Usage: cp-p $SOURCE $DESTINATION
