@@ -160,7 +160,11 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
   . ~/.fzf.bash
 
 if command -v 'fnm' >/dev/null 2>&1; then
-  eval "$(fnm env --use-on-cd --shell bash)"
+  eval "$(fnm env \
+    --use-on-cd \
+    --resolve-engines=false \
+    --version-file-strategy=recursive \
+    --shell bash)"
 fi
 
 if command -v 'pyenv' >/dev/null 2>&1; then
