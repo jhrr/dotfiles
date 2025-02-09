@@ -282,6 +282,11 @@ pskill() {
   kill -9 "$pid"
 }
 
+# Usage: rip-yt $URL
+rip-yt() {
+  yt-dlp -x --audio-format wav "$1"
+}
+
 # Usage: scan-ports
 # List all files listening on ports.
 scan-ports() {
