@@ -173,9 +173,12 @@ if command -v 'pyenv' >/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
 
-# TODO: Can't recall why this exists...
+# This is hateful, brew must go.
 if command -v '/opt/homebrew/opt/postgresql@15/bin/postgres' >/dev/null 2>&1; then
   export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+fi
+if command -v '/opt/homebrew/opt/postgresql@16/bin/postgres' >/dev/null 2>&1; then
+  export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 fi
 
 mpd-start() {
