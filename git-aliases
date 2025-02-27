@@ -34,38 +34,29 @@ __git_shortcut() {
   complete -o default -o nospace -F "_git_$2_shortcut" "$1"
 }
 
-# Quote block of arguments if it contains spaces or expansions.
-__git_shortcut  ga  add '"$@"'
-__git_shortcut  gA  add '--all && git status'
-__git_shortcut  gb  branch '--color -v'
-__git_shortcut  gbv  branch '--color -v | cut -c1-200'
-__git_shortcut  gbr  branch '"$@"'
-__git_shortcut  gc  commit '-v -m "$@"'
-__git_shortcut  gco  checkout '"$@"'
-__git_shortcut  gcoA  checkout '-- .'
-__git_shortcut  gcoB  checkout '-b "$@"'
-__git_shortcut  gd  diff '"$@"'
-__git_shortcut  gdc  diff --cached
-__git_shortcut  gdo  diff 'origin/$(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gF  fetch --all
-__git_shortcut  gh  rev-parse --show-toplevel  # Usage: cd $(gh)
-__git_shortcut  gPo  push 'origin $(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gPoF  push 'origin -f $(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gPu push 'upstream $(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gPuF push 'upstream -f $(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gpL  pull '--ff-only origin $(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gpLR  pull --rebase
-__git_shortcut  gpLom  pull '--ff-only origin master'
-__git_shortcut  gpLum  pull '--ff-only upstream master'
-__git_shortcut  grHob  reset '--hard origin/$(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  grHom  reset '--hard origin/master'
-__git_shortcut  gRi  rebase -i '"$@"'
-__git_shortcut  gRiom  rebase '-i origin/master'
-__git_shortcut  gRom  rebase 'origin/master'
-__git_shortcut  gRum  rebase 'upstream/master'
-__git_shortcut  grm  commit '-F .git/MERGE_MSG'
-__git_shortcut  gsh  show '"$@"'
-__git_shortcut  gst  status
+# Quote arguments if they contains spaces or expansions as it gets eval'd.
+__git_shortcut  ga     add        '"$@"'
+__git_shortcut  gA     add        '--all && git status'
+__git_shortcut  gb     branch     '--color -v'
+__git_shortcut  gbv    branch     '--color -v | cut -c1-200'
+__git_shortcut  gbr    branch     '"$@"'
+__git_shortcut  grm    commit     '-F .git/MERGE_MSG'
+__git_shortcut  gc     commit     '-v -m "$@"'
+__git_shortcut  gco    checkout   '"$@"'
+__git_shortcut  gcoA   checkout   '-- .'
+__git_shortcut  gcoB   checkout   '-b "$@"'
+__git_shortcut  gd     diff       '"$@"'
+__git_shortcut  gdc    diff       '--cached'
+__git_shortcut  gdo    diff       'origin/$(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gF     fetch      '--all'
+__git_shortcut  gPo    push       'origin $(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gPoF   push       'origin -f $(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gPu    push       'upstream $(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gPuF   push       'upstream -f $(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  grHob  reset      '--hard origin/$(git rev-parse --abbrev-ref HEAD)'
+__git_shortcut  gh     rev-parse  '--show-toplevel'  # Usage: cd $(gh)
+__git_shortcut  gsh    show       '"$@"'
+__git_shortcut  gst    status
 
 alias .g='cd $(gh)'  # Jump to repo root.
 
@@ -171,21 +162,25 @@ git-nuke-branch() {
 }
 
 # Usage: git-purge-local
-# Delete all local tracking branches except master.
+# Delete all local tracking branches except trunks.
 git-purge-local() {
   git-in-repo && \
     git branch \
-      | grep -v 'master' \
+      | grep -v 'main' \
+      | grep -v 'alpha' \
+      | grep -v 'beta' \
       | xargs git branch -D
 }
 
 # Usage: git-purge-local-merged
-# Delete all local tracking branches except master that have been
+# Delete all local tracking branches except trunks that have been
 # merged upstream.
 git-purge-local-merged() {
   git-in-repo && \
     git branch --merged \
-      | grep -v 'master' \
+      | grep -v 'main' \
+      | grep -v 'alpha' \
+      | grep -v 'beta' \
       | tr -d '\n' \
       | xargs git branch -D
 }
