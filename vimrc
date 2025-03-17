@@ -79,6 +79,7 @@ nnoremap <Leader>S :StripWhitespace<CR>
 nnoremap <Leader>v :vsp<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>m :Snippets<CR>
+nnoremap <Leader>n :let @+ = expand("%:p")<CR>
 
 "Unset "last search pattern" register by hitting return.
 nnoremap <CR> :noh<CR><CR>
