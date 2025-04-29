@@ -89,8 +89,8 @@ cp-p() {
 # Create a Terraform module with a well-specified structure.
 #
 # The resulting module doesn't cleave to 'terraform_standard_module_structure'
-# as understood by tflint (that shape is too constrained for my tastes, so I
-# make some additional files) so you'll need to disable that rule if you are
+# as understood by tflint (that shape is too constrained for my tastes, I
+# prefer some additional files) so you'll need to disable that rule if you are
 # linting your Terraform.
 create-tf-module() {
   if [ "$#" -ne 2 ]; then
@@ -100,13 +100,13 @@ create-tf-module() {
 
   local dir="$1"
   local module="$2"
-  local module_dir="${dir}/${module}"
 
   if [ -z "$dir" ] || [ -z "$module" ]; then
     err "Both directory and module arguments must be provided"
     return 1
   fi
 
+  local module_dir="${dir}/${module}"
   local readme="${module_dir}/README.md"
 
   if [ -e "${readme}" ]; then
