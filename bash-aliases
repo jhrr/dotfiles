@@ -274,6 +274,12 @@ kill-port() {
   lsof -t -i tcp:"$1" | xargs kill -9
 }
 
+# Usage: passwords
+passwords() {
+  # shellcheck source=/dev/null
+  cd "${HOME}"/.password-store && source .venv/bin/activate
+}
+
 # Usage: pskill $PID
 # Hard kill a running process.
 pskill() {
