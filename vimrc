@@ -140,7 +140,8 @@ nnoremap <Leader>L :noh<CR>
 " let s:project = system('git rev-parse --show-toplevel')
 " let s:todo = "TODO.org"
 " let s:path = s:project . "/" . s:todo
-nnoremap <Leader>t :e ./TODO.org<CR>
+nnoremap <Leader>t :e ./TODO.org \| call search('TODAY') \| normal! zOzt<CR>
+
 
 " Formatting
 let g:rustfmt_autosave = 1
