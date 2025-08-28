@@ -96,9 +96,6 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-" Reformat JSON block
-" :%!python -m json.tool
-
 runtime macros/matchit.vim
 
 set t_Co=256
@@ -190,6 +187,17 @@ let stubs = trim(system('gfind ~+ -maxdepth 2 -type d -name stubs ! -path "*venv
 let $MYPYPATH=stubs
 nnoremap <Leader>l :ALEFix<CR>
 
+" Cursor shapes per mode.
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\e[5 q"
+  let &t_SR = "\e[4 q"
+  let &t_EI = "\e[1 q"
+endif
+
 " Hardtime
 let g:hardtime_default_on = 1
 
@@ -203,17 +211,6 @@ set completeopt+=menuone
 set completeopt+=noselect
 set shortmess+=c
 let g:mucomplete#completion_delay = 1
-
-" Cursor shapes per mode.
-if empty($TMUX)
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-else
-  let &t_SI = "\e[5 q"
-  let &t_SR = "\e[4 q"
-  let &t_EI = "\e[1 q"
-endif
 
 " SuperCollider
 " ,b -> Start server.
