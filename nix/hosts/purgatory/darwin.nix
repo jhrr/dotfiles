@@ -13,7 +13,7 @@
     enable = true;
     autoUpdate = true;
     casks = [
-      # TODO: port from gist
+      # TODO: port from mac log gist
     ];
   };
 

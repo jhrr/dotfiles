@@ -9,8 +9,6 @@ tmp:=/tmp
 .PHONY: install help symlinks scripts \
 	playlists mpd.log mpd.db mpd.pid mpd.state
 
-install: symlinks scripts
-
 help:
 	@echo "Usage: make [OPTION]"
 	@echo "Makefile to configure user environment."
@@ -21,19 +19,22 @@ help:
 	@echo "  make help        display this message"
 	@echo ""
 
+install: symlinks scripts
+
 symlinks-common: ackrc bash-aliases bash_profile bashrc \
 	fasdrc flake8rc ghci git-aliases gitconfig gitignore_global inputrc \
-	nix-aliases profile psqlrc sbclrc tmux.conf
+	profile psqlrc sbclrc tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
+		@ln -fn $(dot)/nix/nix-aliases ~/.nix-aliases
 		@ln -fns $(dot)/tmux.d ~/.tmux.d
 
 symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
-		@echo "Symlinking Linux specific config files..."
+		@echo "Symlinking linux specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
 symlinks-osx: osx
-		@echo "Symlinking OS X specific config files..."
+		@echo "Symlinking macOS specific config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 
 mpd-config: mpd.log mpd.db mpd.pid mpd.state
