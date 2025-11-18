@@ -163,6 +163,7 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint', 'tsserver'],
+\   'vue': ['prettier', 'eslint'],
 \   'python': ['mypy', 'ruff'],
 \   'rust': ['analyzer', 'cargo', 'cspell', 'rls'],
 \   'terraform':  ['terraform', 'tflint'],

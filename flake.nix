@@ -26,15 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # pre-commit-hooks = {
-    #   url = "github:cachix/pre-commit-hooks.nix";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #     flake-compat.follows = "flake-compat";
-    #   };
-    # };
-
     # devenv = {
     #   url = "github:cachix/devenv";
     #   inputs = {
@@ -53,7 +44,7 @@
     ...
   }:
     let
-      homeManagerConfFor = config: {...}: {
+      homeManagerConf = config: {...}: {
         nixpkgs.overlays = [nur.overlay];
         imports = [config];
       };
@@ -63,7 +54,7 @@
         modules = [
           ./hosts/paradise/darwin.nix
           home-manager.darwinModules.home-manager {
-            home-manager.users.jhrr = homeManagerConfFor ./hosts/paradise/home.nix;
+            home-manager.users.jhrr = homeManagerConf ./hosts/paradise/home.nix;
           }
         ];
         specialArgs = { inherit nixpkgs; };
@@ -74,7 +65,7 @@
         modules = [
           ./hosts/purgatory/darwin.nix
           home-manager.darwinModules.home-manager {
-            home-manager.users.jhrr = homeManagerConfFor ./hosts/purgatory/home.nix;
+            home-manager.users.jhrr = homeManagerConf ./hosts/purgatory/home.nix;
           }
         ];
         specialArgs = { inherit nixpkgs; };
