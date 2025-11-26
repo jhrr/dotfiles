@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   services.nix-daemon.enable = true;
   services.nix-daemon.package = pkgs.nixFlakes;
 
@@ -9,15 +8,19 @@
     };
   };
 
+  environment = {
+    # TODO: devenv? gnupg? pass? here or in home?
+    systemPackages = with pkgs; [];
+  };
+
   homebrew = {
     enable = true;
     autoUpdate = true;
-    casks = [
-      # TODO: port from gist
-    ];
+    taps = [];
+    brews = [];
+    casks = [];
   };
 
-  # Configure macOS settings.
   system.defaults.dock.autohide = false;
   system.defaults.dock.show-recents = false;
 }

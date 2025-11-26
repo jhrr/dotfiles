@@ -2,12 +2,15 @@
   description = "~jhrr";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nur.url = "github:nix-community/NUR";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     darwin = {
       url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -16,28 +19,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
+    nur = {
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # devenv = {
-    #   url = "github:cachix/devenv";
-    #   inputs = {
-    #     # nixpkgs.follows = "nixpkgs"; # TODO: Don't override so that the cache can be used?
-    #     flake-compat.follows = "flake-compat";
-    #     pre-commit-hooks.follows = "pre-commit-hooks";
-    #   };
-    # };
   };
 
   outputs = {
     darwin,
+    flake-utils,
     home-manager,
     nixpkgs,
     nur,
@@ -53,7 +43,10 @@
         system = "x86_64-darwin";
         modules = [
           ./hosts/paradise/darwin.nix
+
           home-manager.darwinModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
             home-manager.users.jhrr = homeManagerConf ./hosts/paradise/home.nix;
           }
         ];
@@ -64,7 +57,10 @@
         system = "aarch64-darwin";
         modules = [
           ./hosts/purgatory/darwin.nix
+
           home-manager.darwinModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
             home-manager.users.jhrr = homeManagerConf ./hosts/purgatory/home.nix;
           }
         ];
