@@ -139,7 +139,6 @@ nnoremap <Leader>L :noh<CR>
 " let s:path = s:project . "/" . s:todo
 nnoremap <Leader>t :e ./TODO.org \| call search('TODAY') \| normal! zOzt<CR>
 
-
 " Formatting
 let g:rustfmt_autosave = 1
 let g:splitjoin_python_brackets_on_separate_lines = 1
