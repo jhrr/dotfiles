@@ -151,8 +151,6 @@ export WORKON_HOME PIP_REQUIRE_VIRTUALENV VIRTUAL_ENV_DISABLE_PROMPT
   . ~/.bash-aliases
 [[ -f ~/.git-aliases ]] &&
   . ~/.git-aliases
-[[ -f ~/.nix-aliases ]] &&
-  . ~/.nix-aliases
 [[ -f ~/.private ]] &&
   . ~/.private
 
