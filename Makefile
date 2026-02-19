@@ -6,11 +6,6 @@ dot:=$(CURDIR)
 bin:=$(dot)/bin
 tmp:=/tmp
 
-.PHONY: install help symlinks scripts \
-	playlists mpd.log mpd.db mpd.pid mpd.state
-
-install: symlinks scripts
-
 help:
 	@echo "Usage: make [OPTION]"
 	@echo "Makefile to configure user environment."
@@ -21,12 +16,19 @@ help:
 	@echo "  make help        display this message"
 	@echo ""
 
+install: symlinks scripts
+
 symlinks-common: ackrc bash-aliases bash_profile bashrc \
 	fasdrc flake8rc ghci git-aliases gitconfig gitignore_global inputrc \
 	profile psqlrc sbclrc tmux.conf
 		@echo "Symlinking common config files..."
 		@for file in $^; do ln -fs $(dot)/$$file ~/.$$file; done
 		@ln -fns $(dot)/tmux.d ~/.tmux.d
+
+symlinks-nix:
+		@echo "Symlinking nix config file..."
+		@mkdir -p ~/.config/nix/
+		@ln -fns $(dot)/nix.conf ~/.config/nix/nix.conf;
 
 symlinks-linux: conkyrc-xmonad dunstrc inputrc xinitrc Xdefaults
 		@echo "Symlinking Linux specific config files..."
@@ -56,9 +58,9 @@ vim-config:
 		@git -C $(dot) submodule update --init
 
 ifeq ($(OS),Darwin)
-symlinks: symlinks-common symlinks-osx mpd-config vim-config
+symlinks: symlinks-common symlinks-nix symlinks-osx mpd-config vim-config
 else
-symlinks: symlinks-common symlinks-linux mpd-config vim-config
+symlinks: symlinks-common symlinks-nix symlinks-linux mpd-config vim-config
 endif
 
 link-scripts:
