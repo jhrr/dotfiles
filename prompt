@@ -1,3 +1,7 @@
+# shellcheck shell=bash
+# -*- mode: sh; -*-
+# vi: set ft=sh :
+
 green='\e[0;32m'
 yellow='\e[0;33m'
 blue='\e[0;34m'

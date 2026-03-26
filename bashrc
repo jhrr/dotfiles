@@ -34,7 +34,11 @@ HISTSIZE=
 HISTFILESIZE=
 HISTCONTROL=ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+__history_sync() {
+  history -a
+  history -n
+}
+PROMPT_COMMAND="__history_sync${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 IS_LINUX=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && IS_LINUX=true
@@ -169,14 +173,6 @@ if command -v 'pyenv' >/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
-fi
-
-# This is hateful, brew must go.
-if command -v '/opt/homebrew/opt/postgresql@15/bin/postgres' >/dev/null 2>&1; then
-  export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-fi
-if command -v '/opt/homebrew/opt/postgresql@16/bin/postgres' >/dev/null 2>&1; then
-  export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 fi
 
 mpd-start() {
