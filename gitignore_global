@@ -2,4 +2,6 @@
 '/'
 *venv
 .DS_STORE
+.claude/
+CLAUDE.md
 TODO.org

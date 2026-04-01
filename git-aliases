@@ -54,11 +54,11 @@ __git_shortcut  gPoF   push       'origin -f $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gPu    push       'upstream $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  gPuF   push       'upstream -f $(git rev-parse --abbrev-ref HEAD)'
 __git_shortcut  grHob  reset      '--hard origin/$(git rev-parse --abbrev-ref HEAD)'
-__git_shortcut  gh     rev-parse  '--show-toplevel'  # Usage: cd $(gh)
+__git_shortcut  ghd    rev-parse  '--show-toplevel'  # Usage: cd $(ghd)
 __git_shortcut  gsh    show       '"$@"'
 __git_shortcut  gst    status
 
-alias .g='cd $(gh)'  # Jump to repo root.
+alias .g='cd $(ghd)'  # Jump to repo root.
 
 _format="%C(bold red)%h%C(reset)%C(blue) %cn"
 _format+="%C(yellow)%d%C(reset) %s %C(red)(%cr) "
