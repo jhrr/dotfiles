@@ -29,14 +29,14 @@ set -o notify
 unset MAILCHECK
 unset TERMCAP
 
-shopt -s histappend
 HISTSIZE=
 HISTFILESIZE=
 HISTCONTROL=ignoredups:erasedups
 HISTIGNORE="&:l:ls:ll:cd:exit:clear:pwd:history:h:#*"
 __history_sync() {
   history -a
-  history -n
+  history -c
+  history -r
 }
 PROMPT_COMMAND="__history_sync${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
@@ -90,17 +90,8 @@ export IS_OSX
   [ -r "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ] &&
     . "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
 
-  [ -f ~/.iterm2_shell_integration.bash ] &&
-    . ~/.iterm2_shell_integration.bash
-
   PATH="${BREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
   PATH="${BREW_PREFIX}/opt/gsed/libexec/gnubin:$PATH"
-
-  if [[ $ITERM_SESSION_ID ]]; then
-    export DISABLE_AUTO_TITLE="true"
-    # Sets the tab title to current dir.
-    export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}$(__git_ps1 :%s)\007"'
-  fi
 }
 
 _set_preferred() {

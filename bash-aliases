@@ -179,10 +179,9 @@ extract() {
   fi
 }
 
-# Usage: ff $DIR-SPECIFIER
+# Usage: fdir $DIR-SPECIFIER
 # Find directories.
-# TODO: Consider using '*/\.*'
-fd() {
+fdir() {
   find . \
     -not -iwholename '*.git*' \
     -not -iwholename '*.mypy_cache*' \

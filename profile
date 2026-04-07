@@ -18,16 +18,6 @@ umask 0022
 [ -f "${HOME}/.prompt" ] &&
   . "${HOME}/.prompt"
 
-# if [ "$(hostname)" = 'paradise' ]; then
-#   [ -f "${HOME}/.prompt" ] &&
-#     . "${HOME}/.prompt"
-# else
-#   if command -v 'starship' >/dev/null 2>&1; then
-#     eval "$(starship init bash)"
-#     export STARSHIP_CONFIG=~/code/src/dotfiles/starship.toml
-#   fi
-# fi
-
 if [ -d /etc/profile.d/ ]; then
   for profile in /etc/profile.d/*.sh; do
     [ -r "${profile}" ] &&
