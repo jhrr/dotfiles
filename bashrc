@@ -199,3 +199,5 @@ fi
     eval "$(keychain --eval --agents ssh -Q --quiet jhrr_id_rsa cmg_id_rsa)"
   fi
 }
+
+eval "$(direnv hook bash)"
